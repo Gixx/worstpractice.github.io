@@ -1,28 +1,61 @@
-title: Do no try at home
+title: Worst Practice
+lang: en
+locale: en_US
+author: 'Gábor Iván'
+author_slug: 'gabor.ivan'
+author_avatar: '/assets/img/gabor.ivan.jpg'
 
-baseurl: ""
+author_introduction: ''
+description: ''
+subject: ''
+copyright: 'Copyright © 2019-2020, Gixx-web (https://www.gixx-web.com). All rights reserved.'
+keywords: ''
 
-url: "www.worstpractice.dev"
+homepage: 'https://www.worstpractice.dev'
 
-facebook_username:
+default_categories: ['Home']
+default_tags: ['']
 
-twitter_username:
-
-github_username:
-
-linkedin_username:
-
-future: true
+defaults:
+  -
+    scope:
+      path: ''
+    values:
+      layout: 'default'
+      page_categories: ['Home']
+      page_tags: ['']
+      page_type: 'post_list'
+  -
+    scope:
+      path: ''
+      type: 'posts'
+    values:
+      layout: 'post'
+      page_type: 'post_view'
 
 destination: docs
+
+facebook_appid: 2178081495757871
+facebook_username: ivan.gabor.80
+twitter_username: gaborivan1980
+github_username: Gixx
+linkedin_username: gaborivan
+
+future: true
 
 exclude:
   - README.md
   - vendor
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
 
 env: production
 
 excerpt_separator: <!--more-->
+
+reversed_categories:
+  - tutorial
 
 markdown: kramdown
 
@@ -32,28 +65,33 @@ autopages:
   enabled: true
   tags:
     layouts:
-      - postlist.html
+      - taglist.html
+    title: ''
     permalink: /tags/:tag/
-    title:  'Tag: :tag'
-    slugify:
-      mode: 'ascii'
-      cased: false
     enabled: true
   categories:
     layouts:
-      - postlist.html
+      - categorylist.html
+    title: ''
     permalink: /:cat/
-    title:  'Category: :cat'
     enabled: true
   collections:
     enabled: false
 
+jekyll-archives:
+  enabled:
+    - month
+  layouts:
+    month: 'datelist'
+  permalinks:
+    month: '/archive/:year-:month/'
+
 pagination:
   enabled: true
-  per_page: 5
+  per_page: 6
   offset: 0
-  permalink: '/page/:num/'
-  title: ':title - page :num of :max'
+  permalink: '/page/:num.html'
+  title: ':title - Page :num'
   limit: 0
   sort_field: 'date'
   sort_reverse: true
@@ -72,7 +110,7 @@ plugins:
   - jekyll-paginate-v2
 
 jekyll_tidy:
-  exclude: ["robots.txt"]
+  exclude: ['robots.txt']
   compress_html: false
 
 sass:

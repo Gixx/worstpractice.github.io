@@ -2,9 +2,15 @@
 layout: default
 pagination:
     enabled: true
-page_type: home
+page_type: tag_list
 ---
 {%- include variables.html -%}
+
+<section class="post">
+    <article>
+        <h1>Címke: {{ currentTagLabel }}</h1>
+    </article>
+</section>
 
 <section class="list">
     {%- for post in paginator.posts -%}

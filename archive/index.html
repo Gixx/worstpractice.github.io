@@ -1,0 +1,22 @@
+---
+layout: default
+pagination:
+    enabled: false
+page_type: all_dates
+title: 'Archive'
+---
+{%- include variables.html -%}
+
+<section class="post">
+    <article>
+        <h1>Archive</h1>
+        <section>
+            <ul>
+            {%- for dateSlug in dateSlugs -%}
+            {%- assign dateLabel = dateLabels[forloop.index0] -%}
+                <li><a class="date date-{{ dateSlug }}{% if dateSlug == currentDateSlug %} current{% endif %}" href="/archivum/{{ dateSlug }}/">{{ dateLabel | strip }}</a></li>
+            {%- endfor -%}
+            </ul>
+        </section>
+    </article>
+</section>

@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>&nbsp;-&nbsp;Worst Practice</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+        <meta name="language" content="en">
+        <meta name="robots" content="index,follow">
+        <meta name="generator" content="jekyll 3.8.5">
+        <meta name="revisit-after" content="7 days">
+        <meta name="distribution" content="web">
+        <meta name="theme-color" content="#3B5999">
+        <meta name="copyright" content="Copyright © 2019-2020, Gixx-web (https://www.gixx-web.com). All rights reserved.">
+        <meta name="description" content="">
+        <meta name="subject" content="">
+        <meta name="keywords" content="">
+
+        <!-- facebook share -->
+        <meta property="og:locale" content="en_US">
+        <meta property="og:site_name" content="Worst Practice">
+        <meta property="og:title" content="&nbsp;-&nbsp;Worst Practice">
+        <meta property="og:url" content="https://www.worstpractice.dev/robots.txt">
+        
+        <meta property="og:description" content="">
+        <meta property="og:type" content="website">
+        
+
+        <!-- twitter share -->
+        
+        <meta name="twitter:title" content="&nbsp;-&nbsp;Worst Practice">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:description" content="">
+        
+
+        <link rel="canonical" href="https://www.worstpractice.dev">
+        <link rel="alternate" type="application/rss+xml" title="&nbsp;-&nbsp;Worst Practice" href="/feed.xml">
+        <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/robots.txt">
+
+        <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+        <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+        <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+        <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+
+        <meta name="application-name" content="Gábor Iván">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700">
+        <link rel="stylesheet" href="/assets/css/site.css">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <a href="#" class="nav material-icons">menu</a>
+                <h1><a href="/">Worst Practice</a></h1>
+            </div>
+        </header>
+        <nav>
+            <div class="container">
+                <section>
+                    <ul>
+                        <li><a class="home" href="/">Home</a></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Categories</h2>
+                    <ul>
+    <li><a class="category category-general" href="/general">General</a></li>
+        </ul>
+
+                </section>
+                <section>
+                    <h2>Tags</h2>
+                    <ul><li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (1)</a></li></ul>
+                </section>
+                <section>
+                    <h2>Archive</h2>
+                    <ul><li><a class="date date-2019-09" href="/archive/2019-09/">2019. September</a></li></ul>
+                </section>
+            </div>
+        </nav>
+        <main>
+            User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: *
+Allow: /
+Sitemap: http://localhost:4000/sitemap.xml
+
+        </main>
+        <footer>
+            <div class="container">
+                <p>Copyright © 2019 All rights reserved. Worst Practice</p>
+            </div>
+        </footer>
+        <script src="/assets/js/vendor/stickyfill.min.js"></script>
+        <script src="/assets/js/vendor/lunr.2.3.6.min.js"></script>
+        <script src="/assets/js/search.js"></script>
+    </body>
+</html>
