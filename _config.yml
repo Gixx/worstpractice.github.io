@@ -15,6 +15,7 @@ homepage: 'https://www.worstpractice.dev'
 
 default_categories: ['Home']
 default_tags: ['']
+default_rating: false
 
 defaults:
   -

@@ -91,18 +91,19 @@
       </div>
     </nav>
     <main>
-      <section id="search-results" class="list"></section>
-      <script src="/assets/js/search.js"></script>
+      <section id="search-results" class="list">
+        <form id="search" action="https://www.google.com/search">
+          <input type="text" name="q" value="" placeholder="Search">
+          <input type="hidden" name="lang" value="hu">
+          <input type="submit" value="Search">
+        </form>
+      </section>
       <script type="application/javascript">
-        window.searchPages = {
-        "general-what-am-i-doing-html": {
-                "title": "What am I doing???",
-                "content": "cannot explain long time always felt want shout world crazy ideas also full with fear Lots",
-                "excerpt": "It like a professional suicide. I decided to share my thoughts in various IT-related topics.",
-                "path": "/general/what_am_i_doing.html"
-            }
-        
-        };
+        document.querySelector('#search').addEventListener('submit', function(event){
+            event.preventDefault();
+            document.querySelector('#search input[type=text]').value += ' site:worstpractice.dev';
+            document.querySelector('#search').submit();
+        });
       </script>
     </main>
     <footer>
@@ -111,7 +112,5 @@
       </div>
     </footer>
     <script src="/assets/js/vendor/stickyfill.min.js"></script>
-    <script src="/assets/js/vendor/lunr.2.3.6.min.js"></script>
-    <script src="/assets/js/search.js"></script>
   </body>
 </html>
