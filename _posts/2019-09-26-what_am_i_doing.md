@@ -11,6 +11,7 @@ tags:   [personal]
 tagLabels: ['Personal']
 excerpt: 'It like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.'
 summary: ''
+review: true
 ---
 
 ## I cannot explain the why

@@ -143,9 +143,34 @@
         </main>
         <footer>
             <div class="container">
-                <p>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</p>
+                <p class="copyright">Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</p>
+                <nav>
+                    <ul>
+                        <li><a href="/imprint.html">Imprint</a></li>
+                        <li><a href="/terms.html">Terms of Use</a></li>
+                        <li><a href="/privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </nav>
             </div>
         </footer>
         <script src="/assets/js/vendor/stickyfill.min.js"></script>
+        {%- if page.review -%}
+        <div id="disqus_thread"></div>
+        <script type="application/javascript">
+            var disqus_config = function () {
+                this.page.url = '{{ site.homepage }}{{ page.url }}';
+                this.page.identifier = '{{ page.title | slugify: "latin" }}';
+                this.page.title = '{{ page.title }}';
+            };
+
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://worst-practice.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        {%- endif -%}
     </body>
 </html>
