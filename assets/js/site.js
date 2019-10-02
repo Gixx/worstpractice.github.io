@@ -10,7 +10,8 @@ function setCookie(cname, cvalue, exdays)
     let date = new Date();
     date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires="+ date.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    let cookieData = cname + '=' + cvalue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
+    document.cookie = cookieData;
 }
 
 function getCookie(cname)
