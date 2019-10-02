@@ -45,11 +45,15 @@ body {
 a, a:visited {
   cursor: pointer !important;
   color: var(--primary);
-  text-decoration: none;
+  //text-decoration: none;
 }
 
 a:hover, a:active {
   text-decoration: underline;
+}
+
+a[href^="mailto:"]::after {
+  content: " (worst.practice.blog@gmail.com)";
 }
 
 img {

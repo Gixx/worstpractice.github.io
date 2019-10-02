@@ -9,42 +9,36 @@ title: 'Tag collection'
 {%- include variables.html -%}
 <section class="post">
     <article>
-        <h1>Tag collection</h1>
+        <header>
+            <h2>Tag collection</h2>
+        </header>
         <div class="column">
-                {%- assign group = '' -%}
-                {%- assign sortedTagSlugs = tagSlugs | sort -%}
-                {%- for tagSlug in sortedTagSlugs -%}
-                    {%- assign index = -1 -%}
-                    {%- for ts in tagSlugs %}
-                        {%- if ts == tagSlug -%}
-                            {%- assign index = forloop.index0 -%}
-                            {%- break -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                    {%- assign tagLabel = tagLabels[index] -%}
-                    {%- assign tagGroup = tagSlug | slice:0 -%}
-                    {%- if group != tagGroup -%}
-                        {%- if group != '' -%}
-                    </ul>
+            {%- assign group = '' -%}
+            {%- assign sortedTagSlugs = tagSlugs | sort -%}
+            {%- for tagSlug in sortedTagSlugs -%}
+                {%- assign index = -1 -%}
+                {%- for ts in tagSlugs %}
+                    {%- if ts == tagSlug -%}
+                        {%- assign index = forloop.index0 -%}
+                        {%- break -%}
+                    {%- endif -%}
+                {%- endfor -%}
+                {%- assign tagLabel = tagLabels[index] -%}
+                {%- assign tagGroup = tagSlug | slice:0 -%}
+                {%- if group != tagGroup -%}
+                    {%- if group != '' -%}
+                </ul>
             </section>
-                            {%- endif -%}
-                            {%- assign group = tagGroup -%}
+                    {%- endif -%}
+                    {%- assign group = tagGroup -%}
             <section>
-                            {% if group contains 'a' -%}
-                <h3>A, Á</h3>
-                            {%- elsif group == 'i' -%}
-                <h3>I, Í {{ group }}</h3>
-                            {%- elsif group == 'o' -%}
-                <h3>O, Ó, Ö, Ő</h3>
-                            {%- elsif group contains 'u' -%}
-                <h3>U, Ú, Ü, Ű</h3>
-                            {%- else -%}
-                <h3>{{ group | capitalize }}</h3>
-                            {%- endif -%}
+                <header>
+                    <h3>{{ group | capitalize }}</h3>
+                </header>
                 <ul>
-                        {%- endif -%}
+                {%- endif -%}
                     <li><a rel="tag" href="/tags/{{ tagSlug }}/">{{ tagLabel }}</a></li>
-                    {%- endfor -%}
+            {%- endfor -%}
                 </ul>
             </section>
         </div>

@@ -12,10 +12,6 @@
                 {{ postMonth }} {{ post.date | date: '%d' }}, {{ post.date | date: '%Y' }}
             {%- endcapture -%}
             <span class="date">Published at {{ postDate }},</span>
-
-            {% if post.location != '' %}
-            <span class="location">in {{ post.location | strip }} area,</span>
-            {% endif %}
             <br>
             <span class="category">in the <a href="/{{ post.category}}/index.html">{{ post.categoryLabel }}</a> category,</span>
             <br>
@@ -34,7 +30,7 @@
         {%- if post.illustration != '' -%}
         <a href="{{ post.url | relative_url }}"><img src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}/{{ post.illustration }}" alt="{{ post.title | escape }}"></a>
         {%- endif -%}
-        <h1><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h1>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
         <p>{{ post.excerpt }}</p>
     </div>
 

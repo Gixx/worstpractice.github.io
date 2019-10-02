@@ -6,14 +6,14 @@ page_type: post_view
 <section class="post">
     <article>
         <header>
-            <h1>{{ page.title | escape }}</h1>
+            <h2>{{ page.title | escape }}</h2>
         </header>
 
         <p class="meta">
             {%- assign m = page.date | date: "%-m" | minus: 0 -%}
             {%- assign postMonth = site.data[site.lang].months[m] -%}
             {%- capture postDate  -%}
-                {{ page.date | date: '%Y' }}<br>{{ postMonth }}&nbsp;{{ page.date | date: '%e' }}.<br> {{ page.date | date: '%R' }}
+                {{ postMonth }}&nbsp;{{ page.date | date: '%e' }},<br>{{ page.date | date: '%Y' }}<br>{{ page.date | date: '%R' }}
             {%- endcapture -%}
             <span class="date">{{ postDate }}</span>
         </p>
@@ -36,5 +36,9 @@ page_type: post_view
                 {{ page.author_introduction | default: site.author_introduction }}
             </div>
         </div>
+
+        {%- if page.review -%}
+        <div id="disqus_thread"></div>
+        {%- endif -%}
     </article>
 </section>

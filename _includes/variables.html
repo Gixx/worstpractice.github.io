@@ -67,9 +67,9 @@
 {%- assign dateSlugs = dateSlugs | split: ',' | uniq -%}
 
 {%- capture dateLabels -%}
-    {% for date in sortedDates %}{% assign m = date | date: '%-m' | minus: 0 %}{{ date | date: '%Y' }}. {{ site.data[site.lang].months[m] }}{% unless forloop.last %},{% endunless %}{% endfor %}
+    {% for date in sortedDates %}{% assign m = date | date: '%-m' | minus: 0 %}{{ site.data[site.lang].months[m] }}, {{ date | date: '%Y' }}{% unless forloop.last %};{% endunless %}{% endfor %}
 {%- endcapture -%}
-{%- assign dateLabels = dateLabels | split: ',' | uniq -%}
+{%- assign dateLabels = dateLabels | split: ';' | uniq -%}
 
 {%- assign currentDateSlug = '' -%}
 {%- assign currentDateLabel = '' -%}
@@ -78,7 +78,7 @@
         {%- assign currentDateSlug = post.date | date: "%Y-%m" %}
         {%- assign m = post.date | date: "%-m" | minus: 0 -%}
         {%- capture currentDateLabel -%}
-            {{ post.date | date: "%Y" }}. {{ site.data[site.lang].months[m] }}.
+            {{ site.data[site.lang].months[m] }}, {{ post.date | date: "%Y" }}
         {%- endcapture -%}
         {%- break -%}
     {%- endfor -%}
