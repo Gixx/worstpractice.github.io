@@ -52,7 +52,7 @@ a:hover, a:active {
   text-decoration: underline;
 }
 
-a[href^="mailto:"]::after {
+a.mailto::after {
   content: " (worst.practice.blog@gmail.com)";
 }
 
