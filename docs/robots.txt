@@ -54,7 +54,7 @@
         <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
 
-        <meta name="application-name" content="Gábor Iván">
+        <meta name="application-name" content="Worst Practice Blog">
         <meta name="HandheldFriendly" content="true">
         <meta name="format-detection" content="telephone=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -110,11 +110,12 @@ Sitemap: http://localhost:4000/sitemap.xml
         </main>
         <footer>
             <div class="container">
-                <p class="copyright">Copyright © 2019 All rights reserved. Worst Practice</p>
+                <p><small>Copyright © 2019 All rights reserved. Worst Practice</small></p>
                 <ul>
                     <li><a href="/imprint.html">Imprint</a></li>
                     <li><a href="/terms.html">Terms of Use</a></li>
                     <li><a href="/privacy.html">Privacy Policy</a></li>
                 </ul>
-            </div></body>
+            </div>
+        </footer></body>
 </html>

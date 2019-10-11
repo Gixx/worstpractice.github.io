@@ -98,7 +98,7 @@
         <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
 
-        <meta name="application-name" content="{{ site.author }}">
+        <meta name="application-name" content="{{ site.application }}">
         <meta name="HandheldFriendly" content="true">
         <meta name="format-detection" content="telephone=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -145,38 +145,38 @@
         </main>
         <footer>
             <div class="container">
-                <p class="copyright">Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</p>
+                <p><small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small></p>
                 <ul>
                     <li><a href="/imprint.html">Imprint</a></li>
                     <li><a href="/terms.html">Terms of Use</a></li>
                     <li><a href="/privacy.html">Privacy Policy</a></li>
                 </ul>
             </div>
-            {%- if page.review -%}
-            <script type="application/javascript">
-                var disqus_config = function () {
-                    this.page.url = '{{ site.homepage }}{{ page.url }}';
-                    this.page.identifier = '{{ page.title | slugify: "latin" }}';
-                    this.page.title = '{{ page.title }}';
-                };
-
-                (function() {
-                    if (isDisqusEnabled()) {
-                        var d = document, s = d.createElement('script');
-                        s.src = 'https://worst-practice.disqus.com/embed.js';
-                        s.setAttribute('data-timestamp', +new Date());
-                        (d.head || d.body).appendChild(s);
-                    }
-                })();
-            </script>
-            <noscript>
-                <p>
-                    No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
-                    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener noreferrer">write me</a>
-                    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
-                </p>
-            </noscript>
         </footer>
+        {%- if page.review -%}
+        <script type="application/javascript">
+            var disqus_config = function () {
+                this.page.url = '{{ site.homepage }}{{ page.url }}';
+                this.page.identifier = '{{ page.title | slugify: "latin" }}';
+                this.page.title = '{{ page.title }}';
+            };
+
+            (function() {
+                if (isDisqusEnabled()) {
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://worst-practice.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                }
+            })();
+        </script>
+        <noscript>
+            <p>
+                No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
+                <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener noreferrer">write me</a>
+                your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+            </p>
+        </noscript>
         {%- endif -%}
     </body>
 </html>

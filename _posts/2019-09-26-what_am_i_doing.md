@@ -9,7 +9,7 @@ category: general
 categoryLabel: 'General'
 tags:   [personal]
 tagLabels: ['Personal']
-excerpt: 'It like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.'
+excerpt: 'It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.'
 summary: ''
 review: true
 ---

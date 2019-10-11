@@ -4,6 +4,7 @@ locale: en_US
 author: 'Gábor Iván'
 author_slug: 'gabor.ivan'
 author_avatar: '/assets/img/gabor.ivan.jpg'
+application: 'Worst Practice Blog'
 
 author_introduction: ''
 description: ''
