@@ -104,7 +104,6 @@ plugins:
   - rouge
   - jekyll-last-modified-at
   - jekyll-plantuml
-  - jekyll-responsive-image
   - jekyll-tidy
   - classifier-reborn
   - jekyll-tagging-related_posts
@@ -122,23 +121,3 @@ sass:
 kramdown:
   input: GFM
   syntax_highlighter: rouge
-
-responsive_image:
-  template: _includes/responsive-image.html
-  default_quality: 90
-  sizes:
-    - width: 960
-    - width: 768
-    - width: 465
-    - width: 217
-  auto_rotate: false
-  strip: true
-  base_path: assets
-  output_path_format: assets/resized/%{width}/%{basename}
-  save_to_source: true
-  cache: false
-  extra_images:
-    - assets/*.png
-    - assets/*.jpg
-    - assets/img/*.png
-    - assets/img/*.jpg
