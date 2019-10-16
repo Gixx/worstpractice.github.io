@@ -14,13 +14,10 @@ page_type: category_list
     {%- endif -%}
 {%- endfor -%}
 
-<section class="post">
-    <article>
+<section>
+    <header>
         <h2>Category: {{ currentCategoryLabel }}</h2>
-    </article>
-</section>
-
-<section class="list">
+    </header>
     {%- if reversedOrder -%}
         {%- for post in paginator.posts reversed -%}
             {% include post-list-element.html post=post %}

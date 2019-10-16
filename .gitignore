@@ -1,6 +1,7 @@
 .idea
 _site
 .sass-cache
+.jekyll-cache
 .idea
 /vendor/
 /tmp/

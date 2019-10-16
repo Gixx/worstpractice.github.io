@@ -1,17 +1,17 @@
 ---
 layout: default
+pagination:
+    enabled: true
+page_type: date_list
 ---
 {%- include variables.html -%}
-<section class="post">
-    <article>
+<section>
+    <header>
         <h2>Archive: {{ currentDateLabel }}</h2>
-    </article>
-</section>
-
-<section class="list">
-    {%- for post in page.posts -%}
+    </header>
+    {%- for post in paginator.posts -%}
         {% include post-list-element.html post=post %}
     {%- endfor -%}
 </section>
 
-
+{% include pagination.html %}

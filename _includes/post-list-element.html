@@ -2,6 +2,10 @@
 {%- assign post = include.post -%}
 <article>
     <header>
+        <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+    </header>
+
+
         <a class="avatar" href="/author/{{ post.author_slug | default: site.author_slug }}/index.html"><img src="{{ post.author_avatar | default: site.author_avatar }}" alt="{{ post.author | default: site.author }}"></a>
         <p class="meta">
             <span class="user"><a class="avatar" href="{{ post.author_slug | default: site.author_slug }}index.html">{{ post.author | default: site.author }}</a></span>
@@ -21,16 +25,12 @@
                 {% endfor %}
             </span>
         </p>
-    </header>
-    {%- if post.summary != '' -%}
-    <p class="summary">{{ post.summary }}</p>
-    {%- endif -%}
 
     <div class="preview">
         {%- if post.illustration != '' -%}
         <a href="{{ post.url | relative_url }}"><img src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}/{{ post.illustration }}" alt="{{ post.title | escape }}"></a>
         {%- endif -%}
-        <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+
         <p>{{ post.excerpt }}</p>
     </div>
 

@@ -7,12 +7,12 @@ title: 'Tag collection'
 ---
 
 {%- include variables.html -%}
-<section class="post">
+<section>
     <article>
         <header>
             <h2>Tag collection</h2>
         </header>
-        <div class="column">
+        <div>
             {%- assign group = '' -%}
             {%- assign sortedTagSlugs = tagSlugs | sort -%}
             {%- for tagSlug in sortedTagSlugs -%}
@@ -28,10 +28,10 @@ title: 'Tag collection'
                 {%- if group != tagGroup -%}
                     {%- if group != '' -%}
                 </ul>
-            </section>
+            </nav>
                     {%- endif -%}
                     {%- assign group = tagGroup -%}
-            <section>
+            <nav>
                 <header>
                     <h3>{{ group | capitalize }}</h3>
                 </header>
@@ -40,7 +40,7 @@ title: 'Tag collection'
                     <li><a rel="tag" href="/tags/{{ tagSlug }}/">{{ tagLabel }}</a></li>
             {%- endfor -%}
                 </ul>
-            </section>
+            </nav>
         </div>
     </article>
 </section>

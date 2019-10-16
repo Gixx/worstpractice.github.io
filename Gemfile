@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+gem 'jekyll', '~> 4.0'
+
 group :jekyll_plugins do
-    gem "jekyll-feed"
+    gem 'jekyll-feed'
     gem 'rouge'
     gem 'jekyll-last-modified-at'
     gem 'jekyll-plantuml'
@@ -10,7 +12,7 @@ group :jekyll_plugins do
     gem 'classifier-reborn'
     gem 'jekyll-tagging-related_posts'
     gem 'jekyll-archives'
-    gem 'jekyll-paginate-v2', '2.0.0'
+    gem 'jekyll-paginate-v2', github: 'sverrirs/jekyll-paginate-v2'
 end
 
 gem 'gsl'

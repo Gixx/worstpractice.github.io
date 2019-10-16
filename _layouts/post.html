@@ -3,7 +3,7 @@ layout: default
 page_type: post_view
 ---
 
-<section class="post">
+<section>
     <article>
         <header>
             <h2>{{ page.title | escape }}</h2>
@@ -15,8 +15,17 @@ page_type: post_view
             {%- capture postDate  -%}
                 {{ postMonth }}&nbsp;{{ page.date | date: '%e' }},<br>{{ page.date | date: '%Y' }}<br>{{ page.date | date: '%R' }}
             {%- endcapture -%}
-            <span class="date">{{ postDate }}</span>
+            <span class="date">{{ postDate }}</span><br>
+            {%- unless page.expiration == "none" -%}
+                {%- assign em = page.expiration | date: "%-m" | minus: 0 -%}
+                {%- assign expirationMonth = site.data[site.lang].months[em] -%}
+                {%- capture expirationDate  -%}
+                    {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }},<br>{{ page.expiration | date: '%Y' }}
+                {%- endcapture -%}
+            <span class="expiration">Estimated date of expiration: {{ expirationDate }}</span>
+            {%- endunless -%}
         </p>
+
         <p class="lead">
             {{ page.excerpt }}
             {%- if page.illustration != '' -%}
@@ -29,13 +38,13 @@ page_type: post_view
             {{ page.content | remove: page.excerpt }}
         </div>
 
-        <div class="footer">
+        <footer>
+            <h3>About the author</h3>
             <a class="author" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
-            <h5>About the author</h5>
             <div class="details">
                 {{ page.author_introduction | default: site.author_introduction }}
             </div>
-        </div>
+        </footer>
 
         {%- if page.review -%}
         <div id="disqus_thread"></div>

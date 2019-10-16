@@ -112,46 +112,33 @@
 
         <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
-    <body{% if page.page_type == 'post_view' %} class="blog-post"{% endif %}>
+    <body>
         <header>
-            <div class="container">
-                <a href="#" class="nav material-icons">menu</a>
-                <h1><a href="/">{{ site.title }}</a></h1>
-            </div>
+            <h1><a href="/">{{ site.title }}</a></h1>
+            <nav>
+                {% include categories.html %}
+            </nav>
         </header>
-        <nav>
-            <div class="container">
-                <section>
-                    <ul>
-                        <li><a class="home{% if page.page_type == 'home' %} current{% endif %}" href="/">Home</a></li>
-                    </ul>
-                </section>
-                <section>
-                    <h2>Categories</h2>
-                    {% include categories.html %}
-                </section>
-                <section>
-                    <h2>Tags</h2>
-                    {% include tags.html %}
-                </section>
-                <section>
-                    <h2>Archive</h2>
-                    {% include dates.html %}
-                </section>
-            </div>
+        <nav id="tags">
+            <h2>Tags</h2>
+            {% include tags.html %}
+        </nav>
+        <nav id="archive">
+            <h2>Archive</h2>
+            {% include dates.html %}
         </nav>
         <main>
             {{ content }}
         </main>
         <footer>
-            <div class="container">
-                <p><small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small></p>
+            <p><small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small></p>
+            <nav>
                 <ul>
                     <li><a href="/imprint.html">Imprint</a></li>
                     <li><a href="/terms.html">Terms of Use</a></li>
                     <li><a href="/privacy.html">Privacy Policy</a></li>
                 </ul>
-            </div>
+            </nav>
         </footer>
         {%- if page.review -%}
         <script type="application/javascript">

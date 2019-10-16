@@ -2,6 +2,7 @@
 layout: post
 title:  'What am I doing???'
 date:   2019-09-26 15:23:00 +0100
+expiration: none
 location: 'München'
 illustration: ''
 illustration_share: ''
@@ -11,7 +12,7 @@ tags:   [personal]
 tagLabels: ['Personal']
 excerpt: 'It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.'
 summary: ''
-review: true
+review: false
 ---
 
 ## I cannot explain the why

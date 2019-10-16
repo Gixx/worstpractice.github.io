@@ -7,21 +7,15 @@ page_type: post_list
 ---
 {%- include variables.html -%}
 
-<section id="search-results" class="list">
-
-    <form id="search" action="https://www.google.com/search">
-        <input type="text" name="q" value="" placeholder="Search">
-        <input type="hidden" name="lang" value="hu">
-        <input type="submit" value="Search">
-    </form>
-
+<section>
+    <article>
+        <header>
+            <h2>Search results</h2>
+        </header>
+    </article>
 </section>
 
 <script type="application/javascript">
-    document.querySelector('#search').addEventListener('submit', function(event){
-        event.preventDefault();
-        document.querySelector('#search input[type=text]').value += ' site:worstpractice.dev';
-        document.querySelector('#search').submit();
-    });
+
 </script>
 

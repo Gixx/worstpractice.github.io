@@ -6,13 +6,10 @@ page_type: tag_list
 ---
 {%- include variables.html -%}
 
-<section class="post">
-    <article>
+<section>
+    <header>
         <h2>Tags: {{ currentTagLabel }}</h2>
-    </article>
-</section>
-
-<section class="list">
+    </header>
     {%- for post in paginator.posts -%}
         {% include post-list-element.html post=post %}
     {%- endfor -%}
