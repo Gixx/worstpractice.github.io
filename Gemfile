@@ -1,14 +1,19 @@
 source 'https://rubygems.org'
 
+gem 'jekyll', '~> 3.5'
+gem 'liquid-c'
+
 group :jekyll_plugins do
     gem 'jekyll-feed'
+    gem 'jekyll-commonmark'
+    gem 'jekyll-archives'
+    gem 'jekyll-include-cache'
     gem 'rouge'
     gem 'jekyll-last-modified-at'
     gem 'jekyll-plantuml'
     gem 'jekyll-tidy'
     gem 'classifier-reborn'
     gem 'jekyll-tagging-related_posts'
-    gem 'jekyll-archives'
     gem 'jekyll-paginate-v2', '2.0.0'
 end
 

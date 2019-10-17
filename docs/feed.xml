@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-10-16T09:57:42-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Whoaaa</title><link href="http://0.0.0.0:4000/general/whoaaa.html" rel="alternate" type="text/html" title="Whoaaa" /><published>2019-09-27T09:23:00-05:00</published><updated>2019-10-16T06:30:58-05:00</updated><id>http://0.0.0.0:4000/general/whoaaa</id><content type="html" xml:base="http://0.0.0.0:4000/general/whoaaa.html">&lt;h2 id=&quot;whoaaa-means-wow-in-country-side&quot;&gt;Whoaaa means Wow in country side&lt;/h2&gt;
-        &lt;p&gt;Or not…&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html">Just try out the pagination</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-09-26T09:23:00-05:00</published><updated>2019-10-16T06:30:58-05:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h2 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-10-17T13:27:18-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Whoaaa</title><link href="http://0.0.0.0:4000/general/whoaaa.html" rel="alternate" type="text/html" title="Whoaaa" /><published>2019-09-27T09:23:00-05:00</published><updated>2019-10-16T06:30:58-05:00</updated><id>http://0.0.0.0:4000/general/whoaaa</id><content type="html" xml:base="http://0.0.0.0:4000/general/whoaaa.html">&lt;h2&gt;Whoaaa means Wow in country side&lt;/h2&gt;
+        &lt;p&gt;Or not…&lt;/p&gt;
+        &lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;&amp;lt;?php
+        phpinfo();
+        &lt;/code&gt;&lt;/pre&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html">Just try out the pagination</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-09-26T09:23:00-05:00</published><updated>2019-10-16T06:30:58-05:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h2&gt;I cannot explain the why&lt;/h2&gt;
         &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
         But also I am full with fear. Lots of fear, because writing articles and publish them to the public is a
         huge responsibility.&lt;/p&gt;
@@ -9,14 +12,14 @@
         &lt;li&gt;What if I write something totally bullshit that ruins my prestige to a level where nobody will ever count with me again?&lt;/li&gt;
         &lt;/ul&gt;
         &lt;p&gt;Writing a blog is a double-edged weapon.&lt;/p&gt;
-        &lt;h2 id=&quot;what-will-i-present-here&quot;&gt;What will I present here?&lt;/h2&gt;
-        &lt;p&gt;Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later 
+        &lt;h2&gt;What will I present here?&lt;/h2&gt;
+        &lt;p&gt;Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
         when I need them. And of course, it would be amazing if someone else other than me would find these articles useful too.&lt;/p&gt;
-        &lt;p&gt;To fulfill this goal I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only 
+        &lt;p&gt;To fulfill this goal I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
         code samples but also links to the working source codes.&lt;/p&gt;
-        &lt;p&gt;I had some private projects in the past that were really good to train myself, but they mostly remained unfinished. 
-        My plan is to atomize these projects as much as possible, and create standalone modules and libraries, then publish 
+        &lt;p&gt;I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
+        My plan is to atomize these projects as much as possible, and create standalone modules and libraries, then publish
         them here one-by-one.&lt;/p&gt;
         &lt;p&gt;I don’t say, that I am a top programmer with super-human knowledge in every programming language or technology. I know
-        what I know, and I’d like to share my experiences. And I hope you welcome them. And You - dear visitor - can correct 
+        what I know, and I’d like to share my experiences. And I hope you welcome them. And You - dear visitor - can correct
         me, and judge me any time.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html">It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.</summary></entry></feed>

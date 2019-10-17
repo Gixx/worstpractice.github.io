@@ -51,6 +51,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - LICENSE
+  - .jekyll-cache
 
 env: production
 
@@ -59,7 +60,11 @@ excerpt_separator: <!--more-->
 reversed_categories:
   - tutorial
 
-markdown: kramdown
+markdown: CommonMark
+
+commonmark:
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table"]
 
 permalink: /:categories/:title.html
 
@@ -90,7 +95,7 @@ jekyll-archives:
 
 pagination:
   enabled: true
-  per_page: 1
+  per_page: 10
   offset: 0
   permalink: '/page/:num.html'
   title: ':title - Page :num'
@@ -100,14 +105,15 @@ pagination:
 
 plugins:
   - jekyll-feed
+  - jekyll-commonmark
   - jekyll-archives
+  - jekyll-include-cache
   - rouge
   - jekyll-last-modified-at
   - jekyll-plantuml
   - jekyll-tidy
   - classifier-reborn
   - jekyll-tagging-related_posts
-  - jekyll-archives
   - jekyll-paginate-v2
 
 jekyll_tidy:
