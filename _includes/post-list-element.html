@@ -1,11 +1,9 @@
 {%- include variables.html -%}
 {%- assign post = include.post -%}
-<article>
+<article class="mainContent-listElement">
     <header>
         <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
     </header>
-
-
         <a class="avatar" href="/author/{{ post.author_slug | default: site.author_slug }}/index.html"><img src="{{ post.author_avatar | default: site.author_avatar }}" alt="{{ post.author | default: site.author }}"></a>
         <p class="meta">
             <span class="user"><a class="avatar" href="{{ post.author_slug | default: site.author_slug }}index.html">{{ post.author | default: site.author }}</a></span>

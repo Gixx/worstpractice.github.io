@@ -1,0 +1,84 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+.mainContent {
+  height: calc(100vh - 9rem);
+  overflow: scroll;
+
+  .articleContent {
+    height: calc(100vh - 9rem);
+
+    .header {
+      padding: 0 1rem;
+      width: 100vw;
+      height: 3rem;
+
+      .title {
+        font-size: $size-h2;
+        line-height: 3rem;
+      }
+    }
+
+    .meta {
+      padding: 0 1rem;
+      width: 100vw;
+      height: 3rem;
+
+      .date, .expiration {
+        display: block;
+        font-size: $size-small;
+        line-height: 1.5rem;
+      }
+    }
+
+    .press {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      padding: 2rem 1rem;
+      position: relative;
+      column-count: 50;
+      column-gap: 3rem;
+      column-rule: 0.1rem dotted $deep-dark-grey;
+      column-width: 48rem;
+      column-fill: balance;
+      -webkit-column-break-inside: auto;
+      page-break-inside: auto;
+      break-inside: auto;
+      height: calc(100vh - 15rem);
+      vertical-align: top;
+
+      .lead {
+        display: block;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        font-weight: bold;
+        font-size: $size-large;
+        line-height: $size-large-line + 0.2rem;
+        letter-spacing: $size-letter-spacing-small-gap;
+        height: calc(100vh - 19rem);
+      }
+
+      .body {
+        break-after: auto;
+
+        p {
+          margin-bottom: 1rem;
+          text-indent: 1rem;
+          display: inline-block;
+          page-break-inside: auto;
+          break-inside: auto;
+          font-size: $size-large;
+          line-height: $size-large-line;
+        }
+      }
+
+      .author {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        display: block;
+        height: calc(100vh - 19rem);
+      }
+    }
+  }
+}

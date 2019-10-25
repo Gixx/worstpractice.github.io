@@ -1,0 +1,34 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+.mainHeader {
+  width: 100%;
+  color: $light-grey;
+  background-color: $black;
+  display: flex;
+  height: 4.5rem;
+  box-shadow: 0 0 1rem 0 rgba(0,0,0,0.75);
+}
+
+.mainHeader-title {
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+
+.mainHeader-title a,
+.mainHeader-title a:active,
+.mainHeader-title a:visited,
+.mainHeader-title a:hover {
+  color: $light-grey;
+  font-size: $size-h1;
+  line-height: 3.5rem;
+  text-decoration: none;
+}
+
+.mainHeader-nav {
+  flex-grow: 1;
+}

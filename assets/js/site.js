@@ -5,18 +5,17 @@ function isDisqusEnabled()
     return getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
 }
 
-function setCookie(cname, cvalue, exdays)
+function setCookie(cName, cValue, exDays)
 {
     let date = new Date();
-    date.setTime(date.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
     let expires = "expires="+ date.toUTCString();
-    let cookieData = cname + '=' + cvalue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
-    document.cookie = cookieData;
+    document.cookie = cName + '=' + cValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
 }
 
-function getCookie(cname)
+function getCookie(cName)
 {
-    let name = cname + "=";
+    let name = cName + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let cookieArray = decodedCookie.split(';');
     for(let i = 0, num = cookieArray.length; i < num; i++) {
@@ -30,3 +29,15 @@ function getCookie(cname)
     }
     return '';
 }
+
+document.addEventListener('wheel', function(event) {
+    // if (event.type !== 'wheel') {
+    //     return;
+    // }
+    // let delta = ((event.deltaY || -event.wheelDelta || event.detail) >> 10) || 1;
+    // delta = delta * (-300);
+    // document.documentElement.scrollLeft -= delta;
+    // // safari needs also this
+    // document.body.scrollLeft -= delta;
+    // event.preventDefault();
+});

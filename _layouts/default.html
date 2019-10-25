@@ -113,26 +113,30 @@
         <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
-        <header>
-            <h1><a href="/">{{ site.title }}</a></h1>
-            <nav>
+        <header class="mainHeader">
+            <h1 class="mainHeader-title"><a href="/">{{ site.title }}</a></h1>
+            <nav class="mainHeader-nav">
                 {% include categories.html %}
             </nav>
         </header>
-        <nav id="tags">
-            <h2>Tags</h2>
-            {% include tags.html %}
-        </nav>
-        <nav id="archive">
-            <h2>Archive</h2>
-            {% include dates.html %}
-        </nav>
-        <main>
+        <div class="mainNavigation">
+            <nav class="mainNavigation--tags">
+                <h2>Tags</h2>
+                {% include tags.html %}
+            </nav>
+            <nav class="mainNavigation--archive">
+                <h2>Archive</h2>
+                {% include dates.html %}
+            </nav>
+        </div>
+        <main class="mainContent">
             {{ content }}
         </main>
-        <footer>
-            <p><small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small></p>
-            <nav>
+        <footer class="mainFooter">
+            <p class="mainFooter-copyright">
+                <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
+            </p>
+            <nav class="mainFooter-nav">
                 <ul>
                     <li><a href="/imprint.html">Imprint</a></li>
                     <li><a href="/terms.html">Terms of Use</a></li>
@@ -157,13 +161,6 @@
                 }
             })();
         </script>
-        <noscript>
-            <p>
-                No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
-                <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener noreferrer">write me</a>
-                your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
-            </p>
-        </noscript>
         {%- endif -%}
     </body>
 </html>

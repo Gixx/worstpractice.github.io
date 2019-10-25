@@ -69,73 +69,81 @@
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
-    <header>
-      <h1><a href="/">Worst Practice</a></h1>
-      <nav>
+    <header class="mainHeader">
+      <h1 class="mainHeader-title"><a href="/">Worst Practice</a></h1>
+      <nav class="mainHeader-nav">
         <ul>
           <li><a class="category category-general current" href="/general">General</a></li>
         </ul>
       </nav>
     </header>
-    <nav id="tags">
-      <h2>Tags</h2>
-      <ul>
-        <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (2)</a></li>
-      </ul>
-    </nav>
-    <nav id="archive">
-      <h2>Archive</h2>
-      <ul>
-        <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
-      </ul>
-    </nav>
-    <main>
-      <section>
-        <article>
-          <header>
-            <h2>What am I doing???</h2>
+    <div class="mainNavigation">
+      <nav class="mainNavigation--tags">
+        <h2>Tags</h2>
+        <ul>
+          <li><a class="tag tag-technical" rel="tag" href="/tags/technical/">Technical (2)</a></li>
+          <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
+          <li><a class="tag tag-frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+        </ul>
+      </nav>
+      <nav class="mainNavigation--archive">
+        <h2>Archive</h2>
+        <ul>
+          <li><a class="date date-2019-10" href="/archive/2019-10/">October, 2019</a></li>
+          <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
+        </ul>
+      </nav>
+    </div>
+    <main class="mainContent">
+      <section class="mainContent-article">
+        <article class="articleContent">
+          <header class="header">
+            <h2 class="title">What am I doing???</h2>
           </header>
-          <p class="meta"><span class="date">September&nbsp;26,<br>
-              2019<br>
-              09:23</span><br>
-          </p>
-          <p class="lead">
-            It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.</p>
-          <div class="body">
-            <h2>I cannot explain the why</h2>
-            <p>For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
-              But also I am full with fear. Lots of fear, because writing articles and publish them to the public is a
-              huge responsibility.</p>
-            <ul>
-              <li>What if I write something rubbish, because English is not my mother tongue?</li>
-              <li>What if I write something absolutely wrong because I was too lazy to read a book in the given topic?</li>
-              <li>What if I write something totally bullshit that ruins my prestige to a level where nobody will ever count with me again?</li>
-            </ul>
-            <p>Writing a blog is a double-edged weapon.</p>
-            <h2>What will I present here?</h2>
-            <p>Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
-              when I need them. And of course, it would be amazing if someone else other than me would find these articles useful too.</p>
-            <p>To fulfill this goal I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
-              code samples but also links to the working source codes.</p>
-            <p>I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
-              My plan is to atomize these projects as much as possible, and create standalone modules and libraries, then publish
-              them here one-by-one.</p>
-            <p>I don’t say, that I am a top programmer with super-human knowledge in every programming language or technology. I know
-              what I know, and I’d like to share my experiences. And I hope you welcome them. And You - dear visitor - can correct
-              me, and judge me any time.</p>
-          </div>
-          <footer>
-            <h3>About the author</h3>
-            <a class="author" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
-            <div class="details">
+          <p class="meta"><span class="date">Posted on September&nbsp;26, 2019 09:23</span></p>
+          <div class="press">
+            <p class="lead">It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.
+            </p>
+            <div class="body">
+              <h2>I cannot explain the why</h2>
+              <p>For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
+                But also I am full with fear. Lots of fear, because writing articles and publish them to the public is a
+                huge responsibility.</p>
+              <ul>
+                <li>What if I write something rubbish, because English is not my mother tongue?</li>
+                <li>What if I write something absolutely wrong because I was too lazy to read a book in the given topic?</li>
+                <li>What if I write something totally bullshit that ruins my prestige to a level where nobody will ever count with me again?</li>
+              </ul>
+              <p>Writing a blog is a double-edged weapon.</p>
+              <h2>What will I present here?</h2>
+              <p>Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
+                when I need them. And of course, it would be amazing if someone else other than me would find these articles useful too.</p>
+              <p>To fulfill this goal I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
+                code samples but also links to the working source codes.</p>
+              <p>I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
+                My plan is to atomize these projects as much as possible, and create standalone modules and libraries, then publish
+                them here one-by-one.</p>
+              <p>I don’t say, that I am a top programmer with super-human knowledge in every programming language or technology. I know
+                what I know, and I’d like to share my experiences. And I hope you welcome them. And You - dear visitor - can correct
+                me, and judge me any time.</p>
             </div>
-          </footer>
+            <footer class="author">
+              <h3>About the author</h3>
+              <p>
+                <a href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
+              </p>
+              <p class="details">
+              </p>
+            </footer>
+          </div>
         </article>
       </section>
     </main>
-    <footer>
-      <p><small>Copyright © 2019 All rights reserved. Worst Practice</small></p>
-      <nav>
+    <footer class="mainFooter">
+      <p class="mainFooter-copyright">
+        <small>Copyright © 2019 All rights reserved. Worst Practice</small>
+      </p>
+      <nav class="mainFooter-nav">
         <ul>
           <li><a href="/imprint.html">Imprint</a></li>
           <li><a href="/terms.html">Terms of Use</a></li>

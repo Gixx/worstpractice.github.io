@@ -3,51 +3,62 @@ layout: default
 page_type: post_view
 ---
 
-<section>
-    <article>
-        <header>
-            <h2>{{ page.title | escape }}</h2>
+<section class="mainContent-article">
+    <article class="articleContent">
+        <header class="header">
+            <h2 class="title">{{ page.title | escape }}</h2>
         </header>
 
         <p class="meta">
             {%- assign m = page.date | date: "%-m" | minus: 0 -%}
             {%- assign postMonth = site.data[site.lang].months[m] -%}
             {%- capture postDate  -%}
-                {{ postMonth }}&nbsp;{{ page.date | date: '%e' }},<br>{{ page.date | date: '%Y' }}<br>{{ page.date | date: '%R' }}
+                {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} {{ page.date | date: '%R' }}
             {%- endcapture -%}
-            <span class="date">{{ postDate }}</span><br>
+            <span class="date">Posted on {{ postDate }}</span>
             {%- unless page.expiration == "none" -%}
                 {%- assign em = page.expiration | date: "%-m" | minus: 0 -%}
                 {%- assign expirationMonth = site.data[site.lang].months[em] -%}
                 {%- capture expirationDate  -%}
-                    {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }},<br>{{ page.expiration | date: '%Y' }}
+                    {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }}, {{ page.expiration | date: '%Y' }}
                 {%- endcapture -%}
             <span class="expiration">Estimated date of expiration: {{ expirationDate }}</span>
             {%- endunless -%}
         </p>
 
-        <p class="lead">
-            {{ page.excerpt }}
-            {%- if page.illustration != '' -%}
-            <br>
-            <img src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration }}" alt="{{ post.title | escape }}">
-            {%- endif -%}
-        </p>
+        <div class="press">
+            <p class="lead">
+                {%- if page.illustration != '' -%}
+                <img src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration }}" alt="{{ post.title | escape }}">
+                {%- endif -%}
+                {{ page.excerpt }}
+            </p>
 
-        <div class="body">
-            {{ page.content | remove: page.excerpt }}
-        </div>
-
-        <footer>
-            <h3>About the author</h3>
-            <a class="author" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
-            <div class="details">
-                {{ page.author_introduction | default: site.author_introduction }}
+            <div class="body">
+                {{ page.content | remove: page.excerpt }}
             </div>
-        </footer>
 
-        {%- if page.review -%}
-        <div id="disqus_thread"></div>
-        {%- endif -%}
+            <footer class="author">
+                <h3>About the author</h3>
+                <p>
+                    <a href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
+                </p>
+                <p class="details">
+                    {{ page.author_introduction | default: site.author_introduction }}
+                </p>
+            </footer>
+        </div>
     </article>
+    {%- if page.review -%}
+    <aside class="articleComments">
+        <div id="disqus_thread"></div>
+        <noscript>
+            <p>
+                No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
+                <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener noreferrer">write me</a>
+                your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+            </p>
+        </noscript>
+    </aside>
+    {%- endif -%}
 </section>

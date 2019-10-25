@@ -58,29 +58,56 @@
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
-    <header>
-      <h1><a href="/">Worst Practice</a></h1>
-      <nav>
+    <header class="mainHeader">
+      <h1 class="mainHeader-title"><a href="/">Worst Practice</a></h1>
+      <nav class="mainHeader-nav">
         <ul>
           <li><a class="category category-general" href="/general">General</a></li>
         </ul>
       </nav>
     </header>
-    <nav id="tags">
-      <h2>Tags</h2>
-      <ul>
-        <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (2)</a></li>
-      </ul>
-    </nav>
-    <nav id="archive">
-      <h2>Archive</h2>
-      <ul>
-        <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
-      </ul>
-    </nav>
-    <main>
-      <section>
-        <article>
+    <div class="mainNavigation">
+      <nav class="mainNavigation--tags">
+        <h2>Tags</h2>
+        <ul>
+          <li><a class="tag tag-technical" rel="tag" href="/tags/technical/">Technical (2)</a></li>
+          <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
+          <li><a class="tag tag-frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+        </ul>
+      </nav>
+      <nav class="mainNavigation--archive">
+        <h2>Archive</h2>
+        <ul>
+          <li><a class="date date-2019-10" href="/archive/2019-10/">October, 2019</a></li>
+          <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
+        </ul>
+      </nav>
+    </div>
+    <main class="mainContent">
+      <section class="mainContent-list --posts">
+        <article class="mainContent-listElement">
+          <header>
+            <h2><a href="/general/testing_style.html">Testing style</a></h2>
+          </header>
+          <a class="avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
+          <p class="meta">
+            <span class="user"><a class="avatar" href="gabor.ivanindex.html">Gábor Iván</a></span>
+            <br>
+            <span class="date">Published at October 25, 2019,</span>
+            <br>
+            <span class="category">in the <a href="/general/index.html">General</a> category,</span>
+            <br>
+            <span class="taglist">with the following tags:
+              <a href="/tags/frontend/index.html">#Frontend</a>, 
+              <a href="/tags/technical/index.html">#Technical</a>
+            </span>
+          </p>
+          <div class="preview">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut. </p>
+          </div>
+          <a class="more" href="/general/testing_style.html">Read more...</a>
+        </article>
+        <article class="mainContent-listElement">
           <header>
             <h2><a href="/general/whoaaa.html">Whoaaa</a></h2>
           </header>
@@ -93,7 +120,7 @@
             <span class="category">in the <a href="/general/index.html">General</a> category,</span>
             <br>
             <span class="taglist">with the following tags:
-              <a href="/tags/personal/index.html">#Personal</a>
+              <a href="/tags/technical/index.html">#Technical</a>
             </span>
           </p>
           <div class="preview">
@@ -101,7 +128,7 @@
           </div>
           <a class="more" href="/general/whoaaa.html">Read more...</a>
         </article>
-        <article>
+        <article class="mainContent-listElement">
           <header>
             <h2><a href="/general/what_am_i_doing.html">What am I doing???</a></h2>
           </header>
@@ -124,9 +151,11 @@
         </article>
       </section>
     </main>
-    <footer>
-      <p><small>Copyright © 2019 All rights reserved. Worst Practice</small></p>
-      <nav>
+    <footer class="mainFooter">
+      <p class="mainFooter-copyright">
+        <small>Copyright © 2019 All rights reserved. Worst Practice</small>
+      </p>
+      <nav class="mainFooter-nav">
         <ul>
           <li><a href="/imprint.html">Imprint</a></li>
           <li><a href="/terms.html">Terms of Use</a></li>
