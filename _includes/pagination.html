@@ -1,5 +1,5 @@
 {%- if paginator.total_pages > 1 -%}
-<nav>
+<nav class="list-navigation">
     {%- if paginator.previous_page -%}
     <a class="prev" rel="prev" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer articles</a>
     {%- endif -%}

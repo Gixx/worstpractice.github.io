@@ -3,54 +3,53 @@ layout: default
 page_type: post_view
 ---
 
-<section class="mainContent-article">
-    <article class="articleContent">
-        <header class="header">
-            <h2 class="title">{{ page.title | escape }}</h2>
+<section class="content-article">
+    <article class="article">
+        <header class="article-header">
+            <h2 class="header-title">{{ page.title | escape }}</h2>
+            <p class="header-meta">
+                {%- assign m = page.date | date: "%-m" | minus: 0 -%}
+                {%- assign postMonth = site.data[site.lang].months[m] -%}
+                {%- capture postDate  -%}
+                    {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} {{ page.date | date: '%R' }}
+                {%- endcapture -%}
+                <span class="meta-date">Posted on {{ postDate }}</span>
+                {%- unless page.expiration == "none" -%}
+                    {%- assign em = page.expiration | date: "%-m" | minus: 0 -%}
+                    {%- assign expirationMonth = site.data[site.lang].months[em] -%}
+                    {%- capture expirationDate  -%}
+                        {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }}, {{ page.expiration | date: '%Y' }}
+                    {%- endcapture -%}
+                <span class="meta-expiration">Estimated date of expiration: {{ expirationDate }}</span>
+                {%- endunless -%}
+            </p>
         </header>
 
-        <p class="meta">
-            {%- assign m = page.date | date: "%-m" | minus: 0 -%}
-            {%- assign postMonth = site.data[site.lang].months[m] -%}
-            {%- capture postDate  -%}
-                {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} {{ page.date | date: '%R' }}
-            {%- endcapture -%}
-            <span class="date">Posted on {{ postDate }}</span>
-            {%- unless page.expiration == "none" -%}
-                {%- assign em = page.expiration | date: "%-m" | minus: 0 -%}
-                {%- assign expirationMonth = site.data[site.lang].months[em] -%}
-                {%- capture expirationDate  -%}
-                    {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }}, {{ page.expiration | date: '%Y' }}
-                {%- endcapture -%}
-            <span class="expiration">Estimated date of expiration: {{ expirationDate }}</span>
-            {%- endunless -%}
-        </p>
-
-        <div class="press">
-            <p class="lead">
+        <div class="article-content">
+            <p class="content-lead">
                 {%- if page.illustration != '' -%}
                 <img src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration }}" alt="{{ post.title | escape }}">
                 {%- endif -%}
                 {{ page.excerpt }}
             </p>
 
-            <div class="body">
+            <div class="content-body">
                 {{ page.content | remove: page.excerpt }}
             </div>
-
-            <footer class="author">
-                <h3>About the author</h3>
-                <p>
-                    <a href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
-                </p>
-                <p class="details">
-                    {{ page.author_introduction | default: site.author_introduction }}
-                </p>
-            </footer>
         </div>
+
+        <footer class="article-footer">
+            <h3>About the author</h3>
+            <p>
+                <a href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
+            </p>
+            <p class="details">
+                {{ page.author_introduction | default: site.author_introduction }}
+            </p>
+        </footer>
     </article>
     {%- if page.review -%}
-    <aside class="articleComments">
+    <aside class="article-comments">
         <div id="disqus_thread"></div>
         <noscript>
             <p>

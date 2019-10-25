@@ -113,30 +113,30 @@
         <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
-        <header class="mainHeader">
-            <h1 class="mainHeader-title"><a href="/">{{ site.title }}</a></h1>
-            <nav class="mainHeader-nav">
+        <header class="main-header">
+            <h1 class="header-title"><a href="/">{{ site.title }}</a></h1>
+            <nav class="menu-list --categories">
                 {% include categories.html %}
             </nav>
         </header>
-        <div class="mainNavigation">
-            <nav class="mainNavigation--tags">
-                <h2>Tags</h2>
+        <div class="main-menu">
+            <nav class="menu-list --tags">
+                <h2 class="menu-title">Tags</h2>
                 {% include tags.html %}
             </nav>
-            <nav class="mainNavigation--archive">
-                <h2>Archive</h2>
+            <nav class="menu-list --archive">
+                <h2 class="menu-title">Archive</h2>
                 {% include dates.html %}
             </nav>
         </div>
-        <main class="mainContent">
+        <main class="main-content">
             {{ content }}
         </main>
-        <footer class="mainFooter">
-            <p class="mainFooter-copyright">
+        <footer class="main-footer">
+            <p class="footer-copyright">
                 <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
             </p>
-            <nav class="mainFooter-nav">
+            <nav class="menu-list --footer">
                 <ul>
                     <li><a href="/imprint.html">Imprint</a></li>
                     <li><a href="/terms.html">Terms of Use</a></li>
