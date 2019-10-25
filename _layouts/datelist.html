@@ -2,9 +2,9 @@
 layout: default
 ---
 {%- include variables.html -%}
-<section class="content-list --dates">
-    <header class="list-title">
-        <h2>Archive: {{ currentDateLabel }}</h2>
+<section  class="c-content__posts">
+    <header class="c-content__header">
+        <h2 class="c-content__title">Archive: {{ currentDateLabel }}</h2>
     </header>
     {%- for post in page.posts -%}
         {% include post-list-element.html post=post %}

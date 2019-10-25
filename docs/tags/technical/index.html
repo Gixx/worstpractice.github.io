@@ -58,92 +58,97 @@
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
-    <header class="main-header">
-      <h1 class="header-title"><a href="/">Worst Practice</a></h1>
-      <nav class="menu-list --categories">
-        <ul>
-          <li><a class="category category-general" href="/general">General</a></li>
-        </ul>
-      </nav>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
     </header>
-    <div class="main-menu">
-      <nav class="menu-list --tags">
-        <h2 class="menu-title">Tags</h2>
-        <ul>
-          <li><a class="tag tag-technical current" rel="tag" href="/tags/technical/">Technical (2)</a></li>
-          <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
-          <li><a class="tag tag-frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+    <div class="m-menu">
+      <nav class="m-menu__block">
+        <ul class="m-menu__categories">
+          <li><a class="m-menu__category -general" href="/general">General</a></li>
         </ul>
       </nav>
-      <nav class="menu-list --archive">
-        <h2 class="menu-title">Archive</h2>
-        <ul>
-          <li><a class="date date-2019-10" href="/archive/2019-10/">October, 2019</a></li>
-          <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
+      <nav class="m-menu__block">
+        <h2 class="m-menu__title">Tags</h2>
+        <ul class="m-menu__tags">
+          <li><a class="m-menu__tag -technical -current" rel="tag" href="/tags/technical/">Technical (2)</a></li>
+          <li><a class="m-menu__tag -personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
+          <li><a class="m-menu__tag -frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+        </ul>
+      </nav>
+      <nav class="m-menu__block">
+        <h2 class="m-menu__title">Archive</h2>
+        <ul class="m-menu__dates">
+          <li><a class="m-menu__date -2019-10" href="/archive/2019-10/">October, 2019</a></li>
+          <li><a class="m-menu__date -2019-09" href="/archive/2019-09/">September, 2019</a></li>
+        </ul>
+      </nav>
+      <nav class="m-menu__block">
+        /tags/technical/index.html
+        <ul class="m-menu__legalNotes">
+          <li><a class="m-menu__legalNote " href="/imprint.html">Imprint</a></li>
+          <li><a class="m-menu__legalNote " href="/terms.html">Terms of Use</a></li>
+          <li><a class="m-menu__legalNote " href="/privacy.html">Privacy Policy</a></li>
         </ul>
       </nav>
     </div>
-    <main class="main-content">
-      <section class="content-list --tags">
-        <header class="list-title">
-          <h2>Tags: Technical</h2>
+    <main class="c-content">
+      <section  class="c-content__posts">
+        <header class="c-content__header">
+          <h2 class="c-content__title">Tags: Technical</h2>
         </header>
-        <article class="content-listElement">
-          <header>
-            <h2><a href="/general/testing_style.html">Testing style</a></h2>
-          </header>
-          <a class="avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
-          <p class="meta">
-            <span class="user"><a class="avatar" href="gabor.ivanindex.html">Gábor Iván</a></span>
-            <br>
-            <span class="date">Published at October 25, 2019,</span>
-            <br>
-            <span class="category">in the <a href="/general/index.html">General</a> category,</span>
-            <br>
-            <span class="taglist">with the following tags:
-              <a href="/tags/frontend/index.html">#Frontend</a>, 
-              <a href="/tags/technical/index.html">#Technical</a>
-            </span>
-          </p>
-          <div class="preview">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut. </p>
-          </div>
-          <a class="more" href="/general/testing_style.html">Read more...</a>
-        </article>
-        <article class="content-listElement">
-          <header>
-            <h2><a href="/general/whoaaa.html">Whoaaa</a></h2>
-          </header>
-          <a class="avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
-          <p class="meta">
-            <span class="user"><a class="avatar" href="gabor.ivanindex.html">Gábor Iván</a></span>
-            <br>
-            <span class="date">Published at September 27, 2019,</span>
-            <br>
-            <span class="category">in the <a href="/general/index.html">General</a> category,</span>
-            <br>
-            <span class="taglist">with the following tags:
-              <a href="/tags/technical/index.html">#Technical</a>
-            </span>
-          </p>
-          <div class="preview">
-            <p>Just try out the pagination</p>
-          </div>
-          <a class="more" href="/general/whoaaa.html">Read more...</a>
-        </article>
+        <section class="c-content__post">
+          <article class="a-article">
+            <header class="a-header">
+              <h2 class="a-header__title"><a href="/general/testing_style.html">Testing style</a></h2>
+              <p class="a-header__author">
+                <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
+                <span class="author-name"><a href="/author/gabor.ivan/index.html">Gábor Iván</a></span>
+              </p>
+              <p class="a-header__meta"><span class="meta-date">Posted on .&nbsp;,  </span><span class="meta-expiration">Estimated date of expiration: .&nbsp;, </span><span class="meta-category">Posted under the <a href="/general/index.html">General</a> category</span>
+                <span class="taglist">Posted with the following tags:
+                  <a href="/tags/frontend/index.html">#Frontend</a>, 
+                  <a href="/tags/technical/index.html">#Technical</a>
+                </span>
+              </p>
+            </header>
+            <figure class="a-illustration">
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2019/" alt="Testing style">
+              <figcaption class="a-illustration__caption"></figcaption>
+            </figure>
+            <p class="a-excerpt">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut. 
+            </p>
+          </article>
+        </section>
+        <section class="c-content__post">
+          <article class="a-article">
+            <header class="a-header">
+              <h2 class="a-header__title"><a href="/general/whoaaa.html">Whoaaa</a></h2>
+              <p class="a-header__author">
+                <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
+                <span class="author-name"><a href="/author/gabor.ivan/index.html">Gábor Iván</a></span>
+              </p>
+              <p class="a-header__meta"><span class="meta-date">Posted on .&nbsp;,  </span><span class="meta-expiration">Estimated date of expiration: .&nbsp;, </span><span class="meta-category">Posted under the <a href="/general/index.html">General</a> category</span>
+                <span class="taglist">Posted with the following tags:
+                  <a href="/tags/technical/index.html">#Technical</a>
+                </span>
+              </p>
+            </header>
+            <figure class="a-illustration">
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2019/" alt="Whoaaa">
+              <figcaption class="a-illustration__caption"></figcaption>
+            </figure>
+            <p class="a-excerpt">
+              Just try out the pagination
+            </p>
+          </article>
+        </section>
       </section>
     </main>
-    <footer class="main-footer">
-      <p class="footer-copyright">
+    <footer class="f-footer">
+      <p class="f-footer__copyright">
         <small>Copyright © 2019 All rights reserved. Worst Practice</small>
       </p>
-      <nav class="menu-list --footer">
-        <ul>
-          <li><a href="/imprint.html">Imprint</a></li>
-          <li><a href="/terms.html">Terms of Use</a></li>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-        </ul>
-      </nav>
     </footer>
   </body>
 </html>

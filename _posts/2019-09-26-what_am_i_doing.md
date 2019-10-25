@@ -5,6 +5,7 @@ date:   2019-09-26 15:23:00 +0100
 expiration: none
 location: 'München'
 illustration: ''
+illustrationCaption: ''
 illustration_share: ''
 category: general
 categoryLabel: 'General'

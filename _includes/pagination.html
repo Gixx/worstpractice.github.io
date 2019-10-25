@@ -1,4 +1,3 @@
-{%- if paginator.total_pages > 1 -%}
 <nav class="list-navigation">
     {%- if paginator.previous_page -%}
     <a class="prev" rel="prev" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer articles</a>
@@ -7,4 +6,4 @@
     <a class="next" rel="next" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older articles &rarr;</a>
     {%- endif -%}
 </nav>
-{%- endif -%}
+

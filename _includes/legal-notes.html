@@ -1,0 +1,7 @@
+{%- include variables.html -%}
+{{ page.url }}
+<ul class="m-menu__legalNotes">
+    <li><a class="m-menu__legalNote {% if page.url == '/imprint' %}-current{% endif %}" href="/imprint.html">Imprint</a></li>
+    <li><a class="m-menu__legalNote {% if page.url == '/terms' %}-current{% endif %}" href="/terms.html">Terms of Use</a></li>
+    <li><a class="m-menu__legalNote {% if page.url == '/privacy' %}-current{% endif %}" href="/privacy.html">Privacy Policy</a></li>
+</ul>

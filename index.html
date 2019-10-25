@@ -6,7 +6,7 @@ page_type: home
 ---
 {%- include variables.html -%}
 
-<section class="content-list --posts">
+<section class="c-content__posts">
     {%- for post in paginator.posts -%}
         {% include post-list-element.html post=post %}
     {%- endfor -%}

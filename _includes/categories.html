@@ -1,11 +1,7 @@
 {%- include variables.html -%}
-<ul>
+<ul class="m-menu__categories">
     {%- for categorySlug in categorySlugs -%}
         {%- assign categoryLabel = categoryLabels[forloop.index0] -%}
-        {% if page.page_type == 'category_list' or page.page_type == 'post_view' %}
-    <li><a class="category category-{{ categorySlug }}{% if categorySlug == currentCategorySlug %} current{% endif %}" href="/{{ categorySlug }}">{{ categoryLabel | strip }}</a></li>
-        {% else %}
-    <li><a class="category category-{{ categorySlug }}" href="/{{ categorySlug }}">{{ categoryLabel | strip }}</a></li>
-        {% endif %}
+    <li><a class="m-menu__category -{{ categorySlug }}{% if categorySlug == currentCategorySlug %} -current{% endif %}" href="/{{ categorySlug }}">{{ categoryLabel | strip }}</a></li>
     {%- endfor -%}
 </ul>

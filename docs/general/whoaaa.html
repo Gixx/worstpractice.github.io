@@ -69,61 +69,70 @@
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
-    <header class="main-header">
-      <h1 class="header-title"><a href="/">Worst Practice</a></h1>
-      <nav class="menu-list --categories">
-        <ul>
-          <li><a class="category category-general current" href="/general">General</a></li>
-        </ul>
-      </nav>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
     </header>
-    <div class="main-menu">
-      <nav class="menu-list --tags">
-        <h2 class="menu-title">Tags</h2>
-        <ul>
-          <li><a class="tag tag-technical" rel="tag" href="/tags/technical/">Technical (2)</a></li>
-          <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
-          <li><a class="tag tag-frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+    <div class="m-menu">
+      <nav class="m-menu__block">
+        <ul class="m-menu__categories">
+          <li><a class="m-menu__category -general -current" href="/general">General</a></li>
         </ul>
       </nav>
-      <nav class="menu-list --archive">
-        <h2 class="menu-title">Archive</h2>
-        <ul>
-          <li><a class="date date-2019-10" href="/archive/2019-10/">October, 2019</a></li>
-          <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
+      <nav class="m-menu__block">
+        <h2 class="m-menu__title">Tags</h2>
+        <ul class="m-menu__tags">
+          <li><a class="m-menu__tag -technical" rel="tag" href="/tags/technical/">Technical (2)</a></li>
+          <li><a class="m-menu__tag -personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
+          <li><a class="m-menu__tag -frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+        </ul>
+      </nav>
+      <nav class="m-menu__block">
+        <h2 class="m-menu__title">Archive</h2>
+        <ul class="m-menu__dates">
+          <li><a class="m-menu__date -2019-10" href="/archive/2019-10/">October, 2019</a></li>
+          <li><a class="m-menu__date -2019-09" href="/archive/2019-09/">September, 2019</a></li>
+        </ul>
+      </nav>
+      <nav class="m-menu__block">
+        /general/whoaaa.html
+        <ul class="m-menu__legalNotes">
+          <li><a class="m-menu__legalNote " href="/imprint.html">Imprint</a></li>
+          <li><a class="m-menu__legalNote " href="/terms.html">Terms of Use</a></li>
+          <li><a class="m-menu__legalNote " href="/privacy.html">Privacy Policy</a></li>
         </ul>
       </nav>
     </div>
-    <main class="main-content">
-      <section class="content-article">
-        <article class="article">
-          <header class="article-header">
-            <h2 class="header-title">Whoaaa</h2>
-            <p class="header-meta"><span class="meta-date">Posted on September&nbsp;27, 2019 09:23</span><span class="meta-expiration">Estimated date of expiration: December&nbsp;27, 2019</span></p>
-          </header>
-          <div class="article-content">
-            <p class="content-lead">Just try out the pagination
+    <main class="c-content">
+      <section class="c-content__post">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">Whoaaa</h2>
+            <p class="a-header__meta"><span class="meta-date">Posted on September&nbsp;27, 2019 09:23</span><span class="meta-expiration">Estimated date of expiration: December&nbsp;27, 2019</span><span class="meta-category">Posted under the <a href="/general/index.html">General</a> category</span>
+              <span class="meta-tags">Posted with the following tags:
+                <a href="/tags/technical/index.html">#Technical</a>
+              </span>
             </p>
-            <div class="content-body">
-              <h2>Whoaaa means Wow in country side</h2>
-              <p>Or not…</p>
-              <pre><code class="language-php">&lt;?php
+          </header>
+          <p class="a-excerpt">
+            Just try out the pagination
+          </p>
+          <div class="a-body">
+            <h2>Whoaaa means Wow in country side</h2>
+            <p>Or not…</p>
+            <pre><code class="language-php">&lt;?php
 
 phpinfo();
 
 </code></pre>
-            </div>
           </div>
-          <footer class="article-footer">
-            <h3>About the author</h3>
-            <p>
-              <a href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
-            </p>
-            <p class="details">
+          <footer class="a-footer">
+            <h3 class="a-footer__title">About the author</h3>
+            <p class="a-footer__author">
+              <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
             </p>
           </footer>
         </article>
-        <aside class="article-comments">
+        <aside class="c-comments">
           <div id="disqus_thread"></div>
           <noscript>
             <p>
@@ -135,17 +144,10 @@ phpinfo();
         </aside>
       </section>
     </main>
-    <footer class="main-footer">
-      <p class="footer-copyright">
+    <footer class="f-footer">
+      <p class="f-footer__copyright">
         <small>Copyright © 2019 All rights reserved. Worst Practice</small>
       </p>
-      <nav class="menu-list --footer">
-        <ul>
-          <li><a href="/imprint.html">Imprint</a></li>
-          <li><a href="/terms.html">Terms of Use</a></li>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-        </ul>
-      </nav>
     </footer>
     <script type="application/javascript">
       var disqus_config = function () {

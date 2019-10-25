@@ -58,33 +58,41 @@
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
-    <header class="main-header">
-      <h1 class="header-title"><a href="/">Worst Practice</a></h1>
-      <nav class="menu-list --categories">
-        <ul>
-          <li><a class="category category-general" href="/general">General</a></li>
-        </ul>
-      </nav>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
     </header>
-    <div class="main-menu">
-      <nav class="menu-list --tags">
-        <h2 class="menu-title">Tags</h2>
-        <ul>
-          <li><a class="tag tag-technical" rel="tag" href="/tags/technical/">Technical (2)</a></li>
-          <li><a class="tag tag-personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
-          <li><a class="tag tag-frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+    <div class="m-menu">
+      <nav class="m-menu__block">
+        <ul class="m-menu__categories">
+          <li><a class="m-menu__category -general" href="/general">General</a></li>
         </ul>
       </nav>
-      <nav class="menu-list --archive">
-        <h2 class="menu-title">Archive</h2>
-        <ul>
-          <li><a class="date date-2019-10" href="/archive/2019-10/">October, 2019</a></li>
-          <li><a class="date date-2019-09" href="/archive/2019-09/">September, 2019</a></li>
+      <nav class="m-menu__block">
+        <h2 class="m-menu__title">Tags</h2>
+        <ul class="m-menu__tags">
+          <li><a class="m-menu__tag -technical" rel="tag" href="/tags/technical/">Technical (2)</a></li>
+          <li><a class="m-menu__tag -personal" rel="tag" href="/tags/personal/">Personal (1)</a></li>
+          <li><a class="m-menu__tag -frontend" rel="tag" href="/tags/frontend/">Frontend (1)</a></li>
+        </ul>
+      </nav>
+      <nav class="m-menu__block">
+        <h2 class="m-menu__title">Archive</h2>
+        <ul class="m-menu__dates">
+          <li><a class="m-menu__date -2019-10" href="/archive/2019-10/">October, 2019</a></li>
+          <li><a class="m-menu__date -2019-09" href="/archive/2019-09/">September, 2019</a></li>
+        </ul>
+      </nav>
+      <nav class="m-menu__block">
+        /tags/
+        <ul class="m-menu__legalNotes">
+          <li><a class="m-menu__legalNote " href="/imprint.html">Imprint</a></li>
+          <li><a class="m-menu__legalNote " href="/terms.html">Terms of Use</a></li>
+          <li><a class="m-menu__legalNote " href="/privacy.html">Privacy Policy</a></li>
         </ul>
       </nav>
     </div>
-    <main class="main-content">
-      <section>
+    <main class="c-content">
+      <section class="c-content__tags">
         <article>
           <header>
             <h2>Tag collection</h2>
@@ -115,17 +123,10 @@
         </article>
       </section>
     </main>
-    <footer class="main-footer">
-      <p class="footer-copyright">
+    <footer class="f-footer">
+      <p class="f-footer__copyright">
         <small>Copyright © 2019 All rights reserved. Worst Practice</small>
       </p>
-      <nav class="menu-list --footer">
-        <ul>
-          <li><a href="/imprint.html">Imprint</a></li>
-          <li><a href="/terms.html">Terms of Use</a></li>
-          <li><a href="/privacy.html">Privacy Policy</a></li>
-        </ul>
-      </nav>
     </footer>
   </body>
 </html>

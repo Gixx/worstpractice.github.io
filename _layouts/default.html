@@ -113,36 +113,32 @@
         <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
-        <header class="main-header">
-            <h1 class="header-title"><a href="/">{{ site.title }}</a></h1>
-            <nav class="menu-list --categories">
+        <header class="h-header">
+            <h1 class="h-header__title"><a href="/">{{ site.title }}</a></h1>
+        </header>
+        <div class="m-menu">
+            <nav class="m-menu__block">
                 {% include categories.html %}
             </nav>
-        </header>
-        <div class="main-menu">
-            <nav class="menu-list --tags">
-                <h2 class="menu-title">Tags</h2>
+            <nav class="m-menu__block">
+                <h2 class="m-menu__title">Tags</h2>
                 {% include tags.html %}
             </nav>
-            <nav class="menu-list --archive">
-                <h2 class="menu-title">Archive</h2>
+            <nav class="m-menu__block">
+                <h2 class="m-menu__title">Archive</h2>
                 {% include dates.html %}
             </nav>
+            <nav class="m-menu__block">
+                {% include legal-notes.html %}
+            </nav>
         </div>
-        <main class="main-content">
+        <main class="c-content">
             {{ content }}
         </main>
-        <footer class="main-footer">
-            <p class="footer-copyright">
+        <footer class="f-footer">
+            <p class="f-footer__copyright">
                 <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
             </p>
-            <nav class="menu-list --footer">
-                <ul>
-                    <li><a href="/imprint.html">Imprint</a></li>
-                    <li><a href="/terms.html">Terms of Use</a></li>
-                    <li><a href="/privacy.html">Privacy Policy</a></li>
-                </ul>
-            </nav>
         </footer>
         {%- if page.review -%}
         <script type="application/javascript">

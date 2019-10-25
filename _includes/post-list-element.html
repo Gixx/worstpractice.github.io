@@ -1,36 +1,51 @@
 {%- include variables.html -%}
 {%- assign post = include.post -%}
-<article class="content-listElement">
-    <header>
-        <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-    </header>
-        <a class="avatar" href="/author/{{ post.author_slug | default: site.author_slug }}/index.html"><img src="{{ post.author_avatar | default: site.author_avatar }}" alt="{{ post.author | default: site.author }}"></a>
-        <p class="meta">
-            <span class="user"><a class="avatar" href="{{ post.author_slug | default: site.author_slug }}index.html">{{ post.author | default: site.author }}</a></span>
-            <br>
-            {%- assign m = post.date | date: "%-m" | minus: 0 -%}
-            {%- assign postMonth = site.data[site.lang].months[m] -%}
-            {%- capture postDate  -%}
-                {{ postMonth }} {{ post.date | date: '%d' }}, {{ post.date | date: '%Y' }}
-            {%- endcapture -%}
-            <span class="date">Published at {{ postDate }},</span>
-            <br>
-            <span class="category">in the <a href="/{{ post.category}}/index.html">{{ post.categoryLabel }}</a> category,</span>
-            <br>
-            <span class="taglist">with the following tags:
+<section class="c-content__post">
+    <article class="a-article">
+        <header class="a-header">
+            <h2 class="a-header__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
+            <p class="a-header__author">
+                <a class="author-avatar" href="/author/{{ post.author_slug | default: site.author_slug }}/index.html"><img src="{{ post.author_avatar | default: site.author_avatar }}" alt="{{ post.author | default: site.author }}"></a>
+                <span class="author-name"><a href="/author/{{ post.author_slug | default: site.author_slug }}/index.html">{{ post.author | default: site.author }}</a></span>
+            </p>
+            <p class="a-header__meta">
+                {%- assign m = page.date | date: "%-m" | minus: 0 -%}
+                {%- assign postMonth = site.data[site.lang].months[m] -%}
+                {%- capture postDate  -%}
+                    {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} {{ page.date | date: '%R' }}
+                {%- endcapture -%}
+                <span class="meta-date">Posted on {{ postDate }}</span>
+
+                {%- unless page.expiration == "none" -%}
+                    {%- assign em = page.expiration | date: "%-m" | minus: 0 -%}
+                    {%- assign expirationMonth = site.data[site.lang].months[em] -%}
+                    {%- capture expirationDate  -%}
+                        {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }}, {{ page.expiration | date: '%Y' }}
+                    {%- endcapture -%}
+                <span class="meta-expiration">Estimated date of expiration: {{ expirationDate }}</span>
+                {%- endunless -%}
+
+                <span class="meta-category">Posted under the <a href="/{{ post.category}}/index.html">{{ post.categoryLabel }}</a> category</span>
+
+                <span class="taglist">Posted with the following tags:
                 {% for tag in post.tags %}
                     <a href="/tags/{{ tag }}/index.html">#{{ post.tagLabels[forloop.index0] }}</a>{% unless forloop.last %}, {% endunless %}
                 {% endfor %}
-            </span>
-        </p>
+                </span>
+            </p>
+        </header>
 
-    <div class="preview">
-        {%- if post.illustration != '' -%}
-        <a href="{{ post.url | relative_url }}"><img src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}/{{ post.illustration }}" alt="{{ post.title | escape }}"></a>
+        {%- if page.illustration != '' -%}
+        <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}/{{ post.illustration }}" alt="{{ post.title | escape }}">
+            {%- if page.illustration-caption != '' -%}
+            <figcaption class="a-illustration__caption">{{ post.illustrationCaption }}</figcaption>
+            {%- endif -%}
+        </figure>
         {%- endif -%}
+        <p class="a-excerpt">
+            {{ post.excerpt }}
+        </p>
+    </article>
+</section>
 
-        <p>{{ post.excerpt }}</p>
-    </div>
-
-    <a class="more" href="{{ site.baseurl }}{{ post.url }}">Read more...</a>
-</article>
