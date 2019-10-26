@@ -2,3 +2,25 @@
 @import "../sizes";
 @import "../fonts";
 
+.c-content {
+
+}
+
+.a-header__title {
+
+}
+
+.a-excerpt {
+  font-size: $size-large;
+  line-height: $size-large-line;
+  padding-bottom: 5rem;
+  margin-bottom: 1.6rem;
+}
+
+.body p {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  font-size: $size-medium;
+  line-height: $size-medium-line;
+  letter-spacing: $size-letter-spacing-tiny-gap;
+}

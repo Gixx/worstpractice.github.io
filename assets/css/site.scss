@@ -14,10 +14,18 @@
 
 /* tablet */
 @media (min-width: 481px) and (max-width: 1024px) {
-
+  @import "tablet/layout";
+  @import "tablet/header";
+  @import "tablet/navigation";
+  @import "tablet/content";
+  @import "tablet/footer";
 }
 
 /* mobile */
 @media (max-width: 480px) {
-
+  @import "mobile/layout";
+  @import "mobile/header";
+  @import "mobile/navigation";
+  @import "mobile/content";
+  @import "mobile/footer";
 }

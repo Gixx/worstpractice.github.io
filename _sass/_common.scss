@@ -24,8 +24,8 @@ html {
   position: relative;
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   font-size: $base-size;
 }
 
@@ -33,21 +33,21 @@ body {
   /* size */
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   /* color */
-  color: $black;
-  background-color: $light-grey;
+  color: $light-black;
+  background-color: $white;
   /* font */
   font-weight: 400;
-  font-size: $size-normal;
-  line-height: $size-normal-line;
-  letter-spacing: $size-letter-spacing-shrink;
+  font-size: $size-medium;
+  line-height: $size-medium-line;
+  letter-spacing: $size-letter-spacing-tiny-gap;
   font-variant-ligatures: no-common-ligatures;
   font-feature-settings: "kern", "liga" 0, "clig" 0;
 }
 
-a, a:visited {
+a {
   cursor: pointer !important;
 }
 

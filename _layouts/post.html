@@ -2,7 +2,7 @@
 layout: default
 page_type: post_view
 ---
-<section class="c-content__post">
+<section class="a-content__post">
     <article class="a-article">
         <header class="a-header">
             <h2 class="a-header__title">{{ page.title | escape }}</h2>
@@ -12,19 +12,19 @@ page_type: post_view
                 {%- capture postDate  -%}
                     {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} {{ page.date | date: '%R' }}
                 {%- endcapture -%}
-                <span class="meta-date">Posted on {{ postDate }}</span>
+                <span class="a-meta__date">Posted on {{ postDate }}</span>
                 {%- unless page.expiration == "none" -%}
                     {%- assign em = page.expiration | date: "%-m" | minus: 0 -%}
                     {%- assign expirationMonth = site.data[site.lang].months[em] -%}
                     {%- capture expirationDate  -%}
                         {{ expirationMonth }}&nbsp;{{ page.expiration | date: '%e' }}, {{ page.expiration | date: '%Y' }}
                     {%- endcapture -%}
-                <span class="meta-expiration">Estimated date of expiration: {{ expirationDate }}</span>
+                <span class="a-meta__expiration">Estimated date of expiration: {{ expirationDate }}</span>
                 {%- endunless -%}
 
-                <span class="meta-category">Posted under the <a href="/{{ page.category}}/index.html">{{ page.categoryLabel }}</a> category</span>
+                <span class="a-meta__category">Posted under the <a href="/{{ page.category}}/index.html">{{ page.categoryLabel }}</a> category</span>
 
-                <span class="meta-tags">Posted with the following tags:
+                <span class="a-meta__tags">Posted with the following tags:
                 {% for tag in page.tags %}
                     <a href="/tags/{{ tag }}/index.html">#{{ page.tagLabels[forloop.index0] }}</a>{% unless forloop.last %}, {% endunless %}
                 {% endfor %}
@@ -57,10 +57,10 @@ page_type: post_view
         </footer>
     </article>
     {%- if page.review -%}
-    <aside class="c-comments">
+    <aside class="a-comments">
         <div id="disqus_thread"></div>
         <noscript>
-            <p>
+            <p class="a-comments__noscript">
                 No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
                 <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener noreferrer">write me</a>
                 your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
