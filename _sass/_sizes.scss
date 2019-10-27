@@ -1,42 +1,53 @@
-$base-size: 62.5%; /* this should produce 10px if your browser follows the unspoken rules */
+/* Dimensions */
+$desktop-min-width-limit: 1025px;
+$desktop-content-width: 90rem;
+$desktop-content-padding: 10rem;
 
-$size-small:  1.3rem;
-$size-small-line: 1.5rem;
-$size-normal: 1.4rem;
-$size-normal-line: 1.6rem;
-$size-medium: 1.6rem;
-$size-medium-line: 3.2rem;
-$size-large: 2.4rem;
-$size-large-line: 3.6rem;
+$tablet-max-width-limit: 1024px;
+$tablet-min-width-limit: 481px;
 
-$size-h1: 2rem;
-$size-h1-line: 2.6rem;
-$size-h2: 1.8rem;
-$size-h2-line: 2.4rem;
-$size-h3: 1.7rem;
-$size-h3-line: 2.3rem;
-$size-h4: 1.6rem;
-$size-h4-line: 2.2rem;
-$size-h5: 1.5rem;
-$size-h5-line: 2.1rem;
-$size-h6: 1.4rem;
-$size-h6-line: 2rem;
+$mobile-max-width-limit: 480px;
 
-$size-post-h1: 5rem;
-$size-post-h1-line: 7rem;
-$size-post-h2: 4.5rem;
-$size-post-h2-line: 6rem;
-$size-post-h3: 4rem;
-$size-post-h3-line: 5rem;
-$size-post-h4: 3rem;
-$size-post-h4-line: 3.5rem;
-$size-post-h5: 2rem;
-$size-post-h5-line: 2.5rem;
-$size-post-h6: 1.5rem;
-$size-post-h6-line: 2rem;
+/* Text */
+$text-base-size: 62.5%; /* this should produce 10px if your browser follows the unspoken rules */
 
-$size-letter-spacing-shrink: -0.012rem;
-$size-letter-spacing-tiny-gap: 0.01rem;
-$size-letter-spacing-small-gap: 0.05rem;
-$size-letter-spacing-large-gap: 0.08rem;
-$size-letter-spacing-expand: 0.12rem;
+$text-size-small:  1.3rem;
+$text-size-small-line: 1.5rem;
+$text-size-normal: 1.4rem;
+$text-size-normal-line: 1.6rem;
+$text-size-medium: 1.6rem;
+$text-size-medium-line: 3.2rem;
+$text-size-large: 2.4rem;
+$text-size-large-line: 3.6rem;
+
+$text-size-menu-h1: 2rem;
+$text-size-menu-h1-line: 2.6rem;
+$text-size-menu-h2: 1.8rem;
+$text-size-menu-h2-line: 2.4rem;
+$text-size-menu-h3: 1.7rem;
+$text-size-menu-h3-line: 2.3rem;
+$text-size-menu-h4: 1.6rem;
+$text-size-menu-h4-line: 2.2rem;
+$text-size-menu-h5: 1.5rem;
+$text-size-menu-h5-line: 2.1rem;
+$text-size-menu-h6: 1.4rem;
+$text-size-menu-h6-line: 2rem;
+
+$text-size-post-h1: 6rem;
+$text-size-post-h1-line: 8rem;
+$text-size-post-h2: 5rem;
+$text-size-post-h2-line: 6.5rem;
+$text-size-post-h3: 4rem;
+$text-size-post-h3-line: 5.2rem;
+$text-size-post-h4: 3rem;
+$text-size-post-h4-line: 4rem;
+$text-size-post-h5: 2rem;
+$text-size-post-h5-line: 2.8rem;
+$text-size-post-h6: 1.5rem;
+$text-size-post-h6-line: 2rem;
+
+$text-size-letter-spacing-shrink: -0.012rem;
+$text-size-letter-spacing-tiny-gap: 0.01rem;
+$text-size-letter-spacing-small-gap: 0.05rem;
+$text-size-letter-spacing-large-gap: 0.08rem;
+$text-size-letter-spacing-expand: 0.12rem;

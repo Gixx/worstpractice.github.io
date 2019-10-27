@@ -36,7 +36,28 @@ Heaven days Have fowl open. Seed let fruit our dry day appear replenish fruit, l
 ```php
 <?php
 
-phpinfo();
+    /**
+     * Resolves the config inheritance.
+     *
+     * @param array  $configuration
+     * @param string $identifier
+     */
+    protected function resolveInheritance(array &$configuration, string $identifier) : void
+    {
+        if (isset($configuration[self::SERVICE_INHERIT])) {
+            $parentConfiguration = $this->getServiceConfiguration($configuration[self::SERVICE_INHERIT]);
+            foreach ($configuration as $key => $value) {
+                $parentConfiguration[$key] = $value;
+            }
+            // If the class name is not explicitly defined but the identifier is a class, the inherited class name
+            // should be overwritten.
+            if (!isset($configuration[self::SERVICE_CLASS]) && class_exists($identifier)) {
+                $parentConfiguration[self::SERVICE_CLASS] = $identifier;
+            }
+            $configuration = $parentConfiguration;
+            unset($parentConfiguration, $configuration[self::SERVICE_INHERIT]);
+        }
+    }
 
 ```
 

@@ -64,8 +64,10 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+        <link rel="stylesheet" href="/assets/css/prism.css" />
         <link rel="stylesheet" href="/assets/css/site.css">
 
+        <script type="application/javascript" src="/assets/js/prism.js"></script>
         <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
@@ -86,8 +88,7 @@
                 <ul class="m-menu__dates"><li><a class="m-menu__date -2019-10" href="/archive/2019-10/">October, 2019</a></li><li><a class="m-menu__date -2019-09" href="/archive/2019-09/">September, 2019</a></li></ul>
             </nav>
             <nav class="m-menu__block">
-                /robots.txt
-<ul class="m-menu__legalNotes">
+                <ul class="m-menu__legalNotes">
     <li><a class="m-menu__legalNote " href="/imprint.html">Imprint</a></li>
     <li><a class="m-menu__legalNote " href="/terms.html">Terms of Use</a></li>
     <li><a class="m-menu__legalNote " href="/privacy.html">Privacy Policy</a></li>

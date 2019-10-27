@@ -26,24 +26,25 @@ html {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  font-size: $base-size;
+  font-size: $text-base-size;
 }
 
 body {
+  overflow: auto;
   /* size */
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   /* color */
   color: $light-black;
   background-color: $white;
   /* font */
   font-weight: 400;
   font-style: normal;
-  font-size: $size-medium;
-  line-height: $size-medium-line;
-  letter-spacing: $size-letter-spacing-tiny-gap;
+  font-size: $text-size-medium;
+  line-height: $text-size-medium-line;
+  letter-spacing: $text-size-letter-spacing-tiny-gap;
   font-variant-ligatures: no-common-ligatures;
   font-feature-settings: "kern", "liga" 0, "clig" 0;
 }
@@ -62,13 +63,10 @@ a.mailto::after {
 
 img {
   max-width: 100%;
-  margin: 0.5rem 0;
 }
 
-a > img {
+a img {
   cursor: pointer;
-  margin: 0;
-  padding: 0;
   vertical-align: top;
 }
 
@@ -83,23 +81,13 @@ strong {
   font-weight: 700;
 }
 
-blockquote {
-  padding: 2rem 5rem;
-}
-
-blockquote::before {
+blockquote p {
   font-family: $font-serif;
-  position: absolute;
-  top: 5rem;
-  left: -1rem;
-  display: block;
-  content: "”";
-  color: $grey;
-  font-weight: 700;
-  font-size: 6rem;
+  font-weight: 400;
+  font-style: italic;
+  text-align: justify;
 }
 
-blockquote p,
 em {
   font-family: $font-serif;
   font-weight: 400;
@@ -109,18 +97,17 @@ em {
 del {
   font-weight: 300;
   color: $darker-grey;
-  text-decoration: line-through wavy #f88;
+  text-decoration: line-through wavy $light-black;
 }
 
 ins {
   color: $black;
-  text-decoration: underline wavy #8f8;
+  text-decoration: underline dotted $grey;
+  font-style: oblique;
 }
 
 pre * {
   font-family: $font-monospace;
-  font-size: $size-normal;
-  line-height: $size-normal-line;
   letter-spacing: normal;
 }
 
@@ -128,8 +115,6 @@ pre * {
   font-family: $font-fantasy;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.4rem;
-  line-height: 2.4rem;
   display: inline-block;
   text-transform: none;
   letter-spacing: normal;

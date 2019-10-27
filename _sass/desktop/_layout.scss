@@ -2,3 +2,14 @@
 @import "../sizes";
 @import "../fonts";
 
+.material-icons {
+ font-size: 2.4rem;
+ line-height: 2.4rem;
+}
+
+.c-content {
+  width: $desktop-content-width;
+  padding-right: $desktop-content-padding;
+  padding-left: $desktop-content-padding;
+  margin: 0 auto;
+}

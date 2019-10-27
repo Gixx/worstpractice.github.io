@@ -1,0 +1,33 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+img {
+  margin: 0.5rem 0;
+}
+
+blockquote {
+  padding: 2rem 5rem;
+}
+
+blockquote::before {
+  font-family: $font-serif;
+  position: absolute;
+  top: 5rem;
+  left: -1rem;
+  display: block;
+  content: "”";
+  color: $grey;
+  font-weight: 700;
+  font-size: 6rem;
+}
+
+pre[class*="language-"] {
+  width: $desktop-content-width;
+  margin-left: -$desktop-content-padding;
+}
+
+pre * {
+  font-size: $text-size-normal;
+  line-height: $text-size-normal-line;
+}

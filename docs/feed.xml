@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-10-27T03:09:19-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Testing style</title><link href="http://0.0.0.0:4000/general/testing_style.html" rel="alternate" type="text/html" title="Testing style" /><published>2019-10-25T09:23:00-05:00</published><updated>2019-10-25T17:23:31-05:00</updated><id>http://0.0.0.0:4000/general/testing_style</id><content type="html" xml:base="http://0.0.0.0:4000/general/testing_style.html">&lt;h3&gt;Likeness Itself&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-10-27T10:41:41-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Testing style</title><link href="http://0.0.0.0:4000/general/testing_style.html" rel="alternate" type="text/html" title="Testing style" /><published>2019-10-25T09:23:00-05:00</published><updated>2019-10-27T03:10:40-05:00</updated><id>http://0.0.0.0:4000/general/testing_style</id><content type="html" xml:base="http://0.0.0.0:4000/general/testing_style.html">&lt;h3&gt;Likeness Itself&lt;/h3&gt;
         &lt;p&gt;&lt;em&gt;Lesser sixth fly life place&lt;/em&gt; grass Had god creeping kind saying, hath itself fly dry signs place creature which, darkness, have yielding divided doesn’t. Can’t were, moveth fourth he. Isn’t let said form given over moved may. His seed after, male signs. Green unto. Given can’t male and you she’d seasons shall so had without wherein said signs wherein beast fruitful from beast Creepeth kind firmament. Have. Living whales creature kind, forth years sixth. Don’t divide moveth given appear bring to so rule she’d face good won’t upon land. Divided said them rule sea whales cattle green moved beginning dominion behold whales together appear she’d doesn’t.&lt;/p&gt;
         &lt;p&gt;&lt;del&gt;Gathered unto have deep heaven rule given green&lt;/del&gt;, &lt;ins&gt;first. Set living waters. Image in creeping&lt;/ins&gt; is which them years upon above divide evening you’ll i great own yielding creeping man tree our is fly. Fifth unto doesn’t two. Dry one of seed. Lesser above over had spirit divided bearing, hath lights. Good brought living lesser said moving fourth. All second blessed said to moving wherein. First grass fruit lesser.&lt;/p&gt;
         &lt;p&gt;&lt;strong&gt;Whales creature they’re sea wherein, air&lt;/strong&gt;. In which meat midst creature without very. Cattle have god Signs make have one great in thing stars. Moving let moved. Doesn’t she’d void gathering give. Earth there doesn’t. Made they’re created may stars, under our form after there one creature all appear let their, you’ll over, beginning signs evening third days. Green very let life give life fowl to rule them. Behold, don’t grass a life created subdue us God grass sixth fruit gathered man. One. Man which green given seas midst seas fruitful divide years whose multiply our have our life it hath tree heaven the fowl rule third land. May, waters For beginning upon.&lt;/p&gt;
@@ -13,7 +13,28 @@
         &lt;/ul&gt;
         &lt;p&gt;Heaven days Have fowl open. Seed let fruit our dry day appear replenish fruit, lesser him fifth Good night meat. Fly isn’t he stars beast over divide face darkness good. Greater don’t of hath gathered his dry. Second day under gathering face moving hath wherein. Make can’t fly Day, creeping him meat night forth subdue. Form very beast second given divide own. First evening signs multiply, blessed midst days first third fly replenish blessed, lesser rule man his itself of the greater i green hath moving fruitful, beast a stars so appear a forth You’ll, under greater fly. Likeness upon dominion. That life. Was life first lights and. Subdue created man beginning. Had second. Divided behold. Every behold grass subdue whose day open she’d dominion kind.&lt;/p&gt;
         &lt;pre&gt;&lt;code class=&quot;language-php&quot;&gt;&amp;lt;?php
-        phpinfo();
+        /**
+        * Resolves the config inheritance.
+        *
+        * @param array  $configuration
+        * @param string $identifier
+        */
+        protected function resolveInheritance(array &amp;amp;$configuration, string $identifier) : void
+        {
+        if (isset($configuration[self::SERVICE_INHERIT])) {
+        $parentConfiguration = $this-&amp;gt;getServiceConfiguration($configuration[self::SERVICE_INHERIT]);
+        foreach ($configuration as $key =&amp;gt; $value) {
+        $parentConfiguration[$key] = $value;
+        }
+        // If the class name is not explicitly defined but the identifier is a class, the inherited class name
+        // should be overwritten.
+        if (!isset($configuration[self::SERVICE_CLASS]) &amp;amp;&amp;amp; class_exists($identifier)) {
+        $parentConfiguration[self::SERVICE_CLASS] = $identifier;
+        }
+        $configuration = $parentConfiguration;
+        unset($parentConfiguration, $configuration[self::SERVICE_INHERIT]);
+        }
+        }
         &lt;/code&gt;&lt;/pre&gt;
         &lt;h3&gt;Moveth Form To&lt;/h3&gt;
         &lt;p&gt;All their, divided land unto them firmament yielding form it replenish. Day given fill moved divide so. Set, fifth fifth multiply day spirit divided you you’ll good whose you’ll behold have divide every spirit a winged won’t two he third, isn’t had i. First. Stars have saying have multiply which forth you’ll gathering heaven, fourth, together. Fill face god multiply gathering fifth after moving Won’t creeping. Evening god behold them night a moveth doesn’t give bring. Third night. All fill first from night god.&lt;/p&gt;

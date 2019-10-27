@@ -65,7 +65,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/prism.css" />
     <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/prism.js"></script>
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
@@ -94,7 +96,6 @@
         </ul>
       </nav>
       <nav class="m-menu__block">
-        /general/testing_style.html
         <ul class="m-menu__legalNotes">
           <li><a class="m-menu__legalNote " href="/imprint.html">Imprint</a></li>
           <li><a class="m-menu__legalNote " href="/terms.html">Terms of Use</a></li>
@@ -134,7 +135,28 @@
             <p>Heaven days Have fowl open. Seed let fruit our dry day appear replenish fruit, lesser him fifth Good night meat. Fly isn’t he stars beast over divide face darkness good. Greater don’t of hath gathered his dry. Second day under gathering face moving hath wherein. Make can’t fly Day, creeping him meat night forth subdue. Form very beast second given divide own. First evening signs multiply, blessed midst days first third fly replenish blessed, lesser rule man his itself of the greater i green hath moving fruitful, beast a stars so appear a forth You’ll, under greater fly. Likeness upon dominion. That life. Was life first lights and. Subdue created man beginning. Had second. Divided behold. Every behold grass subdue whose day open she’d dominion kind.</p>
             <pre><code class="language-php">&lt;?php
 
-phpinfo();
+    /**
+     * Resolves the config inheritance.
+     *
+     * @param array  $configuration
+     * @param string $identifier
+     */
+    protected function resolveInheritance(array &amp;$configuration, string $identifier) : void
+    {
+        if (isset($configuration[self::SERVICE_INHERIT])) {
+            $parentConfiguration = $this-&gt;getServiceConfiguration($configuration[self::SERVICE_INHERIT]);
+            foreach ($configuration as $key =&gt; $value) {
+                $parentConfiguration[$key] = $value;
+            }
+            // If the class name is not explicitly defined but the identifier is a class, the inherited class name
+            // should be overwritten.
+            if (!isset($configuration[self::SERVICE_CLASS]) &amp;&amp; class_exists($identifier)) {
+                $parentConfiguration[self::SERVICE_CLASS] = $identifier;
+            }
+            $configuration = $parentConfiguration;
+            unset($parentConfiguration, $configuration[self::SERVICE_INHERIT]);
+        }
+    }
 
 </code></pre>
             <h3>Moveth Form To</h3>

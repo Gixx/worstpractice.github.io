@@ -18,7 +18,7 @@ function getCookie(cName)
     let name = cName + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let cookieArray = decodedCookie.split(';');
-    for(let i = 0, num = cookieArray.length; i < num; i++) {
+    for (let i = 0, num = cookieArray.length; i < num; i++) {
         let cookie = cookieArray[i];
         while (cookie.charAt(0) === ' ') {
             cookie = cookie.substring(1);
@@ -29,15 +29,3 @@ function getCookie(cName)
     }
     return '';
 }
-
-document.addEventListener('wheel', function(event) {
-    // if (event.type !== 'wheel') {
-    //     return;
-    // }
-    // let delta = ((event.deltaY || -event.wheelDelta || event.detail) >> 10) || 1;
-    // delta = delta * (-300);
-    // document.documentElement.scrollLeft -= delta;
-    // // safari needs also this
-    // document.body.scrollLeft -= delta;
-    // event.preventDefault();
-});
