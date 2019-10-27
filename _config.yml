@@ -60,11 +60,11 @@ excerpt_separator: <!--more-->
 reversed_categories:
   - tutorial
 
-markdown: CommonMark
+markdown: kramdown
 
-commonmark:
-  options: ["SMART", "FOOTNOTES", "UNSAFE"]
-  extensions: ["strikethrough", "autolink", "table", "tasklist", "tagfilter"]
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 permalink: /:categories/:title.html
 
@@ -123,7 +123,3 @@ jekyll_tidy:
 sass:
   sass_dir: _sass
   style: compressed
-
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge

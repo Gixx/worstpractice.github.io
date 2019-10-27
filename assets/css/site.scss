@@ -3,6 +3,7 @@
 
 @import "common";
 @import "sizes";
+@import "syntax";
 
 /* desktop and tablet landscape */
 @media only screen and (min-width: $desktop-min-width-limit) and (orientation:landscape) {

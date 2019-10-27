@@ -65,10 +65,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-    <link rel="stylesheet" href="/assets/css/prism.css" />
     <link rel="stylesheet" href="/assets/css/site.css">
-    <script type="application/javascript" src="/assets/js/prism.js"></script>
-    <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
     <header class="h-header">
@@ -118,13 +115,17 @@
             Just try out the pagination
           </p>
           <div class="a-body">
-            <h2>Whoaaa means Wow in country side</h2>
+            <h2 id="whoaaa-means-wow-in-country-side">Whoaaa means Wow in country side</h2>
             <p>Or not…</p>
-            <pre><code class="language-php">&lt;?php
+            <div class="language-php highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-phpinfo();
+<span class="nb">phpinfo</span><span class="p">();</span>
 
 </code></pre>
+              </div>
+            </div>
           </div>
           <footer class="a-footer">
             <h3 class="a-footer__title">About the author</h3>
@@ -150,7 +151,7 @@ phpinfo();
         <small>Copyright © 2019 All rights reserved. Worst Practice</small>
       </p>
     </footer>
-    <script type="application/javascript">
+    <script type="application/javascript" src="/assets/js/site.js"></script><script type="application/javascript">
       var disqus_config = function () {
           this.page.url = 'https://www.worstpractice.dev/general/whoaaa.html';
           this.page.identifier = 'whoaaa';

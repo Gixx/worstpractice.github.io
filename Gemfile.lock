@@ -94,7 +94,7 @@ PLATFORMS
 
 DEPENDENCIES
   classifier-reborn
-  jekyll (~> 3.5)
+  jekyll (~> 3.8)
   jekyll-archives
   jekyll-commonmark
   jekyll-feed

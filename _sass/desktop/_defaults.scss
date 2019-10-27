@@ -22,12 +22,43 @@ blockquote::before {
   font-size: 6rem;
 }
 
-pre[class*="language-"] {
+pre {
   width: $desktop-content-width;
   margin-left: -$desktop-content-padding;
+  margin-top: 4rem;
+  font-size: $text-size-sourcecode;
+  line-height: $text-size-sourcecode-line;
+  border: 0.2rem dashed $dark-grey;
+  border-radius: 1rem;
+  padding: 1rem;
+
+  code {
+    display: block;
+    width: 100%;
+    max-height: 75vh;
+    overflow: auto;
+    margin: 0;
+  }
 }
 
-pre * {
-  font-size: $text-size-normal;
-  line-height: $text-size-normal-line;
+.highlighter-rouge pre::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -2rem;
+  left: 9.8rem;
+  color: $dark-grey;
+  font-weight: 300;
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: $text-size-small;
+  line-height: $text-size-small-line;
+}
+
+.language-php pre::before {
+  content: 'Source code language: PHP'
+}
+
+.language-js pre::before {
+  content: 'Source code language: JavaScript'
 }

@@ -65,10 +65,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-    <link rel="stylesheet" href="/assets/css/prism.css" />
     <link rel="stylesheet" href="/assets/css/site.css">
-    <script type="application/javascript" src="/assets/js/prism.js"></script>
-    <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
     <header class="h-header">
@@ -119,7 +116,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut. 
           </p>
           <div class="a-body">
-            <h3>Likeness Itself</h3>
+            <h3 id="likeness-itself">Likeness Itself</h3>
             <p><em>Lesser sixth fly life place</em> grass Had god creeping kind saying, hath itself fly dry signs place creature which, darkness, have yielding divided doesn’t. Can’t were, moveth fourth he. Isn’t let said form given over moved may. His seed after, male signs. Green unto. Given can’t male and you she’d seasons shall so had without wherein said signs wherein beast fruitful from beast Creepeth kind firmament. Have. Living whales creature kind, forth years sixth. Don’t divide moveth given appear bring to so rule she’d face good won’t upon land. Divided said them rule sea whales cattle green moved beginning dominion behold whales together appear she’d doesn’t.</p>
             <p><del>Gathered unto have deep heaven rule given green</del>, <ins>first. Set living waters. Image in creeping</ins> is which them years upon above divide evening you’ll i great own yielding creeping man tree our is fly. Fifth unto doesn’t two. Dry one of seed. Lesser above over had spirit divided bearing, hath lights. Good brought living lesser said moving fourth. All second blessed said to moving wherein. First grass fruit lesser.</p>
             <p><strong>Whales creature they’re sea wherein, air</strong>. In which meat midst creature without very. Cattle have god Signs make have one great in thing stars. Moving let moved. Doesn’t she’d void gathering give. Earth there doesn’t. Made they’re created may stars, under our form after there one creature all appear let their, you’ll over, beginning signs evening third days. Green very let life give life fowl to rule them. Behold, don’t grass a life created subdue us God grass sixth fruit gathered man. One. Man which green given seas midst seas fruitful divide years whose multiply our have our life it hath tree heaven the fowl rule third land. May, waters For beginning upon.</p>
@@ -127,39 +124,296 @@
               <p>Without also. Grass over dominion for third them. Were. Without saw don’t days Give winged had you’ll thing good darkness. Over after herb deep abundantly. She’d great. Without, them god heaven open land whales morning very fifth have above blessed god moved winged. One be. Stars lesser. Us itself fourth were beginning their man fruit fourth was above his. Signs one And replenish his fowl image over may.</p>
             </blockquote>
             <p>Divide, day in. Signs won’t. To shall subdue forth you’ll. <strong>A fill thing</strong>. Had. Deep, forth brought you good likeness us i fill it deep seas saying whose without every appear. Great. Subdue dominion called fifth shall second man gathered first. Lights meat may over said. Beast to set a kind given let, signs third rule life fowl Sixth. Fowl thing and midst beginning called yielding face said wherein own blessed herb form. You’re Fly was dominion grass sea said you’ll also. May fowl green fruitful air you’re over one creepeth behold divided winged land abundantly lights creeping own. Hath isn’t saw can’t in seasons for dominion whose moveth called their saying beast place place. Dry grass Can’t saying beginning sixth first our Second bearing. Air male one firmament of. Own, image lights can’t brought Every dominion Face bring. Doesn’t.</p>
-            <ul>
-              <li><input type="checkbox" checked="" disabled="" /> Like this</li>
-              <li><input type="checkbox" disabled="" /> or Like this</li>
-              <li><input type="checkbox" disabled="" /> and Like this</li>
+            <ul class="task-list">
+              <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" checked="checked" />Like this</li>
+              <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />or Like this</li>
+              <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />and Like this</li>
             </ul>
             <p>Heaven days Have fowl open. Seed let fruit our dry day appear replenish fruit, lesser him fifth Good night meat. Fly isn’t he stars beast over divide face darkness good. Greater don’t of hath gathered his dry. Second day under gathering face moving hath wherein. Make can’t fly Day, creeping him meat night forth subdue. Form very beast second given divide own. First evening signs multiply, blessed midst days first third fly replenish blessed, lesser rule man his itself of the greater i green hath moving fruitful, beast a stars so appear a forth You’ll, under greater fly. Likeness upon dominion. That life. Was life first lights and. Subdue created man beginning. Had second. Divided behold. Every behold grass subdue whose day open she’d dominion kind.</p>
-            <pre><code class="language-php">&lt;?php
+            <div class="language-php highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><span class="kd">class</span> <span class="nc">ServiceAdapter</span> <span class="k">extends</span> <span class="nx">AbstractAdapter</span>
+<span class="p">{</span>
+    <span class="cd">/**
+     * @var Extract
+     */</span>
+    <span class="k">private</span> <span class="nv">$domainAdapter</span><span class="p">;</span>
 
-    /**
-     * Resolves the config inheritance.
+    <span class="cd">/**
+     * ServiceAdapter constructor.
      *
-     * @param array  $configuration
-     * @param string $identifier
-     */
-    protected function resolveInheritance(array &amp;$configuration, string $identifier) : void
-    {
-        if (isset($configuration[self::SERVICE_INHERIT])) {
-            $parentConfiguration = $this-&gt;getServiceConfiguration($configuration[self::SERVICE_INHERIT]);
-            foreach ($configuration as $key =&gt; $value) {
-                $parentConfiguration[$key] = $value;
-            }
-            // If the class name is not explicitly defined but the identifier is a class, the inherited class name
-            // should be overwritten.
-            if (!isset($configuration[self::SERVICE_CLASS]) &amp;&amp; class_exists($identifier)) {
-                $parentConfiguration[self::SERVICE_CLASS] = $identifier;
-            }
-            $configuration = $parentConfiguration;
-            unset($parentConfiguration, $configuration[self::SERVICE_INHERIT]);
-        }
-    }
+     * @param  ConfigurationInterface $configuration
+     * @param  array                  $getData
+     * @param  array                  $postData
+     * @param  array                  $serverData
+     * @param  array                  $cookieData
+     * @param  array                  $filesData
+     * @param  array                  $optionsData
+     * @throws Exception
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span>
+        <span class="nx">ConfigurationInterface</span> <span class="nv">$configuration</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$getData</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$postData</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$serverData</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$cookieData</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$filesData</span><span class="p">,</span>
+        <span class="k">array</span> <span class="nv">$optionsData</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configuration</span> <span class="o">=</span> <span class="nv">$configuration</span><span class="o">-&gt;</span><span class="na">getConfig</span><span class="p">(</span><span class="s1">'applications'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">domainAdapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Extract</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationRoot</span> <span class="o">=</span> <span class="nb">realpath</span><span class="p">(</span><span class="nx">__DIR__</span><span class="o">.</span><span class="s1">'/../../../../../'</span><span class="p">);</span>
+        <span class="c1">// In case when the backend sources are out of the document root.</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">documentRoot</span> <span class="o">=</span> <span class="nb">realpath</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationRoot</span><span class="o">.</span><span class="s1">'/'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">options</span> <span class="o">=</span> <span class="nv">$optionsData</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$serverData</span><span class="p">[</span><span class="s1">'HTTP_REFERER'</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$serverData</span><span class="p">[</span><span class="s1">'HTTP_REFERER'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">urldecode</span><span class="p">(</span><span class="nv">$serverData</span><span class="p">[</span><span class="s1">'HTTP_REFERER'</span><span class="p">]);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">'GET'</span>    <span class="o">=&gt;</span> <span class="nv">$getData</span><span class="p">,</span>
+            <span class="s1">'POST'</span>   <span class="o">=&gt;</span> <span class="nv">$postData</span><span class="p">,</span>
+            <span class="s1">'SERVER'</span> <span class="o">=&gt;</span> <span class="nv">$serverData</span><span class="p">,</span>
+            <span class="s1">'COOKIE'</span> <span class="o">=&gt;</span> <span class="nv">$cookieData</span><span class="p">,</span>
+            <span class="s1">'FILES'</span>  <span class="o">=&gt;</span> <span class="nv">$filesData</span>
+        <span class="p">];</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isHttps</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'HTTPS'</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'HTTPS'</span><span class="p">];</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">url</span> <span class="o">=</span> <span class="s1">'http'</span><span class="o">.</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isHttps</span> <span class="o">?</span> <span class="s1">'s'</span> <span class="o">:</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="s1">'://'</span>
+            <span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'HTTP_HOST'</span><span class="p">]</span>
+            <span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'REQUEST_URI'</span><span class="p">];</span> <span class="c1">// contains also the query string</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedModule</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_MODULE</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedApplication</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_APPLICATION</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedTheme</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_THEME</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedThemeResourcePath</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_THEME_RESOURCE_PATH</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedApplicationUri</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_APPLICATION_URI</span><span class="p">;</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setDomain</span><span class="p">()</span>
+            <span class="o">-&gt;</span><span class="na">setApplication</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Gets the request URI
+     *
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getRequestUri</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">rtrim</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'REQUEST_URI'</span><span class="p">],</span> <span class="s1">'/'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Gets the request method.
+     *
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getRequestMethod</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'REQUEST_METHOD'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">'GET'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Gets environment data.
+     *
+     * @param  string $key
+     * @return array
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getEnvironmentData</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$key</span><span class="p">)</span> <span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="nv">$key</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">InvalidArgumentException</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'The "%s" is not a valid environment key.'</span><span class="p">,</span> <span class="nv">$key</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="nv">$key</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Gets the client IP address.
+     *
+     * @return string
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getClientIp</span><span class="p">()</span> <span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'HTTP_X_FORWARDED_FOR'</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'HTTP_X_FORWARDED_FOR'</span><span class="p">];</span>
+        <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'REMOTE_ADDR'</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'REMOTE_ADDR'</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$ipAddress</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Parses server data and tries to set domain information.
+     *
+     * @throws Exception
+     * @return ServiceAdapter
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">setDomain</span><span class="p">()</span> <span class="o">:</span> <span class="nx">ServiceAdapter</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setAdapterOptions</span><span class="p">();</span>
+
+        <span class="cd">/**
+         * @var Result $domainParts
+         */</span>
+        <span class="nv">$domainParts</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">domainAdapter</span><span class="o">-&gt;</span><span class="na">parse</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getSuffix</span><span class="p">()</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">UnexpectedValueException</span><span class="p">(</span><span class="s1">'This application does not support IP access'</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkSubDomain</span><span class="p">(</span><span class="nv">$domainParts</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">subDomain</span> <span class="o">=</span> <span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getSubdomain</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">topDomain</span> <span class="o">=</span> <span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getHostname</span><span class="p">()</span><span class="o">.</span><span class="s1">'.'</span><span class="o">.</span><span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getSuffix</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationDomain</span> <span class="o">=</span> <span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getFullHost</span><span class="p">();</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Set some adapter specific options.
+     *
+     * @return int
+     *
+     * @codeCoverageIgnore - don't test third party library
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">setAdapterOptions</span><span class="p">()</span> <span class="o">:</span> <span class="nx">int</span>
+    <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">\defined</span><span class="p">(</span><span class="s1">'PHPUNIT_WEBHEMI_TESTSUITE'</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">getenv</span><span class="p">(</span><span class="s1">'APPLICATION_ENV'</span><span class="p">)</span> <span class="o">===</span> <span class="s1">'dev'</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">domainAdapter</span><span class="o">-&gt;</span><span class="na">setExtractionMode</span><span class="p">(</span><span class="nx">Extract</span><span class="o">::</span><span class="na">MODE_ALLOW_NOT_EXISTING_SUFFIXES</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$exception</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$exception</span><span class="o">-&gt;</span><span class="na">getCode</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Checks whether the subdomain exists, and rediretcs if no.
+     *
+     * @param Result $domainParts
+     *
+     * @codeCoverageIgnore - don't test redirect
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkSubDomain</span><span class="p">(</span><span class="nx">Result</span> <span class="nv">$domainParts</span><span class="p">)</span> <span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="c1">// Redirecting to www when no sub-domain is present</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">\defined</span><span class="p">(</span><span class="s1">'PHPUNIT_WEBHEMI_TESTSUITE'</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getSubdomain</span><span class="p">()</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$schema</span> <span class="o">=</span> <span class="s1">'http'</span><span class="o">.</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isSecuredApplication</span><span class="p">()</span> <span class="o">?</span> <span class="s1">'s'</span> <span class="o">:</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="s1">'://'</span><span class="p">;</span>
+            <span class="nv">$uri</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">environmentData</span><span class="p">[</span><span class="s1">'SERVER'</span><span class="p">][</span><span class="s1">'REQUEST_URI'</span><span class="p">];</span>
+            <span class="nb">header</span><span class="p">(</span><span class="s1">'Location: '</span><span class="o">.</span><span class="nv">$schema</span><span class="o">.</span><span class="s1">'www.'</span><span class="o">.</span><span class="nv">$domainParts</span><span class="o">-&gt;</span><span class="na">getFullHost</span><span class="p">()</span><span class="o">.</span><span class="nv">$uri</span><span class="p">);</span>
+            <span class="k">exit</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Sets application related data.
+     *
+     * @throws Exception
+     * @return ServiceAdapter
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">setApplication</span><span class="p">()</span> <span class="o">:</span> <span class="nx">ServiceAdapter</span>
+    <span class="p">{</span>
+        <span class="c1">// @codeCoverageIgnoreStart</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationDomain</span><span class="p">))</span> <span class="p">{</span>
+            <span class="c1">// For safety purposes only, But it can't happen unless somebody change/overwrite the constructor.</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">UnexpectedValueException</span><span class="p">(</span><span class="s1">'Domain is not set'</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="c1">// @codeCoverageIgnoreEnd</span>
+
+        <span class="nv">$urlParts</span> <span class="o">=</span> <span class="nb">parse_url</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">);</span>
+        <span class="p">[</span><span class="nv">$subDirectory</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">'/'</span><span class="p">,</span> <span class="nb">ltrim</span><span class="p">(</span><span class="nv">$urlParts</span><span class="p">[</span><span class="s1">'path'</span><span class="p">],</span> <span class="s1">'/'</span><span class="p">),</span> <span class="mi">2</span><span class="p">);</span>
+
+        <span class="nv">$applications</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configuration</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+        <span class="nv">$applicationNames</span> <span class="o">=</span> <span class="nb">array_keys</span><span class="p">(</span><span class="nv">$applications</span><span class="p">);</span>
+        <span class="nv">$selectedApplication</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getSelectedApplicationName</span><span class="p">(</span><span class="nv">$applicationNames</span><span class="p">,</span> <span class="nv">$subDirectory</span><span class="p">);</span>
+
+        <span class="nv">$applicationData</span> <span class="o">=</span> <span class="nv">$applications</span><span class="p">[</span><span class="nv">$selectedApplication</span><span class="p">];</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedApplication</span> <span class="o">=</span> <span class="nv">$selectedApplication</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedModule</span> <span class="o">=</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'module'</span><span class="p">]</span> <span class="o">??</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_MODULE</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedTheme</span> <span class="o">=</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'theme'</span><span class="p">]</span> <span class="o">??</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_THEME</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedApplicationUri</span> <span class="o">=</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'path'</span><span class="p">]</span> <span class="o">??</span> <span class="s1">'/'</span><span class="p">;</span>
+
+        <span class="c1">// Final check for config and resources.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedTheme</span> <span class="o">!==</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_THEME</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedThemeResourcePath</span> <span class="o">=</span> <span class="s1">'/resources/vendor_themes/'</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">selectedTheme</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Gets the selected application's name.
+     *
+     * @param  array  $applicationNames
+     * @param  string $subDirectory
+     * @return string
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getSelectedApplicationName</span><span class="p">(</span><span class="k">array</span> <span class="nv">$applicationNames</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$subDirectory</span><span class="p">)</span> <span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="nv">$selectedApplication</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="na">DEFAULT_APPLICATION</span><span class="p">;</span>
+
+        <span class="cd">/**
+         * @var string $applicationName
+         */</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$applicationNames</span> <span class="k">as</span> <span class="nv">$applicationName</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkDirectoryIsValid</span><span class="p">(</span><span class="nv">$applicationName</span><span class="p">,</span> <span class="nv">$subDirectory</span><span class="p">)</span>
+                <span class="o">||</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">checkDomainIsValid</span><span class="p">(</span><span class="nv">$applicationName</span><span class="p">)</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$selectedApplication</span> <span class="o">=</span> <span class="nv">$applicationName</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$selectedApplication</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Checks from type, path it the current URI segment is valid.
+     *
+     * @param  string $applicationName
+     * @param  string $subDirectory
+     * @return bool
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkDirectoryIsValid</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$applicationName</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$subDirectory</span><span class="p">)</span> <span class="o">:</span> <span class="nx">bool</span>
+    <span class="p">{</span>
+        <span class="nv">$applications</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configuration</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+        <span class="nv">$applicationData</span> <span class="o">=</span> <span class="nv">$applications</span><span class="p">[</span><span class="nv">$applicationName</span><span class="p">];</span>
+
+        <span class="k">return</span> <span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$subDirectory</span><span class="p">)</span>
+            <span class="o">&amp;&amp;</span> <span class="nv">$applicationName</span> <span class="o">!==</span> <span class="s1">'website'</span>
+            <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationDomain</span> <span class="o">===</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'domain'</span><span class="p">]</span>
+            <span class="o">&amp;&amp;</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'path'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'/'</span><span class="o">.</span><span class="nv">$subDirectory</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cd">/**
+     * Checks from type and path if the domain is valid. If so, it sets the $subDirectory to the default.
+     *
+     * @param  string $applicationName
+     * @return bool
+     */</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">checkDomainIsValid</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$applicationName</span><span class="p">)</span> <span class="o">:</span> <span class="nx">bool</span>
+    <span class="p">{</span>
+        <span class="nv">$applications</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">configuration</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+        <span class="nv">$applicationData</span> <span class="o">=</span> <span class="nv">$applications</span><span class="p">[</span><span class="nv">$applicationName</span><span class="p">];</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationDomain</span> <span class="o">===</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'domain'</span><span class="p">]</span>
+            <span class="o">&amp;&amp;</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'path'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'/'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 </code></pre>
-            <h3>Moveth Form To</h3>
+              </div>
+            </div>
+            <h3 id="moveth-form-to">Moveth Form To</h3>
             <p>All their, divided land unto them firmament yielding form it replenish. Day given fill moved divide so. Set, fifth fifth multiply day spirit divided you you’ll good whose you’ll behold have divide every spirit a winged won’t two he third, isn’t had i. First. Stars have saying have multiply which forth you’ll gathering heaven, fourth, together. Fill face god multiply gathering fifth after moving Won’t creeping. Evening god behold them night a moveth doesn’t give bring. Third night. All fill first from night god.</p>
             <p>For whales you. Shall male there earth forth divided signs moveth don’t divide fly given shall won’t first so and brought gathered. Place a fill created. It multiply creature fourth image fruitful greater a green. Herb itself saw multiply they’re, creature tree earth. Meat whales them. She’d. Evening. Appear great in void. Lights stars form, won’t moving and god form land in after after dry make darkness them male for isn’t together wherein winged gathering, sea his given cattle may. Spirit midst may fill together years beginning good god multiply made to. Made subdue gathering, seas forth called. Herb heaven gathering creeping over. Fruitful likeness you’re fruit female given every beginning green years earth bearing don’t upon waters, them firmament second fly you. Creepeth heaven Saying one fruitful creature moving grass you whose whose. Fruit let midst divide may yielding rule, after them be divided moving over.</p>
             <p>Very morning over made moving. Said lesser. Created divided place. Were, bring light their to likeness image they’re. Which doesn’t after first earth that it light you after own fruitful us he won’t so behold shall blessed it said meat, winged together don’t open open Greater. For them face for. Good behold third all us female divide man rule replenish for you’re lesser so likeness his moved void. Darkness one firmament shall third night. Firmament light. Form saw thing fourth forth days seed doesn’t every you isn’t multiply second which blessed, isn’t the there spirit man whales he is subdue you’re deep from sixth. His darkness, moveth saw air lesser blessed. Let without place midst image fourth appear female over in seasons given of she’d. Image very. Bearing he Yielding set. Void years you’ll fruit first be image they’re form fruit give. Man darkness shall doesn’t itself said image likeness. Called morning.</p>
@@ -189,7 +443,7 @@
         <small>Copyright © 2019 All rights reserved. Worst Practice</small>
       </p>
     </footer>
-    <script type="application/javascript">
+    <script type="application/javascript" src="/assets/js/site.js"></script><script type="application/javascript">
       var disqus_config = function () {
           this.page.url = 'https://www.worstpractice.dev/general/testing_style.html';
           this.page.identifier = 'testing-style';

@@ -18,11 +18,11 @@ $> eval "$(docker-machine env default)"
 ### Build and Serve
 To build the files once and exit, just run the following command:
 ```
-docker run --rm --volume="${PWD}:/srv/jekyll" -it jekyll/jekyll:3.5 jekyll build
+docker run --rm --volume="${PWD}:/srv/jekyll" -it jekyll/jekyll:3.8 jekyll build
 ```
 To serve the generated content in the browser, and keep the container, run:
 ```
-docker run --name myblog --volume="${PWD}:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:3.5 bash
+docker run --name myblog --volume="${PWD}:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:3.8 bash
 ```
 ...then in the docker prompt run:
 ```

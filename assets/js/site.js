@@ -29,3 +29,6 @@ function getCookie(cName)
     }
     return '';
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+});

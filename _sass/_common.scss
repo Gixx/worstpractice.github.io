@@ -96,13 +96,13 @@ em {
 
 del {
   font-weight: 300;
-  color: $darker-grey;
-  text-decoration: line-through wavy $light-black;
+  color: $light-black;
+  text-decoration: line-through solid $dark-grey;
 }
 
 ins {
   color: $black;
-  text-decoration: underline dotted $grey;
+  text-decoration: underline dashed $dark-grey;
   font-style: oblique;
 }
 
