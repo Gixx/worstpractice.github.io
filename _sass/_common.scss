@@ -40,6 +40,7 @@ body {
   background-color: $white;
   /* font */
   font-weight: 400;
+  font-style: normal;
   font-size: $size-medium;
   line-height: $size-medium-line;
   letter-spacing: $size-letter-spacing-tiny-gap;
@@ -74,7 +75,46 @@ a > img {
 p, li {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
+  -webkit-hyphens: auto;
   hyphens: auto;
+}
+
+strong {
+  font-weight: 700;
+}
+
+blockquote {
+  padding: 2rem 5rem;
+}
+
+blockquote::before {
+  font-family: $font-serif;
+  position: absolute;
+  top: 5rem;
+  left: -1rem;
+  display: block;
+  content: "”";
+  color: $grey;
+  font-weight: 700;
+  font-size: 6rem;
+}
+
+blockquote p,
+em {
+  font-family: $font-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+del {
+  font-weight: 300;
+  color: $darker-grey;
+  text-decoration: line-through wavy #f88;
+}
+
+ins {
+  color: $black;
+  text-decoration: underline wavy #8f8;
 }
 
 pre * {

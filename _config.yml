@@ -63,8 +63,8 @@ reversed_categories:
 markdown: CommonMark
 
 commonmark:
-  options: ["SMART", "FOOTNOTES"]
-  extensions: ["strikethrough", "autolink", "table"]
+  options: ["SMART", "FOOTNOTES", "UNSAFE"]
+  extensions: ["strikethrough", "autolink", "table", "tasklist", "tagfilter"]
 
 permalink: /:categories/:title.html
 

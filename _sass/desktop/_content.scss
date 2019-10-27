@@ -6,8 +6,16 @@
 
 }
 
-.a-header__title {
+.a-article {
+  width: 892px;
+  padding-right: 100px;
+  padding-left: 100px;
+  margin: 0 auto;
+}
 
+.a-header__title {
+  font-size: $size-post-h2;
+  line-height: $size-post-h2-line;
 }
 
 .a-excerpt {
@@ -17,7 +25,7 @@
   margin-bottom: 1.6rem;
 }
 
-.body p {
+.a-body p {
   margin-top: 16px;
   margin-bottom: 32px;
   font-size: $size-medium;
