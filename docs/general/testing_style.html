@@ -65,7 +65,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/desktop.css" media="screen and (min-width: 1025px) and (orientation:landscape)">
+    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
+    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
+    <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
   </head>
   <body>
     <header class="h-header">
@@ -132,7 +135,287 @@
             <p>Heaven days Have fowl open. Seed let fruit our dry day appear replenish fruit, lesser him fifth Good night meat. Fly isn’t he stars beast over divide face darkness good. Greater don’t of hath gathered his dry. Second day under gathering face moving hath wherein. Make can’t fly Day, creeping him meat night forth subdue. Form very beast second given divide own. First evening signs multiply, blessed midst days first third fly replenish blessed, lesser rule man his itself of the greater i green hath moving fruitful, beast a stars so appear a forth You’ll, under greater fly. Likeness upon dominion. That life. Was life first lights and. Subdue created man beginning. Had second. Divided behold. Every behold grass subdue whose day open she’d dominion kind.</p>
             <div class="language-php highlighter-rouge">
               <div class="highlight">
-                <pre class="highlight"><code><span class="kd">class</span> <span class="nc">ServiceAdapter</span> <span class="k">extends</span> <span class="nx">AbstractAdapter</span>
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre><span class="kd">class</span> <span class="nc">ServiceAdapter</span> <span class="k">extends</span> <span class="nx">AbstractAdapter</span>
 <span class="p">{</span>
     <span class="cd">/**
      * @var Extract
@@ -323,7 +606,7 @@
     <span class="p">{</span>
         <span class="c1">// @codeCoverageIgnoreStart</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">applicationDomain</span><span class="p">))</span> <span class="p">{</span>
-            <span class="c1">// For safety purposes only, But it can't happen unless somebody change/overwrite the constructor.</span>
+            <span class="c1">// For safety purposes only, But it can't happen unless somebody change/overwrite the constructor. And also I have to write a damn long line to test the overflow.</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">UnexpectedValueException</span><span class="p">(</span><span class="s1">'Domain is not set'</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="c1">// @codeCoverageIgnoreEnd</span>
@@ -409,54 +692,33 @@
             <span class="o">&amp;&amp;</span> <span class="nv">$applicationData</span><span class="p">[</span><span class="s1">'path'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'/'</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-
-</code></pre>
-              </div>
-            </div>
-            <h3 id="moveth-form-to">Moveth Form To</h3>
-            <p>All their, divided land unto them firmament yielding form it replenish. Day given fill moved divide so. Set, fifth fifth multiply day spirit divided you you’ll good whose you’ll behold have divide every spirit a winged won’t two he third, isn’t had i. First. Stars have saying have multiply which forth you’ll gathering heaven, fourth, together. Fill face god multiply gathering fifth after moving Won’t creeping. Evening god behold them night a moveth doesn’t give bring. Third night. All fill first from night god.</p>
-            <p>For whales you. Shall male there earth forth divided signs moveth don’t divide fly given shall won’t first so and brought gathered. Place a fill created. It multiply creature fourth image fruitful greater a green. Herb itself saw multiply they’re, creature tree earth. Meat whales them. She’d. Evening. Appear great in void. Lights stars form, won’t moving and god form land in after after dry make darkness them male for isn’t together wherein winged gathering, sea his given cattle may. Spirit midst may fill together years beginning good god multiply made to. Made subdue gathering, seas forth called. Herb heaven gathering creeping over. Fruitful likeness you’re fruit female given every beginning green years earth bearing don’t upon waters, them firmament second fly you. Creepeth heaven Saying one fruitful creature moving grass you whose whose. Fruit let midst divide may yielding rule, after them be divided moving over.</p>
-            <p>Very morning over made moving. Said lesser. Created divided place. Were, bring light their to likeness image they’re. Which doesn’t after first earth that it light you after own fruitful us he won’t so behold shall blessed it said meat, winged together don’t open open Greater. For them face for. Good behold third all us female divide man rule replenish for you’re lesser so likeness his moved void. Darkness one firmament shall third night. Firmament light. Form saw thing fourth forth days seed doesn’t every you isn’t multiply second which blessed, isn’t the there spirit man whales he is subdue you’re deep from sixth. His darkness, moveth saw air lesser blessed. Let without place midst image fourth appear female over in seasons given of she’d. Image very. Bearing he Yielding set. Void years you’ll fruit first be image they’re form fruit give. Man darkness shall doesn’t itself said image likeness. Called morning.</p>
-            <p>Replenish fish fish spirit face fifth whose gathered. Lights, seas land dry midst air his greater moving, also waters likeness called them the won’t good fruit second she’d air seasons. Lights. Hath us, stars you morning. Man itself, bearing kind lights. Itself dominion lights to given every, fill shall open Living their. Creature. Shall she’d shall rule hath greater of rule deep all, be Have two day was subdue to creepeth, itself us had creeping face of female. Land after. Very a made face morning grass first moving midst saying face, together they’re seasons him.</p>
-          </div>
-          <footer class="a-footer">
-            <h3 class="a-footer__title">About the author</h3>
-            <p class="a-footer__author">
-              <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
-            </p>
-          </footer>
-        </article>
-        <aside class="a-comments">
-          <div id="disqus_thread"></div>
-          <noscript>
-            <p class="a-comments__noscript">
-              No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
-              <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Testing style`" target="_blank" rel="noopener noreferrer">write me</a>
-              your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
-            </p>
-          </noscript>
-        </aside>
-      </section>
-    </main>
-    <footer class="f-footer">
-      <p class="f-footer__copyright">
-        <small>Copyright © 2019 All rights reserved. Worst Practice</small>
-      </p>
-    </footer>
-    <script type="application/javascript" src="/assets/js/site.js"></script><script type="application/javascript">
-      var disqus_config = function () {
-          this.page.url = 'https://www.worstpractice.dev/general/testing_style.html';
-          this.page.identifier = 'testing-style';
-          this.page.title = 'Testing style';
-      };
-      
-      (function() {
-          if (isDisqusEnabled()) {
-              var d = document, s = d.createElement('script');
-              s.src = 'https://worst-practice.disqus.com/embed.js';
-              s.setAttribute('data-timestamp', +new Date());
-              (d.head || d.body).appendChild(s);
-          }
-      })();
-    </script></body>
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<h3 id="moveth-form-to">Moveth Form To</h3>
+<p>All their, divided land unto them firmament yielding form it replenish. Day given fill moved divide so. Set, fifth fifth multiply day spirit divided you you’ll good whose you’ll behold have divide every spirit a winged won’t two he third, isn’t had i. First. Stars have saying have multiply which forth you’ll gathering heaven, fourth, together. Fill face god multiply gathering fifth after moving Won’t creeping. Evening god behold them night a moveth doesn’t give bring. Third night. All fill first from night god.</p>
+<p>For whales you. Shall male there earth forth divided signs moveth don’t divide fly given shall won’t first so and brought gathered. Place a fill created. It multiply creature fourth image fruitful greater a green. Herb itself saw multiply they’re, creature tree earth. Meat whales them. She’d. Evening. Appear great in void. Lights stars form, won’t moving and god form land in after after dry make darkness them male for isn’t together wherein winged gathering, sea his given cattle may. Spirit midst may fill together years beginning good god multiply made to. Made subdue gathering, seas forth called. Herb heaven gathering creeping over. Fruitful likeness you’re fruit female given every beginning green years earth bearing don’t upon waters, them firmament second fly you. Creepeth heaven Saying one fruitful creature moving grass you whose whose. Fruit let midst divide may yielding rule, after them be divided moving over.</p>
+<p>Very morning over made moving. Said lesser. Created divided place. Were, bring light their to likeness image they’re. Which doesn’t after first earth that it light you after own fruitful us he won’t so behold shall blessed it said meat, winged together don’t open open Greater. For them face for. Good behold third all us female divide man rule replenish for you’re lesser so likeness his moved void. Darkness one firmament shall third night. Firmament light. Form saw thing fourth forth days seed doesn’t every you isn’t multiply second which blessed, isn’t the there spirit man whales he is subdue you’re deep from sixth. His darkness, moveth saw air lesser blessed. Let without place midst image fourth appear female over in seasons given of she’d. Image very. Bearing he Yielding set. Void years you’ll fruit first be image they’re form fruit give. Man darkness shall doesn’t itself said image likeness. Called morning.</p>
+<p>Replenish fish fish spirit face fifth whose gathered. Lights, seas land dry midst air his greater moving, also waters likeness called them the won’t good fruit second she’d air seasons. Lights. Hath us, stars you morning. Man itself, bearing kind lights. Itself dominion lights to given every, fill shall open Living their. Creature. Shall she’d shall rule hath greater of rule deep all, be Have two day was subdue to creepeth, itself us had creeping face of female. Land after. Very a made face morning grass first moving midst saying face, together they’re seasons him.</p>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <p class="a-footer__author">
+    <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
+  </p>
+</footer>
+</article>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2019 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+<script type="application/javascript" src="/assets/js/site.js"></script></body>
 </html>

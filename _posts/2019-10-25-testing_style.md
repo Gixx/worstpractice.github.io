@@ -13,7 +13,7 @@ tags:   [frontend, technical]
 tagLabels: ['Frontend', 'Technical']
 excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut. '
 summary: ''
-review: true
+review: false
 ---
 
 ### Likeness Itself
@@ -225,7 +225,7 @@ class ServiceAdapter extends AbstractAdapter
     {
         // @codeCoverageIgnoreStart
         if (!isset($this->applicationDomain)) {
-            // For safety purposes only, But it can't happen unless somebody change/overwrite the constructor.
+            // For safety purposes only, But it can't happen unless somebody change/overwrite the constructor. And also I have to write a damn long line to test the overflow.
             throw new UnexpectedValueException('Domain is not set');
         }
         // @codeCoverageIgnoreEnd
@@ -311,7 +311,6 @@ class ServiceAdapter extends AbstractAdapter
             && $applicationData['path'] === '/';
     }
 }
-
 ```
 
 ### Moveth Form To

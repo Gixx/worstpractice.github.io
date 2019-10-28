@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-10-27T17:07:16-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Testing style</title><link href="http://0.0.0.0:4000/general/testing_style.html" rel="alternate" type="text/html" title="Testing style" /><published>2019-10-25T09:23:00-05:00</published><updated>2019-10-27T10:47:24-05:00</updated><id>http://0.0.0.0:4000/general/testing_style</id><content type="html" xml:base="http://0.0.0.0:4000/general/testing_style.html">&lt;h3 id=&quot;likeness-itself&quot;&gt;Likeness Itself&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-10-28T05:29:17-05:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Testing style</title><link href="http://0.0.0.0:4000/general/testing_style.html" rel="alternate" type="text/html" title="Testing style" /><published>2019-10-25T09:23:00-05:00</published><updated>2019-10-27T17:08:26-05:00</updated><id>http://0.0.0.0:4000/general/testing_style</id><content type="html" xml:base="http://0.0.0.0:4000/general/testing_style.html">&lt;h3 id=&quot;likeness-itself&quot;&gt;Likeness Itself&lt;/h3&gt;
         &lt;p&gt;&lt;em&gt;Lesser sixth fly life place&lt;/em&gt; grass Had god creeping kind saying, hath itself fly dry signs place creature which, darkness, have yielding divided doesn’t. Can’t were, moveth fourth he. Isn’t let said form given over moved may. His seed after, male signs. Green unto. Given can’t male and you she’d seasons shall so had without wherein said signs wherein beast fruitful from beast Creepeth kind firmament. Have. Living whales creature kind, forth years sixth. Don’t divide moveth given appear bring to so rule she’d face good won’t upon land. Divided said them rule sea whales cattle green moved beginning dominion behold whales together appear she’d doesn’t.&lt;/p&gt;
         &lt;p&gt;&lt;del&gt;Gathered unto have deep heaven rule given green&lt;/del&gt;, &lt;ins&gt;first. Set living waters. Image in creeping&lt;/ins&gt; is which them years upon above divide evening you’ll i great own yielding creeping man tree our is fly. Fifth unto doesn’t two. Dry one of seed. Lesser above over had spirit divided bearing, hath lights. Good brought living lesser said moving fourth. All second blessed said to moving wherein. First grass fruit lesser.&lt;/p&gt;
         &lt;p&gt;&lt;strong&gt;Whales creature they’re sea wherein, air&lt;/strong&gt;. In which meat midst creature without very. Cattle have god Signs make have one great in thing stars. Moving let moved. Doesn’t she’d void gathering give. Earth there doesn’t. Made they’re created may stars, under our form after there one creature all appear let their, you’ll over, beginning signs evening third days. Green very let life give life fowl to rule them. Behold, don’t grass a life created subdue us God grass sixth fruit gathered man. One. Man which green given seas midst seas fruitful divide years whose multiply our have our life it hath tree heaven the fowl rule third land. May, waters For beginning upon.&lt;/p&gt;
@@ -12,7 +12,284 @@
         &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;and Like this&lt;/li&gt;
         &lt;/ul&gt;
         &lt;p&gt;Heaven days Have fowl open. Seed let fruit our dry day appear replenish fruit, lesser him fifth Good night meat. Fly isn’t he stars beast over divide face darkness good. Greater don’t of hath gathered his dry. Second day under gathering face moving hath wherein. Make can’t fly Day, creeping him meat night forth subdue. Form very beast second given divide own. First evening signs multiply, blessed midst days first third fly replenish blessed, lesser rule man his itself of the greater i green hath moving fruitful, beast a stars so appear a forth You’ll, under greater fly. Likeness upon dominion. That life. Was life first lights and. Subdue created man beginning. Had second. Divided behold. Every behold grass subdue whose day open she’d dominion kind.&lt;/p&gt;
-        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ServiceAdapter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractAdapter&lt;/span&gt;
+        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
+        16
+        17
+        18
+        19
+        20
+        21
+        22
+        23
+        24
+        25
+        26
+        27
+        28
+        29
+        30
+        31
+        32
+        33
+        34
+        35
+        36
+        37
+        38
+        39
+        40
+        41
+        42
+        43
+        44
+        45
+        46
+        47
+        48
+        49
+        50
+        51
+        52
+        53
+        54
+        55
+        56
+        57
+        58
+        59
+        60
+        61
+        62
+        63
+        64
+        65
+        66
+        67
+        68
+        69
+        70
+        71
+        72
+        73
+        74
+        75
+        76
+        77
+        78
+        79
+        80
+        81
+        82
+        83
+        84
+        85
+        86
+        87
+        88
+        89
+        90
+        91
+        92
+        93
+        94
+        95
+        96
+        97
+        98
+        99
+        100
+        101
+        102
+        103
+        104
+        105
+        106
+        107
+        108
+        109
+        110
+        111
+        112
+        113
+        114
+        115
+        116
+        117
+        118
+        119
+        120
+        121
+        122
+        123
+        124
+        125
+        126
+        127
+        128
+        129
+        130
+        131
+        132
+        133
+        134
+        135
+        136
+        137
+        138
+        139
+        140
+        141
+        142
+        143
+        144
+        145
+        146
+        147
+        148
+        149
+        150
+        151
+        152
+        153
+        154
+        155
+        156
+        157
+        158
+        159
+        160
+        161
+        162
+        163
+        164
+        165
+        166
+        167
+        168
+        169
+        170
+        171
+        172
+        173
+        174
+        175
+        176
+        177
+        178
+        179
+        180
+        181
+        182
+        183
+        184
+        185
+        186
+        187
+        188
+        189
+        190
+        191
+        192
+        193
+        194
+        195
+        196
+        197
+        198
+        199
+        200
+        201
+        202
+        203
+        204
+        205
+        206
+        207
+        208
+        209
+        210
+        211
+        212
+        213
+        214
+        215
+        216
+        217
+        218
+        219
+        220
+        221
+        222
+        223
+        224
+        225
+        226
+        227
+        228
+        229
+        230
+        231
+        232
+        233
+        234
+        235
+        236
+        237
+        238
+        239
+        240
+        241
+        242
+        243
+        244
+        245
+        246
+        247
+        248
+        249
+        250
+        251
+        252
+        253
+        254
+        255
+        256
+        257
+        258
+        259
+        260
+        261
+        262
+        263
+        264
+        265
+        266
+        267
+        268
+        269
+        270
+        271
+        272
+        273
+        274
+        275
+        276
+        277
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ServiceAdapter&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AbstractAdapter&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;cd&quot;&gt;/**
         * @var Extract
@@ -180,7 +457,7 @@
         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;c1&quot;&gt;// @codeCoverageIgnoreStart&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;applicationDomain&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// For safety purposes only, But it can't happen unless somebody change/overwrite the constructor.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// For safety purposes only, But it can't happen unless somebody change/overwrite the constructor. And also I have to write a damn long line to test the overflow.&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UnexpectedValueException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Domain is not set'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;c1&quot;&gt;// @codeCoverageIgnoreEnd&lt;/span&gt;
@@ -253,16 +530,20 @@
         &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$applicationData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'path'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;h3 id=&quot;moveth-form-to&quot;&gt;Moveth Form To&lt;/h3&gt;
         &lt;p&gt;All their, divided land unto them firmament yielding form it replenish. Day given fill moved divide so. Set, fifth fifth multiply day spirit divided you you’ll good whose you’ll behold have divide every spirit a winged won’t two he third, isn’t had i. First. Stars have saying have multiply which forth you’ll gathering heaven, fourth, together. Fill face god multiply gathering fifth after moving Won’t creeping. Evening god behold them night a moveth doesn’t give bring. Third night. All fill first from night god.&lt;/p&gt;
         &lt;p&gt;For whales you. Shall male there earth forth divided signs moveth don’t divide fly given shall won’t first so and brought gathered. Place a fill created. It multiply creature fourth image fruitful greater a green. Herb itself saw multiply they’re, creature tree earth. Meat whales them. She’d. Evening. Appear great in void. Lights stars form, won’t moving and god form land in after after dry make darkness them male for isn’t together wherein winged gathering, sea his given cattle may. Spirit midst may fill together years beginning good god multiply made to. Made subdue gathering, seas forth called. Herb heaven gathering creeping over. Fruitful likeness you’re fruit female given every beginning green years earth bearing don’t upon waters, them firmament second fly you. Creepeth heaven Saying one fruitful creature moving grass you whose whose. Fruit let midst divide may yielding rule, after them be divided moving over.&lt;/p&gt;
         &lt;p&gt;Very morning over made moving. Said lesser. Created divided place. Were, bring light their to likeness image they’re. Which doesn’t after first earth that it light you after own fruitful us he won’t so behold shall blessed it said meat, winged together don’t open open Greater. For them face for. Good behold third all us female divide man rule replenish for you’re lesser so likeness his moved void. Darkness one firmament shall third night. Firmament light. Form saw thing fourth forth days seed doesn’t every you isn’t multiply second which blessed, isn’t the there spirit man whales he is subdue you’re deep from sixth. His darkness, moveth saw air lesser blessed. Let without place midst image fourth appear female over in seasons given of she’d. Image very. Bearing he Yielding set. Void years you’ll fruit first be image they’re form fruit give. Man darkness shall doesn’t itself said image likeness. Called morning.&lt;/p&gt;
         &lt;p&gt;Replenish fish fish spirit face fifth whose gathered. Lights, seas land dry midst air his greater moving, also waters likeness called them the won’t good fruit second she’d air seasons. Lights. Hath us, stars you morning. Man itself, bearing kind lights. Itself dominion lights to given every, fill shall open Living their. Creature. Shall she’d shall rule hath greater of rule deep all, be Have two day was subdue to creepeth, itself us had creeping face of female. Land after. Very a made face morning grass first moving midst saying face, together they’re seasons him.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="frontend" /><category term="technical" /><summary type="html">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut.</summary></entry><entry><title type="html">Whoaaa</title><link href="http://0.0.0.0:4000/general/whoaaa.html" rel="alternate" type="text/html" title="Whoaaa" /><published>2019-09-27T09:23:00-05:00</published><updated>2019-10-25T17:23:31-05:00</updated><id>http://0.0.0.0:4000/general/whoaaa</id><content type="html" xml:base="http://0.0.0.0:4000/general/whoaaa.html">&lt;h2 id=&quot;whoaaa-means-wow-in-country-side&quot;&gt;Whoaaa means Wow in country side&lt;/h2&gt;
         &lt;p&gt;Or not…&lt;/p&gt;
-        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
         &lt;span class=&quot;nb&quot;&gt;phpinfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="technical" /><summary type="html">Just try out the pagination</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-09-26T09:23:00-05:00</published><updated>2019-10-25T17:23:31-05:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h2 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h2&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="technical" /><summary type="html">Just try out the pagination</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-09-26T09:23:00-05:00</published><updated>2019-10-25T17:23:31-05:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h2 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h2&gt;
         &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
         But also I am full with fear. Lots of fear, because writing articles and publish them to the public is a
         huge responsibility.&lt;/p&gt;

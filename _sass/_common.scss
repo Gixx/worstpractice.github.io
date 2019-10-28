@@ -111,6 +111,12 @@ pre * {
   letter-spacing: normal;
 }
 
+code {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
 .material-icons {
   font-family: $font-fantasy;
   font-weight: 400;

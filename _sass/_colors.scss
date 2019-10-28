@@ -1,9 +1,14 @@
 $white: rgb(255, 255, 255);
-$lighter-grey: rgb(246, 247, 249);
-$light-grey: rgb(233, 235, 238);
-$grey: rgb(221, 223, 226);
-$dark-grey: rgb(153, 155, 159);
+$lighter-grey: rgb(248, 248, 248);
+$light-grey: rgb(235, 235, 235);
+$grey: rgb(220, 220, 220);
+$dark-grey: rgb(155, 155, 155);
 $darker-grey: rgb(117, 117, 117);
-$deep-dark-grey: rgb(73, 75, 79);
+$deep-dark-grey: rgb(75, 75, 75);
 $light-black: rgb(45, 45, 45);
 $black: rgb(0, 0, 0);
+
+
+$code-background: $lighter-grey;
+$code-gutter-border: rgb(0, 200, 0);
+$code-gutter-background: $code-background;

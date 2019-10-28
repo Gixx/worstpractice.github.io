@@ -1,0 +1,94 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+pre.highlight {
+  width: $desktop-content-width;
+  margin-left: -$desktop-content-padding;
+  margin-top: 4rem;
+  font-size: $text-size-sourcecode;
+  line-height: $text-size-sourcecode-line;
+  border: 0.2rem dashed $dark-grey;
+  border-radius: 1rem;
+  padding: 1rem;
+  white-space: normal;
+  background-color: $code-background;
+
+  & > code {
+    max-height: 75vh;
+    overflow: auto;
+    width: $desktop-content-width - 2rem;
+  }
+
+  .rouge-table {
+    display: block;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: $desktop-content-width - 2rem;
+
+    tbody {
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: $desktop-content-width - 2rem;
+    }
+
+    tr {
+      display: flex;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      width: $desktop-content-width - 2rem;
+    }
+  }
+
+  .rouge-gutter {
+    display: block;
+    width: 3.5rem;
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 1rem;
+    border-right: 0.2rem solid $code-gutter-border;
+    position: sticky;
+    z-index: 2;
+    left: 0;
+    background-color: $code-gutter-background;
+
+    .lineno {
+      width: 2.5rem;
+      white-space: pre;
+    }
+  }
+
+  .rouge-code {
+    display: block;
+    padding: 0 1rem;
+    z-index: 1;
+
+    pre {
+      white-space: pre;
+    }
+  }
+}
+
+.highlighter-rouge pre.highlight::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -2rem;
+  left: 9.8rem;
+  color: $dark-grey;
+  font-weight: 300;
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: $text-size-small;
+  line-height: $text-size-small-line;
+}
+
+.language-php pre.highlight::before {
+  content: 'Source code language: PHP'
+}
+
+.language-js pre.highlight::before {
+  content: 'Source code language: JavaScript'
+}

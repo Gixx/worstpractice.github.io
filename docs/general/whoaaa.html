@@ -65,7 +65,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="/assets/css/desktop.css" media="screen and (min-width: 1025px) and (orientation:landscape)">
+    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
+    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
+    <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
   </head>
   <body>
     <header class="h-header">
@@ -119,52 +122,39 @@
             <p>Or not…</p>
             <div class="language-php highlighter-rouge">
               <div class="highlight">
-                <pre class="highlight"><code><span class="cp">&lt;?php</span>
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre><span class="cp">&lt;?php</span>
 
 <span class="nb">phpinfo</span><span class="p">();</span>
 
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <footer class="a-footer">
-            <h3 class="a-footer__title">About the author</h3>
-            <p class="a-footer__author">
-              <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
-            </p>
-          </footer>
-        </article>
-        <aside class="a-comments">
-          <div id="disqus_thread"></div>
-          <noscript>
-            <p class="a-comments__noscript">
-              No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
-              <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Whoaaa`" target="_blank" rel="noopener noreferrer">write me</a>
-              your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
-            </p>
-          </noscript>
-        </aside>
-      </section>
-    </main>
-    <footer class="f-footer">
-      <p class="f-footer__copyright">
-        <small>Copyright © 2019 All rights reserved. Worst Practice</small>
-      </p>
-    </footer>
-    <script type="application/javascript" src="/assets/js/site.js"></script><script type="application/javascript">
-      var disqus_config = function () {
-          this.page.url = 'https://www.worstpractice.dev/general/whoaaa.html';
-          this.page.identifier = 'whoaaa';
-          this.page.title = 'Whoaaa';
-      };
-      
-      (function() {
-          if (isDisqusEnabled()) {
-              var d = document, s = d.createElement('script');
-              s.src = 'https://worst-practice.disqus.com/embed.js';
-              s.setAttribute('data-timestamp', +new Date());
-              (d.head || d.body).appendChild(s);
-          }
-      })();
-    </script></body>
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <p class="a-footer__author">
+    <a class="author-avatar" href="/author/gabor.ivan/index.html"><img src="/assets/img/gabor.ivan.jpg" alt="Gábor Iván"></a>
+  </p>
+</footer>
+</article>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2019 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+<script type="application/javascript" src="/assets/js/site.js"></script></body>
 </html>
