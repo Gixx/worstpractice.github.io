@@ -14,7 +14,19 @@ blockquote::before {
   font-family: $font-serif;
   position: absolute;
   top: 5rem;
-  left: -1rem;
+  left: 0;
+  display: block;
+  content: "“";
+  color: $grey;
+  font-weight: 700;
+  font-size: 6rem;
+}
+
+blockquote::after {
+  font-family: $font-serif;
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
   display: block;
   content: "”";
   color: $grey;
