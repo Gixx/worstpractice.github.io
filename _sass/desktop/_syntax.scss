@@ -3,8 +3,8 @@
 @import "../fonts";
 
 pre.highlight {
-  width: $desktop-content-width;
-  margin-left: -$desktop-content-padding;
+  width: $desktop-content-width -$desktop-content-padding;
+  margin-left: -$desktop-content-padding / 2;
   margin-top: 4rem;
   font-size: $text-size-sourcecode;
   line-height: $text-size-sourcecode-line;
@@ -76,7 +76,7 @@ pre.highlight {
   display: block;
   position: absolute;
   top: -2rem;
-  left: 9.8rem;
+  left: 4.8rem;
   color: $dark-grey;
   font-weight: 300;
   font-family: $font-serif;
