@@ -42,7 +42,7 @@ pre.highlight {
   & > code::-webkit-scrollbar-track,
   & > code::-webkit-scrollbar-track-piece,
   & > code::-webkit-scrollbar-corner {
-    background-color: transparent;
+    background-color: $transparent;
   }
 
   .rouge-table {
