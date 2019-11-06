@@ -68,6 +68,8 @@
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
         <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
+
+        <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
         <header class="h-header">
@@ -107,6 +109,5 @@ Sitemap: http://0.0.0.0:4000/sitemap.xml
             <p class="f-footer__copyright">
                 <small>Copyright © 2019 All rights reserved. Worst Practice</small>
             </p>
-        </footer>
-        <script type="application/javascript" src="/assets/js/site.js"></script></body>
+        </footer></body>
 </html>

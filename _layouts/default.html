@@ -112,6 +112,8 @@
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
         <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
+
+        <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
         <header class="h-header">
@@ -141,7 +143,6 @@
                 <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
             </p>
         </footer>
-        <script type="application/javascript" src="/assets/js/site.js"></script>
         {%- if page.review -%}
         <script type="application/javascript">
             var disqus_config = function () {
