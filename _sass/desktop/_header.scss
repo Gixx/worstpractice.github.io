@@ -6,7 +6,6 @@
   display: block;
   width: 100vw;
   height: 30rem;
-  background-color: $black;
 }
 
 .h-header__title {
@@ -15,12 +14,9 @@
   height: 30rem;
   margin: 0 auto;
   padding: 0;
-  background: url('/assets/img/worstpractice.jpg') top right no-repeat;
-  background-size: contain;
 
   a, a:active, a:hover, a:visited {
     text-decoration: none;
-    color: $white;
     font-size: 6rem;
     line-height: 30rem;
   }

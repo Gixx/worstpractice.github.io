@@ -1,9 +1,13 @@
 ---
 ---
 
-@import "common";
-@import "sizes";
-@import "syntax";
+@import "common/defaults";
+@import "common/syntax";
+@import "common/layout";
+@import "common/header";
+@import "common/navigation";
+@import "common/content";
+@import "common/footer";
 @import "mobile/defaults";
 @import "mobile/syntax";
 @import "mobile/layout";

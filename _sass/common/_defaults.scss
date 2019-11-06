@@ -1,6 +1,6 @@
-@import "colors";
-@import "sizes";
-@import "fonts";
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
 
 ::selection {
   background-color: $black;
@@ -23,7 +23,7 @@
 html {
   background: $white;
   background-image: linear-gradient(90deg, $bavarian-blue-50 50%, $transparent 0),
-                    linear-gradient( 0deg, $bavarian-blue-50 50%, $transparent 0);
+  linear-gradient( 0deg, $bavarian-blue-50 50%, $transparent 0);
   background-size: 3rem 3rem;
   background-attachment: scroll;
   overflow-x: hidden;
@@ -37,14 +37,11 @@ html {
 
 body {
   overflow-x: hidden;
-  /* size */
   margin: 0;
   padding: 0;
   width: 100%;
-  /* color */
   color: $light-black;
   background-color: $transparent;
-  /* font */
   font-weight: 400;
   font-style: normal;
   font-size: $text-size-medium;
@@ -56,6 +53,8 @@ body {
 
 a {
   cursor: pointer !important;
+  color: $light-black;
+  text-decoration: $deep-dark-grey dotted underline;
 }
 
 a:hover, a:active {
@@ -68,6 +67,7 @@ a.mailto::after {
 
 img {
   max-width: 100%;
+  margin: 0.5rem 0;
 }
 
 a img {
@@ -120,20 +120,4 @@ code {
   display: block;
   width: 100%;
   margin: 0;
-}
-
-.material-icons {
-  font-family: $font-fantasy;
-  font-weight: 400;
-  font-style: normal;
-  display: inline-block;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'liga';
 }
