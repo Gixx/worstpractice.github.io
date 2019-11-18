@@ -31,4 +31,28 @@ function getCookie(cName)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    fetch('/code-of-the-day/0001.html')
+        .then(
+            function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' + response.status);
+                    return;
+                }
+
+                // Examine the text in the response
+                response.text().then(function (data) {
+                    document.querySelector('.h-header__codeOfTheDay').innerHTML = data;
+                    document.querySelector('.h-header__codeOfTheDay .drop').addEventListener('click', function (event) {
+                        event.stopPropagation();
+                        document.querySelector('.h-header__codeOfTheDay').classList.remove('active');
+                    });
+                });
+            }
+        )
+        .catch(function (err) {
+            console.log('Fetch Error :-S', err);
+        });
+    document.querySelector('.h-header__codeOfTheDay').addEventListener('click', function (event) {
+        document.querySelector('.h-header__codeOfTheDay').classList.add('active');
+    });
 });

@@ -2,7 +2,20 @@
 @import "../sizes";
 @import "../fonts";
 
-pre.highlight {
+.h-header__codeOfTheDay .highlighter-rouge pre.highlight {
+  font-size: $text-size-sourcecode;
+  line-height: $text-size-sourcecode-line;
+  padding: 1rem;
+  white-space: normal;
+
+  & > code {
+    max-height: 75vh;
+    overflow: auto;
+    width: 100%;
+  }
+}
+
+.c-content pre.highlight {
   width: $desktop-content-width -$desktop-content-padding;
   margin-left: -$desktop-content-padding / 2;
   margin-top: 4rem;
