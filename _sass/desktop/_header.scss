@@ -15,9 +15,15 @@
   margin: 0 auto;
   padding: 0;
 
-  a, a:active, a:hover, a:visited {
-    text-decoration: none;
-    font-size: 6rem;
-    line-height: 30rem;
+  a {
+    display: block;
+    width: $desktop-content-width;
+    height: 0 !important;
+    padding-top: 30rem;
+    overflow: hidden;
+    background-image: url("/assets/img/header.png");
+    background-position: top right;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }

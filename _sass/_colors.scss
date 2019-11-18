@@ -1,19 +1,23 @@
-$white: rgb(255, 255, 255);
-$lighter-grey: rgb(248, 248, 248);
-$light-grey: rgb(235, 235, 235);
-$grey: rgb(220, 220, 220);
-$dark-grey: rgb(155, 155, 155);
+$white: rgba(255, 255, 255, 1);
+$lighter-grey: rgba(248, 248, 248, 1);
+$light-grey: rgba(235, 235, 235, 1);
+$grey: rgba(220, 220, 220, 1);
+$dark-grey: rgba(155, 155, 155, 1);
 $dark-grey-50: rgba(155, 155, 155, 0.5);
-$darker-grey: rgb(117, 117, 117);
-$deep-dark-grey: rgb(75, 75, 75);
-$light-black: rgb(45, 45, 45);
-$black: rgb(0, 0, 0);
+$darker-grey: rgba(117, 117, 117, 1);
+$deep-dark-grey: rgba(75, 75, 75, 1);
+$light-black: rgba(45, 45, 45, 1);
+$black: rgba(0, 0, 0, 1);
 
 $transparent: rgba(0, 0, 0, 0);
 $bavarian-red-50: rgba(200, 0, 0, .5);
 $bavarian-green-50: rgba(0, 150, 0, .5);
 $bavarian-blue-50: rgba(135, 200, 255, .5);
 
+$worstpractice-red: rgba(194, 63, 47, 1);
+$worstpractice-tanned: rgba(214, 189, 164, 1);
+$worstpractice-tanned-light: rgba(255, 238, 222, 1);
+
 $code-background: $lighter-grey;
-$code-gutter-border: rgb(0, 200, 0);
-$code-gutter-background: $code-background;
+$code-gutter-border: rgba(0, 200, 0, 1);
+$code-gutter-background: $code-background !default;

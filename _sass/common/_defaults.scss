@@ -21,11 +21,7 @@
 }
 
 html {
-  background: $white;
-  background-image: linear-gradient(90deg, $bavarian-blue-50 50%, $transparent 0),
-  linear-gradient( 0deg, $bavarian-blue-50 50%, $transparent 0);
-  background-size: 3rem 3rem;
-  background-attachment: scroll;
+  background-color: $worstpractice-red;
   overflow-x: hidden;
   position: relative;
   margin: 0;
