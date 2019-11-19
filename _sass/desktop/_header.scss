@@ -49,6 +49,55 @@
     background-color: $transparent;
   }
 
+  .highlighter-rouge {
+    .rouge-table {
+      display: block;
+      width: 100%;
+
+      tbody {
+        display: block;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      tr {
+        display: flex;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+    }
+
+    .rouge-gutter {
+      display: block;
+      width: 3.5rem;
+      text-align: right;
+      white-space: nowrap;
+      padding-right: 1rem;
+      border-right: 0.2rem solid $code-gutter-border;
+      position: sticky;
+      z-index: 2;
+      left: 0;
+
+      .lineno {
+        width: 2.5rem;
+        white-space: pre;
+      }
+    }
+
+    .rouge-code {
+      display: block;
+      padding: 0 1rem;
+      z-index: 1;
+
+      pre {
+        white-space: pre;
+      }
+    }
+  }
+
   .highlighter-rouge * {
     cursor: pointer !important;
   }
@@ -87,12 +136,14 @@
 
   .highlighter-rouge::before {
     display: block;
-    content: 'Worst practice code of the day. Do not use in production!';
-    color: $red;
+    content: 'Worst practice code of the day. Do not use this!';
+    color: $code-gutter-border;
+    font-family: $font-monospace;
     background: $light-black;
     padding: 0 5rem;
+    font-size: 1.2rem;
     line-height: 3rem;
-    text-align: center;
+    text-align: left;
   }
 
   .highlighter-rouge * {
