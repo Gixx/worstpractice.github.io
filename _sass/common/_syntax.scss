@@ -3,29 +3,31 @@
 @import "../fonts";
 @import "rouge-themes/gruvbox";
 
-.highlighter-rouge pre.highlight::before {
-  content: '';
-  display: block;
-  color: $dark-grey;
-  font-weight: 300;
-  font-family: $font-serif;
-  font-style: italic;
-  font-size: $text-size-small;
-  line-height: $text-size-small-line;
-}
+.c-content {
+  .highlighter-rouge pre.highlight::before {
+    content: '';
+    display: block;
+    color: $dark-grey;
+    font-weight: 300;
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: $text-size-small;
+    line-height: $text-size-small-line;
+  }
 
-.language-php pre.highlight::before {
-  content: 'Source code language: PHP'
-}
+  .language-php pre.highlight::before {
+    content: 'Source code language: PHP'
+  }
 
-.language-js pre.highlight::before {
-  content: 'Source code language: JavaScript'
-}
+  .language-js pre.highlight::before {
+    content: 'Source code language: JavaScript'
+  }
 
-.language-css pre.highlight::before {
-  content: 'Source code language: CSS'
-}
+  .language-css pre.highlight::before {
+    content: 'Source code language: CSS'
+  }
 
-.language-js pre.highlight::before {
-  content: 'Source code language: HTML'
+  .language-js pre.highlight::before {
+    content: 'Source code language: HTML'
+  }
 }

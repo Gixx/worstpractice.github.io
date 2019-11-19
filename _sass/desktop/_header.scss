@@ -35,17 +35,6 @@
 }
 
 .h-header__codeOfTheDay {
-  display: block;
-  z-index: 15;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  user-select: none;
-}
-
-.h-header__codeOfTheDay {
   position: absolute;
   width: 64.5rem;
   height: 48.5rem;
@@ -53,8 +42,12 @@
   left: 50%;
   z-index: 15;
   cursor: pointer;
+  user-select: none;
   transform: skewX(-10deg) skewY(-4deg) translateX(-18.1rem) scale(0.26) rotate(2deg);
-  mix-blend-mode: lighten;
+
+  pre.highlight {
+    background-color: $transparent;
+  }
 
   .highlighter-rouge * {
     cursor: pointer !important;
@@ -72,8 +65,12 @@
   width: 100vw;
   height: 0;
   cursor: default;
-  transform: skewX(0deg) skewY(0deg) translateX(0) scale(1);
-  mix-blend-mode: initial;
+  transform: skewX(0deg) skewY(0deg) translateX(0) scale(1) rotate(0deg);
+
+  pre.highlight {
+    background: $light-black;
+    background: radial-gradient(at left top, $deep-dark-grey 20%, $light-black 60%);
+  }
 
   .highlighter-rouge {
     z-index: 25;
@@ -85,12 +82,13 @@
     top: 20rem;
     transform: translateX(-50%);
     user-select: none;
+    border-radius: 1rem;
   }
 
   .highlighter-rouge::before {
     display: block;
     content: 'Worst practice code of the day. Do not use in production!';
-    color: $worstpractice-red;
+    color: $red;
     background: $light-black;
     padding: 0 5rem;
     line-height: 3rem;
@@ -104,11 +102,10 @@
   .drop {
     display: block;
     z-index: 20;
-    background-color: rgba(0,0,0,0.2);
+    background-color: $white-50;
     width: 100vw;
     height: 100vh;
-    backdrop-filter: grayscale(0.5) blur(0.5rem);
-    -webkit-backdrop-filter: grayscale(0.5) blur(0.5rem);
+    //backdrop-filter: grayscale(0.5) blur(0.5rem);
     cursor: pointer;
   }
 }
