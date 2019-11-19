@@ -26,6 +26,6 @@ $worstpractice-red: rgba(194, 63, 47, 1);
 $worstpractice-tanned: rgba(214, 189, 164, 1);
 $worstpractice-tanned-light: rgba(255, 238, 222, 1);
 
-$code-background: $lighter-grey;
+$code-background: $lighter-grey !default;
 $code-gutter-border: rgba(0, 200, 0, 1);
 $code-gutter-background: $code-background !default;

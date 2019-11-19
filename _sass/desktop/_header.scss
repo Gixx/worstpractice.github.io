@@ -68,7 +68,7 @@
   transform: skewX(0deg) skewY(0deg) translateX(0) scale(1) rotate(0deg);
 
   pre.highlight {
-    background: $light-black;
+    background: $code-background;
     background: radial-gradient(at left top, $deep-dark-grey 20%, $light-black 60%);
   }
 
