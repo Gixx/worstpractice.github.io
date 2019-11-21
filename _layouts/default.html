@@ -119,23 +119,48 @@
         <header class="h-header">
             <h1 class="h-header__title"><a href="/">{{ site.title }}</a></h1>
         </header>
-        <div class="h-header__codeOfTheDay">
-        </div>
+        <div class="h-header__codeOfTheDay"></div>
         <div class="m-menu">
-            <nav class="m-menu__block">
-                {% include categories.html %}
-            </nav>
-            <nav class="m-menu__block">
-                <h2 class="m-menu__title">Tags</h2>
-                {% include tags.html %}
-            </nav>
-            <nav class="m-menu__block">
-                <h2 class="m-menu__title">Archive</h2>
-                {% include dates.html %}
-            </nav>
-            <nav class="m-menu__block">
-                {% include legal-notes.html %}
-            </nav>
+            <input class="m-menu__toggle" type="checkbox" />
+            <span class="m-menu__burger"></span>
+            <span class="m-menu__burger"></span>
+            <span class="m-menu__burger"></span>
+            <div class="m-menu__block">
+                <nav>
+                    {% include categories.html %}
+                </nav>
+                <nav>
+                    <h2 class="m-menu__title">Tags</h2>
+                    {% include tags.html %}
+                </nav>
+                <nav>
+                    <h2 class="m-menu__title">Archive</h2>
+                    {% include dates.html %}
+                </nav>
+                <nav>
+                    {% include legal-notes.html %}
+                </nav>
+                <nav>
+                    <ul>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                        <li>akdjsfhsad</li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="m-menu__backdrop"></div>
         </div>
         <main class="c-content">
             {{ content }}

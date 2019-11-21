@@ -2,4 +2,13 @@
 @import "../sizes";
 @import "../fonts";
 
+.f-footer {
 
+}
+
+.f-footer__copyright {
+  width: $desktop-content-width;
+  margin: 0.5rem auto;
+  color: $worstpractice-tanned-light;
+  text-align: center;
+}
