@@ -34,19 +34,22 @@
 
 .m-menu__block {
   position: absolute;
+  overflow: auto;
   width: 30rem;
   height: 100vh;
   margin: -4.7rem 0 0 -1.5rem;
-  padding: 5.5rem 1rem 1rem 1rem;
+  padding: 5.5rem 1rem 1rem 5.5rem;
   background: $lighter-grey;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0 0;
-  transform: translate(-100%, 0);
+  transform: translateX(-30rem);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
 .m-menu__block nav {
   border-top: 0.1rem solid $dark-grey;
+  padding: 0;
+  margin: 0;
 }
 
 .m-menu__block nav:first-child {
@@ -55,10 +58,13 @@
 
 .m-menu__block ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .m-menu__block li {
-  padding: 1rem 0;
+  padding: 0;
+  margin: 0;
 }
 
 .m-menu__toggle {

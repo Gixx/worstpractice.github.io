@@ -31,7 +31,7 @@ function getCookie(cName)
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('/code-of-the-day/0001.html')
+    fetch('/code-of-the-day/0002.html')
         .then(
             function (response) {
                 if (response.status !== 200) {
