@@ -75,7 +75,11 @@
         <header class="h-header">
             <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
         </header>
-        <div class="h-header__codeOfTheDay"></div>
+        <div class="codeOfTheDay">
+            <input class="codeOfTheDay__toggle" type="checkbox">
+            <div class="codeOfTheDay__content"></div>
+            <div class="codeOfTheDay__backdrop"></div>
+        </div>
         <div class="m-menu">
             <input class="m-menu__toggle" type="checkbox" />
             <span class="m-menu__burger"></span>

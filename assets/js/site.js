@@ -1,10 +1,22 @@
 const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
 
+/**
+ * Check whether the Disqus is embeddable.
+ *
+ * @returns {boolean}
+ */
 function isDisqusEnabled()
 {
     return getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
 }
 
+/**
+ * Set a cookie.
+ *
+ * @param {string} cName  Cookie name
+ * @param {string} cValue Cookie value
+ * @param {number} exDays Expiration days
+ */
 function setCookie(cName, cValue, exDays)
 {
     let date = new Date();
@@ -13,6 +25,12 @@ function setCookie(cName, cValue, exDays)
     document.cookie = cName + '=' + cValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
 }
 
+/**
+ * Retrieve a cookie
+ *
+ * @param {string} cName Cookie name
+ * @returns {string}
+ */
 function getCookie(cName)
 {
     let name = cName + "=";
@@ -30,8 +48,12 @@ function getCookie(cName)
     return '';
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('/code-of-the-day/0002.html')
+/**
+ * Embed a worst practice code sample.
+ */
+function embedWorstPracticeSample()
+{
+    fetch('/code-of-the-day/0001.html')
         .then(
             function (response) {
                 if (response.status !== 200) {
@@ -41,10 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Examine the text in the response
                 response.text().then(function (data) {
-                    document.querySelector('.h-header__codeOfTheDay').innerHTML = data;
-                    document.querySelector('.h-header__codeOfTheDay .drop').addEventListener('click', function (event) {
-                        event.stopPropagation();
-                        document.querySelector('.h-header__codeOfTheDay').classList.remove('active');
+                    document.querySelector('.codeOfTheDay__content').innerHTML = data;
+                    document.querySelector('.codeOfTheDay__toggle').addEventListener('click', function (event) {
+                        if (event.target.checked) {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            window.scrollTo(0, 0);
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflowY = 'auto';
+                            document.body.style.overflowX = 'hidden';
+                        }
                     });
                 });
             }
@@ -52,7 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(function (err) {
             console.log('Fetch Error :-S', err);
         });
-    document.querySelector('.h-header__codeOfTheDay').addEventListener('click', function (event) {
-        document.querySelector('.h-header__codeOfTheDay').classList.add('active');
-    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    embedWorstPracticeSample();
 });

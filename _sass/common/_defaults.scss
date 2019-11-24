@@ -22,7 +22,6 @@
 
 html {
   background-color: $worstpractice-red;
-  overflow-x: hidden;
   position: relative;
   margin: 0;
   padding: 0;
@@ -32,10 +31,10 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   color: $light-black;
   background-color: $transparent;
   font-weight: 400;
@@ -45,6 +44,8 @@ body {
   letter-spacing: $text-size-letter-spacing-tiny-gap;
   font-variant-ligatures: no-common-ligatures;
   font-feature-settings: "kern", "liga" 0, "clig" 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 a {
