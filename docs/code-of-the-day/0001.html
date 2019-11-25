@@ -38,7 +38,7 @@
         <span class="nx">goto</span> <span class="nx">admin</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nv">$valid</span> <span class="o">=</span> <span class="nx">app</span><span class="o">:</span><span class="nx">getinstance</span><span class="p">()</span>
+    <span class="nv">$valid</span> <span class="o">=</span> <span class="nx">app</span><span class="o">::</span><span class="na">getinstance</span><span class="p">()</span>
         <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'Auth_Service'</span><span class="p">)</span>
         <span class="o">-&gt;</span><span class="na">login</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">],</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]);</span>
 
