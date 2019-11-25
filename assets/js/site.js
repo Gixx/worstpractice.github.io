@@ -67,7 +67,7 @@ function embedWorstPracticeSample()
                     document.querySelector('.codeOfTheDay__toggle').addEventListener('click', function (event) {
                         if (event.target.checked) {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
-                            window.scrollTo(0, 0);
+                            // window.scrollTo(0, 0);
                             document.body.style.overflow = 'hidden';
                         } else {
                             document.body.style.overflowY = 'auto';
