@@ -21,15 +21,23 @@
 19
 20
 21
+22
+23
+24
+25
 </pre>
   </td>
   <td class="rouge-code">
     <pre><span class="cm">/**
  * "Speak friend and enter."
  */</span>
-<span class="kd">function</span> <span class="nx">MusePass</span><span class="p">()</span> <span class="p">{</span>
-   <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Password required:</span><span class="dl">"</span><span class="p">,</span> <span class="dl">""</span><span class="p">);</span>
-   <span class="k">if</span> <span class="p">(</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">password</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.html</span><span class="dl">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="kd">function</span> <span class="nx">MusePass</span><span class="p">()</span> 
+<span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">prompt</span><span class="p">(</span><span class="dl">"</span><span class="s2">Password required:</span><span class="dl">"</span><span class="p">,</span> <span class="dl">""</span><span class="p">);</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">password</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">password</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.html</span><span class="dl">"</span><span class="p">;</span> 
+    <span class="p">}</span>
 <span class="p">}</span>
 
 
