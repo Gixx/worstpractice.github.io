@@ -8,19 +8,16 @@ The writings under the [_posts](_posts) folder and the image assets are protecte
 
 ## Usage
 
+### To create the work environment
+
 To build the files once and exit, just run the following command:
 ```
 docker run --rm --volume="${PWD}:/srv/jekyll" -it jekyll/jekyll:3.8 jekyll build
 ```
 
-To serve the generated content in the browser, and keep the container, run:
+To create a permanent container and make the site ready, run:
 ```
-docker run --name myblog --volume="${PWD}:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:3.8 bash
-```
-
-...then in the docker prompt run:
-```
-jekyll serve --watch --drafts --force_poll
+docker run --name myblog --volume="${PWD}:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:3.8 bundle install
 ```
 
 ### When you already have the container
@@ -36,7 +33,11 @@ docker start myblog
 ```
 docker exec -it myblog bash
 ```
-Then you can serve the content again.
+...then in the container's prompt:
+```
+jekyll serve --watch --drafts --force_poll
+```
+
 
 ### Check the generated site
 
