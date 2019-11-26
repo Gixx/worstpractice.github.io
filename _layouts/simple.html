@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 {%- include variables.html -%}
 {%- capture title -%}
-    {%- if currentDateLabel != '' -%}
-        Archive: {{ currentDateLabel }}&nbsp;-&nbsp;
-    {%- elsif page.title != '' and page.title != site.title -%}
-        {{ page.title | escape }}&nbsp;-&nbsp;
-    {%- endif -%}
+{%- if currentDateLabel != '' -%}
+Archive: {{ currentDateLabel }}&nbsp;-&nbsp;
+{%- elsif page.title != '' and page.title != site.title -%}
+{{ page.title | escape }}&nbsp;-&nbsp;
+{%- endif -%}
 
-    {%- if page.page_type == 'tag_list' and currentTagLabel != '' -%}
-        Tag: {{ currentTagLabel }}&nbsp;-&nbsp;
-    {%- endif -%}
+{%- if page.page_type == 'tag_list' and currentTagLabel != '' -%}
+Tag: {{ currentTagLabel }}&nbsp;-&nbsp;
+{%- endif -%}
 
-    {%- if page.page_type == 'category_list' and currentCategoryLabel != '' -%}
-        Category: {{ currentCategoryLabel }}&nbsp;-&nbsp;
-    {%- endif -%}
+{%- if page.page_type == 'category_list' and currentCategoryLabel != '' -%}
+Category: {{ currentCategoryLabel }}&nbsp;-&nbsp;
+{%- endif -%}
 
-    {{ site.title | escape }}
+{{ site.title | escape }}
 {%- endcapture -%}
 {%- capture description -%}
-    {{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape | strip }}
+{{ page.description | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape | strip }}
 {%- endcapture -%}
 <html lang="{{ site.lang }}">
     <head>
@@ -46,11 +46,11 @@
         <meta property="og:url" content="{{ site.homepage }}{{ page.url }}">
         {% if page.page_type == 'post_view' %}
         <meta name="date" content="{{ page.date | date_to_xmlschema }}">
-            {% if page.illustration_share %}
+        {% if page.illustration_share %}
         <meta property="og:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration_share }}">
         <meta property="og:image:width" content="600">
         <meta property="og:image:height" content="600">
-            {% endif %}
+        {% endif %}
         <meta property="og:description" content="{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape | strip }}">
         <meta property="fb:admins" content="{{ site.facebook_username }}">
         <meta property="fb:app_id" content="{{ site.facebook_appid }}">
@@ -69,9 +69,9 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:creator" content="@{{ site.twitter_username }}">
         <meta name="twitter:description" content="{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape | strip }}">
-            {% if page.illustration_share %}
+        {% if page.illustration_share %}
         <meta name="twitter:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration_share }}">
-            {% endif %}
+        {% endif %}
         {% else %}
         <meta name="twitter:title" content="{{ title }}">
         <meta name="twitter:card" content="summary">
@@ -112,66 +112,11 @@
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
         <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
-
-        <script type="application/javascript" src="/assets/js/feature.min.js"></script>
-        <script type="application/javascript">
-            if (!feature.viewportUnit) {
-                window.location.href = '/sorry.html';
-            }
-        </script>
-        <script type="application/javascript" src="/assets/js/site.js"></script>
     </head>
     <body>
         <header class="h-header">
             <h1 class="h-header__title"><a href="/">{{ site.title }}</a></h1>
         </header>
-        <div class="codeOfTheDay">
-            <input class="codeOfTheDay__toggle" type="checkbox">
-            <div class="codeOfTheDay__content"></div>
-            <div class="codeOfTheDay__backdrop"></div>
-        </div>
-        <div class="m-menu">
-            <input class="m-menu__toggle" type="checkbox" />
-            <span class="m-menu__burger"></span>
-            <span class="m-menu__burger"></span>
-            <span class="m-menu__burger"></span>
-            <div class="m-menu__block">
-                <nav>
-                    {% include categories.html %}
-                </nav>
-                <nav>
-                    <h2 class="m-menu__title">Tags</h2>
-                    {% include tags.html %}
-                </nav>
-                <nav>
-                    <h2 class="m-menu__title">Archive</h2>
-                    {% include dates.html %}
-                </nav>
-                <nav>
-                    {% include legal-notes.html %}
-                </nav>
-                <nav>
-                    <ul>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                        <li>akdjsfhsad</li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="m-menu__backdrop"></div>
-        </div>
         <main class="c-content">
             {{ content }}
         </main>
@@ -180,23 +125,5 @@
                 <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
             </p>
         </footer>
-        {%- if page.review -%}
-        <script type="application/javascript">
-            var disqus_config = function () {
-                this.page.url = '{{ site.homepage }}{{ page.url }}';
-                this.page.identifier = '{{ page.title | slugify: "latin" }}';
-                this.page.title = '{{ page.title }}';
-            };
-
-            (function() {
-                if (isDisqusEnabled()) {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://worst-practice.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                }
-            })();
-        </script>
-        {%- endif -%}
     </body>
 </html>

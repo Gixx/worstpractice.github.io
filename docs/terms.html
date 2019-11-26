@@ -58,6 +58,12 @@
     <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
     <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
     <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.viewportUnit) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
@@ -129,17 +135,17 @@
     </div>
     <main class="c-content">
       <section class="c-content__post">
-        <article>
-          <hgroup>
-            <h2>Terms of Use</h2>
-            <h3>Updated October 2, 2019</h3>
+        <article class="a-article">
+          <hgroup class="a-header">
+            <h2 class="a-header__title">Terms of Use</h2>
+            <h3 class="a-header__update">Updated October 2, 2019</h3>
           </hgroup>
           <h3>Copyright</h3>
           <p>
             All materials on this website are protected by copyright. Text, design and program code are owned by
             Gabor Ivan. Decorative images are published under license from third parties.
           </p>
-          <h3>Your rights</h3>
+          <h3 id="your-rights">Your rights</h3>
           <p>
             Permission hereby granted free of charge to You - the Visitor - to download a copy of the materials located
             on the domain worstpractice.dev (The Website) for viewing on your computer or handheld device, or printing
@@ -158,12 +164,12 @@
             sell copies of the Program Code, and to permit persons to whom the Program Code is furnished to do so, subject
             to the liability disclaimer below.
           </p>
-          <h3>Editorials</h3>
+          <h3 id="editorial">Editorials</h3>
           <p>
             For editorial purposes up to two (2) paragraphs of text may be used from any article, with a link to the original
             article. Complete or semi-complete republishes of any articles are not permitted.
           </p>
-          <h3>Academic use</h3>
+          <h3 class="academic-use">Academic use</h3>
           <p>
             Materials on this site may be used for educational purposes in government-financed educational institutions, so long as:
           </p>
@@ -185,19 +191,19 @@
               Students are not charged for access to the material beyond covering the print costs.
             </li>
           </ul>
-          <h3>Criticism and Fair Use</h3>
+          <h3 id="criticism-and-fair-use">Criticism and Fair Use</h3>
           <p>
             All materials on this site may be used in full or in part for the purposes of positive or negative criticism,
             as long as such criticism displays a substantial amount of original content.
           </p>
-          <h3>Search engines</h3>
+          <h3 id="search-engines">Search engines</h3>
           <p>
             Search machine operators may index and store this site as long as they follow the stipulations in the
             <a href="/robots.txt" target="_blank">robots.txt</a>, and only display small segments of text for ease of use.
             The republishing of full articles is not permitted. Automated text processing, machine learning, and other
             bulk operating resulting in aggregate statistics are permitted so long as articles is not re-published in their entirety.
           </p>
-          <h3>Exclusion of liability</h3>
+          <h3 id="exclusion-of-liability">Exclusion of liability</h3>
           <p>
             <strong>
               All materials, Program Code, etc. provided are “as-is”, without warranty of any kind, express or implied,
@@ -207,7 +213,7 @@
               with <em>The Website</em> or the use or other dealings in <em>The Website</em>.
             </strong>
           </p>
-          <h3>Changes to these terms</h3>
+          <h3 id="changes-to-these-terms">Changes to these terms</h3>
           <p>
             The Author of <em>The Website</em> reserves the right to change these terms at any time without prior
             notification to You.

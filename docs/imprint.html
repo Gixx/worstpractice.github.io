@@ -58,6 +58,12 @@
     <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
     <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
     <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.viewportUnit) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
@@ -129,9 +135,9 @@
     </div>
     <main class="c-content">
       <section class="c-content__post">
-        <article>
-          <header>
-            <h2>Imprint</h2>
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">Imprint</h2>
           </header>
         </article>
         <p>This site is operated by:</p>

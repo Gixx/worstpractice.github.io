@@ -69,6 +69,12 @@
     <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
     <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
     <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.viewportUnit) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
     <script type="application/javascript" src="/assets/js/site.js"></script>
   </head>
   <body>
@@ -143,12 +149,15 @@
         <article class="a-article">
           <header class="a-header">
             <h2 class="a-header__title">Testing style</h2>
-            <p class="a-header__meta"><span class="a-meta__date">Posted on October&nbsp;25, 2019 09:23</span><span class="a-meta__expiration">Estimated date of expiration: December&nbsp;27, 2019</span><span class="a-meta__category">Posted under the <a href="/php/index.html">PHP</a> category</span>
-              <span class="a-meta__tags">Posted with the following tags:
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on October&nbsp;25, 2019 09:23</p>
+              <p class="a-meta__expiration">Estimated date of expiration: December&nbsp;27, 2019</p>
+              <p class="a-meta__category">Posted under the <a href="/php/index.html">PHP</a> category</p>
+              <p class="a-meta__tags">Posted with the following tags:
                 <a href="/tags/backend/index.html">#Backend</a>, 
                 <a href="/tags/technical/index.html">#Technical</a>
-              </span>
-            </p>
+              </p>
+            </div>
           </header>
           <p class="a-excerpt">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dui elit, malesuada nec ipsum eu, pharetra congue purus. Integer vitae nibh t orci egestas malesuada ac sed sem. Donec imperdiet ante massa, ut ibendum nulla tincidunt ut. 

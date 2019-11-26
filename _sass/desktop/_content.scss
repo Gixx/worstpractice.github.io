@@ -6,11 +6,23 @@
 
 }
 
-.a-header__title {
-  font-size: $text-size-post-h2;
-  line-height: $text-size-post-h2-line;
-  margin: 3rem 0;
+.a-header {
+  .a-header__title {
+    font-size: $text-size-post-h2;
+    line-height: $text-size-post-h2-line;
+    margin: 3rem 0;
+  }
+
+  .a-header__update {
+    font-size: $text-size-post-h5;
+    line-height: $text-size-post-h5-line;
+  }
+
+  .a-header__meta {
+    margin: 3rem 0;
+  }
 }
+
 
 .a-article h3 {
   font-size: $text-size-post-h3;
@@ -19,8 +31,8 @@
 }
 
 .a-article h4 {
-  font-size: $text-size-post-h4;
-  line-height: $text-size-post-h4-line;
+  font-size: $text-size-post-h5;
+  line-height: $text-size-post-h5-line;
   margin: 1rem 0;
 }
 
