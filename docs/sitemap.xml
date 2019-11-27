@@ -14,63 +14,67 @@
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0001</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0002</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
+    </url>
+    <url>
+      <loc>http://0.0.0.0:4000/404</loc>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/desktop.css</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/imprint</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/search/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
-    </url>
-    <url>
-      <loc>http://0.0.0.0:4000/tags/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/archive/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
+    </url>
+    <url>
+      <loc>http://0.0.0.0:4000/tags/</loc>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/author/gabor.ivan/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/mobile.css</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/privacy</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/robots.txt</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/site.css</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/sorry</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/tablet.css</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/terms</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/archive/2019-10/</loc>
@@ -82,34 +86,34 @@
     </url>
     <url>
       <loc>http://0.0.0.0:4000/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/personal/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/frontend/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/technical/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/backend/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/general/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/javascript/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/php/</loc>
-      <lastmod>2019-11-27T09:54:35-06:00</lastmod>
+      <lastmod>2019-11-27T14:13:02-06:00</lastmod>
     </url>
   </urlset>
