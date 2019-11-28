@@ -5,18 +5,17 @@ title: 'Archive'
 ---
 {%- include variables.html -%}
 
+
 <section class="c-content__dates">
-    <article>
-        <header>
-            <h2>Archive</h2>
+    <article class="a-article">
+        <header class="a-header">
+            <h2 class="a-header__title">Archive</h2>
         </header>
-        <section>
-            <ul>
+        <ul>
             {%- for dateSlug in dateSlugs -%}
             {%- assign dateLabel = dateLabels[forloop.index0] -%}
-                <li><a class="date date-{{ dateSlug }}{% if dateSlug == currentDateSlug %} current{% endif %}" href="/archive/{{ dateSlug }}/">{{ dateLabel | strip }}</a></li>
+            <li><a class="date date-{{ dateSlug }}{% if dateSlug == currentDateSlug %} current{% endif %}" href="/archive/{{ dateSlug }}/">{{ dateLabel | strip }}</a></li>
             {%- endfor -%}
-            </ul>
-        </section>
+        </ul>
     </article>
 </section>

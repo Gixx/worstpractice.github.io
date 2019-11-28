@@ -49,6 +49,26 @@ function getCookie(cName)
 }
 
 /**
+ * Tries to figure out the operating system
+ *
+ * @returns {string}
+ */
+function getDeviceOs()
+{
+    let operatingSystem = 'Unknown';
+    let patterns = ['Win', 'Mac', 'X11', 'Linux', 'iPhone', 'iPad', 'Android'];
+    let supportedOperatingSystems = ['Windows', 'MacOS', 'Unix', 'Linux', 'iOS', 'iOS', 'Android'];
+
+    for (let i in patterns) {
+        if (navigator.platform.indexOf(patterns[i]) !== -1) {
+            operatingSystem = supportedOperatingSystems[i];
+        }
+    }
+
+    return operatingSystem;
+}
+
+/**
  * Embed a worst practice code sample.
  */
 function embedWorstPracticeSample()

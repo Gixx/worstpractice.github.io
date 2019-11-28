@@ -1,8 +1,8 @@
 {%- include variables.html -%}
-<ul class="m-menu__dates">
+<ul class="m-menu__navigation">
     {%- for dateSlug in dateSlugs limit:5 -%}
         {%- assign dateLabel = dateLabels[forloop.index0] -%}
-    <li><a class="m-menu__date -{{ dateSlug }}{% if dateSlug == currentDateSlug %} -current{% endif %}" href="/archive/{{ dateSlug }}/">{{ dateLabel | strip }}</a></li>
+    <li><a class="m-menu__link {% if dateSlug == currentDateSlug %} -current{% endif %}" href="/archive/{{ dateSlug }}/">{{ dateLabel | strip }}</a></li>
     {%- endfor -%}
 </ul>
 {%- assign dateSlugSize = dateSlugs | size -%}

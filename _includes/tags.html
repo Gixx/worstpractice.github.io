@@ -8,7 +8,7 @@
 
 {%- assign counts_with_tags = counts_with_tags_string | split:"," | sort | reverse -%}
 
-<ul class="m-menu__tags">
+<ul class="m-menu__navigation">
     {%- for count_with_tag in counts_with_tags limit:5 -%}
         {%- assign tag = count_with_tag | split:":" | last | slugify -%}
         {%- assign tagLabel = tag -%}
@@ -19,10 +19,10 @@
                 {%- break -%}
             {%- endif -%}
         {%- endfor -%}
-    <li><a class="m-menu__tag -{{ tag }}{% if page.page_type == 'tag_list' and tag == currentTagSlug %} -current{% endif %}" rel="tag" href="/tags/{{ tag }}/">{{ tagLabel | strip }} ({{ count }})</a></li>
+    <li><a class="m-menu__link -{{ tag }}{% if page.page_type == 'tag_list' and tag == currentTagSlug %} -current{% endif %}" rel="tag" href="/tags/{{ tag }}/">{{ tagLabel | strip }} <sup>{{ count }}</sup></a></li>
     {%- endfor -%}
 </ul>
 {%- assign tagSlugSize = tagSlugs | size -%}
-{%- if tagSlugSize > 5 -%}
+{%- if tagSlugSize > 2 -%}
 <a class="m-menu__more" href="/tags/">More</a>
 {%- endif -%}
