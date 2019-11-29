@@ -3,7 +3,29 @@
 @import "../fonts";
 
 .a-article {
+  padding-bottom: 2rem;
 
+  dl {
+    display: block;
+  }
+
+  dl::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+  dt {
+    clear: right;
+    float: left;
+    width: 20rem;
+    font-weight: 700;
+  }
+
+  dd {
+    float: right;
+    width: 49.9rem;
+  }
 }
 
 .a-header {

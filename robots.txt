@@ -1,5 +1,5 @@
 ---
-# Default robots.txt
+layout: none
 ---
 User-agent: Googlebot-Image
 Disallow: /
