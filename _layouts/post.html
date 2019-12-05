@@ -50,8 +50,8 @@ page_type: post_view
 
         <footer class="a-footer">
             <h3 class="a-footer__title">About the author</h3>
+            <a class="a-footer__avatar" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
             <p class="a-footer__author">
-                <a class="author-avatar" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
                 {{ page.author_introduction | default: site.author_introduction }}
             </p>
         </footer>

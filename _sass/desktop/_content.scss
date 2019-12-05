@@ -11,12 +11,10 @@
   border-radius: 0.5rem;
 }
 
-.c-header {
-  .c-header__title {
-    font-size: $text-size-post-h2;
-    line-height: $text-size-post-h2-line;
-    margin: 3rem 0;
-  }
+.c-header__title {
+  font-size: $text-size-post-h2;
+  line-height: $text-size-post-h2-line;
+  margin: 3rem 0;
 }
 
 // Article List
@@ -26,20 +24,28 @@
   padding-bottom: 2rem;
 }
 
-.a-header {
-  .a-header__title {
-    font-size: $text-size-post-h2;
-    line-height: $text-size-post-h2-line;
-    margin: 3rem 0;
-  }
+.a-header__title {
+  font-size: $text-size-post-h2;
+  line-height: $text-size-post-h2-line;
+  margin: 3rem 0;
+}
 
-  .a-header__update {
-    font-size: $text-size-post-h5;
-    line-height: $text-size-post-h5-line;
-  }
+.a-header__update {
+  font-size: $text-size-post-h5;
+  line-height: $text-size-post-h5-line;
+}
 
-  .a-header__meta {
-    margin: 3rem 0;
+.a-header__meta {
+  margin: 3rem 0;
+  padding: 0 2rem;
+
+  a, p {
+    font-size: $text-size-small;
+    line-height: $text-size-normal-grow-line;
+    letter-spacing: $text-size-letter-spacing-tiny-gap;
+    font-family: $font-serif;
+    font-weight: 400;
+    font-style: italic;
   }
 }
 
@@ -62,10 +68,56 @@
   margin-bottom: 1.6rem;
 }
 
-.a-body p {
-  margin-top: 16px;
-  margin-bottom: 32px;
-  font-size: $text-size-medium;
-  line-height: $text-size-medium-line;
-  letter-spacing: $text-size-letter-spacing-tiny-gap;
+.a-body {
+  h2 {
+    margin: 3.2rem 0 1.6rem 0;
+  }
+
+  h3 {
+    margin: 1.6rem 0 1.2rem 0;
+  }
+
+  p {
+    margin: 1.6rem 0 3.2rem 0;
+    font-size: $text-size-medium;
+    line-height: $text-size-medium-line;
+    letter-spacing: $text-size-letter-spacing-tiny-gap;
+    text-indent: 1rem;
+  }
+}
+
+.a-footer {
+  margin-top: 2rem;
+  background-color: $dark-grey-50;
+  padding: 2rem;
+  border-radius: 0.5rem;
+
+  .a-footer__title {
+    font-size: $text-size-post-h5;
+    line-height: $text-size-post-h5-line;
+    font-weight: 700;
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.a-footer__avatar {
+  display: inline-block;
+  width: 10rem;
+  height: 12rem;
+  margin-right: 2rem;
+  overflow: hidden;
+  vertical-align: top;
+
+  img {
+    margin: 0;
+    height: 100%;
+  }
+}
+
+.a-footer__author {
+  vertical-align: top;
+  display: inline-block;
+  height: 12rem;
+  width: calc(100% - 14rem);
 }

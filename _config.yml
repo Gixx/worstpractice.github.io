@@ -4,9 +4,10 @@ locale: en_US
 author: 'Gábor Iván'
 author_slug: 'gabor.ivan'
 author_avatar: '/assets/img/gabor.ivan.jpg'
+author_introduction: 'Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.'
+
 application: 'Worst Practice Blog'
 
-author_introduction: ''
 description: ''
 subject: ''
 copyright: 'Copyright © 2019-2020, Gixx-web (https://www.gixx-web.com). All rights reserved.'
