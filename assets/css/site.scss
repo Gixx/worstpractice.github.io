@@ -3,7 +3,6 @@
 
 @import "common/defaults";
 @import "common/syntax";
-@import "common/layout";
 @import "common/header";
 @import "common/navigation";
 @import "common/content";
@@ -13,7 +12,6 @@
 @media only screen and (min-width: $desktop-min-width-limit) and (orientation:landscape) {
   @import "desktop/defaults";
   @import "desktop/syntax";
-  @import "desktop/layout";
   @import "desktop/header";
   @import "desktop/navigation";
   @import "desktop/content";
@@ -25,7 +23,6 @@
   only screen and (max-width: $tablet-max-width-limit) and (orientation:landscape) {
   @import "tablet/defaults";
   @import "tablet/syntax";
-  @import "tablet/layout";
   @import "tablet/header";
   @import "tablet/navigation";
   @import "tablet/content";
@@ -36,7 +33,6 @@
 @media only screen and (max-width: $mobile-max-width-limit) and (orientation:portrait) {
   @import "mobile/defaults";
   @import "mobile/syntax";
-  @import "mobile/layout";
   @import "mobile/header";
   @import "mobile/navigation";
   @import "mobile/content";

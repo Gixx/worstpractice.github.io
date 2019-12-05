@@ -2,30 +2,28 @@
 @import "../sizes";
 @import "../fonts";
 
+// Content
+.c-content {
+  width: $desktop-content-width;
+  padding: 3rem $desktop-content-padding;
+  margin: -7rem auto 0 auto;
+  background-color: $worstpractice-tanned-light;
+  border-radius: 0.5rem;
+}
+
+.c-header {
+  .c-header__title {
+    font-size: $text-size-post-h2;
+    line-height: $text-size-post-h2-line;
+    margin: 3rem 0;
+  }
+}
+
+// Article List
+
+// Article
 .a-article {
   padding-bottom: 2rem;
-
-  dl {
-    display: block;
-  }
-
-  dl::after {
-    display: block;
-    content: '';
-    clear: both;
-  }
-
-  dt {
-    clear: right;
-    float: left;
-    width: 20rem;
-    font-weight: 700;
-  }
-
-  dd {
-    float: right;
-    width: 49.9rem;
-  }
 }
 
 .a-header {
@@ -44,7 +42,6 @@
     margin: 3rem 0;
   }
 }
-
 
 .a-article h3 {
   font-size: $text-size-post-h3;

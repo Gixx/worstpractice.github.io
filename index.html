@@ -6,10 +6,14 @@ page_type: home
 ---
 {%- include variables.html -%}
 
-<section class="c-content__posts">
+<section>
     {%- for post in paginator.posts -%}
         {% include post-list-element.html post=post %}
     {%- endfor -%}
-</section>
 
-{% include pagination.html %}
+    {%- if paginator.total_pages > 1 -%}
+    <footer class="c-footer">
+        {% include pagination.html %}
+    </footer>
+    {%- endif -%}
+</section>

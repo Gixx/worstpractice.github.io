@@ -6,16 +6,16 @@ page_type: tag_list
 ---
 {%- include variables.html -%}
 
-<section  class="c-content__posts">
-    <header class="c-content__header">
-        <h2 class="c-content__title">Tags: {{ currentTagLabel }}</h2>
+<section>
+    <header class="c-header">
+        <h2 class="c-header__title">Tags: {{ currentTagLabel }}</h2>
     </header>
     {%- for post in paginator.posts -%}
         {% include post-list-element.html post=post %}
     {%- endfor -%}
 
     {%- if paginator.total_pages > 1 -%}
-    <footer class="c-content__footer">
+    <footer class="c-footer">
         {% include pagination.html %}
     </footer>
     {%- endif -%}
