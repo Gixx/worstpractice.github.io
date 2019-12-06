@@ -1,0 +1,62 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+img {
+  margin: 0.5rem 0;
+}
+
+blockquote {
+  padding: 2rem 5rem;
+}
+
+blockquote::before {
+  font-family: $font-serif;
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  display: block;
+  content: "“";
+  color: $light-black;
+  font-weight: 700;
+  font-size: 6rem;
+}
+
+blockquote::after {
+  font-family: $font-serif;
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  display: block;
+  content: "”";
+  color: $light-black;
+  font-weight: 700;
+  font-size: 6rem;
+}
+
+dl {
+  display: block;
+}
+
+dl::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+dt {
+  clear: right;
+  float: left;
+  width: 20rem;
+  font-weight: 700;
+}
+
+dd {
+  float: right;
+  width: 49.9rem;
+}
+
+.material-icons {
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+}

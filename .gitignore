@@ -2,7 +2,7 @@
 _site
 .sass-cache
 .jekyll-cache
+.jekyll-metadata
 node_modules
 src/assets/js/site.min.js
-/vendor/
-/tmp/
+.DS_Store

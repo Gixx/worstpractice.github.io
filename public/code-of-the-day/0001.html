@@ -1,0 +1,55 @@
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="cd">/**
+ * Authenticate user
+ * @return bool|null|object
+ * @throws Exception
+ */</span>
+<span class="k">function</span> <span class="nf">auth_user</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">global</span> <span class="nv">$dev_test_pass</span><span class="p">;</span>
+    <span class="nv">$valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="nx">AND</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$dev_test_pass</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">goto</span> <span class="nx">admin</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nv">$valid</span> <span class="o">=</span> <span class="nx">app</span><span class="o">::</span><span class="na">getinstance</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'Auth_Service'</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">login</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">],</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]);</span>
+
+    <span class="nx">admin</span><span class="o">:</span>
+    <span class="k">return</span> <span class="nv">$valid</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
