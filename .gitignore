@@ -1,6 +1,8 @@
 .idea
 _site
 .sass-cache
-.idea
+.jekyll-cache
+node_modules
+src/assets/js/site.min.js
 /vendor/
 /tmp/
