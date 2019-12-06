@@ -1,5 +1,9 @@
-const LazyLoadImage = function(options)
-{
+/**
+ * Lazy Load Image component
+ *
+ * @type {{init: LazyLoadImage.init, getLazyLoadImages: (function(): NodeList)}}
+ */
+const LazyLoadImage = function (options) {
     "use strict";
 
     /** @type {boolean} */
@@ -28,8 +32,7 @@ const LazyLoadImage = function(options)
      * @returns {any}
      * @constructor
      */
-    let LazyLoadImageElement = function(HTMLElement)
-    {
+    let LazyLoadImageElement = function (HTMLElement) {
         options.verbose && console.info(
             '%c[Lazy Load Image]%c ✚%c an image element initialized %o',
             'background:'+consoleColorId+';font-weight:bold;',
@@ -41,7 +44,7 @@ const LazyLoadImage = function(options)
         return {
             constructor: LazyLoadImageElement,
 
-            loadImage: function() {
+            loadImage: function () {
                 if (!HTMLElement.hasAttribute('data-src')) {
                     return;
                 }
@@ -72,8 +75,7 @@ const LazyLoadImage = function(options)
         /**
          * Initializes the loader and collects the elements.
          */
-        init : function()
-        {
+        init : function () {
             if (initialized) {
                 return;
             }

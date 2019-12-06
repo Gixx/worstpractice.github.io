@@ -3,8 +3,7 @@
  *
  * @type {{init: Util.init, getEventPath: Util.getEventPath, fetch: Util.fetch, getDeviceOs: (function(): string), triggerEvent: Util.triggerEvent, setCookie: Util.setCookie, ajax: (function(*): XMLHttpRequest), getCookie: Util.getCookie, addEventListeners: Util.addEventListeners}}
  */
-const Util = function(options)
-{
+const Util = function (options) {
     "use strict";
 
     /** @type {boolean} */
@@ -29,11 +28,10 @@ const Util = function(options)
      * @param {FormData} formData
      * @return {Object}
      */
-    let formDataToObject = function(formData)
-    {
+    let formDataToObject = function (formData) {
         let object = {};
 
-        formData.forEach(function(value, key){
+        formData.forEach(function (value, key) {
             object[key] = value;
         });
 
@@ -46,8 +44,7 @@ const Util = function(options)
      * @param {Object} object
      * @return {FormData}
      */
-    let objectToFormData = function(object)
-    {
+    let objectToFormData = function (object) {
         let formData = new FormData();
 
         for (let attribute in object) {
@@ -63,8 +60,7 @@ const Util = function(options)
         /**
          * Initializes the component.
          */
-        init : function ()
-        {
+        init : function () {
             initialized = true;
             this.triggerEvent(document, 'Component.Util.Ready');
         },
@@ -87,8 +83,7 @@ const Util = function(options)
          *   failure: function(data) { alert('Failed'); }
          * }
          */
-        ajax : function (settings)
-        {
+        ajax : function (settings) {
             let rnd = new Date().getTime();
             let url = typeof settings.url !== 'undefined' ? settings.url : '/';
             let method = typeof settings.method !== 'undefined' ? settings.method : 'POST';
@@ -103,8 +98,7 @@ const Util = function(options)
 
             xhr.open(method, url, async);
 
-            xhr.onreadystatechange = function()
-            {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     try {
                         if (xhr.status === 200) {
@@ -135,7 +129,7 @@ const Util = function(options)
                     break;
 
                 case 'application/x-www-form-urlencoded':
-                    data = Object.keys(data).map(function(key) {
+                    data = Object.keys(data).map(function (key) {
                         return key + '=' + data[key]
                     }).join('&');
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -168,14 +162,15 @@ const Util = function(options)
          *   failure: function(data) { alert('Failed'); }
          * }
          */
-        fetch: function (settings)
-        {
+        fetch: function (settings) {
             let url = typeof settings.url !== 'undefined' ? settings.url : '/';
             let method = typeof settings.method !== 'undefined' ? settings.method : 'POST';
             let data = typeof settings.data !== 'undefined' ? settings.data : {};
             let enctype = typeof settings.enctype !== 'undefined' ? settings.enctype : 'application/json';
             let successCallback = typeof settings.success === 'function' ? settings.success : function (data) {};
-            let failureCallback = typeof settings.failure === 'function' ? settings.failure : function (data) { options.verbose && console.error(data); };
+            let failureCallback = typeof settings.failure === 'function' ? settings.failure : function (data) {
+                options.verbose && console.error(data);
+            };
 
             switch (enctype) {
                 case 'application/json':
@@ -191,7 +186,7 @@ const Util = function(options)
                         data = formDataToObject(data);
                     }
 
-                    data = Object.keys(data).map(function(key) {
+                    data = Object.keys(data).map(function (key) {
                         return key + '=' + data[key]
                     }).join('&');
                     break;
@@ -216,14 +211,15 @@ const Util = function(options)
             }
 
             options.verbose && console.info(
-                '%c[Util]%c Fetching URL %o',
+                '%c[Util]%c ⚡%c Fetching URL %o',
                 'background:'+consoleColorId+';font-weight:bold;',
-                'color:#cecece',
+                'color:orange;font-weight:bold',
+                'color:#599bd6',
                 url
             );
 
             fetch(url, request)
-                .then(function(response) {
+                .then(function (response) {
                     if (response.ok) {
                         successCallback(response);
                     } else {
@@ -232,14 +228,7 @@ const Util = function(options)
                         throw error
                     }
                 })
-                .catch(function(err) {
-                    options.verbose && console.info(
-                        '%c[Util]%c ⚡%c Failed to fetch URL %o',
-                        'background:'+consoleColorId+';font-weight:bold;',
-                        'color:orange;font-weight:bold',
-                        'color:#599bd6',
-                        url
-                    );
+                .catch(function (err) {
                     failureCallback(err);
                 });
 
@@ -254,8 +243,7 @@ const Util = function(options)
          * @param {EventListener|Function} callback
          * @param {*}                      [bindObject]
          */
-        addEventListeners : function (elementList, eventList, callback, bindObject)
-        {
+        addEventListeners : function (elementList, eventList, callback, bindObject) {
             let events = eventList.split(' ');
             if (typeof bindObject === 'undefined') {
                 bindObject = null;
@@ -283,8 +271,7 @@ const Util = function(options)
          * @param {string} eventName
          * @param {*}      [customData]
          */
-        triggerEvent : function (element, eventName, customData)
-        {
+        triggerEvent : function (element, eventName, customData) {
             let event;
 
             if (typeof customData !== 'undefined') {
@@ -310,8 +297,7 @@ const Util = function(options)
          * @param {Event} event
          * @return {Array}
          */
-        getEventPath: function (event)
-        {
+        getEventPath: function (event) {
             let path = (event.composedPath && event.composedPath()) || event.path,
                 target = event.target;
 
@@ -325,14 +311,14 @@ const Util = function(options)
                 return [window];
             }
 
-            function getParents(node, memo) {
+            function getParents(node, memo)
+            {
                 memo = memo || [];
                 let parentNode = node.parentNode;
 
                 if (!parentNode) {
                     return memo;
-                }
-                else {
+                } else {
                     return getParents(parentNode, memo.concat([parentNode]));
                 }
             }
@@ -349,8 +335,7 @@ const Util = function(options)
          * @param {string} cValue Cookie value
          * @param {number} exDays Expiration days
          */
-        setCookie: function(cName, cValue, exDays)
-        {
+        setCookie: function (cName, cValue, exDays) {
             let date = new Date();
             date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
             let expires = "expires="+ date.toUTCString();
@@ -370,8 +355,7 @@ const Util = function(options)
          * @param {string} cName Cookie name
          * @returns {string}
          */
-        getCookie: function(cName)
-        {
+        getCookie: function (cName) {
             let name = cName + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let cookieArray = decodedCookie.split(';');
@@ -392,8 +376,7 @@ const Util = function(options)
          *
          * @returns {string}
          */
-        getDeviceOs: function()
-        {
+        getDeviceOs: function () {
             let operatingSystem = 'Unknown';
             let patterns = ['Win', 'Mac', 'X11', 'Linux', 'iPhone', 'iPad', 'Android'];
             let supportedOperatingSystems = ['Windows', 'MacOS', 'Unix', 'Linux', 'iOS', 'iOS', 'Android'];

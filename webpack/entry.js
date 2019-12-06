@@ -8,16 +8,14 @@ window.PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
  *
  * @returns {boolean}
  */
-window.isDisqusEnabled = function()
-{
+window.isDisqusEnabled = function () {
     return window.Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
-}
+};
 
 /**
  * Embed a "Worst practice" code sample.
  */
-window.embedWorstPracticeSample = function()
-{
+embedWorstPracticeSample = function () {
     window.Util.fetch({
         url: '/code-of-the-day/0001.html',
         method: 'GET',
@@ -44,10 +42,10 @@ window.embedWorstPracticeSample = function()
             });
         }
     });
-}
+};
 
 document.addEventListener('DOMContentLoaded', function () {
-    embedWorstPracticeSample();
     window.Util.init();
     window.LazyLoadImage.init();
+    embedWorstPracticeSample();
 });
