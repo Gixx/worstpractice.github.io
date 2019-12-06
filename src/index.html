@@ -1,0 +1,30 @@
+---
+layout: default
+pagination:
+    enabled: true
+page_type: home
+---
+{%- include variables.html -%}
+
+<section class="c-content__list">
+    {%- for post in paginator.posts -%}
+        {% include post-list-element.html post=post %}
+    {%- endfor -%}
+
+
+    {%- for post in paginator.posts -%}
+    {% include post-list-element.html post=post %}
+    {%- endfor -%}
+    {%- for post in paginator.posts -%}
+    {% include post-list-element.html post=post %}
+    {%- endfor -%}
+    {%- for post in paginator.posts -%}
+    {% include post-list-element.html post=post %}
+    {%- endfor -%}
+
+    {%- if paginator.total_pages > 1 -%}
+    <footer class="c-footer">
+        {% include pagination.html %}
+    </footer>
+    {%- endif -%}
+</section>

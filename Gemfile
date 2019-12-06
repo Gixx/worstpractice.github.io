@@ -11,6 +11,7 @@ group :jekyll_plugins do
     gem 'rouge'
     gem 'jekyll-last-modified-at'
     gem 'jekyll-plantuml'
+    gem 'uglifier'
     gem 'jekyll-tidy'
     gem 'classifier-reborn'
     gem 'jekyll-tagging-related_posts'

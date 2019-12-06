@@ -1,0 +1,31 @@
+{%- include variables.html -%}
+{%- assign post = include.post -%}
+
+<article class="l-article">
+    <header class="l-header">
+        <h3 class="l-header__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+        <p class="l-header__author">
+            by <a href="/author/{{ post.author_slug | default: site.author_slug }}/index.html">{{ post.author | default: site.author }}</a>
+        </p>
+        {%- assign m = post.date | date: "%-m" | minus: 0 -%}
+        {%- assign postMonth = site.data[site.lang].months[m] -%}
+        {%- capture postDate  -%}
+            {{ postMonth }}&nbsp;{{ post.date | date: '%e' }}, {{ post.date | date: '%Y' }}
+        {%- endcapture -%}
+        <p class="l-header__date">on {{ postDate }}</p>
+    </header>
+
+    {%- if post.illustration != '' -%}
+    <figure class="l-illustration">
+        <img class="l-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}{{ post.id }}/{{ post.illustration }}" alt="{{ post.title | escape }}">
+        {%- if post.illustration-caption != '' -%}
+        <figcaption class="l-illustration__caption">{{ post.illustrationCaption }}</figcaption>
+        {%- endif -%}
+    </figure>
+    {%- endif -%}
+    <p class="l-excerpt">
+        {{ post.id }} / {{ post.excerpt }}
+    </p>
+</article>
+
+
