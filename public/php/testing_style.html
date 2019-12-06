@@ -74,6 +74,12 @@
       if (!feature.srcset) {
           window.location.href = '/sorry.html';
       }
+      
+      const disqus_config = function () {
+          this.page.url = 'https://www.worstpractice.dev/php/testing_style.html';
+          this.page.identifier = 'testing-style';
+          this.page.title = 'Testing style';
+      };
     </script>
     <script type="application/javascript" src="/assets/js/site.min.js"></script>
   </head>
@@ -146,7 +152,7 @@
             </div>
           </header>
           <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2019/testing-style.jpg" alt="">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2019/php/testing_style/testing-style.jpg" alt="Testing style">
             <figcaption class="a-illustration__caption">The is the image caption</figcaption>
           </figure>
           <p class="a-excerpt">
@@ -740,7 +746,7 @@
 </div>
 <footer class="a-footer">
   <h3 class="a-footer__title">About the author</h3>
-  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/avatar.jpg" alt="Gábor Iván"></a>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
   <p class="a-footer__author">
     Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.
   </p>

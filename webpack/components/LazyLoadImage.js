@@ -10,6 +10,8 @@ const LazyLoadImage = function(options)
     let idCounter = 1;
     /** @type {string} */
     let consoleColorId = '#d0ffd0';
+    /** @type IntersectionObserver */
+    let imageObserver;
 
     if (typeof options.verbose === 'undefined') {
         options.verbose = true;
@@ -28,74 +30,6 @@ const LazyLoadImage = function(options)
      */
     let LazyLoadImageElement = function(HTMLElement)
     {
-        /** @type {boolean} */
-        let loading = false;
-        /** @type {boolean} */
-        let loaded = false;
-
-        /**
-         * Checks if the image is in the viewPort
-         *
-         * @returns {boolean}
-         */
-        function isElementInViewport()
-        {
-            let rect = HTMLElement.getBoundingClientRect();
-
-            return (
-                rect.top >= 0
-                && rect.left   >= 0
-                && rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-            );
-        }
-
-        /**
-         * Load image.
-         */
-        function loadImage()
-        {
-            if (loaded || loading) {
-                return;
-            }
-
-            if (isElementInViewport()) {
-                loading = true;
-                let src = HTMLElement.getAttribute('data-src');
-                let preload = new Image;
-
-                preload.onerror = function() {
-                    options.verbose && console.info(
-                        '%c[Lazy Load Image]%c ✖%c the image ' + src + ' cannot be loaded.',
-                        'background:'+consoleColorId+';font-weight:bold;',
-                        'color:red',
-                        'color:black'
-                    );
-                    return true;
-                };
-
-                preload.onload = function() {
-                    HTMLElement.src = src;
-                    HTMLElement.removeAttribute('data-src');
-                    options.verbose && console.info(
-                        '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
-                        'background:'+consoleColorId+';font-weight:bold;',
-                        'color:orange;font-weight:bold',
-                        'color:#599bd6',
-                        '#'+HTMLElement.getAttribute('id')
-                    );
-                };
-
-                try {
-                    preload.src = src;
-                    loaded = true;
-                } catch (exp) {
-                    loading = false;
-                }
-            }
-        }
-
-        window.Util.addEventListeners([window], 'scroll', loadImage, this);
-
         options.verbose && console.info(
             '%c[Lazy Load Image]%c ✚%c an image element initialized %o',
             'background:'+consoleColorId+';font-weight:bold;',
@@ -104,10 +38,26 @@ const LazyLoadImage = function(options)
             '#'+HTMLElement.getAttribute('id')
         );
 
-        loadImage();
-
         return {
-            constructor: LazyLoadImageElement
+            constructor: LazyLoadImageElement,
+
+            loadImage: function() {
+                if (!HTMLElement.hasAttribute('data-src')) {
+                    return;
+                }
+
+                // @TODO handle image load error
+
+                HTMLElement.src = HTMLElement.dataset.src;
+                HTMLElement.removeAttribute('data-src');
+                options.verbose && console.info(
+                    '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
+                    'background:'+consoleColorId+';font-weight:bold;',
+                    'color:orange;font-weight:bold',
+                    'color:#599bd6',
+                    '#'+HTMLElement.getAttribute('id')
+                );
+            }
         }
     };
 
@@ -133,20 +83,36 @@ const LazyLoadImage = function(options)
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:#cecece'
             );
+
+            imageObserver = new IntersectionObserver((entries, imgObserver) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        /** @type LazyLoadImageElement lazyLoadImageElement */
+                        let lazyLoadImageElement = entry.target.component;
+                        lazyLoadImageElement.loadImage();
+                    }
+                })
+            });
+
             lazyLoadImages = document.querySelectorAll('img[data-src]');
 
-            for (let i = 0, len = lazyLoadImages.length; i < len; i++) {
-                if (!lazyLoadImages[i].hasAttribute('id')) {
-                    lazyLoadImages[i].setAttribute('id', 'lazyImage' + (idCounter++));
+            lazyLoadImages.forEach(function (element) {
+                if (!element.hasAttribute('id')) {
+                    element.setAttribute('id', 'lazyImage' + (idCounter++));
                 }
 
-                lazyLoadImages[i].component = new LazyLoadImageElement(lazyLoadImages[i]);
-            }
+                element.component = new LazyLoadImageElement(element);
+                imageObserver.observe(element);
+            });
 
             options.verbose && console.groupEnd();
 
-            window.Util.triggerEvent(document, 'lazyLoadImageComponentLoaded');
+            window.Util.triggerEvent(document, 'Component.lazyLoadImage.Ready');
             initialized = true;
+        },
+
+        getLazyLoadImages: function () {
+            return lazyLoadImages;
         }
     };
 }({verbose: true});

@@ -63,6 +63,12 @@
       if (!feature.srcset) {
           window.location.href = '/sorry.html';
       }
+      
+      const disqus_config = function () {
+          this.page.url = 'https://www.worstpractice.dev/archive/';
+          this.page.identifier = 'archive';
+          this.page.title = 'Archive';
+      };
     </script>
     <script type="application/javascript" src="/assets/js/site.min.js"></script>
   </head>

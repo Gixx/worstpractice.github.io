@@ -41,26 +41,28 @@ title: Privacy Policy
                 </p>
                 <div id="toggleDisqus"></div>
                 <script type="application/javascript">
-                    let label = document.createElement('label');
-                    let labelText = document.createElement('span');
-                    labelText.innerText = 'Do you enable the load of the Disqus plugin?';
-                    let checked = isDisqusEnabled();
-                    let checkbox = document.createElement('input');
-                    checkbox.setAttribute('type', 'checkbox');
+                    document.addEventListener('Component.Util.Ready', function () {
+                        let label = document.createElement('label');
+                        let labelText = document.createElement('span');
+                        labelText.innerText = 'Do you enable the load of the Disqus plugin?';
+                        let checked = isDisqusEnabled();
+                        let checkbox = document.createElement('input');
+                        checkbox.setAttribute('type', 'checkbox');
 
-                    if (checked) {
-                        checkbox.setAttribute('checked', true);
-                    }
+                        if (checked) {
+                            checkbox.setAttribute('checked', true);
+                        }
 
-                    checkbox.addEventListener('change', function(event){
-                        let element = event.target;
+                        checkbox.addEventListener('change', function (event) {
+                            let element = event.target;
 
-                        setCookie(PRIVACY_DISQUS_COOKIE_NAME, element.checked ? 'Yes' : 'No', 365);
+                            window.Util.setCookie(PRIVACY_DISQUS_COOKIE_NAME, element.checked ? 'Yes' : 'No', 365);
+                        });
+
+                        label.append(labelText);
+                        label.append(checkbox);
+                        document.getElementById('toggleDisqus').appendChild(label);
                     });
-
-                    label.append(labelText);
-                    label.append(checkbox);
-                    document.getElementById('toggleDisqus').appendChild(label);
                 </script>
                 <noscript>
                     <p>JavaScript is disabled, no action required.</p>

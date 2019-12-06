@@ -1,22 +1,22 @@
 require('./components/Util');
 require('./components/LazyLoadImage');
 
-const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
+window.PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
 
 /**
  * Check whether the Disqus is embeddable.
  *
  * @returns {boolean}
  */
-function isDisqusEnabled()
+window.isDisqusEnabled = function()
 {
     return window.Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
 }
 
 /**
- * Embed a worst practice code sample.
+ * Embed a "Worst practice" code sample.
  */
-function embedWorstPracticeSample()
+window.embedWorstPracticeSample = function()
 {
     window.Util.fetch({
         url: '/code-of-the-day/0001.html',

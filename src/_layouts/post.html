@@ -31,10 +31,9 @@ page_type: post_view
                 </p>
             </div>
         </header>
-
         {%- if page.illustration != '' -%}
         <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration }}" alt="{{ post.title | escape }}">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration }}" alt="{{ page.title | escape }}">
             {%- if page.illustration-caption != '' -%}
             <figcaption class="a-illustration__caption">{{ page.illustrationCaption }}</figcaption>
             {%- endif -%}
@@ -50,7 +49,7 @@ page_type: post_view
 
         <footer class="a-footer">
             <h3 class="a-footer__title">About the author</h3>
-            <a class="a-footer__avatar" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="/author/{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
+            <a class="a-footer__avatar" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="/author/{{ page.author_slug | default: site.author_slug }}/{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
             <p class="a-footer__author">
                 {{ page.author_introduction | default: site.author_introduction }}
             </p>

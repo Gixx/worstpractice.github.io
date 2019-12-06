@@ -215,17 +215,35 @@ const Util = function(options)
                 request.body = data;
             }
 
-            fetch(url, request).then(function(response) {
-                if (response.ok) {
-                    successCallback(response)
-                } else {
-                    let error = new Error(response.statusText || response.status);
-                    error.response = response;
-                    throw error
-                }
-            }).catch(function(err) {
-                failureCallback(err);
-            });
+            options.verbose && console.info(
+                '%c[Util]%c Fetching URL %o',
+                'background:'+consoleColorId+';font-weight:bold;',
+                'color:#cecece',
+                url
+            );
+
+            fetch(url, request)
+                .then(function(response) {
+                    if (response.ok) {
+                        successCallback(response);
+                    } else {
+                        let error = new Error(response.statusText || response.status);
+                        error.response = response;
+                        throw error
+                    }
+                })
+                .catch(function(err) {
+                    options.verbose && console.info(
+                        '%c[Util]%c ⚡%c Failed to fetch URL %o',
+                        'background:'+consoleColorId+';font-weight:bold;',
+                        'color:orange;font-weight:bold',
+                        'color:#599bd6',
+                        url
+                    );
+                    failureCallback(err);
+                });
+
+            options.verbose && console.groupEnd();
         },
 
         /**
@@ -274,6 +292,14 @@ const Util = function(options)
             } else {
                 event = new Event(eventName);
             }
+
+            options.verbose && console.info(
+                '%c[Util]%c ⚡%c Triggering event: %o',
+                'background:'+consoleColorId+';font-weight:bold;',
+                'color:orange;font-weight:bold',
+                'color:#599bd6',
+                eventName
+            );
 
             element.dispatchEvent(event);
         },
@@ -328,6 +354,13 @@ const Util = function(options)
             let date = new Date();
             date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
             let expires = "expires="+ date.toUTCString();
+            options.verbose && console.info(
+                '%c[Util]%c ⚡%c Setting Cookie : %o',
+                'background:'+consoleColorId+';font-weight:bold;',
+                'color:orange;font-weight:bold',
+                'color:#599bd6',
+                cName
+            );
             document.cookie = cName + '=' + cValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
         },
 

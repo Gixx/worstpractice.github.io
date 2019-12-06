@@ -63,6 +63,12 @@
       if (!feature.srcset) {
           window.location.href = '/sorry.html';
       }
+      
+      const disqus_config = function () {
+          this.page.url = 'https://www.worstpractice.dev/terms';
+          this.page.identifier = 'terms-of-use';
+          this.page.title = 'Terms of Use';
+      };
     </script>
     <script type="application/javascript" src="/assets/js/site.min.js"></script>
   </head>

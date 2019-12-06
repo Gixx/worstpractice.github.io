@@ -64,6 +64,27 @@
   margin: 1rem 0;
 }
 
+.a-illustration {
+  width: $desktop-content-width -$desktop-content-padding;
+  margin-left: -$desktop-content-padding / 2;
+  margin-bottom: 4rem;
+}
+
+.a-illustration__image {
+  width: 100%;
+  margin: 0;
+}
+
+.a-illustration__caption {
+  text-align: center;
+  color: $dark-grey;
+  font-weight: 300;
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: $text-size-small;
+  line-height: $text-size-small-line;
+}
+
 .a-excerpt {
   font-size: $text-size-large;
   line-height: $text-size-large-line;

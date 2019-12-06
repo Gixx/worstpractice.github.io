@@ -118,6 +118,12 @@
             if (!feature.srcset) {
                 window.location.href = '/sorry.html';
             }
+
+            const disqus_config = function () {
+                this.page.url = '{{ site.homepage }}{{ page.url }}';
+                this.page.identifier = '{{ page.title | slugify: "latin" }}';
+                this.page.title = '{{ page.title }}';
+            };
         </script>
         <script type="application/javascript" src="/assets/js/site.min.js"></script>
     </head>
@@ -166,20 +172,14 @@
         </footer>
         {%- if page.review -%}
         <script type="application/javascript">
-            var disqus_config = function () {
-                this.page.url = '{{ site.homepage }}{{ page.url }}';
-                this.page.identifier = '{{ page.title | slugify: "latin" }}';
-                this.page.title = '{{ page.title }}';
-            };
-
-            (function() {
+            document.addEventListener('Component.Util.Ready', function () {
                 if (isDisqusEnabled()) {
                     var d = document, s = d.createElement('script');
                     s.src = 'https://worst-practice.disqus.com/embed.js';
                     s.setAttribute('data-timestamp', +new Date());
                     (d.head || d.body).appendChild(s);
                 }
-            })();
+            });
         </script>
         {%- endif -%}
     </body>
