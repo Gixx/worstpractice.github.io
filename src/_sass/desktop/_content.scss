@@ -5,7 +5,7 @@
 // Content
 .c-content {
   width: $desktop-content-width;
-  padding: 3rem $desktop-content-padding;
+  padding: 5rem $desktop-content-padding;
   margin: -7rem auto 0 auto;
   background-color: $worstpractice-tanned-light;
   border-radius: 0.5rem;
@@ -19,7 +19,115 @@
 
 // Article List
 .c-content__list {
+  display: flex;
+  flex-wrap: wrap;
+  width: $desktop-content-width - 2*$desktop-content-padding;
+  padding: 0;
+  margin: 0;
+}
 
+.c-header {
+  flex-basis: 70rem;
+  width: 70rem;
+  margin-right: 0;
+}
+
+.l-header__title {
+  font-size: $text-size-post-h4;
+  line-height: $text-size-post-h4-line;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 22rem;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.c-footer {
+  flex-basis: 70rem;
+  width: 70rem;
+  margin-right: 0;
+}
+
+.c-footer nav {
+  display: block;
+  width: 70rem;
+  height: 2.1rem;
+  padding: 0;
+
+  .prev {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 35rem;
+    text-align: left;
+    float: left;
+    height: 2.1rem;
+    line-height: 2.1rem;
+  }
+
+  .next {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: 35rem;
+    text-align: right;
+    float: right;
+    height: 2.1rem;
+    line-height: 2.1rem;
+  }
+}
+
+.l-article {
+  flex-basis: 22rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+  width: 22rem;
+  margin: 0 2rem 4rem 0;
+  padding: 0;
+
+  .l-excerpt {
+    display: none;
+  }
+
+}
+
+.l-article:nth-child(3n + 0) {
+  margin-right: 0;
+}
+
+.c-content__list.--home {
+  .l-article:nth-child(1) {
+    flex-basis: 70rem;
+    width: 70rem;
+    margin-right: 0;
+
+    .l-header__title {
+      font-size: $text-size-post-h3;
+      line-height: $text-size-post-h3-line;
+    }
+
+    .l-excerpt {
+      display: block;
+    }
+  }
+
+  .l-article:nth-child(2),
+  .l-article:nth-child(3) {
+    flex-basis: 34rem;
+    width: 34rem;
+
+    .l-header__title {
+      font-size: $text-size-post-h3;
+      line-height: $text-size-post-h3-line;
+    }
+
+    .l-excerpt {
+      display: block;
+    }
+  }
 }
 
 // Article
@@ -30,7 +138,7 @@
 .a-header__title {
   font-size: $text-size-post-h2;
   line-height: $text-size-post-h2-line;
-  margin: 3rem 0;
+  margin: 0 0 3rem 0;
 }
 
 .a-header__update {
@@ -112,7 +220,7 @@
 
 .a-footer {
   margin-top: 2rem;
-  background-color: $dark-grey-50;
+  background-color: $worstpractice-tanned;
   padding: 2rem;
   border-radius: 0.5rem;
 

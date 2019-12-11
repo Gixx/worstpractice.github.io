@@ -29,7 +29,7 @@ page_type: category_list
         {%- endfor -%}
     {%- endif -%}
 
-    {%- if paginator.total_pages > 1 -%}
+    {%- if paginator.total_pages > paginator.per_page -%}
     <footer class="c-footer">
         {% include pagination.html %}
     </footer>

@@ -17,10 +17,7 @@
 
     {%- if post.illustration != '' -%}
     <figure class="l-illustration">
-        <img class="l-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}{{ post.id }}/{{ post.illustration }}" alt="{{ post.title | escape }}">
-        {%- if post.illustration-caption != '' -%}
-        <figcaption class="l-illustration__caption">{{ post.illustrationCaption }}</figcaption>
-        {%- endif -%}
+        <a href="{{ post.url | relative_url }}"><img class="l-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}{{ post.id }}/{{ post.illustration }}" alt="{{ post.title | escape }}"></a>
     </figure>
     {%- endif -%}
     <p class="l-excerpt">
