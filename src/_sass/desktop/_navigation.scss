@@ -93,22 +93,21 @@
 }
 
 .m-menu__title {
-  font-size: $text-size-menu-h2;
-  line-height: $text-size-menu-h2-line;
+  font-size: $size-menu-group;
+  line-height: $size-menu-group-line;
   padding-left: 4rem;
 }
 
-.m-menu__link,
-.m-menu__more {
+.m-menu__link {
   display: block;
   color: $darker-grey;
   padding: 0.8rem 4rem;
   text-decoration: none;
-  font-size: $text-size-normal;
-  line-height: $text-size-medium-line;
+  font-size: $size-menu-item;
+  line-height: $size-menu-item-line;
 }
 
-.m-menu__more::after {
+.m-menu__link.-more::after {
   display: block;
   content: '\276F';
   position: absolute;
@@ -119,8 +118,6 @@
   opacity: 0.7;
 }
 
-.m-menu__more:hover,
-.m-menu__more:active,
 .m-menu__link:hover,
 .m-menu__link:active,
 .m-menu__link.-current {
@@ -135,7 +132,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: $white-60;
   opacity: 0;
   transition: opacity 500ms ease-out;
   pointer-events: none;

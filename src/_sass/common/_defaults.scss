@@ -27,7 +27,7 @@ html {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  font-size: $text-base-size;
+  font-size: $size-text-base;
 }
 
 body {
@@ -39,9 +39,9 @@ body {
   background-color: $transparent;
   font-weight: 400;
   font-style: normal;
-  font-size: $text-size-medium;
-  line-height: $text-size-medium-line;
-  letter-spacing: $text-size-letter-spacing-tiny-gap;
+  font-size: $size-text-normal;
+  line-height: $size-text-normal-line;
+  letter-spacing: $size-letter-spacing-tiny-gap;
   font-variant-ligatures: no-common-ligatures;
   font-feature-settings: "kern", "liga" 0, "clig" 0;
   scroll-behavior: smooth;

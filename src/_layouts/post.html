@@ -31,6 +31,10 @@ page_type: post_view
                 </p>
             </div>
         </header>
+        <p class="a-excerpt">
+            {{ page.excerpt }}
+        </p>
+
         {%- if page.illustration != '' -%}
         <figure class="a-illustration">
             <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration }}" alt="{{ page.title | escape }}">
@@ -39,9 +43,6 @@ page_type: post_view
             {%- endif -%}
         </figure>
         {%- endif -%}
-        <p class="a-excerpt">
-            {{ page.excerpt }}
-        </p>
 
         <div class="a-body">
             {{ page.content | remove: page.excerpt }}

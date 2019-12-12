@@ -2,25 +2,12 @@
 @import "../sizes";
 @import "../fonts";
 
-.h-header__codeOfTheDay .highlighter-rouge pre.highlight {
-  font-size: $text-size-sourcecode;
-  line-height: $text-size-sourcecode-line;
-  padding: 1rem;
-  white-space: normal;
-
-  & > code {
-    max-height: 75vh;
-    overflow: auto;
-    width: 100%;
-  }
-}
-
 .c-content pre.highlight {
   width: $desktop-content-width -$desktop-content-padding;
   margin-left: -$desktop-content-padding / 2;
   margin-top: 4rem;
-  font-size: $text-size-sourcecode;
-  line-height: $text-size-sourcecode-line;
+  font-size: $size-sourcecode;
+  line-height: $size-sourcecode-line;
   border: 0.2rem dashed $dark-grey;
   border-radius: 1rem;
   padding: 1rem;
@@ -110,12 +97,12 @@
   content: '';
   display: block;
   position: absolute;
-  top: -2rem;
+  top: -$size-sourcecode-line;
   left: 4.8rem;
   color: $dark-grey;
   font-weight: 300;
   font-family: $font-serif;
   font-style: italic;
-  font-size: $text-size-small;
-  line-height: $text-size-small-line;
+  font-size: $size-sourcecode;
+  line-height: $size-sourcecode-line;
 }

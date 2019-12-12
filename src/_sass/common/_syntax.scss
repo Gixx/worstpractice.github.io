@@ -11,8 +11,8 @@
     font-weight: 300;
     font-family: $font-serif;
     font-style: italic;
-    font-size: $text-size-small;
-    line-height: $text-size-small-line;
+    font-size: $size-sourcecode;
+    line-height: $size-sourcecode-line;
   }
 
   .language-php pre.highlight::before {

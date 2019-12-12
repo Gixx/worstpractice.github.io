@@ -5,15 +5,15 @@
 // Content
 .c-content {
   width: $desktop-content-width;
-  padding: 5rem $desktop-content-padding;
+  padding: $desktop-content-padding $desktop-content-padding ($desktop-content-padding / 2);
   margin: -7rem auto 0 auto;
   background-color: $worstpractice-tanned-light;
   border-radius: 0.5rem;
 }
 
 .c-header__title {
-  font-size: $text-size-post-h2;
-  line-height: $text-size-post-h2-line;
+  font-size: $size-post-h2;
+  line-height: $size-post-h2-line;
   margin: 3rem 0;
 }
 
@@ -21,7 +21,7 @@
 .c-content__list {
   display: flex;
   flex-wrap: wrap;
-  width: $desktop-content-width - 2*$desktop-content-padding;
+  width: $desktop-content-width - (2 * $desktop-content-padding);
   padding: 0;
   margin: 0;
 }
@@ -30,19 +30,6 @@
   flex-basis: 70rem;
   width: 70rem;
   margin-right: 0;
-}
-
-.l-header__title {
-  font-size: $text-size-post-h4;
-  line-height: $text-size-post-h4-line;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 22rem;
-
-  a {
-    text-decoration: none;
-  }
 }
 
 .c-footer {
@@ -91,7 +78,29 @@
   .l-excerpt {
     display: none;
   }
+}
 
+.l-header__title {
+  font-size: $size-post-h4;
+  line-height: $size-post-h4-line;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 22rem;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.l-header__author,
+.l-header__date {
+  font-size: $size-meta;
+  line-height: $size-meta-line;
+  letter-spacing: $size-letter-spacing-tiny-gap;
+  font-family: $font-serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .l-article:nth-child(3n + 0) {
@@ -105,8 +114,9 @@
     margin-right: 0;
 
     .l-header__title {
-      font-size: $text-size-post-h3;
-      line-height: $text-size-post-h3-line;
+      font-size: $size-post-h3;
+      line-height: $size-post-h3-line;
+      max-width: 70rem;
     }
 
     .l-excerpt {
@@ -120,8 +130,9 @@
     width: 34rem;
 
     .l-header__title {
-      font-size: $text-size-post-h3;
-      line-height: $text-size-post-h3-line;
+      font-size: $size-post-h3;
+      line-height: $size-post-h3-line;
+      max-width: 34rem;
     }
 
     .l-excerpt {
@@ -136,14 +147,14 @@
 }
 
 .a-header__title {
-  font-size: $text-size-post-h2;
-  line-height: $text-size-post-h2-line;
+  font-size: $size-post-h2;
+  line-height: $size-post-h2-line;
   margin: 0 0 3rem 0;
 }
 
 .a-header__update {
-  font-size: $text-size-post-h5;
-  line-height: $text-size-post-h5-line;
+  font-size: $size-post-h5;
+  line-height: $size-post-h5-line;
 }
 
 .a-header__meta {
@@ -151,9 +162,9 @@
   padding: 0 2rem;
 
   a, p {
-    font-size: $text-size-small;
-    line-height: $text-size-normal-grow-line;
-    letter-spacing: $text-size-letter-spacing-tiny-gap;
+    font-size: $size-meta;
+    line-height: $size-meta-line;
+    letter-spacing: $size-letter-spacing-tiny-gap;
     font-family: $font-serif;
     font-weight: 400;
     font-style: italic;
@@ -161,14 +172,14 @@
 }
 
 .a-article h3 {
-  font-size: $text-size-post-h3;
-  line-height: $text-size-post-h3-line;
+  font-size: $size-post-h3;
+  line-height: $size-post-h3-line;
   margin: 2rem 0;
 }
 
 .a-article h4 {
-  font-size: $text-size-post-h5;
-  line-height: $text-size-post-h5-line;
+  font-size: $size-post-h5;
+  line-height: $size-post-h5-line;
   margin: 1rem 0;
 }
 
@@ -189,13 +200,13 @@
   font-weight: 300;
   font-family: $font-serif;
   font-style: italic;
-  font-size: $text-size-small;
-  line-height: $text-size-small-line;
+  font-size: $size-caption;
+  line-height: $size-caption-line;
 }
 
 .a-excerpt {
-  font-size: $text-size-large;
-  line-height: $text-size-large-line;
+  font-size: $size-large;
+  line-height: $size-large-line;
   padding-bottom: 5rem;
   margin-bottom: 1.6rem;
 }
@@ -211,9 +222,9 @@
 
   p {
     margin: 1.6rem 0 3.2rem 0;
-    font-size: $text-size-medium;
-    line-height: $text-size-medium-line;
-    letter-spacing: $text-size-letter-spacing-tiny-gap;
+    font-size: $size-medium;
+    line-height: $size-medium-line;
+    letter-spacing: $size-letter-spacing-tiny-gap;
     text-indent: 1rem;
   }
 }
@@ -225,8 +236,8 @@
   border-radius: 0.5rem;
 
   .a-footer__title {
-    font-size: $text-size-post-h5;
-    line-height: $text-size-post-h5-line;
+    font-size: $size-post-h5;
+    line-height: $size-post-h5-line;
     font-weight: 700;
     width: 100%;
     margin-top: 0;

@@ -2,6 +2,13 @@
 {%- assign post = include.post -%}
 
 <article class="l-article">
+
+    {%- if post.illustration != '' -%}
+    <figure class="l-illustration">
+        <a href="{{ post.url | relative_url }}"><img class="l-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}{{ post.id }}/{{ post.illustration }}" alt="{{ post.title | escape }}"></a>
+    </figure>
+    {%- endif -%}
+
     <header class="l-header">
         <h3 class="l-header__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
         <p class="l-header__author">
@@ -14,12 +21,6 @@
         {%- endcapture -%}
         <p class="l-header__date">on {{ postDate }}</p>
     </header>
-
-    {%- if post.illustration != '' -%}
-    <figure class="l-illustration">
-        <a href="{{ post.url | relative_url }}"><img class="l-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ post.date | date: '%Y' }}{{ post.id }}/{{ post.illustration }}" alt="{{ post.title | escape }}"></a>
-    </figure>
-    {%- endif -%}
     <p class="l-excerpt">
         {{ post.excerpt }}
     </p>
