@@ -144,6 +144,12 @@
             </div>
             <div class="m-menu__content">
                 <nav>
+                    <h2 class="m-menu__title">{{ site.title }}</h2>
+                    <ul class="m-menu__navigation">
+                        <li><a class="m-menu__link -home{% if page.page_type == 'home' %} -current{% endif %}" href="/">Home</a></li>
+                    </ul>
+                </nav>
+                <nav>
                     <h2 class="m-menu__title">Categories</h2>
                     {% include categories.html %}
                 </nav>

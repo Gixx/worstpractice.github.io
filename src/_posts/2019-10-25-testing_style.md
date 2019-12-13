@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  'Testing style'
+title:  'Testing style and relatively long title, how it looks'
 date:   2019-10-25 15:23:00 +0100
 expiration: 2019-12-27 15:23:00 +0100
 location: 'München'

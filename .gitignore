@@ -6,3 +6,5 @@ _site
 node_modules
 src/assets/js/site.min.js
 .DS_Store
+package-lock.json
+Gemfile.lock
