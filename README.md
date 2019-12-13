@@ -8,7 +8,7 @@ The writings under the [_posts](_posts) folder and the image assets are protecte
 
 ## Usage
 
-### To create the work environment
+### To create and run the work environment
 
 You need [Docker for Desktop](https://www.docker.com/products/docker-desktop) to be able to build the static website. 
 
@@ -18,7 +18,7 @@ After you installed the Docker for Desktop, you need to simply run:
 docker compose up -d
 ```
 
-This will create tho docker containers:
+For the first run this will create tho docker containers (otherwise it will just start them):
 - Jekyll 3.8
 - Webpack
 
@@ -83,6 +83,24 @@ jekyll serve -w --drafts --force_poll
 
 Then look up the website in the browser: `http://127.0.0.1:4000`
 
+### Have a break, go to sleep
+
+If you want to stop with the work, but plan to continue it later, use:
+
+```
+docker-compose stop
+```
+
+**IMPORTANT** Choose the parameter wisely, you can have some unwanted accident, if you use the `docker-compose down` instead.
+
+## Go back to the start line 
+
+If something went wrong with the containers and you want a hard reset, run:
+
+```
+docker-compose down -v
+```
+
 ## How the containers work together?
 
 The concept is simple. The Webpack is watching for changes in the `./webpack` folder. If there's any, 
@@ -92,3 +110,5 @@ But the whole `./src` folder is under the survillance of the Jekyll, which is al
 When the Webpack generates the new file, Jekyll will catch it, and rebuilds the website.
 
 That's simple.
+
+
