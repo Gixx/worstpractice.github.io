@@ -4,7 +4,7 @@ This is the Jekyll and architecture source code of the [Worst Practice](https://
 
 ## License
 
-The writings under the [_posts](_posts) folder and the image assets are protected by copyright, the rest is free for learning and using.
+The writings under the [_posts](./src/_posts) folder and the image assets are protected by copyright, the rest is free for learning and using.
 
 ## Usage
 
