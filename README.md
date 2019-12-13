@@ -10,35 +10,85 @@ The writings under the [_posts](_posts) folder and the image assets are protecte
 
 ### To create the work environment
 
-To build the files once and exit, just run the following command:
+You need [Docker for Desktop](https://www.docker.com/products/docker-desktop) to be able to build the static website. 
+
+After you installed the Docker for Desktop, you need to simply run:
+
 ```
-docker run --rm --volume="${PWD}:/srv/jekyll" -it jekyll/jekyll:3.8 jekyll build
+docker compose up -d
 ```
 
-To create a permanent container and make the site ready, run:
+This will create tho docker containers:
+- Jekyll 3.8
+- Webpack
+
+The Webpack's purpose is to create and compress the JavaScrip bundle for the website.
+The Jekyll's purpose is to build the static website form the provided sources.
+
+Make sure the containers are running with the following command:
+
 ```
-docker run --name myblog --volume="${PWD}:/srv/jekyll" -p 4000:4000 -it jekyll/jekyll:3.8 bundle install
+docker ps -a
 ```
 
-### When you already have the container
+The output should look something like this:
 
-When you already have the container created **without** the `--rm` and **with** the `--name myblog`,
-the next time you try the `docker run` command, you will get an error.
-
-Try just starting it, and get access into it:
 ```
-docker start myblog
-```
-...then
-```
-docker exec -it myblog bash
-```
-...then in the container's prompt:
-```
-jekyll serve --watch --drafts --force_poll
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                   PORTS                               NAMES
+d2e7e9b864f4        jekyll/jekyll:3.8   "/usr/jekyll/bin/ent…"   8 minutes ago       Up 8 minutes             0.0.0.0:4000->4000/tcp, 35729/tcp   jekyll
+7cf0ac694204        jmfirth/webpack     "tail -f /dev/null"      8 minutes ago       Up 8 minutes             3000/tcp                            webpack
 ```
 
+### To use the Webpack container
+
+To access the container, you need to simply run:
+
+```
+docker exec -it webpack bash 
+```
+
+Inside the container for the first time it's worth to make sure everything is up to date, so run:
+
+```
+npm install --no-bin-links
+```
+
+Then just build (and watch for the changes) the JS bundle:
+
+```
+webpack -w  
+```
+
+### To use the Jekyll container
+
+Access the container is the same as before:
+
+```
+docker exec -it jekyll bash
+```
+
+Then in the container's prompt first you need to init the project:
+
+```
+bundle install
+```
+
+Then just build, look for the changes and serve the content:
+
+```
+jekyll serve -w --drafts --force_poll
+```
 
 ### Check the generated site
 
 Then look up the website in the browser: `http://127.0.0.1:4000`
+
+## How the containers work together?
+
+The concept is simple. The Webpack is watching for changes in the `./webpack` folder. If there's any, 
+it will immediately build the new minimized script into the `./src/assets/js/site.min.js` file.
+
+But the whole `./src` folder is under the survillance of the Jekyll, which is also waiting for changes.
+When the Webpack generates the new file, Jekyll will catch it, and rebuilds the website.
+
+That's simple.

@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+
+  jekyll:
+    container_name: 'jekyll'
+    image: 'jekyll/jekyll:3.8'
+    ports:
+      - '4000:4000'
+    volumes:
+      - './:/srv/jekyll'
+    command: tail -f /dev/null
+    build:
+      context: ./
+      dockerfile: ./dockerfile-jekyll
+
+  webpack:
+    container_name: 'webpack'
+    image: 'jmfirth/webpack'
+    volumes:
+      - './:/app'
+    command: tail -f /dev/null
+    build:
+      context: ./
+      dockerfile: ./docker-webpack
+
