@@ -1,4 +1,0 @@
-FROM jmfirth/webpack
-
-RUN npm install --no-bin-links && \
-    webpack
