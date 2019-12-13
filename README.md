@@ -1,4 +1,4 @@
-### Worst Practice
+# Worst Practice
 
 This is the Jekyll and architecture source code of the [Worst Practice](https://www.worstpractice.dev) website. 
 
