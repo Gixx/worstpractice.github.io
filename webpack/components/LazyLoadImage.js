@@ -50,7 +50,6 @@ const LazyLoadImage = function (options) {
                 }
 
                 // @TODO handle image load error
-
                 HTMLElement.src = HTMLElement.dataset.src;
                 HTMLElement.removeAttribute('data-src');
                 options.verbose && console.info(

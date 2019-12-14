@@ -64,7 +64,7 @@ npm install --no-bin-links
 Then just build (and watch for the changes) the JS bundle:
 
 ```
-webpack -w  
+webpack -w --watch-poll
 ```
 
 ### To use the Jekyll container
