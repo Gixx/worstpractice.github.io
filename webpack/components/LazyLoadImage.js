@@ -13,7 +13,7 @@ const LazyLoadImage = function (options) {
     /** @type {number} */
     let idCounter = 1;
     /** @type {string} */
-    let consoleColorId = '#d0ffd0';
+    let consoleColorId = '#bffff5';
     /** @type IntersectionObserver */
     let imageObserver;
 
