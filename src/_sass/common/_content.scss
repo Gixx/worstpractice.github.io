@@ -12,7 +12,7 @@
 
   label {
     position: relative;
-    line-height: 32px;
+    line-height: 3.2rem;
     display: block;
     font-weight: 700;
 
@@ -21,20 +21,20 @@
       cursor: pointer;
       display: block;
       float: right;
-      border-radius: 16px;
-      height: 32px;
-      width: 64px;
-      background: #e74c3c;
+      border-radius: 1.6rem;
+      height: 3.2rem;
+      width: 6.4rem;
+      background: $worstpractice-red;
       transition: background 0.4s ease-in;
     }
 
     span:before {
       border-radius: 50%;
-      height: 28px;
-      width: 28px;
-      left: 2px;
-      top: 2px;
-      background: #ECF0F1;
+      height: 2.8rem;
+      width: 2.8rem;
+      left: 0.2rem;
+      top: 0.2rem;
+      background: $lighter-grey;
       transition: left 0.4s ease-in;
     }
   }
@@ -49,11 +49,11 @@
   }
 
   input:checked + label span {
-    background: #2ecc71;
+    background: $worstpractice-green;
   }
 
   input:checked + label span:before {
-    left: 34px;
+    left: 3.4rem;
   }
 }
 

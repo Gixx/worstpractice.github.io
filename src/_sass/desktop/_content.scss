@@ -181,6 +181,10 @@
   font-size: $size-post-h5;
   line-height: $size-post-h5-line;
   margin: 1rem 0;
+
+  img {
+    width: 100%;
+  }
 }
 
 .a-illustration {
@@ -226,6 +230,56 @@
     line-height: $size-medium-line;
     letter-spacing: $size-letter-spacing-tiny-gap;
     text-indent: 1rem;
+  }
+}
+
+.browserList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  li {
+    display: inline-block;
+    width: 12rem;
+    margin: 0 2rem 0 0;
+    padding: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 12rem;
+
+    a  {
+      display: block;
+      text-decoration: none;
+      border-radius: 1rem;
+      padding: 1rem;
+      transition: box-shadow 200ms linear;
+
+      img {
+        width: 10rem;
+        height: 10rem;
+      }
+
+      figcaption {
+        font-size: $size-text-tiny;
+        line-height: $size-text-tiny-line;
+        text-align: center;
+      }
+    }
+
+    a:hover {
+      box-shadow: 0 0 1rem 0 $black-25;
+    }
+  }
+
+  li:last-child {
+    margin-right: 0;
+  }
+
+  a[target=_blank]::after {
+    content: none;
   }
 }
 

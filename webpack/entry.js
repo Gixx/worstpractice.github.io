@@ -1,12 +1,13 @@
 require('./components/Util');
 require('./components/LazyLoadImage');
 
+const PRIVACY_ACCEPT_COOKIE_NAME = 'privacy_Accept';
 const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
 
 const featureToggle = {
     disqus: {
         state: Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes',
-        label: "Do you enable the load of the Disqus plugin?",
+        label: "Do you allow the Disqus to load??",
     }
 };
 
