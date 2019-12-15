@@ -18,7 +18,7 @@ After you installed the Docker for Desktop, you need to simply run:
 docker compose up -d
 ```
 
-For the first run this will create tho docker containers (otherwise it will just start them):
+For the first run this will create two docker containers (otherwise it will just start them):
 
 - Jekyll 3.8
 - Webpack
