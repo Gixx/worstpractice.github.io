@@ -1,3 +1,66 @@
 @import "../colors";
 @import "../sizes";
 @import "../fonts";
+
+.a-featureToggle {
+  padding: 1.5rem;
+  position: relative;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    line-height: 32px;
+    display: block;
+    font-weight: 700;
+
+    span {
+      position: relative;
+      cursor: pointer;
+      display: block;
+      float: right;
+      border-radius: 16px;
+      height: 32px;
+      width: 64px;
+      background: #e74c3c;
+      transition: background 0.4s ease-in;
+    }
+
+    span:before {
+      border-radius: 50%;
+      height: 28px;
+      width: 28px;
+      left: 2px;
+      top: 2px;
+      background: #ECF0F1;
+      transition: left 0.4s ease-in;
+    }
+  }
+
+  label:before,
+  label:after,
+  label span:before,
+  label span:after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  input:checked + label span {
+    background: #2ecc71;
+  }
+
+  input:checked + label span:before {
+    left: 34px;
+  }
+}
+
+.a-featureToggle:first-child {
+  border-top: none;
+}
+
+.a-featureToggle * {
+  cursor: pointer;
+}

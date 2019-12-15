@@ -53,6 +53,8 @@ page_type: post_view
             <a class="a-footer__avatar" href="/author/{{ page.author_slug | default: site.author_slug }}/index.html"><img src="/author/{{ page.author_slug | default: site.author_slug }}/{{ page.author_avatar | default: site.author_avatar }}" alt="{{ page.author | default: site.author }}"></a>
             <p class="a-footer__author">
                 {{ page.author_introduction | default: site.author_introduction }}
+                <br>
+                <a href="/author/{{ page.author_slug | default: site.author_slug }}/index.html">Read the full story</a>
             </p>
         </footer>
     </article>

@@ -62,6 +62,19 @@ a.mailto::after {
   content: " (worst.practice.blog@gmail.com)";
 }
 
+a[target=_blank]::after {
+  display: inline-block;
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+  padding: 0;
+  background-image: url("/assets/img/icons/external-link-symbol.svg");
+  background-size: contain;
+  vertical-align:  super;
+}
+
 img {
   max-width: 100%;
   margin: 0.5rem 0;

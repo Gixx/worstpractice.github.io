@@ -39,31 +39,7 @@ title: Privacy Policy
                     The Disqus is an embeddable commenting system. When enabled, it will use cookies for general operation and
                     analytics purposes. For detailed information, please read the <a href="https://help.disqus.com/en/articles/1717103-disqus-privacy-policy" target="_blank">Disqus Privacy Policy</a>.
                 </p>
-                <div id="toggleDisqus"></div>
-                <script type="application/javascript">
-                    document.addEventListener('Component.Util.Ready', function () {
-                        let label = document.createElement('label');
-                        let labelText = document.createElement('span');
-                        labelText.innerText = 'Do you enable the load of the Disqus plugin?';
-                        let checked = isDisqusEnabled();
-                        let checkbox = document.createElement('input');
-                        checkbox.setAttribute('type', 'checkbox');
-
-                        if (checked) {
-                            checkbox.setAttribute('checked', true);
-                        }
-
-                        checkbox.addEventListener('change', function (event) {
-                            let element = event.target;
-
-                            window.Util.setCookie(PRIVACY_DISQUS_COOKIE_NAME, element.checked ? 'Yes' : 'No', 365);
-                        });
-
-                        label.append(labelText);
-                        label.append(checkbox);
-                        document.getElementById('toggleDisqus').appendChild(label);
-                    });
-                </script>
+                <div class="a-featureToggle -disqus"></div>
                 <noscript>
                     <p>JavaScript is disabled, no action required.</p>
                 </noscript>
@@ -75,12 +51,8 @@ title: Privacy Policy
             The servers behind this website are hosted by GitHub. Personally, I do not collect any personal, traffic or
             tracking information about the visitors of this website, however the GitHub provides some basic traffic
             information automatically.<br>
-            <a href="https://help.github.com/en/articles/viewing-traffic-to-a-repository" target="_blank">
-                Read more about GitHub Traffic Analytics
-            </a><br>
-            <a href="https://help.github.com/en/articles/github-privacy-statement" target="_blank">
-                Read more about GitHub Privacy Statement
-            </a>
+            <a href="https://help.github.com/en/articles/viewing-traffic-to-a-repository" target="_blank">Read more about GitHub Traffic Analytics</a><br>
+            <a href="https://help.github.com/en/articles/github-privacy-statement" target="_blank">Read more about GitHub Privacy Statement</a>
         </p>
 
         <h3 id="complaints-information-and-deletion-requests">Complaints, Information and Deletion Requests</h3>
@@ -101,13 +73,10 @@ title: Privacy Policy
             The regulatory authority for this site is <a href="http://www.bfdi.bund.de/" target="_blank">Die Bundesbeauftragte
             für den Datenschutz und die Informationsfreiheit</a>.
         </p>
+        <img src="/assets/img/BfDI.jpg" alt="Die Bundesbeauftragte für den Datenschutz und die Informationsfreiheit">
         <h4>Die Bundesbeauftragte für den Datenschutz und die Informationsfreiheit</h4>
         <address>
-            <a href="https://www.google.com/maps/dir//Husarenstra%C3%9Fe+30,+53117+Bonn/@50.7481858,7.0942318,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x47bee1ae5efe829d:0x4f0910feb62ac805!2m2!1d7.0964205!2d50.7481858!3e0" target="_blank">
-                Husarenstraße 30<br>
-                53117 Bonn<br>
-                Germany
-            </a>
+            <a class="google" href="https://www.google.com/maps/dir//Husarenstra%C3%9Fe+30,+53117+Bonn/@50.7481858,7.0942318,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x47bee1ae5efe829d:0x4f0910feb62ac805!2m2!1d7.0964205!2d50.7481858!3e0" target="_blank">Husarenstraße 30<br>53117 Bonn<br>Germany</a>
         </address>
 
         <h3 id="changes-and-updates-to-this-policy">Changes and updates to this policy</h3>
