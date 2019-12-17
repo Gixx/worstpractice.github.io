@@ -7,7 +7,7 @@ const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
 const featureToggle = {
     disqus: {
         state: Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes',
-        label: "Do you allow the Disqus to load??",
+        label: "Do you allow the Disqus to load?",
     }
 };
 
