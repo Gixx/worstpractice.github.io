@@ -3,7 +3,6 @@ layout: post
 title:  'What am I doing???'
 date:   2019-12-05 15:23:00 +0100
 expiration: none
-location: 'München'
 illustration: 'what.jpg'
 illustrationCaption: 'No problem, only solution'
 illustration_share: ''

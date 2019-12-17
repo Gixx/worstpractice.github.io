@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-12-17T00:44:24-06:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-12-05T08:23:00-06:00</published><updated>2019-12-06T04:20:13-06:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h2 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-12-17T16:30:36-06:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Start web development on Windows</title><link href="http://0.0.0.0:4000/docker/start-web-development-on-windows.html" rel="alternate" type="text/html" title="Start web development on Windows" /><published>2020-01-05T08:00:00-06:00</published><updated>2019-12-17T16:30:35-06:00</updated><id>http://0.0.0.0:4000/docker/start-web-development-on-windows</id><content type="html" xml:base="http://0.0.0.0:4000/docker/start-web-development-on-windows.html">&lt;h2 id=&quot;prolog&quot;&gt;Prolog&lt;/h2&gt;
+        &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new 
+        RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
+        hardware, I installed a brand new Windows™ 10 Professional. Please don’t start flame war about operating systems, I 
+        have my own reasons to choose this.&lt;/p&gt;
+        &lt;p&gt;One of my very first act after finishing the Windows™ install was to join the &lt;a href=&quot;https://insider.windows.com/en-us/&quot; target=&quot;_blank&quot;&gt;Insider Program&lt;/a&gt;.
+        This allowed me to install the Windows Subsystem for Linux 2&lt;sup&gt;nd&lt;/sup&gt; edition. The great trick in WSL2 is that now it
+        can used directly with the Docker Desktop. You don’t need to install the VirtualBox for this any more.&lt;/p&gt;
+        &lt;h2 id=&quot;table-of-contents&quot;&gt;Table of Contents&lt;/h2&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;/docker/start-web-development-on-windows.html#requirements&quot;&gt;Requirements&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;/docker/start-web-development-on-windows.html#install-wsl2&quot;&gt;Installing the WSL2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h2 id=&quot;requirements&quot;&gt;&lt;a name=&quot;requirements&quot;&gt;&lt;/a&gt;Requirements&lt;/h2&gt;
+        &lt;ol&gt;
+        &lt;li&gt;First of all you will need a Windows™ 10 &lt;strong&gt;build 18917&lt;/strong&gt; or higher.&lt;/li&gt;
+        &lt;li&gt;You will need the &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot; target=&quot;_blank&quot;&gt;WSL1&lt;/a&gt; to be installed as well.&lt;/li&gt;
+        &lt;li&gt;Then you can install the &lt;a href=&quot;https://docs.docker.com/docker-for-windows/edge-release-notes/&quot; target=&quot;_blank&quot;&gt;Docker Desktop Community 2.1.7.0&lt;/a&gt;.&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;h2 id=&quot;installing-the-wsl2&quot;&gt;&lt;a name=&quot;install-wsl2&quot;&gt;&lt;/a&gt;Installing the WSL2&lt;/h2&gt;
+        &lt;p&gt;The guys at Microsoft™ created a pretty &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/wsl2-install&quot; target=&quot;_blank&quot;&gt;straightforward tutorial&lt;/a&gt; 
+        about the WSL2 install process. All you need to do is to follow it, step-by-step.&lt;/p&gt;
+        &lt;h2 id=&quot;installing-the-docker-for-desktop&quot;&gt;&lt;a name=&quot;docker-desktop&quot;&gt;&lt;/a&gt;Installing the Docker for Desktop&lt;/h2&gt;
+        &lt;p&gt;The one on the Docker website will not be good until the Microsoft™ doesn’t take out the WSL2 from the insider program
+        and put it into the normal system update flow. You will need an “&lt;a href=&quot;https://docs.docker.com/docker-for-windows/edge-release-notes/&quot; target=&quot;_blank&quot;&gt;Edge release&lt;/a&gt;”
+        form the Docker Desktop (this Edge is not that Edge) to work together with WSL2.&lt;/p&gt;
+        &lt;p&gt;After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
+        choose the settings. There &lt;strong&gt;you MUST uncheck&lt;/strong&gt; the &lt;em&gt;Start Docker Desktop when you log in&lt;/em&gt; option to avoid to start it
+        earlier than the WSL2 engine. When that happens, none of your local drives will be mounted in the Docker containers.&lt;/p&gt;
+        &lt;p&gt;And of course you have to check the &lt;em&gt;Enable the experimental WSL2 based engine&lt;/em&gt; option.&lt;/p&gt;
+        &lt;figure&gt;
+        &lt;img src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png&quot; /&gt;
+        &lt;figcaption&gt;Settings of the Docker Desktop&lt;/figcaption&gt;
+        &lt;/figure&gt;</content><author><name>Gábor Iván</name></author><category term="docker" /><category term="docker" /><category term="wsl2" /><category term="jekyll" /><category term="webpack" /><category term="phpstorm" /><summary type="html">A simple tutorial on how to turn your Windows&amp;trade; 10 system into a competitive tool for web development.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-12-05T08:23:00-06:00</published><updated>2019-12-06T04:20:13-06:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h2 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h2&gt;
         &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
         But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
         huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;
