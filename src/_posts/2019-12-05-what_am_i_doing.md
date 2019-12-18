@@ -14,7 +14,7 @@ excerpt: 'It is like a professional suicide. I decided to share my thoughts in v
 review: false
 ---
 
-## I cannot explain the why
+### I cannot explain the why
 
 For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
 But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
@@ -24,7 +24,7 @@ huge responsibility. And writing a blog is a double-edged weapon.
 * What if I write something absolutely wrong, because I was too lazy to read a book in the given topic? 
 * What if I write something totally bullshit, that ruins my prestige to a level, where nobody will ever count with me again?
 
-## What will I present here?
+### What will I present here?
 
 Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later 
 when I need them. And of course, it would be amazing if someone else other than me would also find these articles useful. 

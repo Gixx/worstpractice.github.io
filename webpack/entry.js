@@ -1,15 +1,9 @@
 require('./components/Util');
 require('./components/LazyLoadImage');
+require('./components/FeatureToggle');
 
 const PRIVACY_ACCEPT_COOKIE_NAME = 'privacy_Accept';
 const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
-
-const featureToggle = {
-    disqus: {
-        state: Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes',
-        label: "Do you allow the Disqus to load?",
-    }
-};
 
 /**
  * Embed a "Worst practice" code sample.
@@ -45,8 +39,6 @@ const embedWorstPracticeSample = function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     window.Util.init();
-    window.LazyLoadImage.init();
-    embedWorstPracticeSample();
 
     document.querySelectorAll('a.google').forEach(function (element) {
         element.addEventListener('click', function (event) {
@@ -59,28 +51,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('Component.Util.Ready', function () {
-    for (let feature in featureToggle) {
-        let target = document.querySelector('.a-featureToggle.-' + feature);
-        if (target) {
-            let options = featureToggle[feature];
-            let checkbox = document.createElement('input');
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.setAttribute('id', 'toggle-' + feature);
-            checkbox.setAttribute('checked', options.state);
-            checkbox.addEventListener('change', function (event) {
-                let element = event.target;
-                Util.setCookie(PRIVACY_DISQUS_COOKIE_NAME, element.checked ? 'Yes' : 'No', 365);
-            });
+    window['isDisqusEnabled'] = function () {
+        return Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
+    };
 
-            let label = document.createElement('label');
-            label.setAttribute('for', 'toggle-' + feature);
-            let labelText = document.createTextNode(options.label);
-            let labelSwitch = document.createElement('span');
-            label.appendChild(labelText);
-            label.appendChild(labelSwitch);
-
-            target.appendChild(checkbox);
-            target.appendChild(label);
+    /**
+     *
+     * @type {{disqus: {state: boolean, label: string}}}
+     */
+    const featureToggle = {
+        disqus: {
+            state: isDisqusEnabled(),
+            label: "Do you allow the Disqus to load?",
+            cookie: PRIVACY_DISQUS_COOKIE_NAME
         }
-    }
+    };
+
+    window.LazyLoadImage.init();
+    window.FeatureToggle.init(featureToggle);
+    embedWorstPracticeSample();
 });

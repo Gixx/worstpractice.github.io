@@ -23,16 +23,19 @@ $size-21: 2.1rem;
 $size-22: 2.2rem;
 $size-23: 2.3rem;
 $size-24: 2.4rem;
+$size-26: 2.6rem;
 $size-28: 2.8rem;
 
 $size-30: 3rem;
 $size-32: 3.2rem;
+$size-34: 3.4rem;
 $size-36: 3.6rem;
+$size-38: 3.8rem;
 
 $size-40: 4rem;
 
 $size-50: 5rem;
-$size-50: 5.2rem;
+$size-52: 5.2rem;
 
 $size-60: 6rem;
 $size-64: 6.4rem;
@@ -52,45 +55,29 @@ $size-menu-group-line: $size-64;
 $size-menu-item: $size-14;
 $size-menu-item-line: $size-32;
 
-$size-text-tiny: $size-12;
-$size-text-tiny-line: $size-14;
+$size-header-large: $size-50;
+$size-header-large-line: $size-65;
+$size-header-medium: $size-40;
+$size-header-medium-line: $size-52;
+$size-header-normal: $size-30;
+$size-header-normal-line: $size-40;
+$size-header-small: $size-26;
+$size-header-small-line: $size-38;
+$size-header-tiny: $size-24;
+$size-header-tiny-line: $size-36;
+
+$size-text-large: $size-24;
+$size-text-large-line: $size-36;
+$size-text-medium: $size-20;
+$size-text-medium-line: $size-34;
 $size-text-normal: $size-16;
 $size-text-normal-line: $size-32;
+$size-text-small: $size-12;
+$size-text-small-line: $size-14;
+$size-text-tiny: $size-12;
+$size-text-tiny-line: $size-14;
 
 $size-quote-sign: $size-60;
-
-
-$size-normal: 1.4rem;
-$size-normal-line: 1.6rem;
-
-$size-medium: 1.6rem;
-$size-medium-line: 3.2rem;
-$size-large: 2.4rem;
-$size-large-line: 3.6rem;
-
-$size-menu-h2: 2rem;
-$size-menu-h2-line: 6.4rem;
-$size-menu-h3: 1.7rem;
-$size-menu-h3-line: 2.3rem;
-$size-menu-h4: 1.6rem;
-$size-menu-h4-line: 2.2rem;
-$size-menu-h5: 1.5rem;
-$size-menu-h5-line: 2.1rem;
-$size-menu-h6: 1.4rem;
-$size-menu-h6-line: 2rem;
-
-$size-post-h1: 6rem;
-$size-post-h1-line: 8rem;
-$size-post-h2: 5rem;
-$size-post-h2-line: 6.5rem;
-$size-post-h3: 4rem;
-$size-post-h3-line: 5.2rem;
-$size-post-h4: 3rem;
-$size-post-h4-line: 4rem;
-$size-post-h5: 2rem;
-$size-post-h5-line: 2.8rem;
-$size-post-h6: 1.5rem;
-$size-post-h6-line: 2rem;
 
 $size-letter-spacing-shrink: -0.012rem;
 $size-letter-spacing-tiny-gap: 0.01rem;

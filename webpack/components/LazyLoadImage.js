@@ -108,7 +108,7 @@ const LazyLoadImage = function (options) {
 
             options.verbose && console.groupEnd();
 
-            window.Util.triggerEvent(document, 'Component.lazyLoadImage.Ready');
+            window.Util.triggerEvent(document, 'Component.LazyLoadImage.Ready');
             initialized = true;
         },
 
