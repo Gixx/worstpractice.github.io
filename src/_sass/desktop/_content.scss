@@ -229,6 +229,37 @@
   }
 }
 
+.a-body__counterList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    display: block;
+    counter-increment: step-counter;
+    padding-left: 6rem;
+  }
+
+  p {
+    margin-bottom: 1.6rem;
+  }
+
+  h4 {
+    margin-left: -6rem;
+  }
+
+  h4::before {
+    display: inline-block;
+    width: 5rem;
+    margin-right: 1rem;
+    text-align: right;
+    content: counter(step-counter) ". ";
+    font-weight: 700;
+    font-size: $size-header-normal;
+    line-height: $size-header-normal-line;
+  }
+}
+
 .browserList {
   list-style-type: none;
   margin: 0;

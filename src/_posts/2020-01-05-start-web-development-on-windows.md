@@ -44,9 +44,9 @@ So here are all the sources you will need to have a nice DIY-day:
 10. <a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank">Set up a more productive shell</a>
 11. <a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank">Fix the "git push to GitHub from WSL" issue</a>
 
-In fact, these links cover most part of the setup process, so I only had to put them in the right order. But since some of them are
-not so fresh, I made additional discoveries, and in some points I deviated from the description, because they were 
-irrelevant for me, or they were just outdated, like the step #2 where the Open SSH Client in my Windows 10 build was enabled by default. 
+In fact, these links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
+not so recent, I unintentionally made new discoveries. Of course in some cases I deviated from the description, because they were 
+irrelevant for me, or they were just outdated. 
 
 ### Additional discoveries
 

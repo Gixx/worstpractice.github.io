@@ -41,6 +41,7 @@ const LazyLoadImage = function (options) {
             '#'+HTMLElement.getAttribute('id')
         );
 
+
         return {
             constructor: LazyLoadImageElement,
 
@@ -48,17 +49,34 @@ const LazyLoadImage = function (options) {
                 if (!HTMLElement.hasAttribute('data-src')) {
                     return;
                 }
+                let imageSource = HTMLElement.dataset.src;
+                let preload  = new Image();
 
-                // @TODO handle image load error
-                HTMLElement.src = HTMLElement.dataset.src;
-                HTMLElement.removeAttribute('data-src');
-                options.verbose && console.info(
-                    '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
-                    'background:'+consoleColorId+';font-weight:bold;',
-                    'color:orange;font-weight:bold',
-                    'color:#599bd6',
-                    '#'+HTMLElement.getAttribute('id')
-                );
+                preload.addEventListener('error', function (event) {
+                    event.preventDefault();
+                    options.verbose && console.info(
+                        '%c[Lazy Load Image]%c ✖%c an image resource is not found %c'+imageSource,
+                        'background:'+consoleColorId+';font-weight:bold;',
+                        'color:red',
+                        'color:#599bd6',
+                        'color:black;font-style:italic'
+                    );
+                });
+
+                preload.addEventListener('load', function () {
+                    HTMLElement.src = imageSource;
+                    HTMLElement.removeAttribute('data-src');
+
+                    options.verbose && console.info(
+                        '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
+                        'background:'+consoleColorId+';font-weight:bold;',
+                        'color:orange;font-weight:bold',
+                        'color:#599bd6',
+                        '#'+HTMLElement.getAttribute('id')
+                    );
+                });
+
+                preload.src = imageSource;
             }
         }
     };
