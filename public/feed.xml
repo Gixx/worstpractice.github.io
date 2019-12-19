@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-12-18T21:35:09+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Start web development on Windows</title><link href="http://0.0.0.0:4000/docker/start-web-development-on-windows.html" rel="alternate" type="text/html" title="Start web development on Windows" /><published>2020-01-05T14:38:00+01:00</published><updated>2019-12-18T17:16:33+01:00</updated><id>http://0.0.0.0:4000/docker/start-web-development-on-windows</id><content type="html" xml:base="http://0.0.0.0:4000/docker/start-web-development-on-windows.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-12-19T09:56:11+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Start web development on Windows</title><link href="http://0.0.0.0:4000/docker/start-web-development-on-windows.html" rel="alternate" type="text/html" title="Start web development on Windows" /><published>2020-01-05T14:38:00+01:00</published><updated>2019-12-18T21:37:47+01:00</updated><id>http://0.0.0.0:4000/docker/start-web-development-on-windows</id><content type="html" xml:base="http://0.0.0.0:4000/docker/start-web-development-on-windows.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
         &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new 
         RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
         hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I 
@@ -6,10 +6,13 @@
         &lt;p&gt;With the clean install I found it to be the perfect time to use all the knowledge I gathered during the years, and bring 
         together a smooth, easy-to-use and maintainable workspace for web development, that sucks less to set up and feels better
         to use than ever before.&lt;/p&gt;
-        &lt;h3 id=&quot;tldr&quot;&gt;TL;DR&lt;/h3&gt;
-        &lt;p&gt;It might be too long, and we all know, that when we need something, just search for it on the Internet, and there’s a high chance 
-        to find the right solution. No need to reinvent the wheel.&lt;/p&gt;
-        &lt;p&gt;So here are all the sources you will need to have a nice DIY-day:&lt;/p&gt;
+        &lt;h3 id=&quot;-todo-follow-the-trail&quot;&gt;// @TODO follow the trail&lt;/h3&gt;
+        &lt;p&gt;It might be too long to write a step-by-step tutorial, and we all know, that when we need something, we only need to search 
+        for it on the Internet, and there’s a high chance to find the right solution. No need to reinvent the wheel.&lt;/p&gt;
+        &lt;p&gt;In fact, the following links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
+        not so recent, I unintentionally made &lt;a href=&quot;#additional-discoveries&quot;&gt;new discoveries&lt;/a&gt;. Don’t forget to read them before you
+        take the actions described on the linked pages.&lt;/p&gt;
+        &lt;p&gt;So here are the sources you will need to have a nice DIY-day:&lt;/p&gt;
         &lt;ol&gt;
         &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/en-gb/software-download/windows10ISO&quot; target=&quot;_blank&quot;&gt;Install Windows 10&lt;/a&gt;.&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;https://winaero.com/blog/enable-openssh-client-windows-10/&quot; target=&quot;_blank&quot;&gt;Enable the built-in OpenSSH Client&lt;/a&gt; if it’s not present by default.&lt;/li&gt;
@@ -22,15 +25,24 @@
         &lt;li&gt;&lt;a href=&quot;https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/&quot; target=&quot;_blank&quot;&gt;Share ENV variables between WSL and Windows&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/&quot; target=&quot;_blank&quot;&gt;Set up a more productive shell&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&quot;https://blog.anaisbetts.org/using-github-credentials-in-wsl2/&quot; target=&quot;_blank&quot;&gt;Fix the “git push to GitHub from WSL” issue&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;And in the end, I wrote about &lt;a href=&quot;#phpstorm&quot;&gt;how I set up the PHPStorm terminal&lt;/a&gt;&lt;/li&gt;
         &lt;/ol&gt;
-        &lt;p&gt;In fact, these links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
-        not so recent, I unintentionally made new discoveries. Of course in some cases I deviated from the description, because they were 
-        irrelevant for me, or they were just outdated.&lt;/p&gt;
-        &lt;h3 id=&quot;additional-discoveries&quot;&gt;Additional discoveries&lt;/h3&gt;
-        &lt;h4 id=&quot;issues-with-the-docker-desktop&quot;&gt;Issues with the Docker Desktop&lt;/h4&gt;
+        &lt;h3 id=&quot;additional-discoveries&quot;&gt;&lt;a name=&quot;additional-discoveries&quot;&gt;&lt;/a&gt;Additional discoveries&lt;/h3&gt;
+        &lt;h4 id=&quot;in-step-2-about-the-openssh&quot;&gt;In step 2: About the OpenSSH&lt;/h4&gt;
+        &lt;p&gt;In my Windows 10 build the OpenSSH Client was enabled by default. It’s a luck, because I missed the release notes that
+        Microsoft actually added it to the Windows at all. Otherwise I would install some third party solution. But the built-in
+        is just as good as any other or even better.&lt;/p&gt;
+        &lt;h4 id=&quot;in-step-8-issues-with-the-docker-desktop&quot;&gt;In step 8: Issues with the Docker Desktop&lt;/h4&gt;
         &lt;p&gt;After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
-        choose the settings. There &lt;strong&gt;you MUST uncheck&lt;/strong&gt; the &lt;em&gt;Start Docker Desktop when you log in&lt;/em&gt; option to avoid to start it
-        earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers.&lt;/p&gt;
+        choose the settings. There &lt;strong&gt;you MUST uncheck&lt;/strong&gt; the &lt;em&gt;Start Docker Desktop when you log in&lt;/em&gt; option to avoid to start automatically
+        earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers 
+        and mounting manually always sucks.&lt;/p&gt;
+        &lt;h4 id=&quot;in-step-10-skip-the-terminal-emulator-part&quot;&gt;In step 10: Skip the terminal emulator part&lt;/h4&gt;
+        &lt;p&gt;Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
+        but let’s stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the &lt;strong&gt;CMD.exe&lt;/strong&gt; is not enough, the 
+        &lt;strong&gt;PowerShell&lt;/strong&gt; has a different purpose, the Git for windows shipped the &lt;strong&gt;BASH.exe&lt;/strong&gt; which is a good start, but now we have the &lt;strong&gt;WSL.exe&lt;/strong&gt;. 
+        We need that, we work with that, we work IN that.&lt;/p&gt;
+        &lt;p&gt;So everything&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
         &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Settings of the Docker Desktop&lt;/figcaption&gt;
@@ -40,7 +52,12 @@
         &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop-2.png&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Choose your WSL distribution&lt;/figcaption&gt;
         &lt;/figure&gt;
-        &lt;p&gt;And in the future, first always start the wsl first, and then the Docker Desktop app.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="docker" /><category term="docker" /><category term="wsl2" /><category term="jekyll" /><category term="webpack" /><category term="phpstorm" /><summary type="html">I collected all the steps I had to make to build a full-value development environment.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-12-05T15:23:00+01:00</published><updated>2019-12-18T17:16:33+01:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
+        &lt;p&gt;And in the future, first always start the wsl first, and then the Docker Desktop app.&lt;/p&gt;
+        &lt;h3 id=&quot;fine-tuning-the-phpstorm-terminal&quot;&gt;&lt;a name=&quot;phpstorm&quot;&gt;&lt;/a&gt;Fine tuning the PHPStorm terminal&lt;/h3&gt;
+        &lt;p&gt;&lt;a href=&quot;https://www.jetbrains.com/&quot; target=&quot;_blank&quot;&gt;JetBrains&lt;/a&gt; is an amazing company, which develops some really fantastic and without-only tools
+        for the developer community. I am a PHP developer, so I use the &lt;a href=&quot;https://www.jetbrains.com/phpstorm/&quot; target=&quot;_blank&quot;&gt;PHPStorm&lt;/a&gt;, but if
+        you feel more comfortable on the frontend side, the &lt;a href=&quot;https://www.jetbrains.com/webstorm/&quot; target=&quot;_blank&quot;&gt;WebStorm&lt;/a&gt; is also a perfect choice.
+        I believe, the common root makes this tutorial valid for the WebStorm as well.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="docker" /><category term="docker" /><category term="wsl2" /><category term="phpstorm" /><summary type="html">I collected all the steps I had to make to build a full-value web development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2019-12-05T15:23:00+01:00</published><updated>2019-12-18T17:16:33+01:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
         &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
         But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
         huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;

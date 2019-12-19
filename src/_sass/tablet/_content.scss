@@ -2,3 +2,25 @@
 @import "../sizes";
 @import "../fonts";
 
+body {
+  .h-header,
+  .codeOfTheDay,
+  .m-menu,
+  .c-content,
+  .f-footer {
+    display: none;
+  }
+}
+
+body::before {
+  display: block;
+  max-width: 70rem;
+  margin: 50vh auto 0 auto;
+  content: 'Tablet view is on the way! Please be patient.';
+  color: $worstpractice-tanned-light;
+  font-size: $size-header-normal;
+  line-height: $size-header-normal-line;
+  text-align: center;
+  font-weight: 700;
+  white-space: normal;
+}

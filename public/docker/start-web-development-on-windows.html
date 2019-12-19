@@ -25,7 +25,7 @@
     <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2020/">
     <meta property="og:image:width" content="600">
     <meta property="og:image:height" content="600">
-    <meta property="og:description" content="I collected all the steps I had to make to build a full-value development environment.">
+    <meta property="og:description" content="I collected all the steps I had to make to build a full-value web development environment on Windows 10.">
     <meta property="fb:admins" content="ivan.gabor.80">
     <meta property="fb:app_id" content="2178081495757871">
     <meta property="og:type" content="article">
@@ -36,7 +36,7 @@
     <meta name="twitter:title" content="Start web development on Windows">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@gaborivan1980">
-    <meta name="twitter:description" content="I collected all the steps I had to make to build a full-value development environment.">
+    <meta name="twitter:description" content="I collected all the steps I had to make to build a full-value web development environment on Windows 10.">
     <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2020/">
     <link rel="canonical" href="https://www.worstpractice.dev">
     <link rel="alternate" type="application/rss+xml" title="Start web development on Windows&nbsp;-&nbsp;Worst Practice" href="/feed.xml">
@@ -119,7 +119,7 @@
           <ul class="m-menu__navigation">
             <li><a class="m-menu__link -technical" rel="tag" href="/tags/technical/">Technical <sup>2</sup></a></li>
             <li><a class="m-menu__link -wsl2" rel="tag" href="/tags/wsl2/">WSL2 <sup>1</sup></a></li>
-            <li><a class="m-menu__link -webpack" rel="tag" href="/tags/webpack/">Webpack <sup>1</sup></a></li>
+            <li><a class="m-menu__link -phpstorm" rel="tag" href="/tags/phpstorm/">PHPStorm <sup>1</sup></a></li>
           </ul>
           <a class="m-menu__link -more" href="/tags/">More</a>
         </nav>
@@ -154,14 +154,12 @@
               <p class="a-meta__tags">Posted with the following tags:
                 <a href="/tags/docker/index.html">#Docker</a>, 
                 <a href="/tags/wsl2/index.html">#WSL2</a>, 
-                <a href="/tags/jekyll/index.html">#Jekyll</a>, 
-                <a href="/tags/webpack/index.html">#Webpack</a>, 
                 <a href="/tags/phpstorm/index.html">#PHPStorm</a>
               </p>
             </div>
           </header>
           <p class="a-excerpt">
-            I collected all the steps I had to make to build a full-value development environment.
+            I collected all the steps I had to make to build a full-value web development environment on Windows 10.
           </p>
           <div class="a-body">
             <h3 id="prolog">Prolog</h3>
@@ -172,10 +170,13 @@
             <p>With the clean install I found it to be the perfect time to use all the knowledge I gathered during the years, and bring 
               together a smooth, easy-to-use and maintainable workspace for web development, that sucks less to set up and feels better
               to use than ever before.</p>
-            <h3 id="tldr">TL;DR</h3>
-            <p>It might be too long, and we all know, that when we need something, just search for it on the Internet, and there’s a high chance 
-              to find the right solution. No need to reinvent the wheel.</p>
-            <p>So here are all the sources you will need to have a nice DIY-day:</p>
+            <h3 id="-todo-follow-the-trail">// @TODO follow the trail</h3>
+            <p>It might be too long to write a step-by-step tutorial, and we all know, that when we need something, we only need to search 
+              for it on the Internet, and there’s a high chance to find the right solution. No need to reinvent the wheel.</p>
+            <p>In fact, the following links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
+              not so recent, I unintentionally made <a href="#additional-discoveries">new discoveries</a>. Don’t forget to read them before you
+              take the actions described on the linked pages.</p>
+            <p>So here are the sources you will need to have a nice DIY-day:</p>
             <ol>
               <li><a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank">Install Windows 10</a>.</li>
               <li><a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank">Enable the built-in OpenSSH Client</a> if it’s not present by default.</li>
@@ -188,15 +189,24 @@
               <li><a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank">Share ENV variables between WSL and Windows</a></li>
               <li><a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank">Set up a more productive shell</a></li>
               <li><a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank">Fix the “git push to GitHub from WSL” issue</a></li>
+              <li>And in the end, I wrote about <a href="#phpstorm">how I set up the PHPStorm terminal</a></li>
             </ol>
-            <p>In fact, these links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
-              not so recent, I unintentionally made new discoveries. Of course in some cases I deviated from the description, because they were 
-              irrelevant for me, or they were just outdated.</p>
-            <h3 id="additional-discoveries">Additional discoveries</h3>
-            <h4 id="issues-with-the-docker-desktop">Issues with the Docker Desktop</h4>
+            <h3 id="additional-discoveries"><a name="additional-discoveries"></a>Additional discoveries</h3>
+            <h4 id="in-step-2-about-the-openssh">In step 2: About the OpenSSH</h4>
+            <p>In my Windows 10 build the OpenSSH Client was enabled by default. It’s a luck, because I missed the release notes that
+              Microsoft actually added it to the Windows at all. Otherwise I would install some third party solution. But the built-in
+              is just as good as any other or even better.</p>
+            <h4 id="in-step-8-issues-with-the-docker-desktop">In step 8: Issues with the Docker Desktop</h4>
             <p>After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
-              choose the settings. There <strong>you MUST uncheck</strong> the <em>Start Docker Desktop when you log in</em> option to avoid to start it
-              earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers.</p>
+              choose the settings. There <strong>you MUST uncheck</strong> the <em>Start Docker Desktop when you log in</em> option to avoid to start automatically
+              earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers 
+              and mounting manually always sucks.</p>
+            <h4 id="in-step-10-skip-the-terminal-emulator-part">In step 10: Skip the terminal emulator part</h4>
+            <p>Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
+              but let’s stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the <strong>CMD.exe</strong> is not enough, the 
+              <strong>PowerShell</strong> has a different purpose, the Git for windows shipped the <strong>BASH.exe</strong> which is a good start, but now we have the <strong>WSL.exe</strong>. 
+              We need that, we work with that, we work IN that.</p>
+            <p>So everything</p>
             <figure class="a-illustration">
               <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png" />
               <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
@@ -207,6 +217,11 @@
               <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
             </figure>
             <p>And in the future, first always start the wsl first, and then the Docker Desktop app.</p>
+            <h3 id="fine-tuning-the-phpstorm-terminal"><a name="phpstorm"></a>Fine tuning the PHPStorm terminal</h3>
+            <p><a href="https://www.jetbrains.com/" target="_blank">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
+              for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a>, but if
+              you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a> is also a perfect choice.
+              I believe, the common root makes this tutorial valid for the WebStorm as well.</p>
           </div>
           <footer class="a-footer">
             <h3 class="a-footer__title">About the author</h3>
