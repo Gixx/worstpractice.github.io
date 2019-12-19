@@ -64,15 +64,6 @@ choose the settings. There **you MUST uncheck** the _Start Docker Desktop when y
 earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers 
 and mounting manually always sucks.
 
-#### In step 10: Skip the terminal emulator part
-
-Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
-but let's stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the **CMD.exe** is not enough, the 
-**PowerShell** has a different purpose, the Git for windows shipped the **BASH.exe** which is a good start, but now we have the **WSL.exe**. 
-We need that, we work with that, we work IN that.
-
-So everything
-
 <figure class="a-illustration">
     <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png">
     <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
@@ -86,6 +77,13 @@ Under the _Resources_ menu, enable the WSL integration by selecting the Linux di
 </figure>
 
 And in the future, first always start the wsl first, and then the Docker Desktop app.
+
+#### In step 10: Skip the terminal emulator part
+
+Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
+but let's stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the **CMD.exe** is not enough, the 
+**PowerShell** has a different purpose, the Git for windows shipped the **BASH.exe** which is a good start, but now we have the **WSL.exe**. 
+We need that, we work with that, we work in that.
 
 ### <a name="phpstorm"></a>Fine tuning the PHPStorm terminal
 

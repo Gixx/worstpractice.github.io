@@ -35,7 +35,7 @@ const FeatureToggle = function (options) {
         // Wipe out any dirt
         HTMLElement.innerHTML = '';
 
-        let state = Util.getCookie(toggleOptions.cookie) === 'Yes'
+        let state = Util.getCookie(toggleOptions.cookie) === 'On'
             ? true
             : toggleOptions.state;
 
@@ -63,7 +63,7 @@ const FeatureToggle = function (options) {
          */
         let switchState = function (state) {
             document.getElementById('feature-toggle-' + featureName).checked = state;
-            Util.setCookie(toggleOptions.cookie, state ? 'Yes' : 'No', 365);
+            Util.setCookie(toggleOptions.cookie, state ? 'On' : 'Off', 365);
         };
 
         switchState(state);
@@ -103,10 +103,14 @@ const FeatureToggle = function (options) {
     );
 
     return {
-        init : function (featureToggleTargets) {
+        init : function () {
             if (initialized) {
                 return;
             }
+
+            let featureToggleTargets = typeof arguments[0] !== 'undefined'
+                ? arguments[0]
+                : {};
 
             options.verbose && console.group(
                 '%c[Feature Toggle Switch]%c ...looking for Feature Toggle Switch elements.',
@@ -125,7 +129,7 @@ const FeatureToggle = function (options) {
                 let featureName = element.dataset.feature;
                 let toggleOptions = (typeof featureToggleTargets[featureName] !== 'undefined')
                     ? featureToggleTargets[featureName]
-                    : {state: false, label: 'Toggle feature', cookie: 'feature_'+featureName};
+                    : {state: false, label: 'Toggle feature "'+featureName+'" On or Off', cookie: 'feature_'+featureName};
 
                 element.component = new FeatureToggleSwitchElement(element, featureName, toggleOptions);
             });

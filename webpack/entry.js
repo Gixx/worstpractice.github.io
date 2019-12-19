@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('Component.Util.Ready', function () {
     window['isDisqusEnabled'] = function () {
-        return Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
+        return Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'On';
     };
 
     /**
