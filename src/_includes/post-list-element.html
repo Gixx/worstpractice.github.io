@@ -10,16 +10,14 @@
     {%- endif -%}
 
     <header class="l-header">
-        <h3 class="l-header__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-        <p class="l-header__author">
-            by <a href="/author/{{ post.author_slug | default: site.author_slug }}/index.html">{{ post.author | default: site.author }}</a>
-        </p>
+        <p class="l-header__author">by {{ post.author | default: site.author }}</p>
         {%- assign m = post.date | date: "%-m" | minus: 0 -%}
         {%- assign postMonth = site.data[site.lang].months[m] -%}
         {%- capture postDate  -%}
             {{ postMonth }}&nbsp;{{ post.date | date: '%e' }}, {{ post.date | date: '%Y' }}
         {%- endcapture -%}
-        <p class="l-header__date">on {{ postDate }}</p>
+        <p class="l-header__date">{{ postDate }}</p>
+        <h3 class="l-header__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
     </header>
     <p class="l-excerpt">
         {{ post.excerpt }}

@@ -80,12 +80,13 @@
   }
 }
 
+.l-header {
+  margin-top: -3rem;
+}
+
 .l-header__title {
-  font-size: $size-header-normal;
-  line-height: $size-header-normal-line;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: $size-header-tiny;
+  line-height: $size-header-tiny-line;
   max-width: 22rem;
 
   a {
@@ -101,6 +102,21 @@
   font-family: $font-serif;
   font-weight: 400;
   font-style: italic;
+}
+
+.l-header__author {
+  background-color: $black-75;
+  color: $worstpractice-tanned-light;
+  right: 0.4rem;
+  display: inline-block;
+  float: right;
+  padding: 0.1rem 0.5rem;
+  opacity: 0.75;
+}
+
+.l-header__date {
+  clear: right;
+  padding-top: 1rem;
 }
 
 .l-article:nth-child(3n + 0) {
@@ -130,8 +146,8 @@
     width: 34rem;
 
     .l-header__title {
-      font-size: $size-header-medium;
-      line-height: $size-header-medium-line;
+      font-size: $size-header-normal;
+      line-height: $size-header-normal-line;
       max-width: 34rem;
     }
 
