@@ -131,7 +131,14 @@ pre * {
   letter-spacing: normal;
 }
 
-code {
+p code {
+  display: inline-block;
+  font-family: $font-monospace;
+  background: $worstpractice-tanned;
+  padding: 0 0.5rem;
+}
+
+pre code {
   display: block;
   width: 100%;
   margin: 0;

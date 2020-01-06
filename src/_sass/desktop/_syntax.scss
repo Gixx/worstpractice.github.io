@@ -46,13 +46,13 @@
 
   .rouge-table {
     display: block;
-    width: $desktop-content-width - 2rem;
+    //width: $desktop-content-width - 2rem;
 
     tbody {
       display: block;
       margin: 0;
       padding: 0;
-      width: $desktop-content-width - 2rem;
+      //width: $desktop-content-width - 2rem;
     }
 
     tr {
@@ -60,7 +60,7 @@
       position: relative;
       margin: 0;
       padding: 0;
-      width: $desktop-content-width - 2rem;
+      //width: $desktop-content-width - 2rem;
     }
   }
 

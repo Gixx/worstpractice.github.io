@@ -8,8 +8,8 @@ illustrationCaption: ''
 illustration_share: ''
 category: docker
 categoryLabel: 'Docker'
-tags:   [docker,wsl2,phpstorm]
-tagLabels: ['Docker','WSL2','PHPStorm']
+tags:   [docker,wsl2,poweline-shell,phpstorm]
+tagLabels: ['Docker','WSL2', 'Powerline Shell','PHPStorm']
 excerpt: 'I collected all the steps I had to make to build a full-value web development environment on Windows 10.'
 review: true
 ---
@@ -47,17 +47,19 @@ So here are the sources you will need to have a nice DIY-day:
 9. <a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank">Share ENV variables between WSL and Windows</a>
 10. <a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank">Set up a more productive shell</a>
 11. <a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank">Fix the "git push to GitHub from WSL" issue</a>
-12. And in the end, I wrote about <a href="#phpstorm">how I set up the PHPStorm terminal</a>
+
+From this point you can start your work with docker, it's easy and fun. If you use PHPStorm for your work, <a href="#phpstorm">I have some tips</a>
+to make your life a little bit easier. 
 
 ### <a name="additional-discoveries"></a>Additional discoveries
 
-#### In step 2: About the OpenSSH
+#### In step #2: About the OpenSSH
 
 In my Windows 10 build the OpenSSH Client was enabled by default. It's a luck, because I missed the release notes that
 Microsoft actually added it to the Windows at all. Otherwise I would install some third party solution. But the built-in
 is just as good as any other or even better. 
 
-#### In step 8: Issues with the Docker Desktop
+#### In step #8: Issues with the Docker Desktop
 
 After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
 choose the settings. There **you MUST uncheck** the _Start Docker Desktop when you log in_ option to avoid to start automatically
@@ -76,9 +78,9 @@ Under the _Resources_ menu, enable the WSL integration by selecting the Linux di
     <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
 </figure>
 
-And in the future, first always start the wsl first, and then the Docker Desktop app.
+And in the future, first always start the WSL first, and then the Docker Desktop app.
 
-#### In step 10: Skip the terminal emulator part
+#### In step #10: Skip the terminal emulator part
 
 Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
 but let's stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the **CMD.exe** is not enough, the 
@@ -91,3 +93,115 @@ We need that, we work with that, we work in that.
 for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a>, but if
 you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a> is also a perfect choice.
 I believe, the common root makes this tutorial valid for the WebStorm as well.   
+
+I don't really like the endless path of the Documents folder in Windows, so I usually store my projects on my secondary hard drive: <code>D:\Project</code>.
+For the sake of clarity I create an example project: <code>MyTestProject</code>. The PHPStorm sets the built-in terminal's path to the project root, so the
+Terminal will look something like this: 
+
+<figure class="a-illustration">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm.png">
+    <figcaption class="a-illustration__caption">The Terminal tool in PHPStorm</figcaption>
+</figure>
+
+The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.
+
+<figure class="a-illustration">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-2.png">
+    <figcaption class="a-illustration__caption">Terminal settings</figcaption>
+</figure> 
+
+If the we change the <code>Shell path</code>'s value to <code>C:\Windows\System32\wsl.exe</code>, we see our beautiful PowerlineShell prompt we had 
+set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.
+
+<figure class="a-illustration">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-3.png">
+    <figcaption class="a-illustration__caption">Terminal settings</figcaption>
+</figure> 
+
+It's simple, isn't it? Then why am I wasting your previous time on write about a straightforward process? The answer is: 
+
+> Because in some cases - which I can't identify - the Docker gives an extra twist to the simplicity.
+
+Yes, we want to use Docker. So let's create a simple Docker machine. Personally I like the <code>docker-compose up -d</code> command more than the
+<code>docker run --one --billion --different --spooky --parameters</code>. So let's create a simple Docker composition for webpack :
+
+```yaml
+version: '3.7'
+services:
+  my_webpack:
+    build:
+      context: .
+      dockerfile: docker.my_webpack
+    container_name: 'my_webpack'
+    volumes:
+      - './:/app'
+```
+
+...and a <code>DOCKERFILE</code>, named <code>docker.my_webpack</code>:
+
+```
+# docker.webpack
+
+FROM node:13.4.0-alpine
+
+WORKDIR /app
+
+RUN npm install webpack@4.41.2 -g
+RUN npm install webpack-cli@3.3.10 -g
+RUN apk add bash
+CMD tail -f /dev/null
+```
+
+After finish the set up, the Terminal prompt may - but not necessarily - change from the project's folder to WSL mounting point, and will look something like this:
+
+<figure class="a-illustration">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-4.png">
+    <figcaption class="a-illustration__caption">Terminal settings</figcaption>
+</figure> 
+
+I am not sure why it happens if it happens at all, and not sure why it doesn't happen for others with the same setup. But it's a fact, it happened to me.
+But one thing is sure: this is definitely not good. So how can we fix it? We need to use the environment variable in the PHPStorm we have seen 
+in step #9, and modify the <code>.zshrc</code> file in the WSL interface.
+
+#### Add custom ENVIRONMENT variable to PHPStorm's Terminal
+
+Open up the Terminal's settings window in PHPStorm again, and in the <code>Environment variables</code> field add the following:  
+
+```
+PROJECT=MyTestProject;PATH=%PATH%\;D:\Projects;WSLENV=PROJECT/u
+```
+
+Let me explain what we added:
+* <code>PROJECT=MyTestProject</code> - we define a new environment variable, PROJECT and its value is the folder name of our project
+* <code>PATH=%PATH%\;D:\Projects</code> - we add the project's parent folder to the PATH 
+* <code>WSLENV=PROJECT/u</code> - we pass the PROJECT variable to the WSLENV. The <code>\u</code> flag indicates the value should only be included when invoking WSL from Win32.
+
+As you see, the PATH variable is not included in the WSLENV, however if we don't present it here, the WSL won't start.  
+
+So, in theory when the PHPStorm opens its Terminal emulator and calls the <code>wsl.exe</code>, it should pass all these variables to it. 
+
+####  Change the ZShell init script
+
+Let's get into the <code>WSL</code> command line and edit the <code>.zshrc</code> file in the "_home_" folder: 
+
+```bash
+vim ~/.zshrc
+```
+
+Add the following lines to the end of the file:
+
+```bash
+# correct the initial path
+cd /mnt/d/Projects
+
+# correct the project path
+if [[ -v PROJECT ]]; then
+    cd $PROJECT
+fi
+```
+
+First we enforce the <code>WSL</code> to go into our general project root folder's mounted equivalent: <code>/mnt/d/Projects</code>. I think it's
+not a bad idea to start our work in WSL always in the same folder to not mess up the while system.
+
+Second, we look for the <code>PROJECT</code> environment variable. Remember, we've just passed it through the WSLENV. If this variable exists, it
+tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work. 
