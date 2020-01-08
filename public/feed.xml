@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-08T13:29:22+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-01-08T13:29:22+01:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
-        &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
-        But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
-        huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;
-        &lt;ul&gt;
-        &lt;li&gt;What if I write something rubbish, because the English is not my mother tongue?&lt;/li&gt;
-        &lt;li&gt;What if I write something absolutely wrong, because I was too lazy to read a book in the given topic?&lt;/li&gt;
-        &lt;li&gt;What if I write something totally bullshit, that ruins my prestige to a level, where nobody will ever count with me again?&lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;h3 id=&quot;what-will-i-present-here&quot;&gt;What will I present here?&lt;/h3&gt;
-        &lt;p&gt;Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
-        when I need them. And of course, it would be amazing if someone else other than me would also find these articles useful.&lt;/p&gt;
-        &lt;p&gt;To fulfill this goal, I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
-        code samples but also links to the working source codes.&lt;/p&gt;
-        &lt;p&gt;I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
-        My plan is to atomize these projects as much as possible, and create standalone modules or libraries, then publish
-        them here one-by-one.&lt;/p&gt;
-        &lt;p&gt;I don’t say, that I am a top programmer with super-human knowledge in every programming language and technology. I know
-        what I know, but I don’t know what I know wrong. The I am sure of one thing: I’d like to share my experiences. And I
-        hope You welcome them. And You - dear visitor - can correct me, and judge me any time.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html">It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.</summary></entry><entry><title type="html">Start web development on Windows</title><link href="http://0.0.0.0:4000/wsl/start-web-development-on-windows.html" rel="alternate" type="text/html" title="Start web development on Windows" /><published>2020-01-05T14:38:00+01:00</published><updated>2020-01-06T18:02:02+01:00</updated><id>http://0.0.0.0:4000/wsl/start-web-development-on-windows</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/start-web-development-on-windows.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-08T13:56:37+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Start web development on Windows</title><link href="http://0.0.0.0:4000/wsl/start-web-development-on-windows.html" rel="alternate" type="text/html" title="Start web development on Windows" /><published>2020-01-10T14:38:00+01:00</published><updated>2020-01-08T13:50:31+01:00</updated><id>http://0.0.0.0:4000/wsl/start-web-development-on-windows</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/start-web-development-on-windows.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
         &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new
         RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
         hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I
@@ -63,12 +44,12 @@
         earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
         and mounting manually always sucks.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/start-web-development-on-windows/docker-desktop.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Settings of the Docker Desktop&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;Under the &lt;em&gt;Resources&lt;/em&gt; menu, enable the WSL integration by selecting the Linux distribution you have.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop-2.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/start-web-development-on-windows/docker-desktop-2.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Choose your WSL distribution&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;And in the future, first always start the WSL first, and then the Docker Desktop app.&lt;/p&gt;
@@ -86,18 +67,18 @@
         For the sake of clarity I create an example project: &lt;code&gt;MyTestProject&lt;/code&gt;. The PHPStorm sets the built-in terminal’s path to the project root, so the
         Terminal will look something like this:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm.png&quot; width=&quot;800&quot; height=&quot;571&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm.png&quot; width=&quot;800&quot; height=&quot;571&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The default state of the Terminal tool in PHPStorm&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;The PHPStorm uses the &lt;code&gt;CMD.exe&lt;/code&gt; by default, but luckily we can change that at our own will.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-2.png&quot; width=&quot;800&quot; height=&quot;574&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-2.png&quot; width=&quot;800&quot; height=&quot;574&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Terminal settings in PHPStorm&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;If the we change the &lt;code&gt;Shell path&lt;/code&gt;’s value to &lt;code&gt;C:\Windows\System32\wsl.exe&lt;/code&gt;, we see our beautiful PowerlineShell prompt we had
         set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-3.png&quot; width=&quot;800&quot; height=&quot;180&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-3.png&quot; width=&quot;800&quot; height=&quot;180&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with the WSL prompt&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:&lt;/p&gt;
@@ -126,7 +107,7 @@
         &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;./:/app'&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;…and a &lt;code&gt;DOCKERFILE&lt;/code&gt;, named &lt;code&gt;docker.my_webpack&lt;/code&gt;:&lt;/p&gt;
-        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        &lt;div class=&quot;language-docker highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
         3
         4
@@ -136,17 +117,17 @@
         8
         9
         10
-        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;# docker.webpack
-        FROM node:13.4.0-alpine
-        WORKDIR /app
-        RUN npm install webpack@4.41.2 -g
-        RUN npm install webpack-cli@3.3.10 -g
-        RUN apk add bash
-        CMD tail -f /dev/null
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# docker.my_webpack&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; node:13.4.0-alpine&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /app&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;webpack@4.41.2 &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;webpack-cli@3.3.10 &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;apk add bash
+        &lt;span class=&quot;k&quot;&gt;CMD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; tail -f /dev/null&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-4.png&quot; width=&quot;800&quot; height=&quot;120&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-4.png&quot; width=&quot;800&quot; height=&quot;120&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with wrong default path&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.
@@ -190,4 +171,23 @@
         &lt;p&gt;Second, we look for the &lt;code&gt;PROJECT&lt;/code&gt; environment variable. Remember, we’ve just passed it through the WSLENV. If this variable exists, it
         tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work.&lt;/p&gt;
         &lt;h3 id=&quot;thats-all-for-now&quot;&gt;That’s all for now&lt;/h3&gt;
-        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><summary type="html">I collected all the steps I had to make to build a full-value web development environment on Windows 10.</summary></entry></feed>
+        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><summary type="html">I collected all the steps I had to make to build a full-value web development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-01-08T13:34:20+01:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
+        &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
+        But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
+        huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;What if I write something rubbish, because the English is not my mother tongue?&lt;/li&gt;
+        &lt;li&gt;What if I write something absolutely wrong, because I was too lazy to read a book in the given topic?&lt;/li&gt;
+        &lt;li&gt;What if I write something totally bullshit, that ruins my prestige to a level, where nobody will ever count with me again?&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3 id=&quot;what-will-i-present-here&quot;&gt;What will I present here?&lt;/h3&gt;
+        &lt;p&gt;Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
+        when I need them. And of course, it would be amazing if someone else other than me would also find these articles useful.&lt;/p&gt;
+        &lt;p&gt;To fulfill this goal, I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
+        code samples but also links to the working source codes.&lt;/p&gt;
+        &lt;p&gt;I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
+        My plan is to atomize these projects as much as possible, and create standalone modules or libraries, then publish
+        them here one-by-one.&lt;/p&gt;
+        &lt;p&gt;I don’t say, that I am a top programmer with super-human knowledge in every programming language and technology. I know
+        what I know, but I don’t know what I know wrong. The I am sure of one thing: I’d like to share my experiences. And I
+        hope You welcome them. And You - dear visitor - can correct me, and judge me any time.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html">It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.</summary></entry></feed>

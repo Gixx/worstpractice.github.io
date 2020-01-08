@@ -21,7 +21,7 @@
     <meta property="og:site_name" content="Worst Practice">
     <meta property="og:title" content="Start web development on Windows&nbsp;-&nbsp;Worst Practice">
     <meta property="og:url" content="https://www.worstpractice.dev/wsl/start-web-development-on-windows.html">
-    <meta name="date" content="2020-01-05T14:38:00+01:00">
+    <meta name="date" content="2020-01-10T14:38:00+01:00">
     <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2020/">
     <meta property="og:image:width" content="600">
     <meta property="og:image:height" content="600">
@@ -30,7 +30,7 @@
     <meta property="fb:app_id" content="2178081495757871">
     <meta property="og:type" content="article">
     <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
-    <meta property="article:published_time" content="2020-01-05T14:38:00+01:00">
+    <meta property="article:published_time" content="2020-01-10T14:38:00+01:00">
     <meta property="article:tag" content="blog"/>
     <!-- twitter share -->
     <meta name="twitter:title" content="Start web development on Windows">
@@ -108,8 +108,8 @@
         <nav>
           <h2 class="m-menu__title">Categories</h2>
           <ul class="m-menu__navigation">
-            <li><a class="m-menu__link -general" href="/general">General</a></li>
             <li><a class="m-menu__link -wsl -current" href="/wsl">WSL</a></li>
+            <li><a class="m-menu__link -general" href="/general">General</a></li>
           </ul>
         </nav>
         <nav>
@@ -143,7 +143,7 @@
           <header class="a-header">
             <h2 class="a-header__title">Start web development on Windows</h2>
             <div class="a-header__meta">
-              <p class="a-meta__date">Posted on January&nbsp; 5, 2020 14:38</p>
+              <p class="a-meta__date">Posted on January&nbsp;10, 2020 14:38</p>
               <p class="a-meta__expiration">Estimated date of expiration: June&nbsp; 1, 2020</p>
               <p class="a-meta__category">Posted under the <a href="/wsl/index.html">WSL</a> category</p>
               <p class="a-meta__tags">Posted with the following tags:
@@ -204,12 +204,12 @@
               earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
               and mounting manually always sucks.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png" width="700" height="410" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/docker-desktop.png" width="700" height="410" />
               <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
             </figure>
             <p>Under the <em>Resources</em> menu, enable the WSL integration by selecting the Linux distribution you have.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop-2.png" width="700" height="410" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/docker-desktop-2.png" width="700" height="410" />
               <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
             </figure>
             <p>And in the future, first always start the WSL first, and then the Docker Desktop app.</p>
@@ -227,18 +227,18 @@
               For the sake of clarity I create an example project: <code>MyTestProject</code>. The PHPStorm sets the built-in terminal’s path to the project root, so the
               Terminal will look something like this:</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm.png" width="800" height="571" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm.png" width="800" height="571" />
               <figcaption class="a-illustration__caption">The default state of the Terminal tool in PHPStorm</figcaption>
             </figure>
             <p>The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-2.png" width="800" height="574" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-2.png" width="800" height="574" />
               <figcaption class="a-illustration__caption">Terminal settings in PHPStorm</figcaption>
             </figure>
             <p>If the we change the <code>Shell path</code>’s value to <code>C:\Windows\System32\wsl.exe</code>, we see our beautiful PowerlineShell prompt we had
               set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-3.png" width="800" height="180" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-3.png" width="800" height="180" />
               <figcaption class="a-illustration__caption">The Terminal tool with the WSL prompt</figcaption>
             </figure>
             <p>It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:</p>
@@ -279,7 +279,7 @@
   </div>
 </div>
 <p>…and a <code>DOCKERFILE</code>, named <code>docker.my_webpack</code>:</p>
-<div class="highlighter-rouge">
+<div class="language-docker highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -294,16 +294,16 @@
 </pre>
   </td>
   <td class="rouge-code">
-    <pre># docker.webpack
+    <pre><span class="c"># docker.my_webpack</span>
 
-FROM node:13.4.0-alpine
+<span class="k">FROM</span><span class="s"> node:13.4.0-alpine</span>
 
-WORKDIR /app
+<span class="k">WORKDIR</span><span class="s"> /app</span>
 
-RUN npm install webpack@4.41.2 -g
-RUN npm install webpack-cli@3.3.10 -g
-RUN apk add bash
-CMD tail -f /dev/null
+<span class="k">RUN </span>npm <span class="nb">install </span>webpack@4.41.2 <span class="nt">-g</span>
+<span class="k">RUN </span>npm <span class="nb">install </span>webpack-cli@3.3.10 <span class="nt">-g</span>
+<span class="k">RUN </span>apk add bash
+<span class="k">CMD</span><span class="s"> tail -f /dev/null</span>
 </pre>
   </td>
 </tr>
@@ -314,7 +314,7 @@ CMD tail -f /dev/null
 </div>
 <p>After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-4.png" width="800" height="120" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-4.png" width="800" height="120" />
   <figcaption class="a-illustration__caption">The Terminal tool with wrong default path</figcaption>
 </figure>
 <p>I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.

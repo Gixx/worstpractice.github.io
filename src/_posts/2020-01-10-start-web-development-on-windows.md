@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Start web development on Windows"
-date: "2020-01-05 14:38:00 +0100"
+date: "2020-01-10 14:38:00 +0100"
 expiration: "2020-06-01"
 illustration: ''
 illustrationCaption: ''
@@ -75,14 +75,14 @@ earlier than the WSL2 engine. Because when it happens, none of your local drives
 and mounting manually always sucks.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png" width="700" height="410">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/docker-desktop.png" width="700" height="410">
     <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
 </figure>
 
 Under the _Resources_ menu, enable the WSL integration by selecting the Linux distribution you have.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop-2.png" width="700" height="410">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/docker-desktop-2.png" width="700" height="410">
     <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
 </figure>
 
@@ -107,14 +107,14 @@ For the sake of clarity I create an example project: <code>MyTestProject</code>.
 Terminal will look something like this:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm.png" width="800" height="571">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm.png" width="800" height="571">
     <figcaption class="a-illustration__caption">The default state of the Terminal tool in PHPStorm</figcaption>
 </figure>
 
 The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-2.png" width="800" height="574">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-2.png" width="800" height="574">
     <figcaption class="a-illustration__caption">Terminal settings in PHPStorm</figcaption>
 </figure>
 
@@ -122,7 +122,7 @@ If the we change the <code>Shell path</code>'s value to <code>C:\Windows\System3
 set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-3.png" width="800" height="180">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-3.png" width="800" height="180">
     <figcaption class="a-illustration__caption">The Terminal tool with the WSL prompt</figcaption>
 </figure>
 
@@ -147,8 +147,8 @@ services:
 
 ...and a <code>DOCKERFILE</code>, named <code>docker.my_webpack</code>:
 
-```
-# docker.webpack
+```docker
+# docker.my_webpack
 
 FROM node:13.4.0-alpine
 
@@ -163,7 +163,7 @@ CMD tail -f /dev/null
 After finish the set up, the Terminal prompt may - but not necessarily - change from the project's folder to WSL mounting point, and will look something like this:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-4.png" width="800" height="120">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/start-web-development-on-windows/phpstorm-4.png" width="800" height="120">
     <figcaption class="a-illustration__caption">The Terminal tool with wrong default path</figcaption>
 </figure>
 

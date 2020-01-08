@@ -30,4 +30,16 @@
   .language-js pre.highlight::before {
     content: 'Source code language: HTML'
   }
+
+  .language-bash pre.highlight::before {
+    content: 'Bash/ZSH'
+  }
+
+  .language-docker pre.highlight::before {
+    content: 'Dockerfile'
+  }
+
+  .language-yaml pre.highlight::before {
+    content: 'YAML file'
+  }
 }
