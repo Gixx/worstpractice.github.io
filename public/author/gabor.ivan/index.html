@@ -62,12 +62,6 @@
       if (!feature.srcset) {
           window.location.href = '/sorry.html';
       }
-      
-      const disqus_config = function () {
-          this.page.url = 'https://www.worstpractice.dev/author/gabor.ivan/';
-          this.page.identifier = 'about-gabor-ivan';
-          this.page.title = 'About Gabor Ivan';
-      };
     </script>
     <script type="application/javascript" src="/assets/js/site.min.js"></script>
   </head>
@@ -143,30 +137,36 @@
         <small>Copyright © 2020 All rights reserved. Worst Practice</small>
       </p>
     </footer>
-    <dialog id="c-gdpr">
-      <section class="c-gdpr__intro active">
-        <header>
-          <h4>We value your privacy</h4>
+    <dialog class="g-gdpr">
+      <section class="g-tab -intro -active">
+        <header class="g-header">
+          <h4 class="g-header__title">We value your privacy</h4>
         </header>
-        <p>
-          In order to give you the best experience on this website we use cookies to personalise the content. You can
+        <p class="g-body">
+          In order to give you the best experience on this website, we use cookies to personalise the content. You can
           click below if you are happy for us to continue doing this, or to see more information. You can always change
-          your mind later.
+          your mind later in the Privacy Policy page.
         </p>
-        <div class="c-gdpr__buttons">
-          <button class="tab-settings">More options</button>
-          <button class="tab-accept-all">I accept</button>
+        <div class="g-buttons">
+          <button class="g-buttons__showSettings">More options</button>
+          <button class="g-buttons__acceptAll">I accept</button>
         </div>
       </section>
-      <section class="c-gdpr__settings">
-        <header>
-          <h4>Cookie settings</h4>
+      <section class="g-tab -settings">
+        <header class="g-header">
+          <h4 class="g-header__title">Cookie settings</h4>
         </header>
-        <ul>
-          <li>
-            <div class="a-featureToggle" data-feature="commento"></div>
-          </li>
-        </ul>
+        <p class="g-body">
+          <ul>
+            <li>
+              <div class="g-featureToggle" data-feature="commento"></div>
+            </li>
+          </ul>
+        </p>
+        <div class="g-buttons">
+          <button class="g-buttons__showIntro">Back</button>
+          <button class="g-buttons__close">Close</button>
+        </div>
       </section>
     </dialog>
   </body>

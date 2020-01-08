@@ -1,6 +1,7 @@
 require('./components/Util');
 require('./components/LazyLoadImage');
 require('./components/FeatureToggle');
+require('./components/GdprDialog');
 
 const PRIVACY_ACCEPT_COOKIE_NAME = 'privacy_Accept';
 const PRIVACY_COMMENTO_COOKIE_NAME = 'privacy_CommentoEnabled';
@@ -81,16 +82,13 @@ document.addEventListener('Component.Util.Ready', function () {
         },
     };
 
+    window.LazyLoadImage.init();
+    window.FeatureToggle.init(featureToggle);
+    window.GdprDialog.init();
+
+    embedWorstPracticeSample();
+
     if (isCommentoEnabled()) {
         embedCommentoPlugin();
     }
-
-    if (!isPrivacyPolicyAccepted()) {
-        document.getElementById('c-gdpr').showModal();
-        Util.setCookie(PRIVACY_ACCEPT_COOKIE_NAME, 'On', 365);
-    }
-
-    window.LazyLoadImage.init();
-    window.FeatureToggle.init(featureToggle);
-    embedWorstPracticeSample();
 });

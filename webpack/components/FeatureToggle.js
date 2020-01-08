@@ -1,4 +1,5 @@
 /**
+ * Feature Toggle component
  *
  * @type {{init: FeatureToggle.init}}
  */

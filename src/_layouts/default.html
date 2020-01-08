@@ -117,12 +117,6 @@
             if (!feature.srcset) {
                 window.location.href = '/sorry.html';
             }
-
-            const disqus_config = function () {
-                this.page.url = '{{ site.homepage }}{{ page.url }}';
-                this.page.identifier = '{{ page.title | slugify: "latin" }}';
-                this.page.title = '{{ page.title }}';
-            };
         </script>
         <script type="application/javascript" src="/assets/js/site.min.js"></script>
     </head>
