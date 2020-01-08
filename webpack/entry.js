@@ -3,7 +3,7 @@ require('./components/LazyLoadImage');
 require('./components/FeatureToggle');
 
 const PRIVACY_ACCEPT_COOKIE_NAME = 'privacy_Accept';
-const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
+const PRIVACY_COMMENTO_COOKIE_NAME = 'privacy_CommentoEnabled';
 
 /**
  * Embed a "Worst practice" code sample.
@@ -37,6 +37,20 @@ const embedWorstPracticeSample = function () {
     });
 };
 
+const embedCommentoPlugin = function() {
+    let d = document, s = d.createElement('script');
+    let commento = d.getElementById('commento');
+
+    if (commento) {
+        commento.innerHTML = '';
+        s.src = 'https://cdn.commento.io/js/commento.js';
+        s.setAttribute('defer','defer');
+        s.setAttribute('data-auto-init', 'true');
+        s.setAttribute('data-no-fonts', 'true');
+        (d.head || d.body).appendChild(s);
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function () {
     window.Util.init();
 
@@ -51,21 +65,30 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('Component.Util.Ready', function () {
-    window['isDisqusEnabled'] = function () {
-        return Util.getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'On';
+    let isPrivacyPolicyAccepted = function () {
+        return Util.getCookie(PRIVACY_ACCEPT_COOKIE_NAME) === 'On';
     };
 
-    /**
-     *
-     * @type {{disqus: {state: boolean, label: string}}}
-     */
-    const featureToggle = {
-        disqus: {
-            state: isDisqusEnabled(),
-            label: "Do you allow the Disqus to load?",
-            cookie: PRIVACY_DISQUS_COOKIE_NAME
-        }
+    let isCommentoEnabled = function () {
+        return Util.getCookie(PRIVACY_COMMENTO_COOKIE_NAME) === 'On';
     };
+
+    const featureToggle = {
+        commento: {
+            state: isCommentoEnabled(),
+            label: "Do you allow the Commento to load?",
+            cookie: PRIVACY_COMMENTO_COOKIE_NAME
+        },
+    };
+
+    if (isCommentoEnabled()) {
+        embedCommentoPlugin();
+    }
+
+    if (!isPrivacyPolicyAccepted()) {
+        document.getElementById('c-gdpr').showModal();
+        Util.setCookie(PRIVACY_ACCEPT_COOKIE_NAME, 'On', 365);
+    }
 
     window.LazyLoadImage.init();
     window.FeatureToggle.init(featureToggle);

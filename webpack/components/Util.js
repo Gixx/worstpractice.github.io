@@ -231,8 +231,6 @@ const Util = function (options) {
                 .catch(function (err) {
                     failureCallback(err);
                 });
-
-            options.verbose && console.groupEnd();
         },
 
         /**

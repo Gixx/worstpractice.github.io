@@ -112,7 +112,7 @@ const FeatureToggle = function (options) {
                 ? arguments[0]
                 : {};
 
-            options.verbose && console.group(
+            options.verbose && console.info(
                 '%c[Feature Toggle Switch]%c ...looking for Feature Toggle Switch elements.',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:#cecece'
@@ -133,8 +133,6 @@ const FeatureToggle = function (options) {
 
                 element.component = new FeatureToggleSwitchElement(element, featureName, toggleOptions);
             });
-
-            options.verbose && console.groupEnd();
 
             window.Util.triggerEvent(document, 'Component.FeatureToggle.Ready');
             initialized = true;

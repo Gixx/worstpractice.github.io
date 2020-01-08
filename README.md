@@ -1,6 +1,6 @@
 # Worst Practice
 
-This is the Jekyll and architecture source code of the [Worst Practice](https://www.worstpractice.dev) website. 
+This is the Jekyll and architecture source code of the [Worst Practice](https://www.worstpractice.dev) website.
 
 ## License
 
@@ -10,7 +10,7 @@ The writings under the [_posts](./src/_posts) folder and the image assets are pr
 
 ### To create and run the work environment
 
-You need [Docker for Desktop](https://www.docker.com/products/docker-desktop) to be able to build the static website. 
+You need [Docker for Desktop](https://www.docker.com/products/docker-desktop) to be able to build the static website.
 
 After you installed the Docker for Desktop, you need to simply run:
 
@@ -101,7 +101,7 @@ docker-compose stop
 
 **IMPORTANT** Choose the parameter wisely, you can have some unwanted accident, if you use the `docker-compose down` instead.
 
-## Go back to the start line 
+## Go back to the start line
 
 If something went wrong with the containers and you want a hard reset, run:
 
@@ -111,7 +111,7 @@ docker-compose down -v
 
 ## How the containers work together?
 
-The concept is simple. The Webpack is watching for changes in the `./webpack` folder. If there's any, 
+The concept is simple. The Webpack is watching for changes in the `./webpack` folder. If there's any,
 it will immediately build the new minimized script into the `./src/assets/js/site.min.js` file.
 
 But the whole `./src` folder is under the survillance of the Jekyll, which is also waiting for changes.

@@ -386,3 +386,10 @@
   height: 12rem;
   width: calc(100% - 14rem);
 }
+
+.a-comments__title {
+  font-size: $size-header-normal;
+  line-height: $size-header-normal-line;
+  margin: 2rem 0 1rem 0;
+  text-align: center;
+}

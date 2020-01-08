@@ -97,7 +97,7 @@ const LazyLoadImage = function (options) {
                 return;
             }
 
-            options.verbose && console.group(
+            options.verbose && console.info(
                 '%c[Lazy Load Image]%c ...looking for image elements.',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:#cecece'
@@ -123,8 +123,6 @@ const LazyLoadImage = function (options) {
                 element.component = new LazyLoadImageElement(element);
                 imageObserver.observe(element);
             });
-
-            options.verbose && console.groupEnd();
 
             window.Util.triggerEvent(document, 'Component.LazyLoadImage.Ready');
             initialized = true;

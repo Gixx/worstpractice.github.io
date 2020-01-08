@@ -20,7 +20,7 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Worst Practice">
     <meta property="og:title" content="Start web development on Windows&nbsp;-&nbsp;Worst Practice">
-    <meta property="og:url" content="https://www.worstpractice.dev/docker/start-web-development-on-windows.html">
+    <meta property="og:url" content="https://www.worstpractice.dev/wsl/start-web-development-on-windows.html">
     <meta name="date" content="2020-01-05T14:38:00+01:00">
     <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2020/">
     <meta property="og:image:width" content="600">
@@ -40,7 +40,7 @@
     <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2020/">
     <link rel="canonical" href="https://www.worstpractice.dev">
     <link rel="alternate" type="application/rss+xml" title="Start web development on Windows&nbsp;-&nbsp;Worst Practice" href="/feed.xml">
-    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/docker/start-web-development-on-windows.html">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/wsl/start-web-development-on-windows.html">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
@@ -75,7 +75,7 @@
       }
       
       const disqus_config = function () {
-          this.page.url = 'https://www.worstpractice.dev/docker/start-web-development-on-windows.html';
+          this.page.url = 'https://www.worstpractice.dev/wsl/start-web-development-on-windows.html';
           this.page.identifier = 'start-web-development-on-windows';
           this.page.title = 'Start web development on Windows';
       };
@@ -108,18 +108,16 @@
         <nav>
           <h2 class="m-menu__title">Categories</h2>
           <ul class="m-menu__navigation">
-            <li><a class="m-menu__link -docker -current" href="/docker">Docker</a></li>
             <li><a class="m-menu__link -general" href="/general">General</a></li>
-            <li><a class="m-menu__link -php" href="/php">PHP</a></li>
-            <li><a class="m-menu__link -javascript" href="/javascript">JavaScript</a></li>
+            <li><a class="m-menu__link -wsl -current" href="/wsl">WSL</a></li>
           </ul>
         </nav>
         <nav>
           <h2 class="m-menu__title">Tags</h2>
           <ul class="m-menu__navigation">
-            <li><a class="m-menu__link -technical" rel="tag" href="/tags/technical/">Technical <sup>2</sup></a></li>
             <li><a class="m-menu__link -wsl2" rel="tag" href="/tags/wsl2/">WSL2 <sup>1</sup></a></li>
             <li><a class="m-menu__link -poweline-shell" rel="tag" href="/tags/poweline-shell/">Powerline Shell <sup>1</sup></a></li>
+            <li><a class="m-menu__link -phpstorm" rel="tag" href="/tags/phpstorm/">PHPStorm <sup>1</sup></a></li>
           </ul>
           <a class="m-menu__link -more" href="/tags/">More</a>
         </nav>
@@ -127,10 +125,7 @@
           <h2 class="m-menu__title">Archive</h2>
           <ul class="m-menu__navigation">
             <li><a class="m-menu__link " href="/archive/2020-01/">January, 2020</a></li>
-            <li><a class="m-menu__link " href="/archive/2019-12/">December, 2019</a></li>
-            <li><a class="m-menu__link " href="/archive/2019-10/">October, 2019</a></li>
           </ul>
-          <a class="m-menu__link -more" href="/archive/">More</a>
         </nav>
         <nav>
           <ul class="m-menu__navigation">
@@ -150,7 +145,7 @@
             <div class="a-header__meta">
               <p class="a-meta__date">Posted on January&nbsp; 5, 2020 14:38</p>
               <p class="a-meta__expiration">Estimated date of expiration: June&nbsp; 1, 2020</p>
-              <p class="a-meta__category">Posted under the <a href="/docker/index.html">Docker</a> category</p>
+              <p class="a-meta__category">Posted under the <a href="/wsl/index.html">WSL</a> category</p>
               <p class="a-meta__tags">Posted with the following tags:
                 <a href="/tags/docker/index.html">#Docker</a>, 
                 <a href="/tags/wsl2/index.html">#WSL2</a>, 
@@ -164,15 +159,20 @@
           </p>
           <div class="a-body">
             <h3 id="prolog">Prolog</h3>
-            <p>For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new 
+            <p>For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new
               RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
-              hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I 
+              hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I
               have my own reasons to choose this.</p>
-            <p>With the clean install I found it to be the perfect time to use all the knowledge I gathered during the years, and bring 
+            <p>With the clean install I found it to be the perfect time to use all the knowledge I gathered during the years, and bring
               together a smooth, easy-to-use and maintainable workspace for web development, that sucks less to set up and feels better
               to use than ever before.</p>
             <h3 id="-todo-follow-the-trail">// @TODO follow the trail</h3>
-            <p>It might be too long to write a step-by-step tutorial, and we all know, that when we need something, we only need to search 
+            <h4 id="before-you-start">Before you start</h4>
+            <p>The following list will change soon, as Microsoft will ship all the new features in Q2 2020 (if they can keep the deadlines).
+              That is why I set the expiration day of this article to the upcoming months. So this tutorial is for those who don’t want to
+              wait and are not afraid of taking a little bit of risk.</p>
+            <h4 id="the-list">The list</h4>
+            <p>It might be too long to write a step-by-step tutorial, and we all know, that when we need something, we only need to search
               for it on the Internet, and there’s a high chance to find the right solution. No need to reinvent the wheel.</p>
             <p>In fact, the following links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
               not so recent, I unintentionally made <a href="#additional-discoveries">new discoveries</a>. Don’t forget to read them before you
@@ -201,22 +201,22 @@
             <h4 id="in-step-8-issues-with-the-docker-desktop">In step #8: Issues with the Docker Desktop</h4>
             <p>After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
               choose the settings. There <strong>you MUST uncheck</strong> the <em>Start Docker Desktop when you log in</em> option to avoid to start automatically
-              earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers 
+              earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
               and mounting manually always sucks.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop.png" width="700" height="410" />
               <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
             </figure>
             <p>Under the <em>Resources</em> menu, enable the WSL integration by selecting the Linux distribution you have.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop-2.png" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/docker-desktop-2.png" width="700" height="410" />
               <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
             </figure>
             <p>And in the future, first always start the WSL first, and then the Docker Desktop app.</p>
             <h4 id="in-step-10-skip-the-terminal-emulator-part">In step #10: Skip the terminal emulator part</h4>
             <p>Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
-              but let’s stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the <strong>CMD.exe</strong> is not enough, the 
-              <strong>PowerShell</strong> has a different purpose, the Git for windows shipped the <strong>BASH.exe</strong> which is a good start, but now we have the <strong>WSL.exe</strong>. 
+              but let’s stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the <strong>CMD.exe</strong> is not enough, the
+              <strong>PowerShell</strong> has a different purpose, the Git for windows shipped the <strong>BASH.exe</strong> which is a good start, but now we have the <strong>WSL.exe</strong>.
               We need that, we work with that, we work in that.</p>
             <h3 id="fine-tuning-the-phpstorm-terminal"><a name="phpstorm"></a>Fine tuning the PHPStorm terminal</h3>
             <p><a href="https://www.jetbrains.com/" target="_blank">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
@@ -227,19 +227,19 @@
               For the sake of clarity I create an example project: <code>MyTestProject</code>. The PHPStorm sets the built-in terminal’s path to the project root, so the
               Terminal will look something like this:</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm.png" />
-              <figcaption class="a-illustration__caption">The Terminal tool in PHPStorm</figcaption>
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm.png" width="800" height="571" />
+              <figcaption class="a-illustration__caption">The default state of the Terminal tool in PHPStorm</figcaption>
             </figure>
             <p>The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-2.png" />
-              <figcaption class="a-illustration__caption">Terminal settings</figcaption>
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-2.png" width="800" height="574" />
+              <figcaption class="a-illustration__caption">Terminal settings in PHPStorm</figcaption>
             </figure>
-            <p>If the we change the <code>Shell path</code>’s value to <code>C:\Windows\System32\wsl.exe</code>, we see our beautiful PowerlineShell prompt we had 
+            <p>If the we change the <code>Shell path</code>’s value to <code>C:\Windows\System32\wsl.exe</code>, we see our beautiful PowerlineShell prompt we had
               set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-3.png" />
-              <figcaption class="a-illustration__caption">Terminal settings</figcaption>
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-3.png" width="800" height="180" />
+              <figcaption class="a-illustration__caption">The Terminal tool with the WSL prompt</figcaption>
             </figure>
             <p>It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:</p>
             <blockquote>
@@ -314,11 +314,11 @@ CMD tail -f /dev/null
 </div>
 <p>After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-4.png" />
-  <figcaption class="a-illustration__caption">Terminal settings</figcaption>
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/docker/start-web-development-on-windows/phpstorm-4.png" width="800" height="120" />
+  <figcaption class="a-illustration__caption">The Terminal tool with wrong default path</figcaption>
 </figure>
 <p>I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.
-  But one thing is sure: this is definitely not good. So how can we fix it? We need to use the environment variable in the PHPStorm we have seen 
+  And one thing is sure: this is definitely not good. So how can we fix it? We need to use the environment variable in the PHPStorm we have seen
   in step #9, and modify the <code>.zshrc</code> file in the WSL interface.</p>
 <h4 id="add-custom-environment-variable-to-phpstorms-terminal">Add custom ENVIRONMENT variable to PHPStorm’s Terminal</h4>
 <p>Open up the Terminal’s settings window in PHPStorm again, and in the <code>Environment variables</code> field add the following:</p>
@@ -391,9 +391,11 @@ CMD tail -f /dev/null
 </div>
 </div>
 <p>First we enforce the <code>WSL</code> to go into our general project root folder’s mounted equivalent: <code>/mnt/d/Projects</code>. I think it’s
-  not a bad idea to start our work in WSL always in the same folder to not mess up the while system.</p>
+  not a bad idea to start our work in WSL always in the same folder to not mess up the whole system.</p>
 <p>Second, we look for the <code>PROJECT</code> environment variable. Remember, we’ve just passed it through the WSLENV. If this variable exists, it
   tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work.</p>
+<h3 id="thats-all-for-now">That’s all for now</h3>
+<p>Am I right? Am I not? Please feel free to share your opinions.</p>
 </div>
 <footer class="a-footer">
   <h3 class="a-footer__title">About the author</h3>
@@ -406,30 +408,47 @@ CMD tail -f /dev/null
 </footer>
 </article>
 <aside class="a-comments">
-  <div id="disqus_thread"></div>
-  <noscript>
-    <p class="a-comments__noscript">
-      No JavaScript is enabled, no chance to judge me in public. But don't worry, you can
-      <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Start web development on Windows`" target="_blank" rel="noopener noreferrer">write me</a>
-      your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
-    </p>
-  </noscript>
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="commento">
+    It seems like that Commento or JavaScript in general is disabled, so no chance to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Start web development on Windows`" target="_blank" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
 </aside>
 </section>
 </main>
 <footer class="f-footer">
   <p class="f-footer__copyright">
-    <small>Copyright © 2019 All rights reserved. Worst Practice</small>
+    <small>Copyright © 2020 All rights reserved. Worst Practice</small>
   </p>
 </footer>
-<script type="application/javascript">
-  document.addEventListener('Component.Util.Ready', function () {
-      if (isDisqusEnabled()) {
-          var d = document, s = d.createElement('script');
-          s.src = 'https://worst-practice.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', +new Date());
-          (d.head || d.body).appendChild(s);
-      }
-  });
-</script></body>
+<dialog id="c-gdpr">
+  <section class="c-gdpr__intro active">
+    <header>
+      <h4>We value your privacy</h4>
+    </header>
+    <p>
+      In order to give you the best experience on this website we use cookies to personalise the content. You can
+      click below if you are happy for us to continue doing this, or to see more information. You can always change
+      your mind later.
+    </p>
+    <div class="c-gdpr__buttons">
+      <button class="tab-settings">More options</button>
+      <button class="tab-accept-all">I accept</button>
+    </div>
+  </section>
+  <section class="c-gdpr__settings">
+    <header>
+      <h4>Cookie settings</h4>
+    </header>
+    <ul>
+      <li>
+        <div class="a-featureToggle" data-feature="commento"></div>
+      </li>
+    </ul>
+  </section>
+</dialog>
+</body>
 </html>

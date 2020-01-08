@@ -97,18 +97,16 @@
         <nav>
           <h2 class="m-menu__title">Categories</h2>
           <ul class="m-menu__navigation">
-            <li><a class="m-menu__link -docker -current" href="/docker">Docker</a></li>
             <li><a class="m-menu__link -general" href="/general">General</a></li>
-            <li><a class="m-menu__link -php" href="/php">PHP</a></li>
-            <li><a class="m-menu__link -javascript" href="/javascript">JavaScript</a></li>
+            <li><a class="m-menu__link -wsl" href="/wsl">WSL</a></li>
           </ul>
         </nav>
         <nav>
           <h2 class="m-menu__title">Tags</h2>
           <ul class="m-menu__navigation">
-            <li><a class="m-menu__link -technical" rel="tag" href="/tags/technical/">Technical <sup>2</sup></a></li>
             <li><a class="m-menu__link -wsl2" rel="tag" href="/tags/wsl2/">WSL2 <sup>1</sup></a></li>
             <li><a class="m-menu__link -poweline-shell" rel="tag" href="/tags/poweline-shell/">Powerline Shell <sup>1</sup></a></li>
+            <li><a class="m-menu__link -phpstorm" rel="tag" href="/tags/phpstorm/">PHPStorm <sup>1</sup></a></li>
           </ul>
           <a class="m-menu__link -more" href="/tags/">More</a>
         </nav>
@@ -116,10 +114,7 @@
           <h2 class="m-menu__title">Archive</h2>
           <ul class="m-menu__navigation">
             <li><a class="m-menu__link " href="/archive/2020-01/">January, 2020</a></li>
-            <li><a class="m-menu__link " href="/archive/2019-12/">December, 2019</a></li>
-            <li><a class="m-menu__link " href="/archive/2019-10/">October, 2019</a></li>
           </ul>
-          <a class="m-menu__link -more" href="/archive/">More</a>
         </nav>
         <nav>
           <ul class="m-menu__navigation">
@@ -140,7 +135,7 @@
           <header class="l-header">
             <p class="l-header__author">by Gábor Iván</p>
             <p class="l-header__date">January&nbsp; 5, 2020</p>
-            <h3 class="l-header__title"><a href="/docker/start-web-development-on-windows.html">Start web development on Windows</a></h3>
+            <h3 class="l-header__title"><a href="/wsl/start-web-development-on-windows.html">Start web development on Windows</a></h3>
           </header>
           <p class="l-excerpt">
             I collected all the steps I had to make to build a full-value web development environment on Windows 10.
@@ -150,8 +145,34 @@
     </main>
     <footer class="f-footer">
       <p class="f-footer__copyright">
-        <small>Copyright © 2019 All rights reserved. Worst Practice</small>
+        <small>Copyright © 2020 All rights reserved. Worst Practice</small>
       </p>
     </footer>
+    <dialog id="c-gdpr">
+      <section class="c-gdpr__intro active">
+        <header>
+          <h4>We value your privacy</h4>
+        </header>
+        <p>
+          In order to give you the best experience on this website we use cookies to personalise the content. You can
+          click below if you are happy for us to continue doing this, or to see more information. You can always change
+          your mind later.
+        </p>
+        <div class="c-gdpr__buttons">
+          <button class="tab-settings">More options</button>
+          <button class="tab-accept-all">I accept</button>
+        </div>
+      </section>
+      <section class="c-gdpr__settings">
+        <header>
+          <h4>Cookie settings</h4>
+        </header>
+        <ul>
+          <li>
+            <div class="a-featureToggle" data-feature="commento"></div>
+          </li>
+        </ul>
+      </section>
+    </dialog>
   </body>
 </html>

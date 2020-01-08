@@ -175,17 +175,6 @@
                 <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
             </p>
         </footer>
-        {%- if page.review -%}
-        <script type="application/javascript">
-            document.addEventListener('Component.Util.Ready', function () {
-                if (isDisqusEnabled()) {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://worst-practice.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                }
-            });
-        </script>
-        {%- endif -%}
+        {%- include gdpr.html -%}
     </body>
 </html>
