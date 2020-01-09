@@ -44,6 +44,16 @@
     padding: 0 2rem;
     height: 25rem;
     overflow: auto;
+
+    a {
+      color: $worstpractice-red;
+      text-decoration: none;
+      outline: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   }
 
   .g-buttons {
@@ -51,6 +61,7 @@
     height: 12.5rem;
     padding: 3rem 2rem;
     justify-content: space-evenly;
+    outline: none;
 
     button {
       width: 20rem;

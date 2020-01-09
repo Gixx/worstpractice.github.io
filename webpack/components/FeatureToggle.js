@@ -1,7 +1,7 @@
 /**
  * Feature Toggle component
  *
- * @type {{init: FeatureToggle.init}}
+ * @type {{init: FeatureToggle.init, toggleAll: FeatureToggle.toggleAll, toggle: FeatureToggle.toggle, getComponentsByName: (function(String): [])}}
  */
 const FeatureToggle = function (options) {
     "use strict";
@@ -42,14 +42,13 @@ const FeatureToggle = function (options) {
 
         let checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
-        checkbox.setAttribute('id', 'feature-toggle-' + featureName);
-        checkbox.addEventListener('change', function (event) {
-            let element = event.target;
-            switchState(element.checked);
+        checkbox.setAttribute('id', HTMLElement.id + '-' + featureName);
+        checkbox.addEventListener('change', function () {
+            FeatureToggle.toggle(featureName)
         });
 
         let label = document.createElement('label');
-        label.setAttribute('for', 'feature-toggle-' + featureName);
+        label.setAttribute('for', HTMLElement.id + '-' + featureName);
         let labelText = document.createTextNode(toggleOptions.label);
         let labelSwitch = document.createElement('span');
         label.appendChild(labelText);
@@ -60,10 +59,11 @@ const FeatureToggle = function (options) {
 
         /**
          *
-         * @param {Boolean} state
+         * @param {Boolean} setActive
          */
-        let switchState = function (state) {
-            document.getElementById('feature-toggle-' + featureName).checked = state;
+        let switchState = function (setActive) {
+            state = setActive;
+            document.getElementById(HTMLElement.id + '-' + featureName).checked = state;
             Util.setCookie(toggleOptions.cookie, state ? 'On' : 'Off', 365);
         };
 
@@ -78,19 +78,37 @@ const FeatureToggle = function (options) {
         );
 
         return {
-            constructor: FeatureToggleSwitchElement,
+            constructor : FeatureToggleSwitchElement,
+
+            /**
+             * Returns the feature name.
+             *
+             * @returns {String}
+             */
+            getFeatureName : function() {
+                return featureName;
+            },
+
+            /**
+             * Returns the current state.
+             *
+             * @returns {String}
+             */
+            getState : function () {
+                return state ? 'on' : 'off';
+            },
 
             /**
              * Toggles the switch on.
              */
-            on: function() {
+            on : function() {
                 switchState(true);
             },
 
             /**
              * Toggles the switch off.
              */
-            off: function () {
+             off : function () {
                 switchState(false);
             }
         }
@@ -104,6 +122,9 @@ const FeatureToggle = function (options) {
     );
 
     return {
+        /**
+         * Initialize the component handler.
+         */
         init : function () {
             if (initialized) {
                 return;
@@ -137,6 +158,79 @@ const FeatureToggle = function (options) {
 
             window.Util.triggerEvent(document, 'Component.FeatureToggle.Ready');
             initialized = true;
+        },
+
+        /**
+         * Get all FeatureToggle elements by name.
+         *
+         * @param {String} featureToggleName
+         * @returns {[]}
+         */
+        getComponentsByName : function(featureToggleName) {
+            if (!initialized) {
+                this.init();
+            }
+
+            let components = [];
+
+            featureToggleSwitches.forEach(function (element) {
+                if (typeof element.component !== 'undefined') {
+                    if (element.component.getFeatureName() === featureToggleName) {
+                        components.push(element.component);
+                    }
+                }
+            });
+
+            return components;
+        },
+
+        /**
+         * Toggle FeatureToggle element(s) by the given name.
+         *
+         * @param {String} featureToggleName The non-unique name of the FeatureToggle element.
+         * @return {Array}
+         */
+        toggle : function(featureToggleName) {
+            if (!initialized) {
+                this.init();
+            }
+
+            featureToggleSwitches.forEach(function (element) {
+                if (typeof element.component !== 'undefined') {
+                    if (element.component.getFeatureName() === featureToggleName) {
+                        if (element.component.getState() === 'on') {
+                            element.component.off();
+                        } else {
+                            element.component.on();
+                        }
+                    }
+                }
+            });
+        },
+
+        /**
+         * Toggle on/off all FeatureToggle elements.
+         *
+         * @param {String} newState The new status: 'on' or 'off'.
+         */
+        toggleAll : function (newState) {
+            if (!initialized) {
+                this.init();
+            }
+
+            if (['on', 'off'].indexOf(newState) === -1) {
+                newState = 'on';
+            }
+
+            featureToggleSwitches.forEach(function (element) {
+                if (typeof element.component !== 'undefined') {
+                    if (newState === 'on') {
+                        element.component.on();
+                    } else {
+                        element.component.off();
+                    }
+                }
+            });
         }
     };
 }({verbose: true});
