@@ -45,6 +45,9 @@ const LazyLoadImage = function (options) {
         return {
             constructor: LazyLoadImageElement,
 
+            /**
+             * Loads the actual image when it gets into view
+             */
             loadImage: function () {
                 if (!HTMLElement.hasAttribute('data-src')) {
                     return;
@@ -128,6 +131,11 @@ const LazyLoadImage = function (options) {
             initialized = true;
         },
 
+        /**
+         * Returns the collection of lazy-loaded images.
+         *
+         * @returns {NodeList}
+         */
         getLazyLoadImages: function () {
             return lazyLoadImages;
         }
