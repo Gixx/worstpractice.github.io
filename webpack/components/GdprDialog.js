@@ -31,7 +31,7 @@ const GdprDialog = function (options) {
      */
     let GdprDialogElement = function (HTMLElement) {
         let openDialog = function() {
-            HTMLElement.showModal();
+            HTMLElement.style.display = 'block';
             options.verbose && console.info(
                 '%c[GDPR Dialog]%c ⚡%c Dialog window opened : %o',
                 'background:'+consoleColorId+';font-weight:bold;',
@@ -45,7 +45,7 @@ const GdprDialog = function (options) {
          * Closes the modal window
          */
         let closeDialog = function () {
-            HTMLElement.close();
+            HTMLElement.style.display = 'none';
             options.verbose && console.info(
                 '%c[GDPR Dialog]%c ⚡%c Dialog window closed : %o',
                 'background:'+consoleColorId+';font-weight:bold;',
@@ -134,7 +134,7 @@ const GdprDialog = function (options) {
             );
 
             /** @type {HTMLDialogElement} element */
-            let dialogElement = document.querySelector('dialog.g-gdpr');
+            let dialogElement = document.querySelector('.dialog.g-gdpr');
 
             if (!dialogElement.hasAttribute('id')) {
                 dialogElement.setAttribute('id', 'GdprDialog' + (idCounter++));
