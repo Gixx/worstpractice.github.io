@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-10T09:50:37+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker.html" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T14:38:00+01:00</published><updated>2020-01-10T09:26:28+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
+        &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new
+        RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
+        hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I
+        have my own reasons to choose this.&lt;/p&gt;
+        &lt;p&gt;With the clean install I found it to be the perfect time to use all the knowledge I gathered during the years, and bring
+        together a smooth, easy-to-use and maintainable workspace for web development, that sucks less to set up and feels better
+        to use than ever before.&lt;/p&gt;
+        &lt;h3 id=&quot;-todo-follow-the-trail&quot;&gt;// @TODO follow the trail&lt;/h3&gt;
+        &lt;h4 id=&quot;before-you-start&quot;&gt;Before you start&lt;/h4&gt;
+        &lt;p&gt;The following list will change soon, as Microsoft will ship all the new features in Q2 2020 (if they can keep the deadlines).
+        That is why I set the expiration day of this article to the upcoming months. So this tutorial is for those who don’t want to
+        wait and are not afraid of taking a little bit of risk.&lt;/p&gt;
+        &lt;h4 id=&quot;the-list&quot;&gt;The list&lt;/h4&gt;
+        &lt;p&gt;It might be too long to write a step-by-step tutorial, and we all know, that when we need something, we only need to search
+        for it on the Internet, and there’s a high chance to find the right solution. No need to reinvent the wheel.&lt;/p&gt;
+        &lt;p&gt;In fact, the following links cover most part of the setup process, so I just had to put them in the right order. But since some of them are
+        not so recent, I unintentionally made &lt;a href=&quot;#additional-discoveries&quot;&gt;new discoveries&lt;/a&gt;. Don’t forget to read them before you
+        take the actions described on the linked pages.&lt;/p&gt;
+        &lt;p&gt;So here are the sources you will need to have a nice DIY-day:&lt;/p&gt;
+        &lt;ol&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/en-gb/software-download/windows10ISO&quot; target=&quot;_blank&quot;&gt;Install Windows 10&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://winaero.com/blog/enable-openssh-client-windows-10/&quot; target=&quot;_blank&quot;&gt;Enable the built-in OpenSSH Client&lt;/a&gt; if it’s not present by default.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://insider.windows.com/en-us/&quot; target=&quot;_blank&quot;&gt;Join the Insider Program&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview&quot; target=&quot;_blank&quot;&gt;Change your Insider settings to the “Fast Ring”&lt;/a&gt;, to get the Windows &lt;strong&gt;build 18917&lt;/strong&gt; or higher.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://gitforwindows.org/&quot; target=&quot;_blank&quot;&gt;Install Git for Windows&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot; target=&quot;_blank&quot;&gt;Install WSL1&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/wsl2-install&quot; target=&quot;_blank&quot;&gt;Install WSL2&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/docker-for-windows/edge-release-notes/&quot; target=&quot;_blank&quot;&gt;Install the Edge release of the Docker Desktop Community&lt;/a&gt;, version 2.1.7.0 or higher&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/&quot; target=&quot;_blank&quot;&gt;Share ENV variables between WSL and Windows&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/&quot; target=&quot;_blank&quot;&gt;Set up a more productive shell&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://blog.anaisbetts.org/using-github-credentials-in-wsl2/&quot; target=&quot;_blank&quot;&gt;Fix the “git push to GitHub from WSL” issue&lt;/a&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;p&gt;From this point you can start your work with docker, it’s easy and fun. If you use PHPStorm for your work, &lt;a href=&quot;#phpstorm&quot;&gt;I have some tips&lt;/a&gt;
+        to make your life a little bit easier.&lt;/p&gt;
+        &lt;h3 id=&quot;additional-discoveries&quot;&gt;&lt;a name=&quot;additional-discoveries&quot;&gt;&lt;/a&gt;Additional discoveries&lt;/h3&gt;
+        &lt;h4 id=&quot;in-step-2-about-the-openssh&quot;&gt;In step #2: About the OpenSSH&lt;/h4&gt;
+        &lt;p&gt;In my Windows 10 build the OpenSSH Client was enabled by default. It’s a luck, because I missed the release notes that
+        Microsoft actually added it to the Windows at all. Otherwise I would install some third party solution. But the built-in
+        is just as good as any other or even better.&lt;/p&gt;
+        &lt;h4 id=&quot;in-step-8-issues-with-the-docker-desktop&quot;&gt;In step #8: Issues with the Docker Desktop&lt;/h4&gt;
+        &lt;p&gt;After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
+        choose the settings. There &lt;strong&gt;you MUST uncheck&lt;/strong&gt; the &lt;em&gt;Start Docker Desktop when you log in&lt;/em&gt; option to avoid to start automatically
+        earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
+        and mounting manually always sucks.&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Settings of the Docker Desktop&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;Under the &lt;em&gt;Resources&lt;/em&gt; menu, enable the WSL integration by selecting the Linux distribution you have.&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Choose your WSL distribution&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;And in the future, first always start the WSL first, and then the Docker Desktop app.&lt;/p&gt;
+        &lt;h4 id=&quot;in-step-10-skip-the-terminal-emulator-part&quot;&gt;In step #10: Skip the terminal emulator part&lt;/h4&gt;
+        &lt;p&gt;Many tutorial pages devote a whole chapter to the terminal emulators, particularly to the ConEmu. No doubt, that is a marvellous application,
+        but let’s stop a little bit and think. Do we really need it? What will we win with another terminal? Okay, the &lt;strong&gt;CMD.exe&lt;/strong&gt; is not enough, the
+        &lt;strong&gt;PowerShell&lt;/strong&gt; has a different purpose, the Git for windows shipped the &lt;strong&gt;BASH.exe&lt;/strong&gt; which is a good start, but now we have the &lt;strong&gt;WSL.exe&lt;/strong&gt;.
+        We need that, we work with that, we work in that.&lt;/p&gt;
+        &lt;h3 id=&quot;fine-tuning-the-phpstorm-terminal&quot;&gt;&lt;a name=&quot;phpstorm&quot;&gt;&lt;/a&gt;Fine tuning the PHPStorm terminal&lt;/h3&gt;
+        &lt;p&gt;&lt;a href=&quot;https://www.jetbrains.com/&quot; target=&quot;_blank&quot;&gt;JetBrains&lt;/a&gt; is an amazing company, which develops some really fantastic and without-only tools
+        for the developer community. I am a PHP developer, so I use the &lt;a href=&quot;https://www.jetbrains.com/phpstorm/&quot; target=&quot;_blank&quot;&gt;PHPStorm&lt;/a&gt;, but if
+        you feel more comfortable on the frontend side, the &lt;a href=&quot;https://www.jetbrains.com/webstorm/&quot; target=&quot;_blank&quot;&gt;WebStorm&lt;/a&gt; is also a perfect choice.
+        I believe, the common root makes this tutorial valid for the WebStorm as well.&lt;/p&gt;
+        &lt;p&gt;I don’t really like the endless path of the Documents folder in Windows, so I usually store my projects on my secondary hard drive: &lt;code&gt;D:\Project&lt;/code&gt;.
+        For the sake of clarity I create an example project: &lt;code&gt;MyTestProject&lt;/code&gt;. The PHPStorm sets the built-in terminal’s path to the project root, so the
+        Terminal will look something like this:&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png&quot; width=&quot;800&quot; height=&quot;571&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The default state of the Terminal tool in PHPStorm&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;The PHPStorm uses the &lt;code&gt;CMD.exe&lt;/code&gt; by default, but luckily we can change that at our own will.&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png&quot; width=&quot;800&quot; height=&quot;574&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Terminal settings in PHPStorm&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;If the we change the &lt;code&gt;Shell path&lt;/code&gt;’s value to &lt;code&gt;C:\Windows\System32\wsl.exe&lt;/code&gt;, we see our beautiful PowerlineShell prompt we had
+        set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png&quot; width=&quot;800&quot; height=&quot;180&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with the WSL prompt&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:&lt;/p&gt;
+        &lt;blockquote&gt;
+        &lt;p&gt;Because in some cases - which I can’t identify - the Docker gives an extra twist to the simplicity.&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;Yes, we want to use Docker. So let’s create a simple Docker machine. Personally I like the &lt;code&gt;docker-compose up -d&lt;/code&gt; command more than the
+        &lt;code&gt;docker run --one --billion --different --spooky --parameters&lt;/code&gt;. So let’s create a simple Docker composition for webpack :&lt;/p&gt;
+        &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;na&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;3.7'&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;my_webpack&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;.&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;dockerfile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;docker.my_webpack&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;container_name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;my_webpack'&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;./:/app'&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;…and a &lt;code&gt;DOCKERFILE&lt;/code&gt;, named &lt;code&gt;docker.my_webpack&lt;/code&gt;:&lt;/p&gt;
+        &lt;div class=&quot;language-docker highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# docker.my_webpack&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; node:13.4.0-alpine&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /app&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;webpack@4.41.2 &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;webpack-cli@3.3.10 &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;apk add bash
+        &lt;span class=&quot;k&quot;&gt;CMD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; tail -f /dev/null&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png&quot; width=&quot;800&quot; height=&quot;120&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with wrong default path&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.
+        And one thing is sure: this is definitely not good. So how can we fix it? We need to use the environment variable in the PHPStorm we have seen
+        in step #9, and modify the &lt;code&gt;.zshrc&lt;/code&gt; file in the WSL interface.&lt;/p&gt;
+        &lt;h4 id=&quot;add-custom-environment-variable-to-phpstorms-terminal&quot;&gt;Add custom ENVIRONMENT variable to PHPStorm’s Terminal&lt;/h4&gt;
+        &lt;p&gt;Open up the Terminal’s settings window in PHPStorm again, and in the &lt;code&gt;Environment variables&lt;/code&gt; field add the following:&lt;/p&gt;
+        &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;PROJECT=MyTestProject;PATH=%PATH%\;D:\Projects;WSLENV=PROJECT/u
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Let me explain what we added:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;code&gt;PROJECT=MyTestProject&lt;/code&gt; - we define a new environment variable, PROJECT and its value is the folder name of our project&lt;/li&gt;
+        &lt;li&gt;&lt;code&gt;PATH=%PATH%\;D:\Projects&lt;/code&gt; - we add the project’s parent folder to the PATH&lt;/li&gt;
+        &lt;li&gt;&lt;code&gt;WSLENV=PROJECT/u&lt;/code&gt; - we pass the PROJECT variable to the WSLENV. The &lt;code&gt;\u&lt;/code&gt; flag indicates the value should only be included when invoking WSL from Win32.&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;As you see, the PATH variable is not included in the WSLENV, however if we don’t present it here, the WSL won’t start.&lt;/p&gt;
+        &lt;p&gt;So, in theory when the PHPStorm opens its Terminal emulator and calls the &lt;code&gt;wsl.exe&lt;/code&gt;, it should pass all these variables to it.&lt;/p&gt;
+        &lt;h4 id=&quot;change-the-zshell-init-script&quot;&gt;Change the ZShell init script&lt;/h4&gt;
+        &lt;p&gt;Let’s get into the &lt;code&gt;WSL&lt;/code&gt; command line and edit the &lt;code&gt;.zshrc&lt;/code&gt; file in the “&lt;em&gt;home&lt;/em&gt;” folder:&lt;/p&gt;
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;vim ~/.zshrc
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Add the following lines to the end of the file:&lt;/p&gt;
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# correct the initial path&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /mnt/d/Projects
+        &lt;span class=&quot;c&quot;&gt;# correct the project path&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; PROJECT &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PROJECT&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;First we enforce the &lt;code&gt;WSL&lt;/code&gt; to go into our general project root folder’s mounted equivalent: &lt;code&gt;/mnt/d/Projects&lt;/code&gt;. I think it’s
+        not a bad idea to start our work in WSL always in the same folder to not mess up the whole system.&lt;/p&gt;
+        &lt;p&gt;Second, we look for the &lt;code&gt;PROJECT&lt;/code&gt; environment variable. Remember, we’ve just passed it through the WSLENV. If this variable exists, it
+        tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work.&lt;/p&gt;
+        &lt;h3 id=&quot;thats-all-for-now&quot;&gt;That’s all for now&lt;/h3&gt;
+        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html">I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what_am_i_doing.html" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-01-08T13:34:20+01:00</updated><id>http://0.0.0.0:4000/general/what_am_i_doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what_am_i_doing.html">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
+        &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
+        But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
+        huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;What if I write something rubbish, because the English is not my mother tongue?&lt;/li&gt;
+        &lt;li&gt;What if I write something absolutely wrong, because I was too lazy to read a book in the given topic?&lt;/li&gt;
+        &lt;li&gt;What if I write something totally bullshit, that ruins my prestige to a level, where nobody will ever count with me again?&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3 id=&quot;what-will-i-present-here&quot;&gt;What will I present here?&lt;/h3&gt;
+        &lt;p&gt;Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
+        when I need them. And of course, it would be amazing if someone else other than me would also find these articles useful.&lt;/p&gt;
+        &lt;p&gt;To fulfill this goal, I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
+        code samples but also links to the working source codes.&lt;/p&gt;
+        &lt;p&gt;I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
+        My plan is to atomize these projects as much as possible, and create standalone modules or libraries, then publish
+        them here one-by-one.&lt;/p&gt;
+        &lt;p&gt;I don’t say, that I am a top programmer with super-human knowledge in every programming language and technology. I know
+        what I know, but I don’t know what I know wrong. The I am sure of one thing: I’d like to share my experiences. And I
+        hope You welcome them. And You - dear visitor - can correct me, and judge me any time.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html">It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.</summary></entry></feed>

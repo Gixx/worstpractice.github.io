@@ -38,7 +38,7 @@ defaults:
       page_type: 'post_view'
 
 source: src
-destination: public
+destination: docs
 
 facebook_appid: 2178081495757871
 facebook_username: ivan.gabor.80

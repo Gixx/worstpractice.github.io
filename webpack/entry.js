@@ -10,10 +10,14 @@ require('./components/GdprDialog');
  * Embed a "Worst practice" code sample.
  */
 const embedWorstPracticeSample = function () {
-    let badCodes = [
-        '0001.html',
-        '0002.html'
-    ];
+    const badCodesCounter = 2;
+    let badCodes = [];
+
+    for (let i = 1; i <= badCodesCounter; i++) {
+        let fileCounter = '' + i;
+        badCodes.push(fileCounter.padStart(4, '0') + '.html');
+    }
+
     let date = new Date();
     let day = date.getDate();
     if (day < 10) {
