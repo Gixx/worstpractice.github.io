@@ -47,7 +47,7 @@
         {% if page.page_type == 'post_view' %}
         <meta name="date" content="{{ page.date | date_to_xmlschema }}">
             {% if page.illustration_share %}
-        <meta property="og:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration_share }}">
+        <meta property="og:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration_share }}">
         <meta property="og:image:width" content="600">
         <meta property="og:image:height" content="600">
             {% endif %}
