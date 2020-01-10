@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-10T10:49:53+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker.html" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-01-10T09:52:26+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-10T13:24:11+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker.html" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-01-10T09:52:26+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker.html">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
         &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new
         RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
         hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I
@@ -115,10 +115,7 @@
         6
         7
         8
-        9
-        10
-        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# docker.my_webpack&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; node:13.4.0-alpine&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; node:13.4.0-alpine&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /app&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;webpack@4.41.2 &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;webpack-cli@3.3.10 &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;

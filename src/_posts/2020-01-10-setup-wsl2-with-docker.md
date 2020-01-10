@@ -148,8 +148,6 @@ services:
 ...and a <code>DOCKERFILE</code>, named <code>docker.my_webpack</code>:
 
 ```docker
-# docker.my_webpack
-
 FROM node:13.4.0-alpine
 
 WORKDIR /app

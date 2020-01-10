@@ -210,7 +210,26 @@
   font-style: italic;
   font-size: $size-caption;
   line-height: $size-caption-line;
-  margin-top: 0.3rem;
+  margin-top: 0.6rem;
+
+  a {
+    color: $worstpractice-red;
+    text-decoration: none;
+    font-weight: 300;
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: $size-caption;
+    line-height: $size-caption-line;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a[target=_blank]::after {
+    margin-top: -0.5rem;
+    opacity: 0.5;
+  }
 }
 
 .a-excerpt {
