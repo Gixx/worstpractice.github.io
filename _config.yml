@@ -76,7 +76,7 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-permalink: /:categories/:title.html
+permalink: /:categories/:title
 
 autopages:
   enabled: true
@@ -107,7 +107,7 @@ pagination:
   enabled: true
   per_page: 12
   offset: 0
-  permalink: '/page/:num.html'
+  permalink: '/page/:num'
   title: ':title - Page :num'
   limit: 0
   sort_field: 'date'
