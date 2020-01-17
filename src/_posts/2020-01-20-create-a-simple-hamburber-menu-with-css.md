@@ -26,6 +26,11 @@ topic believe me. And now here's mine.
 The goal is to create a slide-in menu with semi-transparent, clickable backdrop without any JavaScript, image or font resources.
 Only HTML and CSS. Sounds easy, and after we have done it for the first time it IS easy. Let's see, what we need:
 
+### TL;DR
+
+If you don't want a detailed tutorial with description, only the working code sample, please check the source code on
+<a href="https://github.com/Gixx/worstpractice-css-hamburger-menu" target="_blank">GitHub</a>.
+
 #### Naming conventions
 
 There are many popular standards and recommendations on the market which should be considered before starting the development.
