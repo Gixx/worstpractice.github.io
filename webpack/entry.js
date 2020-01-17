@@ -10,7 +10,7 @@ require('./components/GdprDialog');
  * Embed a "Worst practice" code sample.
  */
 const embedWorstPracticeSample = function () {
-    const badCodesCounter = 2;
+    const badCodesCounter = 4;
     let badCodes = [];
 
     for (let i = 1; i <= badCodesCounter; i++) {
