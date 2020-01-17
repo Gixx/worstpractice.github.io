@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Create a simple Hamburger menu with CSS"
+title: "Create a simple Hamburger menu with CSS only"
 date: "2020-01-20 12:00:00 +0100"
 expiration: 'none'
-illustration: ''
-illustrationCaption: ''
-illustration_share: ''
+illustration: 'hamburger.jpg'
+illustrationCaption: 'Image by <a href="https://www.dairyqueen.com/" target="_blank">DairyQueen</a>'
+illustration_share: 'hamburger_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
 tags:   [css,html,smart]
 tagLabels: ['CSS','HTML', 'Smart']
-excerpt: "Let's start with a pretty smart solution. No JavaScript, only CSS."
+excerpt: "Let's start with a pretty easy and smart solution. No JavaScript, only CSS."
 review: true
 published: false
 ---
@@ -21,15 +21,16 @@ The basic idea was not mine. Unfortunately I don't even remember where I read ab
 credits, and I also unable to tell which solution was the one that give the base for my code. There are tons of tutorials in this
 topic believe me. And now here's mine.
 
-### The goal
-
-The goal is to create a slide-in menu with semi-transparent, clickable backdrop without any JavaScript, image or font resources.
-Only HTML and CSS. Sounds easy, and after we have done it for the first time it IS easy. Let's see, what we need:
-
 ### TL;DR
 
-If you don't want a detailed tutorial with description, only the working code sample, please check the source code on
+If you don't want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
 <a href="https://github.com/Gixx/worstpractice-css-hamburger-menu" target="_blank">GitHub</a>.
+
+### Build my Burger up!
+
+The goal is to create a slide-in menu with semi-transparent, clickable backdrop without any JavaScript, image or font resources.
+Only HTML and CSS. It sounds easy, and after we have done it for the first time, we will see that, it IS really easy to understand
+and adopt this technique to other use cases.
 
 #### Naming conventions
 
@@ -112,8 +113,6 @@ And of course we need the menu body itself and some content to make it useful:
 Unfortunately the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank">`::backdrop` CSS pseudo-element</a>
 is not supported in every modern browser... ☞ Safari! Hello?? ...so we have do a little bit of workaround.
 
-And of course I hope I don't have to say, that we don't give an orbital-curved fuck on the Internet Explorer, do we?
-
 ```html
 <div class="m-menu">
     ...
@@ -125,8 +124,8 @@ Now, that we have the menu skeleton, it's time to add the style that makes all t
 
 ### Pimp my Burger up!
 
-To be able to do the CSS job right, I like to visualize in my head the layers and boxes. We need to know which element will be over the other.
-So I made this simple diagram:
+To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
+be over the other. Until the W3C is not ready with the `Mind Reader API`, I use this simple diagram:
 
 <figure class="a-illustration">
     <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522">
@@ -223,10 +222,10 @@ We put the wrapper into the top left corner and stretch it over the whole browse
 See that we use the `vw` (_viewport width_) and `vh` (_viewport height_) instead of a percentage value. Why? In nutshell, a very non
 precisely answer is, we use it because the percentage will be calculated from the parent element, while the viewport is calculated
 from the browser window area size. And together with the `position: fixed` it will be always in the same viewport position even if we
-scroll the content "below". Below, because this wrapper should be `always on top`. For this make sure that the `z-index`'s value is
-high enough.
+scroll the content "below". Yes, they are **below**, because this wrapper should be **always on top**. For this make sure that the
+`z-index`'s value is high enough.
 
-> But if it's on the top it will block the content below!
+> But if it's on the top it will block the underneath content!
 
 No, and here's the little magic, I was talking about. The `pointer-events: none;` will make sure that this element will let through every
 pointer (mouse) events to the elements underneath.
@@ -240,5 +239,9 @@ Within the wrapper we can bravely position the elements
 #### 4. The menu
 
 #### 5. The backdrop
+
+### Live Demo
+
+// codepen
 
 ### Conclusion
