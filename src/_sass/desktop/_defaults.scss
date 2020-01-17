@@ -49,6 +49,11 @@ dt {
   float: left;
   width: 20rem;
   font-weight: 700;
+  margin-top: 1rem;
+}
+
+dt + dd {
+  margin-top: 1rem;
 }
 
 dd {

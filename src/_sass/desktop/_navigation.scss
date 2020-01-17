@@ -15,7 +15,7 @@
 }
 
 .m-menu__burger {
-  z-index: 8;
+  z-index: 1;
   position: absolute;
   width: 4rem;
   height: 3.2rem;
@@ -31,7 +31,6 @@
     position: relative;
     background: $worstpractice-tanned-light;
     border-radius: 0.3rem;
-    z-index: 30;
     transform-origin: 0.4rem 0;
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0), opacity 0.55s ease;
   }
@@ -46,7 +45,7 @@
 }
 
 .m-menu__toggle {
-  z-index: 9;
+  z-index: 2;
   position: absolute;
   width: 4rem;
   height: 3.2rem;
@@ -60,7 +59,7 @@
 }
 
 .m-menu__content {
-  z-index: 20;
+  z-index: 3;
   position: absolute;
   top: 0;
   left: 0;
@@ -126,7 +125,7 @@
 }
 
 .m-menu__backdrop {
-  z-index: 8;
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -139,7 +138,6 @@
 }
 
 .m-menu__toggle:checked {
-  z-index: 19;
   top: 0;
   left: 0;
   width: 100%;
@@ -148,11 +146,9 @@
 }
 
 .m-menu__toggle:checked ~ .m-menu__content {
-  z-index: 20;
   transform: none;
 }
 
 .m-menu__toggle:checked ~ .m-menu__backdrop {
-  z-index: 18;
   opacity: 1;
 }

@@ -279,7 +279,10 @@
   }
 
   p > code,
-  li > code {
+  a > code,
+  li > code,
+  dt > code,
+  dd > code {
     display: inline;
     white-space: normal;
     font-size: $size-sourcecode;
@@ -288,6 +291,7 @@
     padding: 0 0.5rem;
     margin: 0.3rem 0;
     text-indent: 0;
+    font-weight: normal;
   }
 }
 
