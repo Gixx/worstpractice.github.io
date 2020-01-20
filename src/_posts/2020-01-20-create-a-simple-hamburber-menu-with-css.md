@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Create a simple Hamburger menu with CSS only"
-date: "2020-01-20 12:00:00 +0100"
+date: "2020-01-20 21:40:00 +0100"
 level: 'Beginner'
 expiration: 'none'
 illustration: 'hamburger.jpg'
@@ -13,7 +13,7 @@ tags:   [css,html,smart]
 tagLabels: ['CSS','HTML', 'Smart']
 excerpt: "Let's start with a pretty easy and smart solution. No JavaScript, only CSS."
 review: true
-published: false
+published: true
 ---
 
 ### Confession
@@ -424,7 +424,13 @@ did it there, it will also "__played__" backwards when we get back to that state
 
 ### Live Demo
 
-// codepen
+I drop together a little demo, check it out on <a href="https://codepen.io/navig80/pen/VwYVBmo" target="_blank">CodePen</a>.
 
 ### Conclusion
+
+Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
+optimize it's structure a little bit while I was writing this article. It's all about learn, practice and learn again. And don't be afraid to leave the comfort 
+zone of the various frameworks.
+
+Is this a good practice or a worst practice? Please tell me.
 

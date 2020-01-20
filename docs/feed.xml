@@ -1,4 +1,461 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-20T17:12:21+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-01-10T13:25:26+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-20T21:39:44+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
+        &lt;p&gt;The basic idea was not mine. Unfortunately I don’t even remember where I read about if for the first time, so I am unable to place
+        credits, and I also unable to tell which solution was the one that give the base for my code. There are tons of tutorials in this
+        topic believe me. And now here’s mine.&lt;/p&gt;
+        &lt;h3 id=&quot;tldr&quot;&gt;TL;DR&lt;/h3&gt;
+        &lt;p&gt;If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
+        &lt;a href=&quot;https://github.com/Gixx/worstpractice-css-hamburger-menu&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;h3 id=&quot;build-my-burger-up&quot;&gt;Build my Burger up!&lt;/h3&gt;
+        &lt;p&gt;The goal is to create a slide-in menu with semi-transparent, clickable backdrop without any JavaScript, image or font resources.
+        Only HTML and CSS. It sounds easy, and after we have done it for the first time, we will see that, it IS really easy to understand
+        and adopt this technique to other use cases.&lt;/p&gt;
+        &lt;h4 id=&quot;naming-conventions&quot;&gt;Naming conventions&lt;/h4&gt;
+        &lt;p&gt;There are many popular standards and recommendations on the market which should be considered before starting the development.
+        I prefer the &lt;a href=&quot;https://css-tricks.com/abem-useful-adaptation-bem/&quot; target=&quot;_blank&quot;&gt;ABEM&lt;/a&gt;, but please feel free to use
+        any other you like. The code samples will be straightforward and easy to replace the class names.&lt;/p&gt;
+        &lt;h4 id=&quot;1-wrapper&quot;&gt;1. Wrapper&lt;/h4&gt;
+        &lt;p&gt;I tried some “wrapper-less” solutions during the development process, but none of them could satisfy my criteria. We &lt;strong&gt;NEED&lt;/strong&gt; a wrapper.
+        Anyways I like boxing and encapsulating.&lt;/p&gt;
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;h4 id=&quot;2-hamburger&quot;&gt;2. Hamburger&lt;/h4&gt;
+        &lt;p&gt;I’m starving for a (good) hamburger, and I am not (yet enough) afraid of the junk food giants. But forget about the food for a minute,
+        because what we are talking about now is that three little &lt;del&gt;piggies&lt;/del&gt; horizontal bars on the top left corner on this site (and on many
+        others). This symbol became a standard in the last decade, so again:&lt;/p&gt;
+        &lt;blockquote&gt;
+        &lt;p&gt;No need to reinvent the wheel.&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;There are (at least) three ways to create this icon:&lt;/p&gt;
+        &lt;ol&gt;
+        &lt;li&gt;Use an image. By itself, or as a background, doesn’t matter. A bit old thinking, but definitely the easiest.&lt;/li&gt;
+        &lt;li&gt;Use an Icon Font (like the &lt;a href=&quot;https://material.io/resources/icons/&quot; target=&quot;_blank&quot;&gt;Material Icons&lt;/a&gt;). Elegant and popular solution.&lt;/li&gt;
+        &lt;li&gt;Use meaningless markup and style them with CSS.&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;p&gt;I used the third option, because I promised a “CSS-only Hamburger Menu”, and not a “CSS-only Hamburger Menu with Image, Font and Cheese”.
+        So let’s create those meaningless markups:&lt;/p&gt;
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu__burger&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;h4 id=&quot;3-toggle-state&quot;&gt;3. Toggle state&lt;/h4&gt;
+        &lt;p&gt;Then, we have to be able to define two states: &lt;code class=&quot;highlighter-rouge&quot;&gt;Open&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Closed&lt;/code&gt;. Without JavaScript our toolkit is very limited when we
+        are talking about ‘state’. No doubt, the best tool for this job is the &lt;code class=&quot;highlighter-rouge&quot;&gt;checkbox&lt;/code&gt;. This HTML element natively provides us what we
+        need, and we don’t have to deal with any JavaScript to change its state. And most importantly: we can differentiate these states
+        on CSS level.&lt;/p&gt;
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        ...
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu__toggle&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;type=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;checkbox&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;h4 id=&quot;4-menu-body&quot;&gt;4. Menu body&lt;/h4&gt;
+        &lt;p&gt;And of course we need the menu body itself and some content to make it useful:&lt;/p&gt;
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        13
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        ...
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu__content&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Categories&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Cars&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;            
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Girls&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;            
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Money&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;            
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;h4 id=&quot;5-backdrop&quot;&gt;5. Backdrop&lt;/h4&gt;
+        &lt;p&gt;Unfortunately the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop&quot; target=&quot;_blank&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;::backdrop&lt;/code&gt; CSS pseudo-element&lt;/a&gt;
+        is not supported in every modern browser… ☞ Safari! Hello?? …so we have do a little bit of workaround.&lt;/p&gt;
+        &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        ...
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;m-menu__backdrop&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Now, that we have the menu skeleton, it’s time to add the style that makes all the magic.&lt;/p&gt;
+        &lt;h3 id=&quot;pimp-my-burger-up&quot;&gt;Pimp my Burger up!&lt;/h3&gt;
+        &lt;p&gt;To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
+        be over the other. Until the W3C is not ready with the &lt;code class=&quot;highlighter-rouge&quot;&gt;Mind Reader API&lt;/code&gt;, I use this simple diagram:&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg&quot; width=&quot;800&quot; height=&quot;522&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Box layers&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;p&gt;The actual page content will be between the &lt;code class=&quot;highlighter-rouge&quot;&gt;BODY&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;.m-menu&lt;/code&gt; wrapper.&lt;/p&gt;
+        &lt;h4 id=&quot;recommendation&quot;&gt;Recommendation&lt;/h4&gt;
+        &lt;p&gt;There are some default styles I used to set up every time, to be able to calculate better with box sizes. If you don’t want to use any of
+        the popular CSS “Frameworks”, I highly recommend you to use these setting as well. I believe they will make your life much easier.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
+        16
+        17
+        18
+        19
+        20
+        21
+        22
+        23
+        24
+        25
+        26
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;o&quot;&gt;*,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;::before&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;::after&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;box-sizing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;border-box&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;cursor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;font-size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;62.5%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;font-variant-ligatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;no-common-ligatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;font-feature-settings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;kern&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;liga&quot;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;clig&quot;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;py&quot;&gt;scroll-behavior&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;smooth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;overflow-x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;dl&gt;
+        &lt;dt&gt;&lt;code&gt;box-sizing: border-box;&lt;/code&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        Applied on every element and on the &lt;code&gt;before&lt;/code&gt; and &lt;code&gt;after&lt;/code&gt; pseudo-element. Helps calculating with the box sizes
+        and positions.
+        &lt;/dd&gt;
+        &lt;dt&gt;&lt;code&gt;cursor: default;&lt;/code&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        It's my personal preference, but I don't like the default cursor over the text. Sometimes it's really hard to find, where you left it.
+        &lt;/dd&gt;
+        &lt;dt&gt;&lt;code&gt;font-size: 62.5%;&lt;/code&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And 
+        later on you can simply use the &lt;a href=&quot;https://www.w3.org/TR/css-values-3/#rem&quot; target=&quot;_blank&quot;&gt;&lt;code&gt;rem&lt;/code&gt; unit&lt;/a&gt; instead 
+        of &lt;code&gt;px&lt;/code&gt;. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale 
+        properly and the design will not break apart.  
+        &lt;/dd&gt;
+        &lt;dt&gt;&lt;code&gt;orverflow-x: hidden;&lt;/code&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on 
+        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead 
+        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
+        appears, takes 20 pixels from the browsing area, and since our HTML is said to be &lt;code&gt;100vw&lt;/code&gt;, the whole thing together will be 
+        &lt;code&gt;100vw + 20px&lt;/code&gt;, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
+        Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
+        &lt;/dd&gt;
+        &lt;/dl&gt;
+        &lt;h4 id=&quot;1-the-wrapper&quot;&gt;1. The wrapper&lt;/h4&gt;
+        &lt;p&gt;We put the wrapper into the top left corner and stretch it over the whole browser window and also stuck it into that position whatever happens.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;z-index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;pointer-events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;See that we use the &lt;code class=&quot;highlighter-rouge&quot;&gt;vw&lt;/code&gt; (&lt;em&gt;viewport width&lt;/em&gt;) and &lt;code class=&quot;highlighter-rouge&quot;&gt;vh&lt;/code&gt; (&lt;em&gt;viewport height&lt;/em&gt;) instead of a percentage value. Why? In nutshell, a very non
+        precisely answer is, we use it because the percentage will be calculated from the parent element, while the viewport is calculated
+        from the browser window area size. And together with the &lt;code class=&quot;highlighter-rouge&quot;&gt;position: fixed&lt;/code&gt; it will be always in the same viewport position even if we
+        scroll the content “below”. Yes, they are &lt;strong&gt;below&lt;/strong&gt;, because this wrapper should be &lt;strong&gt;always on top&lt;/strong&gt;. For this make sure that the
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;z-index&lt;/code&gt;’s value is high enough.&lt;/p&gt;
+        &lt;blockquote&gt;
+        &lt;p&gt;But if it’s on the top it will block the underneath content!&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;No, and here’s the little magic, I was talking about. The &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events: none;&lt;/code&gt; will make sure that this element will let every
+        pointer (mouse) events through to the elements underneath.&lt;/p&gt;
+        &lt;h4 id=&quot;2-the-backdrop&quot;&gt;2. The backdrop&lt;/h4&gt;
+        &lt;p&gt;The first layer inside the wrapper - counting from bottom to top - is the backdrop. What the backdrop is about? According to the definition, it…&lt;/p&gt;
+        &lt;blockquote&gt;
+        &lt;p&gt;is a box the size of the viewport which is rendered immediately beneath any element being presented in full-screen mode. This includes both
+        elements which have been placed in full-screen mode using the Fullscreen API and &lt;dialog&gt; elements.&lt;/dialog&gt;&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;Cool. Unfortunately this definition belongs to the &lt;code class=&quot;highlighter-rouge&quot;&gt;::backdrop&lt;/code&gt; CSS pseudo-element, which is not supported, so we have to make it work with a bit
+        of thinking.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__backdrop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;z-index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fixed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;opacity&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;500ms&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ease-out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;pointer-events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Yet another full-streched element. However here we used percentage instead of viewport units. Remember what I wrote about the difference between these
+        units? We defined the &lt;strong&gt;must have&lt;/strong&gt; size of the whole menu for the wrapper. Each children will reflect to this, so the percentage is just fine.&lt;/p&gt;
+        &lt;p&gt;We defined here some contradictory things, like setting semi-transparent &lt;code class=&quot;highlighter-rouge&quot;&gt;background-color&lt;/code&gt; when also set the
+        opacity to zero. Why? We define everything that it should have when it will be fully visible, but the initial state is to not show it. Other styles
+        like &lt;code class=&quot;highlighter-rouge&quot;&gt;display: none&lt;/code&gt;, or &lt;code class=&quot;highlighter-rouge&quot;&gt;visibility: hidden&lt;/code&gt;, or positioning out of the scope are not suitable, because for the fade-in effect those are simply not
+        good. And we want fancy eye-candy for our menu, don’t we?&lt;/p&gt;
+        &lt;p&gt;See that we also ignore the click event on it. That is by purpose, our workaround solution doesn’t need to be clicked.&lt;/p&gt;
+        &lt;p&gt;For now let it rest a bit, and continue with the rest of the menu.&lt;/p&gt;
+        &lt;h4 id=&quot;3-the-burger&quot;&gt;3. The burger&lt;/h4&gt;
+        &lt;p&gt;The next layer is the Hamburger &lt;strong&gt;icon&lt;/strong&gt; which technically is only a visual thing.
+        Within the wrapper we can bravely position the elements with the &lt;code class=&quot;highlighter-rouge&quot;&gt;absolute&lt;/code&gt; value too.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__burger&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;z-index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1.1rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1.1rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.6rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;This will position the &lt;strong&gt;hamburger icon&lt;/strong&gt; box &lt;code class=&quot;highlighter-rouge&quot;&gt;11px&lt;/code&gt; from the top left corner. This is only the container for the bars which are:&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__burger&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;span&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3.2rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;255&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.3rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;So basically we set to hamburger container to &lt;code class=&quot;highlighter-rouge&quot;&gt;40px ✕ 40px&lt;/code&gt; with thick padding (two times &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt; on the sides and two times &lt;code class=&quot;highlighter-rouge&quot;&gt;6px&lt;/code&gt; on top and bottom),
+        that will reduce the inner area &lt;code class=&quot;highlighter-rouge&quot;&gt;32px ✕ 28px&lt;/code&gt;. This &lt;code class=&quot;highlighter-rouge&quot;&gt;32px&lt;/code&gt; width is exactly the with of the horizontal lines (the &lt;strong&gt;layers&lt;/strong&gt; of the hamburger), and
+        the &lt;code class=&quot;highlighter-rouge&quot;&gt;28px&lt;/code&gt; is also perfect, because it’s an easy to count value when we divide it with &lt;strong&gt;7&lt;/strong&gt;.&lt;/p&gt;
+        &lt;p&gt;Why seven? Three of them are the bars themselves - so the height of one bar is &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt; -, and four are the margins between them (also &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt;).&lt;/p&gt;
+        &lt;p&gt;Something like this on the picture:&lt;/p&gt;
+        &lt;figure class=&quot;a-illustration&quot;&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg&quot; width=&quot;800&quot; height=&quot;505&quot; /&gt;
+        &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Measuring the hamburger menu icon&lt;/figcaption&gt;
+        &lt;/figure&gt;
+        &lt;h4 id=&quot;4-the-toggle&quot;&gt;4. The toggle&lt;/h4&gt;
+        &lt;p&gt;The next layer is the toggle, the heart of the menu controlling. Remember, it’s a &lt;code class=&quot;highlighter-rouge&quot;&gt;checkbox&lt;/code&gt; element, that should be clickable, but not really visible.
+        So we do the following:&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__toggle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;z-index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1.1rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1.1rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;cursor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pointer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;outline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;black&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;pointer-events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;See that the size and position in the initial state is the same as the hamburger’s, and positioned right above it. Yes, the trick is you can change the
+        size of a checkbox. If you make is visible by setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;opacity&lt;/code&gt; to 1, you can see how weird it is. In fact in every browser it will look a bit different.
+        But we don’t want to so it, we need it only to be functional. Luckily it will be, even after change it’s default size.
+        And of course we have to make the hamburger clickable, so we set the &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events: all&lt;/code&gt;.&lt;/p&gt;
+        &lt;h4 id=&quot;5-the-menu&quot;&gt;5. The menu&lt;/h4&gt;
+        &lt;p&gt;The topmost layer is the menu content. It’s up to you how you design it, I prefer to make it similar to the one that the
+        &lt;a href=&quot;https://getmdl.io/components/index.html#layout-section&quot; target=&quot;_blank&quot;&gt;Material Design Lite&lt;/a&gt; uses. For this tutorial I focus on the menu
+        “&lt;strong&gt;frame&lt;/strong&gt;” only.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
+        16
+        17
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;z-index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;overflow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;30rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100vh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;2rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;background&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;230&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;230&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;230&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;transform-origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-31.5rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;transition&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transform&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.5s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cubic-bezier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0.77&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0.05&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;pointer-events&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;We defined a fixed &lt;code class=&quot;highlighter-rouge&quot;&gt;300px&lt;/code&gt; width and stretched it vertically. By setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;overflow: auto&lt;/code&gt;, we make sure to support the menus with many entries and
+        also make it work on small screens, like smart phones. We also enabled all &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events&lt;/code&gt;, because we want to make the menu items to be clickable.
+        Remember you have to do this only within the wrapper.&lt;/p&gt;
+        &lt;p&gt;We also added a little drop shadow just to visually highlight the menu. You can also see that we moved out the menu from the scope to the left with
+        the size of &lt;code class=&quot;highlighter-rouge&quot;&gt;315px&lt;/code&gt;. How we get this number? It’s the width of the menu (&lt;code class=&quot;highlighter-rouge&quot;&gt;300px&lt;/code&gt;), the spread of the shadow (&lt;code class=&quot;highlighter-rouge&quot;&gt;10px&lt;/code&gt;) and a little bit of safety margin
+        (&lt;code class=&quot;highlighter-rouge&quot;&gt;5px&lt;/code&gt;).&lt;/p&gt;
+        &lt;p&gt;And don’t think that I am a Math genius, the &lt;code class=&quot;highlighter-rouge&quot;&gt;cubic-bezier&lt;/code&gt; transition was fine-tuned with the &lt;a href=&quot;https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome&quot; target=&quot;_blank&quot;&gt;Google Chrome’s Dev Tools&lt;/a&gt;.&lt;/p&gt;
+        &lt;h4 id=&quot;6-changing-state&quot;&gt;6. Changing state&lt;/h4&gt;
+        &lt;p&gt;Now we have the menu’s initial style ready. But how will it work? Let’s define the workflow:&lt;/p&gt;
+        &lt;ol&gt;
+        &lt;li&gt;Initial / Closed state: the hamburger icon is clickable, the rest of the page is not blocked by the wrapper&lt;/li&gt;
+        &lt;li&gt;Click on the hamburger&lt;/li&gt;
+        &lt;li&gt;The menu slides in and the backdrop fades in. ☞ Open state.&lt;/li&gt;
+        &lt;li&gt;Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website “&lt;strong&gt;under&lt;/strong&gt;” it, and the full backdrop is clickable.&lt;/li&gt;
+        &lt;li&gt;Click on the menu items will load the targeted address, click on the backdrop will slide out the menu and fades out the backdrop. ☞ Closed state.&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;p&gt;This behavior can be defined in three little rules which will be applied only when the checkbox is checked. For this we have to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;:checked&lt;/code&gt;
+        pseudo-class selector which is widely supported.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__toggle&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:checked&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;margin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;When the unvisible checkbox is clicked, it will get the &lt;code class=&quot;highlighter-rouge&quot;&gt;checked&lt;/code&gt; property set by the browser, and with the &lt;code class=&quot;highlighter-rouge&quot;&gt;:checked&lt;/code&gt; pseudo-class selector we can
+        apply additional styles. Here we make it stretched to &lt;code class=&quot;highlighter-rouge&quot;&gt;100%&lt;/code&gt; in both directions. Why we use percent instead of the &lt;code class=&quot;highlighter-rouge&quot;&gt;vw&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;vh&lt;/code&gt; units? Because of the
+        same reason we used it for the backdrop.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__toggle&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:checked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.m-menu__content&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Here when the checkbox is checked the &lt;code class=&quot;highlighter-rouge&quot;&gt;.m-menu__content&lt;/code&gt; will drop its transform style, which was &lt;code class=&quot;highlighter-rouge&quot;&gt;translateX(-31.5rem);&lt;/code&gt;. In this case the &lt;code class=&quot;highlighter-rouge&quot;&gt;none&lt;/code&gt; is
+        equal with setting it to &lt;code class=&quot;highlighter-rouge&quot;&gt;translateX(0);&lt;/code&gt; but in a shorter way. The transition will add some dynamics into the slide-in.&lt;/p&gt;
+        &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.m-menu__toggle&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:checked&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.m-menu__backdrop&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;opacity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Setting the backdrops’s &lt;code class=&quot;highlighter-rouge&quot;&gt;opacity&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; will make it appear with a transition effect that we defined in the backdrop’s initial state. And since we
+        did it there, it will also “&lt;strong&gt;played&lt;/strong&gt;” backwards when we get back to that state.&lt;/p&gt;
+        &lt;h3 id=&quot;live-demo&quot;&gt;Live Demo&lt;/h3&gt;
+        &lt;p&gt;I drop together a little demo, check it out on &lt;a href=&quot;https://codepen.io/navig80/pen/VwYVBmo&quot; target=&quot;_blank&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+        &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+        &lt;p&gt;Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
+        optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort 
+        zone of the various frameworks.&lt;/p&gt;
+        &lt;p&gt;Is this a good practice or a worst practice? Please tell me.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="css" /><category term="html" /><category term="smart" /><summary type="html">Let's start with a pretty easy and smart solution. No JavaScript, only CSS.</summary></entry><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
         &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new
         RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
         hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I
@@ -168,7 +625,7 @@
         &lt;p&gt;Second, we look for the &lt;code&gt;PROJECT&lt;/code&gt; environment variable. Remember, we’ve just passed it through the WSLENV. If this variable exists, it
         tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work.&lt;/p&gt;
         &lt;h3 id=&quot;thats-all-for-now&quot;&gt;That’s all for now&lt;/h3&gt;
-        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html">I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what-am-i-doing" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-01-16T13:29:35+01:00</updated><id>http://0.0.0.0:4000/general/what-am-i-doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what-am-i-doing">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
+        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html">I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what-am-i-doing" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/general/what-am-i-doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what-am-i-doing">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
         &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
         But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
         huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;
