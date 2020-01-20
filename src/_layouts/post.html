@@ -24,6 +24,10 @@ page_type: post_view
 
                 <p class="a-meta__category">Posted under the <a href="/{{ page.category}}/index.html">{{ page.categoryLabel }}</a> category</p>
 
+                {%- if page.level != '' -%}
+                <p class="a-meta__level">Level: {{ page.level }}</p>
+                {%- endif -%}
+
                 <p class="a-meta__tags">Posted with the following tags:
                 {% for tag in page.tags %}
                     <a href="/tags/{{ tag }}/index.html">#{{ page.tagLabels[forloop.index0] }}</a>{% unless forloop.last %}, {% endunless %}

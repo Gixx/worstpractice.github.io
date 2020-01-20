@@ -2,6 +2,7 @@
 layout: post
 title: "Create a simple Hamburger menu with CSS only"
 date: "2020-01-20 12:00:00 +0100"
+level: 'Beginner'
 expiration: 'none'
 illustration: 'hamburger.jpg'
 illustrationCaption: 'Image by <a href="https://www.dairyqueen.com/" target="_blank">DairyQueen</a>'
@@ -40,7 +41,7 @@ any other you like. The code samples will be straightforward and easy to replace
 
 #### 1. Wrapper
 
-I tried some "wrapper-less" solutions during the development process, but any of them could satisfy my criteria. We **NEED** a wrapper.
+I tried some "wrapper-less" solutions during the development process, but none of them could satisfy my criteria. We **NEED** a wrapper.
 Anyways I like boxing and encapsulating.
 
 ```html
@@ -97,11 +98,11 @@ And of course we need the menu body itself and some content to make it useful:
     ...
     <div class="m-menu__content">
         <nav>
-            <h2 class="m-menu__title">Categories</h2>
+            <h2>Categories</h2>
             <ul>
-                <li><a href="#cars" class="m-menu__link -current">Cars</a></li>            
-                <li><a href="#girls" class="m-menu__link">Girls</a></li>            
-                <li><a href="#money" class="m-menu__link">Money</a></li>            
+                <li><a href="index.html">Cars</a></li>            
+                <li><a href="index.html">Girls</a></li>            
+                <li><a href="index.html">Money</a></li>            
             </ul>
         </nav>
     </div>
@@ -168,7 +169,7 @@ body {
 }
 ```
 
-I give a little description:
+**Explanation**
 
 <dl>
     <dt><code>box-sizing: border-box;</code></dt>
@@ -197,7 +198,7 @@ I give a little description:
         of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
         appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be 
         <code>100vw + 20px</code>, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
-        Of course you have to keep this in mind, and plan your design well to let enough space beside the content.
+        Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
     </dd>
 </dl>
 
@@ -227,21 +228,203 @@ scroll the content "below". Yes, they are **below**, because this wrapper should
 
 > But if it's on the top it will block the underneath content!
 
-No, and here's the little magic, I was talking about. The `pointer-events: none;` will make sure that this element will let through every
-pointer (mouse) events to the elements underneath.
+No, and here's the little magic, I was talking about. The `pointer-events: none;` will make sure that this element will let every
+pointer (mouse) events through to the elements underneath.
 
-#### 2. The burger
+#### 2. The backdrop
 
-Within the wrapper we can bravely position the elements
+The first layer inside the wrapper - counting from bottom to top - is the backdrop. What the backdrop is about? According to the definition, it...
 
-#### 3. The toggle
+> is a box the size of the viewport which is rendered immediately beneath any element being presented in full-screen mode. This includes both
+> elements which have been placed in full-screen mode using the Fullscreen API and <dialog> elements.
 
-#### 4. The menu
+Cool. Unfortunately this definition belongs to the `::backdrop` CSS pseudo-element, which is not supported, so we have to make it work with a bit
+of thinking.
 
-#### 5. The backdrop
+```css
+.m-menu__backdrop {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+  pointer-events: none;
+}
+```
+
+Yet another full-streched element. However here we used percentage instead of viewport units. Remember what I wrote about the difference between these
+units? We defined the **must have** size of the whole menu for the wrapper. Each children will reflect to this, so the percentage is just fine.
+
+We defined here some contradictory things, like setting semi-transparent `background-color` when also set the
+opacity to zero. Why? We define everything that it should have when it will be fully visible, but the initial state is to not show it. Other styles
+like `display: none`, or `visibility: hidden`, or positioning out of the scope are not suitable, because for the fade-in effect those are simply not
+good. And we want fancy eye-candy for our menu, don't we?
+
+See that we also ignore the click event on it. That is by purpose, our workaround solution doesn't need to be clicked.
+
+For now let it rest a bit, and continue with the rest of the menu.
+
+#### 3. The burger
+
+The next layer is the Hamburger __icon__ which technically is only a visual thing.
+Within the wrapper we can bravely position the elements with the `absolute` value too.
+
+```css
+.m-menu__burger {
+  z-index: 2;
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  top: 1.1rem;
+  left: 1.1rem;
+  padding: 0.6rem 0.4rem;
+}
+```
+
+This will position the __hamburger icon__ box `11px` from the top left corner. This is only the container for the bars which are:
+
+```css
+.m-menu__burger span {
+  display: block;
+  width: 3.2rem;
+  height: 0.4rem;
+  margin: 0.4rem 0;
+  position: relative;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 0.3rem;
+}
+```
+
+**Explanation**
+
+So basically we set to hamburger container to `40px ✕ 40px` with thick padding (two times `4px` on the sides and two times `6px` on top and bottom),
+that will reduce the inner area `32px ✕ 28px`. This `32px` width is exactly the with of the horizontal lines (the __layers__ of the hamburger), and
+the `28px` is also perfect, because it's an easy to count value when we divide it with **7**.
+
+Why seven? Three of them are the bars themselves - so the height of one bar is `4px` -, and four are the margins between them (also `4px`).
+
+Something like this on the picture:
+
+<figure class="a-illustration">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505">
+    <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
+</figure>
+
+#### 4. The toggle
+
+The next layer is the toggle, the heart of the menu controlling. Remember, it's a `checkbox` element, that should be clickable, but not really visible.
+So we do the following:
+
+```css
+.m-menu__toggle {
+  z-index: 3;
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  top: 1.1rem;
+  left: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  outline: 1px solid black;
+  pointer-events: all;
+}
+```
+
+See that the size and position in the initial state is the same as the hamburger's, and positioned right above it. Yes, the trick is you can change the
+size of a checkbox. If you make is visible by setting the `opacity` to 1, you can see how weird it is. In fact in every browser it will look a bit different.
+But we don't want to so it, we need it only to be functional. Luckily it will be, even after change it's default size.
+And of course we have to make the hamburger clickable, so we set the `pointer-events: all`.
+
+#### 5. The menu
+
+The topmost layer is the menu content. It's up to you how you design it, I prefer to make it similar to the one that the
+<a href="https://getmdl.io/components/index.html#layout-section" target="_blank">Material Design Lite</a> uses. For this tutorial I focus on the menu
+"__frame__" only.
+
+```css
+.m-menu__content {
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  width: 30rem;
+  height: 100vh;
+  margin: 0;
+  padding: 0 0 2rem 0;
+  background: rgba(230, 230, 230, 1);
+  transform-origin: 0 0;
+  transform: translateX(-31.5rem);
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  pointer-events: all;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.75);
+}
+```
+
+**Explanation**
+
+We defined a fixed `300px` width and stretched it vertically. By setting the `overflow: auto`, we make sure to support the menus with many entries and
+also make it work on small screens, like smart phones. We also enabled all `pointer-events`, because we want to make the menu items to be clickable.
+Remember you have to do this only within the wrapper.
+
+We also added a little drop shadow just to visually highlight the menu. You can also see that we moved out the menu from the scope to the left with
+the size of `315px`. How we get this number? It's the width of the menu (`300px`), the spread of the shadow (`10px`) and a little bit of safety margin
+(`5px`).
+
+And don't think that I am a Math genius, the `cubic-bezier` transition was fine-tuned with the <a href="https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome" target="_blank">Google Chrome's Dev Tools</a>.
+
+#### 6. Changing state
+
+Now we have the menu's initial style ready. But how will it work? Let's define the workflow:
+
+1. Initial / Closed state: the hamburger icon is clickable, the rest of the page is not blocked by the wrapper
+2. Click on the hamburger
+3. The menu slides in and the backdrop fades in. ☞ Open state.
+4. Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website "__under__" it, and the full backdrop is clickable.
+5. Click on the menu items will load the targeted address, click on the backdrop will slide out the menu and fades out the backdrop. ☞ Closed state.
+
+This behavior can be defined in three little rules which will be applied only when the checkbox is checked. For this we have to use the `:checked`
+pseudo-class selector which is widely supported.
+
+```css
+.m-menu__toggle:checked {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+```
+
+When the unvisible checkbox is clicked, it will get the `checked` property set by the browser, and with the `:checked` pseudo-class selector we can
+apply additional styles. Here we make it stretched to `100%` in both directions. Why we use percent instead of the `vw` and `vh` units? Because of the
+same reason we used it for the backdrop.
+
+```css
+.m-menu__toggle:checked ~ .m-menu__content {
+  transform: none;
+}
+```
+
+Here when the checkbox is checked the `.m-menu__content` will drop its transform style, which was `translateX(-31.5rem);`. In this case the `none` is
+equal with setting it to `translateX(0);` but in a shorter way. The transition will add some dynamics into the slide-in.
+
+```css
+.m-menu__toggle:checked ~ .m-menu__backdrop {
+  opacity: 1;
+}
+```
+
+Setting the backdrops's `opacity` to `1` will make it appear with a transition effect that we defined in the backdrop's initial state. And since we
+did it there, it will also "__played__" backwards when we get back to that state.
 
 ### Live Demo
 
 // codepen
 
 ### Conclusion
+

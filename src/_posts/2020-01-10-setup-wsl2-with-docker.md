@@ -2,6 +2,7 @@
 layout: post
 title: "Setup WSL2 with Docker"
 date: "2020-01-10 10:00:00 +0100"
+level: 'Beginner'
 expiration: "2020-06-01"
 illustration: 'fishing.jpg'
 illustrationCaption: ''
