@@ -270,7 +270,7 @@ For now let it rest a bit, and continue with the rest of the menu.
 
 #### 3. The burger
 
-The next layer is the Hamburger __icon__ which technically is only a visual thing.
+The next layer is the Hamburger _icon_ which technically is only a visual thing.
 Within the wrapper we can bravely position the elements with the `absolute` value too.
 
 ```css
@@ -285,7 +285,7 @@ Within the wrapper we can bravely position the elements with the `absolute` valu
 }
 ```
 
-This will position the __hamburger icon__ box `11px` from the top left corner. This is only the container for the bars which are:
+This will position the _hamburger icon_ box `11px` from the top left corner. This is only the container for the bars which are:
 
 ```css
 .m-menu__burger span {
@@ -302,7 +302,7 @@ This will position the __hamburger icon__ box `11px` from the top left corner. T
 **Explanation**
 
 So basically we set to hamburger container to `40px ✕ 40px` with thick padding (two times `4px` on the sides and two times `6px` on top and bottom),
-that will reduce the inner area `32px ✕ 28px`. This `32px` width is exactly the with of the horizontal lines (the __layers__ of the hamburger), and
+that will reduce the inner area `32px ✕ 28px`. This `32px` width is exactly the with of the horizontal lines (the _layers_ of the hamburger), and
 the `28px` is also perfect, because it's an easy to count value when we divide it with **7**.
 
 Why seven? Three of them are the bars themselves - so the height of one bar is `4px` -, and four are the margins between them (also `4px`).
@@ -335,15 +335,15 @@ So we do the following:
 ```
 
 See that the size and position in the initial state is the same as the hamburger's, and positioned right above it. Yes, the trick is you can change the
-size of a checkbox. If you make is visible by setting the `opacity` to 1, you can see how weird it is. In fact in every browser it will look a bit different.
-But we don't want to so it, we need it only to be functional. Luckily it will be, even after change it's default size.
+size of a checkbox. If you make it visible by setting the `opacity` to 1, you can see how weird it looks like. In fact in every browser it will look a
+bit different. But we don't want to so it, we need it only to be functional. Luckily it will be, even after change it's default size.
 And of course we have to make the hamburger clickable, so we set the `pointer-events: all`.
 
 #### 5. The menu
 
 The topmost layer is the menu content. It's up to you how you design it, I prefer to make it similar to the one that the
 <a href="https://getmdl.io/components/index.html#layout-section" target="_blank">Material Design Lite</a> uses. For this tutorial I focus on the menu
-"__frame__" only.
+"_frame_" only.
 
 ```css
 .m-menu__content {
@@ -384,7 +384,7 @@ Now we have the menu's initial style ready. But how will it work? Let's define t
 1. Initial / Closed state: the hamburger icon is clickable, the rest of the page is not blocked by the wrapper
 2. Click on the hamburger
 3. The menu slides in and the backdrop fades in. ☞ Open state.
-4. Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website "__under__" it, and the full backdrop is clickable.
+4. Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website "_under_" it, and the full backdrop is clickable.
 5. Click on the menu items will load the targeted address, click on the backdrop will slide out the menu and fades out the backdrop. ☞ Closed state.
 
 This behavior can be defined in three little rules which will be applied only when the checkbox is checked. For this we have to use the `:checked`
@@ -420,7 +420,7 @@ equal with setting it to `translateX(0);` but in a shorter way. The transition w
 ```
 
 Setting the backdrops's `opacity` to `1` will make it appear with a transition effect that we defined in the backdrop's initial state. And since we
-did it there, it will also "__played__" backwards when we get back to that state.
+did it there, it will also "_played_" backwards when we get back to that state.
 
 ### Live Demo
 
@@ -429,7 +429,7 @@ I drop together a little demo, check it out on <a href="https://codepen.io/navig
 ### Conclusion
 
 Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
-optimize it's structure a little bit while I was writing this article. It's all about learn, practice and learn again. And don't be afraid to leave the comfort 
+optimize it's structure a little bit while I was writing this article. It's all about learn, practice and learn again. And don't be afraid to leave the comfort
 zone of the various frameworks.
 
 Is this a good practice or a worst practice? Please tell me.

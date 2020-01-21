@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-20T21:39:44+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-01-21T07:30:51+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-01-20T21:40:52+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
         &lt;p&gt;The basic idea was not mine. Unfortunately I don’t even remember where I read about if for the first time, so I am unable to place
         credits, and I also unable to tell which solution was the one that give the base for my code. There are tons of tutorials in this
         topic believe me. And now here’s mine.&lt;/p&gt;
@@ -272,7 +272,7 @@
         &lt;p&gt;See that we also ignore the click event on it. That is by purpose, our workaround solution doesn’t need to be clicked.&lt;/p&gt;
         &lt;p&gt;For now let it rest a bit, and continue with the rest of the menu.&lt;/p&gt;
         &lt;h4 id=&quot;3-the-burger&quot;&gt;3. The burger&lt;/h4&gt;
-        &lt;p&gt;The next layer is the Hamburger &lt;strong&gt;icon&lt;/strong&gt; which technically is only a visual thing.
+        &lt;p&gt;The next layer is the Hamburger &lt;em&gt;icon&lt;/em&gt; which technically is only a visual thing.
         Within the wrapper we can bravely position the elements with the &lt;code class=&quot;highlighter-rouge&quot;&gt;absolute&lt;/code&gt; value too.&lt;/p&gt;
         &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
@@ -293,7 +293,7 @@
         &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.6rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.4rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;This will position the &lt;strong&gt;hamburger icon&lt;/strong&gt; box &lt;code class=&quot;highlighter-rouge&quot;&gt;11px&lt;/code&gt; from the top left corner. This is only the container for the bars which are:&lt;/p&gt;
+        &lt;p&gt;This will position the &lt;em&gt;hamburger icon&lt;/em&gt; box &lt;code class=&quot;highlighter-rouge&quot;&gt;11px&lt;/code&gt; from the top left corner. This is only the container for the bars which are:&lt;/p&gt;
         &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
         3
@@ -315,7 +315,7 @@
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
         &lt;p&gt;So basically we set to hamburger container to &lt;code class=&quot;highlighter-rouge&quot;&gt;40px ✕ 40px&lt;/code&gt; with thick padding (two times &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt; on the sides and two times &lt;code class=&quot;highlighter-rouge&quot;&gt;6px&lt;/code&gt; on top and bottom),
-        that will reduce the inner area &lt;code class=&quot;highlighter-rouge&quot;&gt;32px ✕ 28px&lt;/code&gt;. This &lt;code class=&quot;highlighter-rouge&quot;&gt;32px&lt;/code&gt; width is exactly the with of the horizontal lines (the &lt;strong&gt;layers&lt;/strong&gt; of the hamburger), and
+        that will reduce the inner area &lt;code class=&quot;highlighter-rouge&quot;&gt;32px ✕ 28px&lt;/code&gt;. This &lt;code class=&quot;highlighter-rouge&quot;&gt;32px&lt;/code&gt; width is exactly the with of the horizontal lines (the &lt;em&gt;layers&lt;/em&gt; of the hamburger), and
         the &lt;code class=&quot;highlighter-rouge&quot;&gt;28px&lt;/code&gt; is also perfect, because it’s an easy to count value when we divide it with &lt;strong&gt;7&lt;/strong&gt;.&lt;/p&gt;
         &lt;p&gt;Why seven? Three of them are the bars themselves - so the height of one bar is &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt; -, and four are the margins between them (also &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt;).&lt;/p&gt;
         &lt;p&gt;Something like this on the picture:&lt;/p&gt;
@@ -352,13 +352,13 @@
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;See that the size and position in the initial state is the same as the hamburger’s, and positioned right above it. Yes, the trick is you can change the
-        size of a checkbox. If you make is visible by setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;opacity&lt;/code&gt; to 1, you can see how weird it is. In fact in every browser it will look a bit different.
-        But we don’t want to so it, we need it only to be functional. Luckily it will be, even after change it’s default size.
+        size of a checkbox. If you make it visible by setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;opacity&lt;/code&gt; to 1, you can see how weird it looks like. In fact in every browser it will look a
+        bit different. But we don’t want to so it, we need it only to be functional. Luckily it will be, even after change it’s default size.
         And of course we have to make the hamburger clickable, so we set the &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events: all&lt;/code&gt;.&lt;/p&gt;
         &lt;h4 id=&quot;5-the-menu&quot;&gt;5. The menu&lt;/h4&gt;
         &lt;p&gt;The topmost layer is the menu content. It’s up to you how you design it, I prefer to make it similar to the one that the
         &lt;a href=&quot;https://getmdl.io/components/index.html#layout-section&quot; target=&quot;_blank&quot;&gt;Material Design Lite&lt;/a&gt; uses. For this tutorial I focus on the menu
-        “&lt;strong&gt;frame&lt;/strong&gt;” only.&lt;/p&gt;
+        “&lt;em&gt;frame&lt;/em&gt;” only.&lt;/p&gt;
         &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
         3
@@ -408,7 +408,7 @@
         &lt;li&gt;Initial / Closed state: the hamburger icon is clickable, the rest of the page is not blocked by the wrapper&lt;/li&gt;
         &lt;li&gt;Click on the hamburger&lt;/li&gt;
         &lt;li&gt;The menu slides in and the backdrop fades in. ☞ Open state.&lt;/li&gt;
-        &lt;li&gt;Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website “&lt;strong&gt;under&lt;/strong&gt;” it, and the full backdrop is clickable.&lt;/li&gt;
+        &lt;li&gt;Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website “&lt;em&gt;under&lt;/em&gt;” it, and the full backdrop is clickable.&lt;/li&gt;
         &lt;li&gt;Click on the menu items will load the targeted address, click on the backdrop will slide out the menu and fades out the backdrop. ☞ Closed state.&lt;/li&gt;
         &lt;/ol&gt;
         &lt;p&gt;This behavior can be defined in three little rules which will be applied only when the checkbox is checked. For this we have to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;:checked&lt;/code&gt;
@@ -448,12 +448,12 @@
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;Setting the backdrops’s &lt;code class=&quot;highlighter-rouge&quot;&gt;opacity&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; will make it appear with a transition effect that we defined in the backdrop’s initial state. And since we
-        did it there, it will also “&lt;strong&gt;played&lt;/strong&gt;” backwards when we get back to that state.&lt;/p&gt;
+        did it there, it will also “&lt;em&gt;played&lt;/em&gt;” backwards when we get back to that state.&lt;/p&gt;
         &lt;h3 id=&quot;live-demo&quot;&gt;Live Demo&lt;/h3&gt;
         &lt;p&gt;I drop together a little demo, check it out on &lt;a href=&quot;https://codepen.io/navig80/pen/VwYVBmo&quot; target=&quot;_blank&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
         &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
         &lt;p&gt;Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
-        optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort 
+        optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort
         zone of the various frameworks.&lt;/p&gt;
         &lt;p&gt;Is this a good practice or a worst practice? Please tell me.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="css" /><category term="html" /><category term="smart" /><summary type="html">Let's start with a pretty easy and smart solution. No JavaScript, only CSS.</summary></entry><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
         &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new

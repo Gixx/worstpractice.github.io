@@ -528,7 +528,7 @@
 <p>See that we also ignore the click event on it. That is by purpose, our workaround solution doesn’t need to be clicked.</p>
 <p>For now let it rest a bit, and continue with the rest of the menu.</p>
 <h4 id="3-the-burger">3. The burger</h4>
-<p>The next layer is the Hamburger <strong>icon</strong> which technically is only a visual thing.
+<p>The next layer is the Hamburger <em>icon</em> which technically is only a visual thing.
   Within the wrapper we can bravely position the elements with the <code class="highlighter-rouge">absolute</code> value too.</p>
 <div class="language-css highlighter-rouge">
   <div class="highlight">
@@ -561,7 +561,7 @@
 </code></pre>
 </div>
 </div>
-<p>This will position the <strong>hamburger icon</strong> box <code class="highlighter-rouge">11px</code> from the top left corner. This is only the container for the bars which are:</p>
+<p>This will position the <em>hamburger icon</em> box <code class="highlighter-rouge">11px</code> from the top left corner. This is only the container for the bars which are:</p>
 <div class="language-css highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -595,7 +595,7 @@
 </div>
 <p><strong>Explanation</strong></p>
 <p>So basically we set to hamburger container to <code class="highlighter-rouge">40px ✕ 40px</code> with thick padding (two times <code class="highlighter-rouge">4px</code> on the sides and two times <code class="highlighter-rouge">6px</code> on top and bottom),
-  that will reduce the inner area <code class="highlighter-rouge">32px ✕ 28px</code>. This <code class="highlighter-rouge">32px</code> width is exactly the with of the horizontal lines (the <strong>layers</strong> of the hamburger), and
+  that will reduce the inner area <code class="highlighter-rouge">32px ✕ 28px</code>. This <code class="highlighter-rouge">32px</code> width is exactly the with of the horizontal lines (the <em>layers</em> of the hamburger), and
   the <code class="highlighter-rouge">28px</code> is also perfect, because it’s an easy to count value when we divide it with <strong>7</strong>.</p>
 <p>Why seven? Three of them are the bars themselves - so the height of one bar is <code class="highlighter-rouge">4px</code> -, and four are the margins between them (also <code class="highlighter-rouge">4px</code>).</p>
 <p>Something like this on the picture:</p>
@@ -644,13 +644,13 @@
 </div>
 </div>
 <p>See that the size and position in the initial state is the same as the hamburger’s, and positioned right above it. Yes, the trick is you can change the
-  size of a checkbox. If you make is visible by setting the <code class="highlighter-rouge">opacity</code> to 1, you can see how weird it is. In fact in every browser it will look a bit different.
-  But we don’t want to so it, we need it only to be functional. Luckily it will be, even after change it’s default size.
+  size of a checkbox. If you make it visible by setting the <code class="highlighter-rouge">opacity</code> to 1, you can see how weird it looks like. In fact in every browser it will look a
+  bit different. But we don’t want to so it, we need it only to be functional. Luckily it will be, even after change it’s default size.
   And of course we have to make the hamburger clickable, so we set the <code class="highlighter-rouge">pointer-events: all</code>.</p>
 <h4 id="5-the-menu">5. The menu</h4>
 <p>The topmost layer is the menu content. It’s up to you how you design it, I prefer to make it similar to the one that the
   <a href="https://getmdl.io/components/index.html#layout-section" target="_blank">Material Design Lite</a> uses. For this tutorial I focus on the menu
-  “<strong>frame</strong>” only.</p>
+  “<em>frame</em>” only.</p>
 <div class="language-css highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -712,7 +712,7 @@
   <li>Initial / Closed state: the hamburger icon is clickable, the rest of the page is not blocked by the wrapper</li>
   <li>Click on the hamburger</li>
   <li>The menu slides in and the backdrop fades in. ☞ Open state.</li>
-  <li>Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website “<strong>under</strong>” it, and the full backdrop is clickable.</li>
+  <li>Open state: the menu is visible, the menu items are individually clickable. The backdrop blocks the website “<em>under</em>” it, and the full backdrop is clickable.</li>
   <li>Click on the menu items will load the targeted address, click on the backdrop will slide out the menu and fades out the backdrop. ☞ Closed state.</li>
 </ol>
 <p>This behavior can be defined in three little rules which will be applied only when the checkbox is checked. For this we have to use the <code class="highlighter-rouge">:checked</code>
@@ -788,12 +788,12 @@
 </div>
 </div>
 <p>Setting the backdrops’s <code class="highlighter-rouge">opacity</code> to <code class="highlighter-rouge">1</code> will make it appear with a transition effect that we defined in the backdrop’s initial state. And since we
-  did it there, it will also “<strong>played</strong>” backwards when we get back to that state.</p>
+  did it there, it will also “<em>played</em>” backwards when we get back to that state.</p>
 <h3 id="live-demo">Live Demo</h3>
 <p>I drop together a little demo, check it out on <a href="https://codepen.io/navig80/pen/VwYVBmo" target="_blank">CodePen</a>.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
-  optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort 
+  optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort
   zone of the various frameworks.</p>
 <p>Is this a good practice or a worst practice? Please tell me.</p>
 </div>
