@@ -6,11 +6,10 @@ page_type: tag_list
 ---
 {%- include variables.html -%}
 
+<header class="c-header">
+    <h2 class="c-header__title">Tags: {{ currentTagLabel }}</h2>
+</header>
 <section class="c-content__list">
-    <header class="c-header">
-        <h2 class="c-header__title">Tags: {{ currentTagLabel }}</h2>
-    </header>
-
     {%- for post in paginator.posts -%}
         {% include post-list-element.html post=post %}
     {%- endfor -%}
