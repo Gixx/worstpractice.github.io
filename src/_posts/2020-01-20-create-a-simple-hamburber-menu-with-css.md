@@ -69,8 +69,6 @@ So let's create those meaningless markups:
 <div class="m-menu">
     <div class="m-menu__burger">
         <span></span>
-        <span></span>
-        <span></span>
     </div>
 </div>
 ```
@@ -285,29 +283,46 @@ Within the wrapper we can bravely position the elements with the `absolute` valu
 }
 ```
 
-This will position the _hamburger icon_ box `11px` from the top left corner. This is only the container for the bars which are:
+This will position the _hamburger icon_ box `11px` from the top left corner. This is only the container for the bars which are created from one single
+`span` element the good old `::before` and `::after` pseudo-elements.
 
 ```css
-.m-menu__burger span {
-  display: block;
-  width: 3.2rem;
-  height: 0.4rem;
-  margin: 0.4rem 0;
-  position: relative;
-  background: rgba(255, 255, 255, 1);
-  border-radius: 0.3rem;
+.m-menu__burger span,
+.m-menu__burger span::before,
+.m-menu__burger span::after {
+    content: '';
+    display: block;
+    width: 3.2rem;
+    height: 0.4rem;
+    position: absolute;
+    margin-top: 1.2rem;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 0.3rem;
+}
+
+.m-menu__burger span::before {
+    margin-top: -0.8rem;
+}
+
+.m-menu__burger span::after {
+    margin-top: 0.8rem;
 }
 ```
 
 **Explanation**
 
 So basically we set to hamburger container to `40px ✕ 40px` with thick padding (two times `4px` on the sides and two times `6px` on top and bottom),
-that will reduce the inner area `32px ✕ 28px`. This `32px` width is exactly the with of the horizontal lines (the _layers_ of the hamburger), and
-the `28px` is also perfect, because it's an easy to count value when we divide it with **7**.
+that will reduce the inner area `32px ✕ 28px`. This will be our sandbox. The `32px` width is exactly the with of the horizontal lines (the _layers_
+of the hamburger), and the `28px` is also perfect, because it's an easy to count value when we divide it with **7**.
 
-Why seven? Three of them are the bars themselves - so the height of one bar is `4px` -, and four are the margins between them (also `4px`).
+Why seven? Because it's easy to count with: three of them are the bars themselves - so the height of one bar is `4px` -, and four are the gaps
+around them (also `4px`). Since the pseudo-elements belong to the "_parent_" and they move together, we have to calculate a little bit weird way:
 
-Something like this on the picture:
+* position the `span` to the middle: gap + `::before` + gap, which is `3 ✕ 4px`, so set the `margin-top` to `12px`.
+* position the `::before` above the span: position of the `span` as root - gap - height of the `::before`, which is `0 - 4px - 4px`, so set the `margin-top` to `-8px`.
+* position the `::after` under the span: position of the `span` as root + the height of the `span` + gap, which is `0 + 4px + px`, so set the `margin-top` to `8px`
+
+The measuring looks something like this on the picture:
 
 <figure class="a-illustration">
     <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505">

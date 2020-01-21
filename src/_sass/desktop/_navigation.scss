@@ -23,14 +23,25 @@
   left: 1.1rem;
   padding: 0.6rem 0.4rem;
 
-  span {
+  span,
+  span::before,
+  span::after {
+    content: '';
     display: block;
     width: 3.2rem;
     height: 0.4rem;
-    margin: 0.4rem 0;
-    position: relative;
+    position: absolute;
+    margin-top: 1.2rem;
     background: $worstpractice-tanned-light;
     border-radius: 0.3rem;
+  }
+
+  span::before {
+    margin-top: -0.8rem;
+  }
+
+  span::after {
+    margin-top: 0.8rem;
   }
 }
 
