@@ -58,7 +58,7 @@ const GdprDialog = function ({verbose = false})
         };
 
         let setPrivacyCookie = function() {
-            Cookie.set({cookieName: window.PRIVACY_ACCEPT_COOKIE_NAME, cookieValue: 'On'});
+            Cookie.set({cookieName: PRIVACY_ACCEPT_COOKIE_NAME, cookieValue: 'On'});
         };
 
         HTMLElement.querySelector('.g-buttons__acceptAll').addEventListener('click', function () {
@@ -97,7 +97,7 @@ const GdprDialog = function ({verbose = false})
             '#'+HTMLElement.getAttribute('id')
         );
 
-        if (Cookie.get({cookieName: window.PRIVACY_ACCEPT_COOKIE_NAME}) !== 'On') {
+        if (Cookie.get({cookieName: PRIVACY_ACCEPT_COOKIE_NAME}) !== 'On') {
             openDialog();
         }
 

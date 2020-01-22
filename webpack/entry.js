@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('Component.Util.Ready', function () {
     Cookie.init();
 
-    Cookie.renew(PRIVACY_ACCEPT_COOKIE_NAME);
-    Cookie.renew(PRIVACY_COMMENTO_COOKIE_NAME);
+    Cookie.renew({cookieName: PRIVACY_ACCEPT_COOKIE_NAME});
+    Cookie.renew({cookieName: PRIVACY_COMMENTO_COOKIE_NAME});
 
     LazyLoadImage.init();
     embedWorstPracticeSample();

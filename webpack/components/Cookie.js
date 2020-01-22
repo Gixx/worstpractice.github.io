@@ -38,8 +38,9 @@ const Cookie = function ({verbose = false})
          * @param {string} cookieName  The name of the cookie
          * @param {string} cookieValue The value of the cookie
          * @param {number} expirationDays Expiration days
+         * @param {boolean} standardLog Whether to log the standard info or not
          */
-        set: function ({cookieName, cookieValue, expirationDays = this.MAX_COOKIE_EXPIRATION_DAYS}) {
+        set: function ({cookieName, cookieValue, expirationDays = this.MAX_COOKIE_EXPIRATION_DAYS, standardLog = true}) {
             // Safari and Brave force JS cookies to have a max 7 days of expiration
             expirationDays = Math.min(this.MAX_COOKIE_EXPIRATION_DAYS, expirationDays);
 
@@ -47,7 +48,7 @@ const Cookie = function ({verbose = false})
             date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
             let expires = "expires="+ date.toUTCString();
 
-            verbose && console.info(
+            standardLog && verbose && console.info(
                 '%c[Cookie]%c ⚡%c Setting Cookie : %o',
                 'color:white;background:'+consoleColorId+';font-weight:bold;',
                 'color:orange;font-weight:bold',
@@ -96,7 +97,7 @@ const Cookie = function ({verbose = false})
                     cookieName
                 );
 
-                this.set({cookieName: cookieName, cookieValue: cookieValue, expirationDays: expirationDays});
+                this.set({cookieName: cookieName, cookieValue: cookieValue, expirationDays: expirationDays, standardLog: false});
             }
         },
 
