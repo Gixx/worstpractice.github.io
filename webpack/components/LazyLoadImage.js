@@ -3,9 +3,7 @@
  *
  * @type {{init: LazyLoadImage.init, getLazyLoadImages: (function(): NodeList)}}
  */
-const LazyLoadImage = function (options) {
-    "use strict";
-
+const LazyLoadImage = function ({verbose = false}) {
     /** @type {boolean} */
     let initialized = false;
     /** @type {NodeList} */
@@ -13,27 +11,23 @@ const LazyLoadImage = function (options) {
     /** @type {number} */
     let idCounter = 1;
     /** @type {string} */
-    let consoleColorId = '#bffff5';
+    let consoleColorId = '#BFFFF5';
     /** @type IntersectionObserver */
     let imageObserver;
 
-    if (typeof options.verbose === 'undefined') {
-        options.verbose = true;
-    }
-
-    if (typeof window.Util === 'undefined') {
+    if (typeof Util === 'undefined') {
         throw new ReferenceError('This component requires the Util component to be loaded.');
     }
 
     /**
      * Adds lazy-load behaviour to an image element.
      *
-     * @param HTMLElement
-     * @returns {any}
+     * @param {HTMLImageElement|Node} HTMLElement
+     * @returns {*}
      * @constructor
      */
-    let LazyLoadImageElement = function (HTMLElement) {
-        options.verbose && console.info(
+    let LazyLoadImageElement = function ({HTMLElement}) {
+        verbose && console.info(
             '%c[Lazy Load Image]%c ✚%c an image element initialized %o',
             'background:'+consoleColorId+';font-weight:bold;',
             'color:green; font-weight:bold;',
@@ -57,7 +51,7 @@ const LazyLoadImage = function (options) {
 
                 preload.addEventListener('error', function (event) {
                     event.preventDefault();
-                    options.verbose && console.info(
+                    verbose && console.info(
                         '%c[Lazy Load Image]%c ✖%c an image resource is not found %c'+imageSource,
                         'background:'+consoleColorId+';font-weight:bold;',
                         'color:red',
@@ -70,7 +64,7 @@ const LazyLoadImage = function (options) {
                     HTMLElement.src = imageSource;
                     HTMLElement.removeAttribute('data-src');
 
-                    options.verbose && console.info(
+                    verbose && console.info(
                         '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
                         'background:'+consoleColorId+';font-weight:bold;',
                         'color:orange;font-weight:bold',
@@ -84,7 +78,7 @@ const LazyLoadImage = function (options) {
         }
     };
 
-    options.verbose && console.info(
+    verbose && console.info(
         '%c[Lazy Load Image]%c ✔%c The Lazy Load Image component loaded.',
         'background:'+consoleColorId+';font-weight:bold;',
         'color:green; font-weight:bold;',
@@ -100,7 +94,7 @@ const LazyLoadImage = function (options) {
                 return;
             }
 
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[Lazy Load Image]%c ...looking for image elements.',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:#cecece'
@@ -123,11 +117,11 @@ const LazyLoadImage = function (options) {
                     element.setAttribute('id', 'lazyImage' + (idCounter++));
                 }
 
-                element.component = new LazyLoadImageElement(element);
+                element.component = new LazyLoadImageElement({HTMLElement: element});
                 imageObserver.observe(element);
             });
 
-            window.Util.triggerEvent(document, 'Component.LazyLoadImage.Ready');
+            Util.triggerEvent({element: document, eventName: 'Component.LazyLoadImage.Ready'});
             initialized = true;
         },
 

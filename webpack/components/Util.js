@@ -1,21 +1,15 @@
 /**
  * Util component
  *
- * @type {{init: Util.init, getEventPath: Util.getEventPath, fetch: Util.fetch, getDeviceOs: (function(): string), triggerEvent: Util.triggerEvent, setCookie: Util.setCookie, ajax: (function(*): XMLHttpRequest), getCookie: Util.getCookie, addEventListeners: Util.addEventListeners}}
+ * @type {{init: Util.init, getEventPath: Util.getEventPath, fetch: Util.fetch, getDeviceOs: (function(): string), triggerEvent: Util.triggerEvent, ajax: (function({url?: string, method?: string, async?: boolean, enctype?: string, data?: (FormData|Object), successCallback?: (null|Function), failureCallback?: (null|Function)}): XMLHttpRequest)}}
  */
-const Util = function (options) {
-    "use strict";
-
+const Util = function ({verbose = false}) {
     /** @type {boolean} */
     let initialized = false;
     /** @type {string} */
-    let consoleColorId = '#d7cfff';
+    let consoleColorId = '#D7CFFF';
 
-    if (typeof options.verbose === 'undefined') {
-        options.verbose = true;
-    }
-
-    options.verbose && console.info(
+    verbose && console.info(
         '%c[Util]%c ✔%c The Util Component loaded.',
         'background:'+consoleColorId+';font-weight:bold;',
         'color:green; font-weight:bold;',
@@ -28,7 +22,7 @@ const Util = function (options) {
      * @param {FormData} formData
      * @return {Object}
      */
-    let formDataToObject = function (formData) {
+    let formDataToObject = function ({formData}) {
         let object = {};
 
         formData.forEach(function (value, key) {
@@ -44,7 +38,7 @@ const Util = function (options) {
      * @param {Object} object
      * @return {FormData}
      */
-    let objectToFormData = function (object) {
+    let objectToFormData = function ({object}) {
         let formData = new FormData();
 
         for (let attribute in object) {
@@ -62,40 +56,34 @@ const Util = function (options) {
          */
         init : function () {
             initialized = true;
-            this.triggerEvent(document, 'Component.Util.Ready');
+            this.triggerEvent({element: document, eventName: 'Component.Util.Ready'});
         },
 
         /**
          * Makes an XmlHttpRequest.
          *
-         * @param {*} settings
-         * @return {XMLHttpRequest}
-         * @example  {
-         *   url: '/index',
-         *   method: 'POST',
-         *   enctype: 'application/json',
-         *   data: {
-         *     name: 'John Doe',
-         *     email: 'johndoe@foo.org'
-         *   },
-         *   async: true,
-         *   success: function(data) { alert('Done'); },
-         *   failure: function(data) { alert('Failed'); }
-         * }
+         * @param {string} url
+         * @param {string} method
+         * @param {boolean} async
+         * @param {string} enctype
+         * @param {FormData|object} data
+         * @param {null|function} successCallback
+         * @param {null|function} failureCallback
+         * @returns {XMLHttpRequest}
          */
-        ajax : function (settings) {
-            let rnd = new Date().getTime();
-            let url = typeof settings.url !== 'undefined' ? settings.url : '/';
-            let method = typeof settings.method !== 'undefined' ? settings.method : 'POST';
-            let async = typeof settings.async !== 'undefined' ? settings.async : true;
-            let enctype = typeof settings.enctype !== 'undefined' ? settings.enctype : 'application/json';
-            let data = typeof settings.data !== 'undefined' ? settings.data : '';
-            let successCallback = typeof settings.success === 'function' ? settings.success : function (data) {};
-            let failureCallback = typeof settings.failure === 'function' ? settings.failure : function (data) {};
-            let xhr = new XMLHttpRequest();
+        ajax : function ({url = '/', method = 'POST', async = true, enctype = 'application/json', data = {}, successCallback = null, failureCallback = null}) {
+            if (typeof successCallback !== 'function') {
+                successCallback = function (data) {};
+            }
 
+            if (typeof failureCallback !== 'function') {
+                failureCallback =  function (data) {};
+            }
+
+            let rnd = new Date().getTime();
             url = url + (url.lastIndexOf('?') === -1 ? '?' : '&') + 'timestamp=' + rnd;
 
+            let xhr = new XMLHttpRequest();
             xhr.open(method, url, async);
 
             xhr.onreadystatechange = function () {
@@ -107,7 +95,7 @@ const Util = function (options) {
                             failureCallback(xhr.responseText);
                         }
                     } catch (exp) {
-                        options.verbose && console.warn('JSON parse error. Continue', exp);
+                        verbose && console.warn('JSON parse error. Continue', exp);
                     }
                 }
             };
@@ -149,28 +137,22 @@ const Util = function (options) {
         /**
          * Fetches a URL
          *
-         * @param {*} settings
-         * @example {
-         *   url: '/index',
-         *   method: 'PUT',
-         *   enctype: 'application/json',
-         *   data: {
-         *     name: 'John Doe',
-         *     email: 'johndoe@foo.org'
-         *   },
-         *   success: function(data) { alert('Done'); },
-         *   failure: function(data) { alert('Failed'); }
-         * }
+         * @param {string} url
+         * @param {string} method
+         * @param {boolean} async
+         * @param {string} enctype
+         * @param {FormData|object} data
+         * @param {null|function} successCallback
+         * @param {null|function} failureCallback
          */
-        fetch: function (settings) {
-            let url = typeof settings.url !== 'undefined' ? settings.url : '/';
-            let method = typeof settings.method !== 'undefined' ? settings.method : 'POST';
-            let data = typeof settings.data !== 'undefined' ? settings.data : {};
-            let enctype = typeof settings.enctype !== 'undefined' ? settings.enctype : 'application/json';
-            let successCallback = typeof settings.success === 'function' ? settings.success : function (data) {};
-            let failureCallback = typeof settings.failure === 'function' ? settings.failure : function (data) {
-                options.verbose && console.error(data);
-            };
+        fetch: function ({url = '/', method = 'POST', async = true, enctype = 'application/json', data = {}, successCallback = null, failureCallback = null}) {
+            if (typeof successCallback !== 'function') {
+                successCallback = function (data) {};
+            }
+
+            if (typeof failureCallback !== 'function') {
+                failureCallback =  function (data) {};
+            }
 
             switch (enctype) {
                 case 'application/json':
@@ -210,7 +192,7 @@ const Util = function (options) {
                 request.body = data;
             }
 
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[Util]%c ⚡%c Fetching URL %o',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:orange;font-weight:bold',
@@ -234,51 +216,22 @@ const Util = function (options) {
         },
 
         /**
-         * Adds event listeners to elements.
-         *
-         * @param {Array|NodeList}         elementList
-         * @param {string}                 eventList
-         * @param {EventListener|Function} callback
-         * @param {*}                      [bindObject]
-         */
-        addEventListeners : function (elementList, eventList, callback, bindObject) {
-            let events = eventList.split(' ');
-            if (typeof bindObject === 'undefined') {
-                bindObject = null;
-            }
-
-            if (typeof elementList.length === 'undefined') {
-                elementList = [elementList];
-            }
-
-            for (let i = 0, len = events.length; i < len; i++) {
-                for (let j = 0, els = elementList.length; j < els; j++) {
-                    if (bindObject !== null) {
-                        elementList[j].addEventListener(events[i], callback.bind(bindObject), true);
-                    } else {
-                        elementList[j].addEventListener(events[i], callback, true);
-                    }
-                }
-            }
-        },
-
-        /**
          * Triggers an event on an element.
          *
-         * @param {Node}   element
+         * @param {*}   element
          * @param {string} eventName
          * @param {*}      [customData]
          */
-        triggerEvent : function (element, eventName, customData) {
+        triggerEvent : function ({element, eventName, customData = null}) {
             let event;
 
-            if (typeof customData !== 'undefined') {
+            if (customData !== null) {
                 event = new CustomEvent(eventName, {'detail': customData})
             } else {
                 event = new Event(eventName);
             }
 
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[Util]%c ⚡%c Triggering event: %o',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:orange;font-weight:bold',
@@ -295,7 +248,7 @@ const Util = function (options) {
          * @param {Event} event
          * @return {Array}
          */
-        getEventPath: function (event) {
+        getEventPath: function ({event}) {
             let path = (event.composedPath && event.composedPath()) || event.path,
                 target = event.target;
 
@@ -324,49 +277,6 @@ const Util = function (options) {
             return [target]
                 .concat(getParents(target))
                 .concat([window]);
-        },
-
-        /**
-         * Set a cookie.
-         *
-         * @param {string} cookieName  Cookie name
-         * @param {string} cookieValue Cookie value
-         * @param {number} expirationDays Expiration days
-         */
-        setCookie: function (cookieName, cookieValue, expirationDays) {
-            let date = new Date();
-            date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
-            let expires = "expires="+ date.toUTCString();
-            options.verbose && console.info(
-                '%c[Util]%c ⚡%c Setting Cookie : %o',
-                'background:'+consoleColorId+';font-weight:bold;',
-                'color:orange;font-weight:bold',
-                'color:#599bd6',
-                cookieName
-            );
-            document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
-        },
-
-        /**
-         * Retrieve a cookie
-         *
-         * @param {string} cookieName Cookie name
-         * @returns {string}
-         */
-        getCookie: function (cookieName) {
-            let name = cookieName + "=";
-            let decodedCookie = decodeURIComponent(document.cookie);
-            let cookieArray = decodedCookie.split(';');
-            for (let i = 0, num = cookieArray.length; i < num; i++) {
-                let cookie = cookieArray[i];
-                while (cookie.charAt(0) === ' ') {
-                    cookie = cookie.substring(1);
-                }
-                if (cookie.indexOf(name) === 0) {
-                    return cookie.substring(name.length, cookie.length);
-                }
-            }
-            return '';
         },
 
         /**

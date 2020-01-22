@@ -3,36 +3,38 @@
  *
  * @type {{init: GdprDialog.init}}
  */
-const GdprDialog = function (options) {
-    "use strict";
-
+const GdprDialog = function ({verbose = false})
+{
     /** @type {boolean} */
     let initialized = false;
     /** @type {number} */
     let idCounter = 1;
     /** @type {string} */
-    let consoleColorId = '#ffa3ea';
+    let consoleColorId = '#FFA3EA';
 
-    if (typeof options.verbose === 'undefined') {
-        options.verbose = true;
-    }
-
-    if (typeof window.Util === 'undefined') {
+    if (typeof Util === 'undefined') {
         throw new ReferenceError('This component requires the Util component to be loaded.');
     }
 
-    if (typeof window.FeatureToggle === 'undefined') {
+    if (typeof FeatureToggle === 'undefined') {
         throw new ReferenceError('This component requires the FeatureToggle component to be loaded.');
     }
 
+    if (typeof Cookie === 'undefined') {
+        throw new ReferenceError('This component requires the Cookie component to be loaded.');
+    }
+
     /**
-     * @param {HTMLDialogElement} HTMLElement
+     * A GDPR Dialog element.
+     *
+     * @param {HTMLDivElement} HTMLElement
+     * @returns {*}
      * @constructor
      */
-    let GdprDialogElement = function (HTMLElement) {
+    let GdprDialogElement = function ({HTMLElement}) {
         let openDialog = function() {
             HTMLElement.style.display = 'block';
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[GDPR Dialog]%c ⚡%c Dialog window opened : %o',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:orange;font-weight:bold',
@@ -46,7 +48,7 @@ const GdprDialog = function (options) {
          */
         let closeDialog = function () {
             HTMLElement.style.display = 'none';
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[GDPR Dialog]%c ⚡%c Dialog window closed : %o',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:orange;font-weight:bold',
@@ -55,9 +57,13 @@ const GdprDialog = function (options) {
             );
         };
 
+        let setPrivacyCookie = function() {
+            Cookie.set({cookieName: window.PRIVACY_ACCEPT_COOKIE_NAME, cookieValue: 'On'});
+        };
+
         HTMLElement.querySelector('.g-buttons__acceptAll').addEventListener('click', function () {
-            FeatureToggle.toggleAll('on');
-            Util.setCookie(window.PRIVACY_ACCEPT_COOKIE_NAME, 'On', 365);
+            FeatureToggle.toggleAll({newState:'on'});
+            setPrivacyCookie();
             closeDialog();
         });
 
@@ -72,18 +78,18 @@ const GdprDialog = function (options) {
         });
 
         HTMLElement.querySelector('.g-buttons__close').addEventListener('click', function () {
-            Util.setCookie(window.PRIVACY_ACCEPT_COOKIE_NAME, 'On', 365);
+            setPrivacyCookie();
             closeDialog();
         });
 
         HTMLElement.querySelectorAll('a.privacy').forEach(function (element) {
             element.addEventListener('click', function () {
-                Util.setCookie(window.PRIVACY_ACCEPT_COOKIE_NAME, 'On', 365);
+                setPrivacyCookie();
                 closeDialog();
             });
         });
 
-        options.verbose && console.info(
+        verbose && console.info(
             '%c[GDPR Dialog]%c ✚%c the GDPR Dialog element initialized %o',
             'background:'+consoleColorId+';font-weight:bold;',
             'color:green; font-weight:bold;',
@@ -91,7 +97,7 @@ const GdprDialog = function (options) {
             '#'+HTMLElement.getAttribute('id')
         );
 
-        if (Util.getCookie(window.PRIVACY_ACCEPT_COOKIE_NAME) !== 'On') {
+        if (Cookie.get({cookieName: window.PRIVACY_ACCEPT_COOKIE_NAME}) !== 'On') {
             openDialog();
         }
 
@@ -114,7 +120,7 @@ const GdprDialog = function (options) {
         }
     };
 
-    options.verbose && console.info(
+    verbose && console.info(
         '%c[GDPR Dialog]%c ✔%c The GDPR Dialog component loaded.',
         'background:'+consoleColorId+';font-weight:bold;',
         'color:green; font-weight:bold;',
@@ -127,22 +133,22 @@ const GdprDialog = function (options) {
                 return;
             }
 
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[GDPR Dialog]%c ...looking for the GDPR Dialog element.',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:#cecece'
             );
 
-            /** @type {HTMLDialogElement} element */
+            /** @type {HTMLDivElement|Node} element */
             let dialogElement = document.querySelector('.dialog.g-gdpr');
 
             if (!dialogElement.hasAttribute('id')) {
                 dialogElement.setAttribute('id', 'GdprDialog' + (idCounter++));
             }
 
-            dialogElement.component = new GdprDialogElement(dialogElement);
+            dialogElement.component = new GdprDialogElement({HTMLElement: dialogElement});
 
-            window.Util.triggerEvent(document, 'Component.GdprDialog.Ready');
+            Util.triggerEvent({element: document, eventName: 'Component.GdprDialog.Ready'});
             initialized = true;
         }
     };

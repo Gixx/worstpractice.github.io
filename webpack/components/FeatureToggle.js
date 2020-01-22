@@ -1,11 +1,10 @@
 /**
  * Feature Toggle component
  *
- * @type {{init: FeatureToggle.init, toggleAll: FeatureToggle.toggleAll, toggle: FeatureToggle.toggle, getComponentsByName: (function(String): [])}}
+ * @type {{init: FeatureToggle.init, toggleAll: FeatureToggle.toggleAll, toggle: FeatureToggle.toggle, getComponentsByName: (function({featureToggleName: String}): [])}}
  */
-const FeatureToggle = function (options) {
-    "use strict";
-
+const FeatureToggle = function ({verbose = false})
+{
     /** @type {boolean} */
     let initialized = false;
     /** @type {NodeList} */
@@ -15,28 +14,29 @@ const FeatureToggle = function (options) {
     /** @type {string} */
     let consoleColorId = '#FF9B49';
 
-    if (typeof options.verbose === 'undefined') {
-        options.verbose = true;
+    if (typeof Util === 'undefined') {
+        throw new ReferenceError('This component requires the Util component to be loaded.');
     }
 
-    if (typeof window.Util === 'undefined') {
-        throw new ReferenceError('This component requires the Util component to be loaded.');
+    if (typeof Cookie === 'undefined') {
+        throw new ReferenceError('This component requires the Cookie component to be loaded.');
     }
 
     /**
      * A Feature Toggle Switch element
      *
-     * @param {Element|Node} HTMLElement
+     * @param {HTMLDivElement|Node} HTMLElement
      * @param {String} featureName
      * @param {{state: boolean, label: string, cookie: string}} toggleOptions
-     * @returns {any}
+     * @returns {*}
      * @constructor
      */
-    let FeatureToggleSwitchElement = function (HTMLElement, featureName, toggleOptions) {
+    let FeatureToggleSwitchElement = function ({HTMLElement, featureName, toggleOptions})
+    {
         // Wipe out any dirt
         HTMLElement.innerHTML = '';
 
-        let state = Util.getCookie(toggleOptions.cookie) === 'On'
+        let state = Cookie.get({cookieName: toggleOptions.cookie}) === 'On'
             ? true
             : toggleOptions.state;
 
@@ -44,7 +44,7 @@ const FeatureToggle = function (options) {
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('id', HTMLElement.id + '-' + featureName);
         checkbox.addEventListener('change', function () {
-            FeatureToggle.toggle(featureName)
+            FeatureToggle.toggle({featureToggleName: featureName})
         });
 
         let label = document.createElement('label');
@@ -64,12 +64,12 @@ const FeatureToggle = function (options) {
         let switchState = function (setActive) {
             state = setActive;
             document.getElementById(HTMLElement.id + '-' + featureName).checked = state;
-            Util.setCookie(toggleOptions.cookie, state ? 'On' : 'Off', 365);
+            Cookie.set({cookieName: toggleOptions.cookie, cookieValue: (state ? 'On' : 'Off')});
         };
 
         switchState(state);
 
-        options.verbose && console.info(
+        verbose && console.info(
             '%c[Feature Toggle Switch]%c ✚%c a switch element initialized %o',
             'background:'+consoleColorId+';font-weight:bold;',
             'color:green; font-weight:bold;',
@@ -114,7 +114,7 @@ const FeatureToggle = function (options) {
         }
     };
 
-    options.verbose && console.info(
+    verbose && console.info(
         '%c[Feature Toggle Switch]%c ✔%c The Feature Toggle Switch element component loaded.',
         'background:'+consoleColorId+';font-weight:bold;',
         'color:green; font-weight:bold;',
@@ -134,7 +134,7 @@ const FeatureToggle = function (options) {
                 ? arguments[0]
                 : {};
 
-            options.verbose && console.info(
+            verbose && console.info(
                 '%c[Feature Toggle Switch]%c ...looking for Feature Toggle Switch elements.',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:#cecece'
@@ -143,7 +143,7 @@ const FeatureToggle = function (options) {
             featureToggleSwitches = document.querySelectorAll('div[data-feature]');
 
             featureToggleSwitches.forEach(function (element) {
-                /** @type {Element} element */
+                /** @type {HTMLDivElement|Node} element */
                 if (!element.hasAttribute('id')) {
                     element.setAttribute('id', 'featureToggle' + (idCounter++));
                 }
@@ -153,20 +153,20 @@ const FeatureToggle = function (options) {
                     ? featureToggleTargets[featureName]
                     : {state: false, label: 'Toggle feature "'+featureName+'" On or Off', cookie: 'feature_'+featureName};
 
-                element.component = new FeatureToggleSwitchElement(element, featureName, toggleOptions);
+                element.component = new FeatureToggleSwitchElement({HTMLElement: element, featureName: featureName, toggleOptions: toggleOptions});
             });
 
-            window.Util.triggerEvent(document, 'Component.FeatureToggle.Ready');
+            Util.triggerEvent({element: document, eventName: 'Component.FeatureToggle.Ready'});
             initialized = true;
         },
 
         /**
          * Get all FeatureToggle elements by name.
          *
-         * @param {String} featureToggleName
+         * @param {String} featureToggleName The non-unique name of the FeatureToggle element.
          * @returns {[]}
          */
-        getComponentsByName : function(featureToggleName) {
+        getComponentsByName : function({featureToggleName}) {
             if (!initialized) {
                 this.init();
             }
@@ -190,7 +190,7 @@ const FeatureToggle = function (options) {
          * @param {String} featureToggleName The non-unique name of the FeatureToggle element.
          * @return {Array}
          */
-        toggle : function(featureToggleName) {
+        toggle : function({featureToggleName}) {
             if (!initialized) {
                 this.init();
             }
@@ -213,7 +213,7 @@ const FeatureToggle = function (options) {
          *
          * @param {String} newState The new status: 'on' or 'off'.
          */
-        toggleAll : function (newState) {
+        toggleAll : function ({newState = 'on'}) {
             if (!initialized) {
                 this.init();
             }

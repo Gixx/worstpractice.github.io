@@ -2,6 +2,7 @@ window['PRIVACY_ACCEPT_COOKIE_NAME'] = 'privacy_Accept_20200109';
 window['PRIVACY_COMMENTO_COOKIE_NAME'] = 'privacy_CommentoEnabled';
 
 require('./components/Util');
+require('./components/Cookie');
 require('./components/LazyLoadImage');
 require('./components/FeatureToggle');
 require('./components/GdprDialog');
@@ -35,7 +36,7 @@ const embedWorstPracticeSample = function () {
         url: '/code-of-the-day/' + badCodes[codeOfTheDay],
         method: 'GET',
         enctype: 'text/html',
-        success: function (response) {
+        successCallback: function (response) {
             if (response.status !== 200) {
                 console.log('Looks like there was a problem. Status Code: ' + response.status);
                 return;
@@ -44,8 +45,10 @@ const embedWorstPracticeSample = function () {
             // Examine the text in the response
             response.text().then(function (data) {
                 document.querySelector('.codeOfTheDay__content').innerHTML = data;
-                document.querySelector('.codeOfTheDay__toggle').addEventListener('click', function (event) {
-                    if (event.target.checked) {
+                document.querySelector('input.codeOfTheDay__toggle').addEventListener('click', function (event) {
+                    /** @type HTMLInputElement */
+                    let element = event.target;
+                    if (element.checked) {
                         scrollTo({ top: 0, behavior: 'smooth' });
                         // scrollTo(0, 0);
                         document.body.style.overflow = 'hidden';
@@ -60,21 +63,17 @@ const embedWorstPracticeSample = function () {
 };
 
 const embedCommentoPlugin = function() {
-    let d = document, s = d.createElement('script');
-    let commento = d.getElementById('commento');
+    let scriptElement = document.createElement('script');
+    let commento = document.getElementById('commento');
 
     if (commento) {
         commento.innerHTML = '';
-        s.src = 'https://cdn.commento.io/js/commento.js';
-        s.setAttribute('defer','defer');
-        s.setAttribute('data-auto-init', 'true');
-        s.setAttribute('data-no-fonts', 'true');
-        (d.head || d.body).appendChild(s);
+        scriptElement.src = 'https://cdn.commento.io/js/commento.js';
+        scriptElement.setAttribute('defer','defer');
+        scriptElement.setAttribute('data-auto-init', 'true');
+        scriptElement.setAttribute('data-no-fonts', 'true');
+        (document.head || document.body).appendChild(scriptElement);
     }
-};
-
-const isCommentoEnabled = function () {
-    return Util.getCookie(PRIVACY_COMMENTO_COOKIE_NAME) === 'On';
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -91,20 +90,31 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('Component.Util.Ready', function () {
+    Cookie.init();
+
+    Cookie.renew(PRIVACY_ACCEPT_COOKIE_NAME);
+    Cookie.renew(PRIVACY_COMMENTO_COOKIE_NAME);
+
+    LazyLoadImage.init();
+    embedWorstPracticeSample();
+
+
+});
+
+document.addEventListener('Component.Cookie.Ready', function () {
+    const isCommentoEnabled = Cookie.get({cookieName: PRIVACY_COMMENTO_COOKIE_NAME}) === 'On';
+
     const featureToggle = {
         commento: {
-            state: isCommentoEnabled(),
+            state: isCommentoEnabled,
             label: "Do you allow the Commento to load?",
             cookie: PRIVACY_COMMENTO_COOKIE_NAME
         },
     };
 
-    LazyLoadImage.init();
     FeatureToggle.init(featureToggle);
 
-    embedWorstPracticeSample();
-
-    if (isCommentoEnabled()) {
+    if (isCommentoEnabled) {
         embedCommentoPlugin();
     }
 });
