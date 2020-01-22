@@ -52,7 +52,7 @@ The output should show something like this:
 To access the container, you need to simply run:
 
 ```
-docker exec -it webpack bash 
+docker exec -it webpack-wp bash 
 ```
 
 Inside the container for the first time it's worth to make sure everything is up to date, so run:
@@ -72,7 +72,7 @@ webpack -w --watch-poll
 Access the container is the same as before:
 
 ```
-docker exec -it jekyll bash
+docker exec -it jekyll-wp bash
 ```
 
 Then in the container's prompt first you need to init the project:
