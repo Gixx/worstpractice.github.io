@@ -329,32 +329,32 @@ const Util = function (options) {
         /**
          * Set a cookie.
          *
-         * @param {string} cName  Cookie name
-         * @param {string} cValue Cookie value
-         * @param {number} exDays Expiration days
+         * @param {string} cookieName  Cookie name
+         * @param {string} cookieValue Cookie value
+         * @param {number} expirationDays Expiration days
          */
-        setCookie: function (cName, cValue, exDays) {
+        setCookie: function (cookieName, cookieValue, expirationDays) {
             let date = new Date();
-            date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
+            date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
             let expires = "expires="+ date.toUTCString();
             options.verbose && console.info(
                 '%c[Util]%c ⚡%c Setting Cookie : %o',
                 'background:'+consoleColorId+';font-weight:bold;',
                 'color:orange;font-weight:bold',
                 'color:#599bd6',
-                cName
+                cookieName
             );
-            document.cookie = cName + '=' + cValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
+            document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
         },
 
         /**
          * Retrieve a cookie
          *
-         * @param {string} cName Cookie name
+         * @param {string} cookieName Cookie name
          * @returns {string}
          */
-        getCookie: function (cName) {
-            let name = cName + "=";
+        getCookie: function (cookieName) {
+            let name = cookieName + "=";
             let decodedCookie = decodeURIComponent(document.cookie);
             let cookieArray = decodedCookie.split(';');
             for (let i = 0, num = cookieArray.length; i < num; i++) {
