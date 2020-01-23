@@ -2,6 +2,7 @@
 ---
 
 @import "common/defaults";
+@import "common/gdpr";
 @import "common/syntax";
 @import "common/header";
 @import "common/navigation";
@@ -11,6 +12,7 @@
 /* desktop and tablet landscape */
 @media only screen and (min-width: $desktop-min-width-limit) and (orientation:landscape) {
   @import "desktop/defaults";
+  @import "desktop/gdpr";
   @import "desktop/syntax";
   @import "desktop/header";
   @import "desktop/navigation";
@@ -22,6 +24,7 @@
 @media only screen and (min-width: $tablet-min-width-limit) and (max-width: $tablet-max-width-limit) and (orientation:portrait),
   only screen and (max-width: $tablet-max-width-limit) and (orientation:landscape) {
   @import "tablet/defaults";
+  @import "tablet/gdpr";
   @import "tablet/syntax";
   @import "tablet/header";
   @import "tablet/navigation";
@@ -32,6 +35,7 @@
 /* mobile portrait */
 @media only screen and (max-width: $mobile-max-width-limit) and (orientation:portrait) {
   @import "mobile/defaults";
+  @import "mobile/gdpr";
   @import "mobile/syntax";
   @import "mobile/header";
   @import "mobile/navigation";

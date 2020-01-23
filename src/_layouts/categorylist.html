@@ -14,10 +14,10 @@ page_type: category_list
     {%- endif -%}
 {%- endfor -%}
 
+<header class="c-header">
+    <h2 class="c-header__title">Category: {{ currentCategoryLabel }}</h2>
+</header>
 <section class="c-content__list">
-    <header class="c-header">
-        <h2 class="c-header__title">Category: {{ currentCategoryLabel }}</h2>
-    </header>
 
     {%- if reversedOrder -%}
         {%- for post in paginator.posts reversed -%}
@@ -29,7 +29,7 @@ page_type: category_list
         {%- endfor -%}
     {%- endif -%}
 
-    {%- if paginator.total_pages > 1 -%}
+    {%- if paginator.total_pages > paginator.per_page -%}
     <footer class="c-footer">
         {% include pagination.html %}
     </footer>

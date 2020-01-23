@@ -1,3 +1,68 @@
 @import "../colors";
 @import "../sizes";
 @import "../fonts";
+
+.g-featureToggle,
+.a-featureToggle {
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  position: relative;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    position: relative;
+    line-height: 3.2rem;
+    display: block;
+    font-weight: 700;
+
+    span {
+      position: relative;
+      cursor: pointer;
+      display: block;
+      float: right;
+      border-radius: 1.6rem;
+      height: 3.2rem;
+      width: 6.4rem;
+      background: $worstpractice-red;
+      transition: background 0.4s ease-in;
+    }
+
+    span:before {
+      border-radius: 50%;
+      height: 2.8rem;
+      width: 2.8rem;
+      left: 0.2rem;
+      top: 0.2rem;
+      background: $lighter-grey;
+      transition: left 0.4s ease-in;
+    }
+  }
+
+  label:before,
+  label:after,
+  label span:before,
+  label span:after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  input:checked + label span {
+    background: $worstpractice-green;
+  }
+
+  input:checked + label span:before {
+    left: 3.4rem;
+  }
+}
+
+.a-featureToggle:first-child {
+  border-top: none;
+}
+
+.g-featureToggle *,
+.a-featureToggle * {
+  cursor: pointer;
+}

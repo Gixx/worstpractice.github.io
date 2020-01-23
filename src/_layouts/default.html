@@ -47,7 +47,7 @@
         {% if page.page_type == 'post_view' %}
         <meta name="date" content="{{ page.date | date_to_xmlschema }}">
             {% if page.illustration_share %}
-        <meta property="og:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration_share }}">
+        <meta property="og:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration }}">
         <meta property="og:image:width" content="600">
         <meta property="og:image:height" content="600">
             {% endif %}
@@ -70,7 +70,7 @@
         <meta name="twitter:creator" content="@{{ site.twitter_username }}">
         <meta name="twitter:description" content="{{ page.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape | strip }}">
             {% if page.illustration_share %}
-        <meta name="twitter:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}/{{ page.illustration_share }}">
+        <meta name="twitter:image" content="{{ site.homepage }}/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration_share }}">
             {% endif %}
         {% else %}
         <meta name="twitter:title" content="{{ title }}">
@@ -104,14 +104,13 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-        <link rel="stylesheet" href="/assets/css/desktop.css" media="screen and (min-width: 1025px) and (orientation:landscape)">
+        <link rel="stylesheet" href="/assets/css/desktop.css" media="screen and (min-width: 1025px)">
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
         <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
-        <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px) and (orientation:portrait)">
+        <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px)">
 
         <script type="application/javascript" src="/assets/js/feature.min.js"></script>
         <script type="application/javascript">
@@ -131,13 +130,17 @@
             <div class="codeOfTheDay__backdrop"></div>
         </div>
         <div class="m-menu">
-            <input class="m-menu__toggle" type="checkbox" />
             <div class="m-menu__burger">
                 <span></span>
-                <span></span>
-                <span></span>
             </div>
+            <input class="m-menu__toggle" type="checkbox" />
             <div class="m-menu__content">
+                <nav>
+                    <h2 class="m-menu__title">{{ site.title }}</h2>
+                    <ul class="m-menu__navigation">
+                        <li><a class="m-menu__link -home{% if page.page_type == 'home' %} -current{% endif %}" href="/">Home</a></li>
+                    </ul>
+                </nav>
                 <nav>
                     <h2 class="m-menu__title">Categories</h2>
                     {% include categories.html %}
@@ -164,23 +167,6 @@
                 <small>Copyright © {{ 'now' | date: "%Y" }} All rights reserved. {{ site.title }}</small>
             </p>
         </footer>
-        {%- if page.review -%}
-        <script type="application/javascript">
-            var disqus_config = function () {
-                this.page.url = '{{ site.homepage }}{{ page.url }}';
-                this.page.identifier = '{{ page.title | slugify: "latin" }}';
-                this.page.title = '{{ page.title }}';
-            };
-
-            (function() {
-                if (isDisqusEnabled()) {
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://worst-practice.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                }
-            })();
-        </script>
-        {%- endif -%}
+        {%- include gdpr.html -%}
     </body>
 </html>

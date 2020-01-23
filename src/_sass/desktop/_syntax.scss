@@ -2,25 +2,12 @@
 @import "../sizes";
 @import "../fonts";
 
-.h-header__codeOfTheDay .highlighter-rouge pre.highlight {
-  font-size: $text-size-sourcecode;
-  line-height: $text-size-sourcecode-line;
-  padding: 1rem;
-  white-space: normal;
-
-  & > code {
-    max-height: 75vh;
-    overflow: auto;
-    width: 100%;
-  }
-}
-
 .c-content pre.highlight {
   width: $desktop-content-width -$desktop-content-padding;
   margin-left: -$desktop-content-padding / 2;
   margin-top: 4rem;
-  font-size: $text-size-sourcecode;
-  line-height: $text-size-sourcecode-line;
+  font-size: $size-sourcecode;
+  line-height: $size-sourcecode-line;
   border: 0.2rem dashed $dark-grey;
   border-radius: 1rem;
   padding: 1rem;
@@ -59,13 +46,13 @@
 
   .rouge-table {
     display: block;
-    width: $desktop-content-width - 2rem;
+    //width: $desktop-content-width - 2rem;
 
     tbody {
       display: block;
       margin: 0;
       padding: 0;
-      width: $desktop-content-width - 2rem;
+      //width: $desktop-content-width - 2rem;
     }
 
     tr {
@@ -73,7 +60,7 @@
       position: relative;
       margin: 0;
       padding: 0;
-      width: $desktop-content-width - 2rem;
+      //width: $desktop-content-width - 2rem;
     }
   }
 
@@ -110,12 +97,12 @@
   content: '';
   display: block;
   position: absolute;
-  top: -2rem;
+  top: -2.6rem;
   left: 4.8rem;
   color: $dark-grey;
   font-weight: 300;
   font-family: $font-serif;
   font-style: italic;
-  font-size: $text-size-small;
-  line-height: $text-size-small-line;
+  font-size: $size-sourcecode;
+  line-height: $size-sourcecode-line;
 }

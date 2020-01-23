@@ -1,107 +1,124 @@
-const PRIVACY_DISQUS_COOKIE_NAME = 'privacy_DisqusEnabled';
+window['PRIVACY_ACCEPT_COOKIE_NAME'] = 'privacy_Accept_20200109';
+window['PRIVACY_COMMENTO_COOKIE_NAME'] = 'privacy_CommentoEnabled';
+
+require('./components/Util');
+require('./components/Cookie');
+require('./components/LazyLoadImage');
+require('./components/FeatureToggle');
+require('./components/GdprDialog');
 
 /**
- * Check whether the Disqus is embeddable.
- *
- * @returns {boolean}
+ * Embed a "Worst practice" code sample.
  */
-function isDisqusEnabled()
-{
-    return getCookie(PRIVACY_DISQUS_COOKIE_NAME) === 'Yes';
-}
+const embedWorstPracticeSample = function () {
+    const badCodesCounter = 4;
+    let badCodes = [];
 
-/**
- * Set a cookie.
- *
- * @param {string} cName  Cookie name
- * @param {string} cValue Cookie value
- * @param {number} exDays Expiration days
- */
-function setCookie(cName, cValue, exDays)
-{
+    for (let i = 1; i <= badCodesCounter; i++) {
+        let fileCounter = '' + i;
+        badCodes.push(fileCounter.padStart(4, '0') + '.html');
+    }
+
     let date = new Date();
-    date.setTime(date.getTime() + (exDays * 24 * 60 * 60 * 1000));
-    let expires = "expires="+ date.toUTCString();
-    document.cookie = cName + '=' + cValue + ';' + expires + ';path=/;SameSite=Lax' + (location.protocol === 'https:' ? ';secure' : '');
-}
-
-/**
- * Retrieve a cookie
- *
- * @param {string} cName Cookie name
- * @returns {string}
- */
-function getCookie(cName)
-{
-    let name = cName + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let cookieArray = decodedCookie.split(';');
-    for (let i = 0, num = cookieArray.length; i < num; i++) {
-        let cookie = cookieArray[i];
-        while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1);
-        }
-        if (cookie.indexOf(name) === 0) {
-            return cookie.substring(name.length, cookie.length);
-        }
+    let day = date.getDate();
+    if (day < 10) {
+        day = '0' + day;
     }
-    return '';
-}
-
-/**
- * Tries to figure out the operating system
- *
- * @returns {string}
- */
-function getDeviceOs()
-{
-    let operatingSystem = 'Unknown';
-    let patterns = ['Win', 'Mac', 'X11', 'Linux', 'iPhone', 'iPad', 'Android'];
-    let supportedOperatingSystems = ['Windows', 'MacOS', 'Unix', 'Linux', 'iOS', 'iOS', 'Android'];
-
-    for (let i in patterns) {
-        if (navigator.platform.indexOf(patterns[i]) !== -1) {
-            operatingSystem = supportedOperatingSystems[i];
-        }
+    let month = (date.getMonth() + 1);
+    if (month < 10) {
+        month = '0' + month;
     }
+    let year = date.getFullYear();
+    let today = parseInt(year + '' + month + '' + day);
+    let codeOfTheDay = today % badCodes.length;
 
-    return operatingSystem;
-}
-
-/**
- * Embed a worst practice code sample.
- */
-function embedWorstPracticeSample()
-{
-    fetch('/code-of-the-day/0001.html')
-        .then(
-            function (response) {
-                if (response.status !== 200) {
-                    console.log('Looks like there was a problem. Status Code: ' + response.status);
-                    return;
-                }
-
-                // Examine the text in the response
-                response.text().then(function (data) {
-                    document.querySelector('.codeOfTheDay__content').innerHTML = data;
-                    document.querySelector('.codeOfTheDay__toggle').addEventListener('click', function (event) {
-                        if (event.target.checked) {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                            // window.scrollTo(0, 0);
-                            document.body.style.overflow = 'hidden';
-                        } else {
-                            document.body.style.overflowY = 'auto';
-                            document.body.style.overflowX = 'hidden';
-                        }
-                    });
-                });
+    Util.fetch({
+        url: '/code-of-the-day/' + badCodes[codeOfTheDay],
+        method: 'GET',
+        enctype: 'text/html',
+        successCallback: function (response) {
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' + response.status);
+                return;
             }
-        )
-        .catch(function (err) {
-            console.log('Fetch Error :-S', err);
-        });
-}
+
+            // Examine the text in the response
+            response.text().then(function (data) {
+                document.querySelector('.codeOfTheDay__content').innerHTML = data;
+                document.querySelector('input.codeOfTheDay__toggle').addEventListener('click', function (event) {
+                    /** @type HTMLInputElement */
+                    let element = event.target;
+                    if (element.checked) {
+                        scrollTo({ top: 0, behavior: 'smooth' });
+                        // scrollTo(0, 0);
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflowY = 'auto';
+                        document.body.style.overflowX = 'hidden';
+                    }
+                });
+            });
+        }
+    });
+};
+
+const embedCommentoPlugin = function() {
+    let scriptElement = document.createElement('script');
+    let commento = document.getElementById('commento');
+
+    if (commento) {
+        commento.innerHTML = '';
+        scriptElement.src = 'https://cdn.commento.io/js/commento.js';
+        scriptElement.setAttribute('defer','defer');
+        scriptElement.setAttribute('data-auto-init', 'true');
+        scriptElement.setAttribute('data-no-fonts', 'true');
+        (document.head || document.body).appendChild(scriptElement);
+    }
+};
 
 document.addEventListener('DOMContentLoaded', function () {
+    Util.init();
+
+    document.querySelectorAll('a.google').forEach(function (element) {
+        element.addEventListener('click', function (event) {
+            if (!confirm('This link will take you to a Google Service website.\nDo you really want it?')) {
+                event.preventDefault();
+                return false;
+            }
+        })
+    })
+});
+
+document.addEventListener('Component.Util.Ready', function () {
+    Cookie.init();
+
+    Cookie.renew({cookieName: PRIVACY_ACCEPT_COOKIE_NAME});
+    Cookie.renew({cookieName: PRIVACY_COMMENTO_COOKIE_NAME});
+
+    LazyLoadImage.init();
     embedWorstPracticeSample();
+
+
+});
+
+document.addEventListener('Component.Cookie.Ready', function () {
+    const isCommentoEnabled = Cookie.get({cookieName: PRIVACY_COMMENTO_COOKIE_NAME}) === 'On';
+
+    const featureToggle = {
+        commento: {
+            state: isCommentoEnabled,
+            label: "Do you allow the Commento to load?",
+            cookie: PRIVACY_COMMENTO_COOKIE_NAME
+        },
+    };
+
+    FeatureToggle.init(featureToggle);
+
+    if (isCommentoEnabled) {
+        embedCommentoPlugin();
+    }
+});
+
+document.addEventListener('Component.FeatureToggle.Ready', function () {
+    GdprDialog.init();
 });

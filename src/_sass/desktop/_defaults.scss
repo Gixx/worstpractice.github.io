@@ -19,7 +19,7 @@ blockquote::before {
   content: "“";
   color: $light-black;
   font-weight: 700;
-  font-size: 6rem;
+  font-size: $size-quote-sign;
 }
 
 blockquote::after {
@@ -31,7 +31,7 @@ blockquote::after {
   content: "”";
   color: $light-black;
   font-weight: 700;
-  font-size: 6rem;
+  font-size: $size-quote-sign;
 }
 
 dl {
@@ -49,14 +49,14 @@ dt {
   float: left;
   width: 20rem;
   font-weight: 700;
+  margin-top: 1rem;
+}
+
+dt + dd {
+  margin-top: 1rem;
 }
 
 dd {
   float: right;
   width: 49.9rem;
-}
-
-.material-icons {
-  font-size: 2.4rem;
-  line-height: 2.4rem;
 }

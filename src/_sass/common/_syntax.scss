@@ -11,8 +11,8 @@
     font-weight: 300;
     font-family: $font-serif;
     font-style: italic;
-    font-size: $text-size-small;
-    line-height: $text-size-small-line;
+    font-size: $size-sourcecode;
+    line-height: $size-sourcecode-line;
   }
 
   .language-php pre.highlight::before {
@@ -27,7 +27,19 @@
     content: 'Source code language: CSS'
   }
 
-  .language-js pre.highlight::before {
+  .language-html pre.highlight::before {
     content: 'Source code language: HTML'
+  }
+
+  .language-bash pre.highlight::before {
+    content: 'Bash/ZSH'
+  }
+
+  .language-docker pre.highlight::before {
+    content: 'Dockerfile'
+  }
+
+  .language-yaml pre.highlight::before {
+    content: 'YAML file'
   }
 }
