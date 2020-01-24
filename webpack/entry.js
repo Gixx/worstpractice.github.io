@@ -1,11 +1,14 @@
-window['PRIVACY_ACCEPT_COOKIE_NAME'] = 'privacy_Accept_20200109';
-window['PRIVACY_COMMENTO_COOKIE_NAME'] = 'privacy_CommentoEnabled';
+const PRIVACY_ACCEPT_STORAGE_NAME = 'privacy_Accept_20200109';
+const PRIVACY_COMMENTO_STORAGE_NAME = 'privacy_CommentoEnabled';
 
-require('./components/Util');
-require('./components/Cookie');
+require('./components/Utility');
+require('./components/DataStorage');
+require('./components/CookieStorage');
+require('./components/FeatureToggleSwitch');
 require('./components/LazyLoadImage');
-require('./components/FeatureToggle');
 require('./components/GdprDialog');
+
+const utility = new Utility({verbose: true});
 
 /**
  * Embed a "Worst practice" code sample.
@@ -32,7 +35,7 @@ const embedWorstPracticeSample = function () {
     let today = parseInt(year + '' + month + '' + day);
     let codeOfTheDay = today % badCodes.length;
 
-    Util.fetch({
+    utility.fetch({
         url: '/code-of-the-day/' + badCodes[codeOfTheDay],
         method: 'GET',
         enctype: 'text/html',
@@ -77,7 +80,33 @@ const embedCommentoPlugin = function() {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    Util.init();
+    let dataStorage = null;
+
+    try {
+        dataStorage = new DataStorage({utility: utility, verbose: true});
+    } catch (e) {
+        dataStorage = new CookieStorage({utility: utility, verbose: true});
+        dataStorage.renew({key: PRIVACY_ACCEPT_STORAGE_NAME});
+        dataStorage.renew({key: PRIVACY_COMMENTO_STORAGE_NAME});
+    }
+
+    const isCommentoEnabled = dataStorage.get({key: PRIVACY_COMMENTO_STORAGE_NAME}) === 'On';
+    const featureToggleOptions = {
+        commento: {
+            state: isCommentoEnabled,
+            label: "Do you allow the Commento to load?",
+            storageKey: PRIVACY_COMMENTO_STORAGE_NAME
+        },
+    };
+    new LazyLoadImage({utility: utility, verbose: true});
+    const featureToggle = new FeatureToggleSwitch({utility: utility, storage: dataStorage, options: featureToggleOptions,  verbose: true});
+    new GdprDialog({utility: utility, storage: dataStorage, storageKey: PRIVACY_ACCEPT_STORAGE_NAME, featureToggle: featureToggle, verbose: true});
+
+    if (isCommentoEnabled) {
+        embedCommentoPlugin();
+    }
+
+    embedWorstPracticeSample();
 
     document.querySelectorAll('a.google').forEach(function (element) {
         element.addEventListener('click', function (event) {
@@ -87,38 +116,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
     })
-});
-
-document.addEventListener('Component.Util.Ready', function () {
-    Cookie.init();
-
-    Cookie.renew({cookieName: PRIVACY_ACCEPT_COOKIE_NAME});
-    Cookie.renew({cookieName: PRIVACY_COMMENTO_COOKIE_NAME});
-
-    LazyLoadImage.init();
-    embedWorstPracticeSample();
-
-
-});
-
-document.addEventListener('Component.Cookie.Ready', function () {
-    const isCommentoEnabled = Cookie.get({cookieName: PRIVACY_COMMENTO_COOKIE_NAME}) === 'On';
-
-    const featureToggle = {
-        commento: {
-            state: isCommentoEnabled,
-            label: "Do you allow the Commento to load?",
-            cookie: PRIVACY_COMMENTO_COOKIE_NAME
-        },
-    };
-
-    FeatureToggle.init(featureToggle);
-
-    if (isCommentoEnabled) {
-        embedCommentoPlugin();
-    }
-});
-
-document.addEventListener('Component.FeatureToggle.Ready', function () {
-    GdprDialog.init();
 });
