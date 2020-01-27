@@ -14,71 +14,75 @@
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0001</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0002</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0003</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0004</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/404</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/desktop.css</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/imprint</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
+    </url>
+    <url>
+      <loc>http://0.0.0.0:4000/gdpr/</loc>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/archive/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/author/gabor.ivan/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/mobile.css</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/privacy</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/robots.txt</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/site.css</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/sorry</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/tablet.css</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/terms</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/archive/2020-01/</loc>
@@ -86,54 +90,54 @@
     </url>
     <url>
       <loc>http://0.0.0.0:4000/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/personal/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/docker/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/wsl2/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/poweline-shell/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/phpstorm/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/windows/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/css/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/html/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/smart/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/general/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/wsl/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/frontend/</loc>
-      <lastmod>2020-01-27T08:24:35+01:00</lastmod>
+      <lastmod>2020-01-27T10:15:20+01:00</lastmod>
     </url>
   </urlset>

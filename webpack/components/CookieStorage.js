@@ -4,13 +4,12 @@
  * @param {object} utility
  * @param {boolean} verbose
  * @returns {*}
- * @constructor
  */
 const CookieStorage = function ({utility, verbose = false})
 {
     const MAX_COOKIE_EXPIRATION_DAYS = 7;
     /** @type {string} */
-    let consoleColorId = '#606366';
+    const consoleColorId = '#606366';
 
     if (!utility instanceof Utility) {
         throw new ReferenceError('This component requires the Utility component to be loaded.');
@@ -19,7 +18,7 @@ const CookieStorage = function ({utility, verbose = false})
     /**
      * Initialize component
      */
-    let initialize = function()
+    const initialize = function()
     {
         utility.triggerEvent({element: document, eventName: 'Component.Cookie.Ready'});
     };
@@ -32,11 +31,11 @@ const CookieStorage = function ({utility, verbose = false})
      * @param {number} expirationDays Expiration days
      * @param {boolean} standardLog Whether to log the standard info or not
      */
-    let setCookie = function (cookieName, cookieValue, expirationDays, standardLog = true)
+    const setCookie = function (cookieName, cookieValue, expirationDays, standardLog = true)
     {
-        let date = new Date();
+        const date = new Date();
         date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
-        let expires = "expires="+ date.toUTCString();
+        const expires = "expires="+ date.toUTCString();
 
         standardLog && verbose && console.info(
             '%c[Cookie Storage]%c ⚡%c Setting Cookie : %o',
@@ -54,14 +53,15 @@ const CookieStorage = function ({utility, verbose = false})
      * @param {string} cookieName The name of the cookie
      * @returns {string}
      */
-    let getCookie = function (cookieName)
+    const getCookie = function (cookieName)
     {
-        let name = cookieName + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let cookieArray = decodedCookie.split(';');
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        let cookie, i, num;
 
-        for (let i = 0, num = cookieArray.length; i < num; i++) {
-            let cookie = cookieArray[i];
+        for (i = 0, num = cookieArray.length; i < num; i++) {
+            cookie = cookieArray[i];
             while (cookie.charAt(0) === ' ') {
                 cookie = cookie.substring(1);
             }
@@ -79,9 +79,10 @@ const CookieStorage = function ({utility, verbose = false})
      * @param {string} cookieName The name of the cookie
      * @param {number} expirationDays Expiration days of the cookie
      */
-    let renewCookie = function(cookieName, expirationDays)
+    const renewCookie = function(cookieName, expirationDays)
     {
-        let cookieValue = getCookie(cookieName);
+        const cookieValue = getCookie(cookieName);
+
         if (cookieValue !== '') {
             verbose && console.info(
                 '%c[Cookie Storage]%c ⚡%c Renew Cookie : %o',
@@ -100,11 +101,9 @@ const CookieStorage = function ({utility, verbose = false})
      *
      * @param {string} cookieName The name of the cookie
      */
-    let deleteCookie = function(cookieName)
+    const deleteCookie = function(cookieName)
     {
-        let cookieValue = getCookie(cookieName);
-
-        if (cookieValue !== '') {
+        if (getCookie(cookieName) !== '') {
             verbose && console.info(
                 '%c[Cookie Storage]%c ⚡%c Delete Cookie : %o',
                 'color:white;background:'+consoleColorId+';font-weight:bold;',
@@ -127,8 +126,6 @@ const CookieStorage = function ({utility, verbose = false})
     initialize();
 
     return {
-        constructor: CookieStorage,
-
         /**
          * Set a cookie.
          *
@@ -137,7 +134,7 @@ const CookieStorage = function ({utility, verbose = false})
          * @param {boolean} session The data should be deleted when the browser session ends.
          */
         set: function ({key, value, session = false}) {
-            let expirationDays = session ? 0 : MAX_COOKIE_EXPIRATION_DAYS;
+            const expirationDays = session ? 0 : MAX_COOKIE_EXPIRATION_DAYS;
 
             setCookie(key, value, expirationDays);
         },
@@ -159,7 +156,7 @@ const CookieStorage = function ({utility, verbose = false})
          * @param {boolean} session The data should be deleted when the browser session ends.
          */
         renew: function({key, session = false}) {
-            let expirationDays = session ? 0 : MAX_COOKIE_EXPIRATION_DAYS;
+            const expirationDays = session ? 0 : MAX_COOKIE_EXPIRATION_DAYS;
 
             renewCookie(key, expirationDays);
         },
