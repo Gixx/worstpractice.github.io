@@ -1,11 +1,13 @@
 /**
- * Lazy Load Image component
+ * Lazy Load Image component.
  *
- * @type {{init: LazyLoadImage.init, getLazyLoadImages: (function(): NodeList)}}
+ * @param {object} utility
+ * @param {boolean} verbose
+ * @returns {*}
+ * @constructor
  */
-const LazyLoadImage = function ({verbose = false}) {
-    /** @type {boolean} */
-    let initialized = false;
+const LazyLoadImage = function ({utility, verbose = false})
+{
     /** @type {NodeList} */
     let lazyLoadImages;
     /** @type {number} */
@@ -15,8 +17,8 @@ const LazyLoadImage = function ({verbose = false}) {
     /** @type IntersectionObserver */
     let imageObserver;
 
-    if (typeof Util === 'undefined') {
-        throw new ReferenceError('This component requires the Util component to be loaded.');
+    if (!utility instanceof Utility) {
+        throw new ReferenceError('This component requires the Utility component to be loaded.');
     }
 
     /**
@@ -34,7 +36,6 @@ const LazyLoadImage = function ({verbose = false}) {
             'color:black;',
             '#'+HTMLElement.getAttribute('id')
         );
-
 
         return {
             constructor: LazyLoadImageElement,
@@ -78,6 +79,41 @@ const LazyLoadImage = function ({verbose = false}) {
         }
     };
 
+    /**
+     * Initializes the loader and collects the elements.
+     */
+    let initialize = function()
+    {
+        verbose && console.info(
+            '%c[Lazy Load Image]%c ...looking for image elements.',
+            'background:'+consoleColorId+';font-weight:bold;',
+            'color:#cecece'
+        );
+
+        imageObserver = new IntersectionObserver((entries, imgObserver) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    /** @type LazyLoadImageElement lazyLoadImageElement */
+                    let lazyLoadImageElement = entry.target.component;
+                    lazyLoadImageElement.loadImage();
+                }
+            })
+        });
+
+        lazyLoadImages = document.querySelectorAll('img[data-src]');
+
+        lazyLoadImages.forEach(function (element) {
+            if (!element.hasAttribute('id')) {
+                element.setAttribute('id', 'lazyImage' + (idCounter++));
+            }
+
+            element.component = new LazyLoadImageElement({HTMLElement: element});
+            imageObserver.observe(element);
+        });
+
+        utility.triggerEvent({element: document, eventName: 'Component.LazyLoadImage.Ready'});
+    };
+
     verbose && console.info(
         '%c[Lazy Load Image]%c ✔%c The Lazy Load Image component loaded.',
         'background:'+consoleColorId+';font-weight:bold;',
@@ -85,45 +121,10 @@ const LazyLoadImage = function ({verbose = false}) {
         'color:black; font-weight:bold;'
     );
 
+    initialize();
+
     return {
-        /**
-         * Initializes the loader and collects the elements.
-         */
-        init : function () {
-            if (initialized) {
-                return;
-            }
-
-            verbose && console.info(
-                '%c[Lazy Load Image]%c ...looking for image elements.',
-                'background:'+consoleColorId+';font-weight:bold;',
-                'color:#cecece'
-            );
-
-            imageObserver = new IntersectionObserver((entries, imgObserver) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        /** @type LazyLoadImageElement lazyLoadImageElement */
-                        let lazyLoadImageElement = entry.target.component;
-                        lazyLoadImageElement.loadImage();
-                    }
-                })
-            });
-
-            lazyLoadImages = document.querySelectorAll('img[data-src]');
-
-            lazyLoadImages.forEach(function (element) {
-                if (!element.hasAttribute('id')) {
-                    element.setAttribute('id', 'lazyImage' + (idCounter++));
-                }
-
-                element.component = new LazyLoadImageElement({HTMLElement: element});
-                imageObserver.observe(element);
-            });
-
-            Util.triggerEvent({element: document, eventName: 'Component.LazyLoadImage.Ready'});
-            initialized = true;
-        },
+        constructor: LazyLoadImage,
 
         /**
          * Returns the collection of lazy-loaded images.
@@ -134,6 +135,6 @@ const LazyLoadImage = function ({verbose = false}) {
             return lazyLoadImages;
         }
     };
-}({verbose: true});
+};
 
 window['LazyLoadImage'] = LazyLoadImage;
