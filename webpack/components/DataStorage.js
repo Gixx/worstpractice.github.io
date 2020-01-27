@@ -26,11 +26,8 @@ const DataStorage = function ({utility, verbose = false})
      */
     let initialize = function()
     {
-        let keys = Object.keys(localStorage);
-        setStorageKeys(keys, localStorage);
-
-        keys = Object.keys(sessionStorage);
-        setStorageKeys(keys, sessionStorage);
+        initStorageKeys(localStorage);
+        initStorageKeys(sessionStorage);
 
         utility.triggerEvent({element: document, eventName: 'Component.DataStorage.Ready'});
     };
@@ -38,11 +35,11 @@ const DataStorage = function ({utility, verbose = false})
     /**
      * Fills up the registry.
      *
-     * @param storageKeys
      * @param storageEngine
      */
-    let setStorageKeys = function(storageKeys, storageEngine)
+    let initStorageKeys = function(storageEngine)
     {
+        let storageKeys = Object.keys(storageEngine);
         let i = storageKeys.length;
 
         while (i--) {

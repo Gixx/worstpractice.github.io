@@ -80,7 +80,7 @@ const embedCommentoPlugin = function() {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    let dataStorage = null;
+    let dataStorage;
 
     try {
         dataStorage = new DataStorage({utility: utility, verbose: true});
