@@ -6,7 +6,6 @@
  * @param {object} featureToggleTargets
  * @param {boolean} verbose
  * @returns {*}
- * @constructor
  */
 const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose = false})
 {
@@ -15,7 +14,7 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
     /** @type {number} */
     let idCounter = 1;
     /** @type {string} */
-    let consoleColorId = '#FF9B49';
+    const consoleColorId = '#FF9B49';
 
     if (!utility instanceof Utility) {
         throw new ReferenceError('This component requires the Utility component to be loaded.');
@@ -32,9 +31,8 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
      * @param {String} featureName
      * @param {{state: boolean, label: string, storageKey: string}} toggleOptions
      * @returns {*}
-     * @constructor
      */
-    let FeatureToggleSwitchElement = function (HTMLElement, featureName, toggleOptions)
+    const FeatureToggleSwitchElement = function (HTMLElement, featureName, toggleOptions)
     {
         // Wipe out any dirt
         HTMLElement.innerHTML = '';
@@ -43,17 +41,17 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
             ? true
             : toggleOptions.state;
 
-        let checkbox = document.createElement('input');
+        const checkbox = document.createElement('input');
         checkbox.setAttribute('type', 'checkbox');
         checkbox.setAttribute('id', HTMLElement.id + '-' + featureName);
         checkbox.addEventListener('change', function () {
             toggleSwitch(featureName)
         });
 
-        let label = document.createElement('label');
+        const label = document.createElement('label');
         label.setAttribute('for', HTMLElement.id + '-' + featureName);
-        let labelText = document.createTextNode(toggleOptions.label);
-        let labelSwitch = document.createElement('span');
+        const labelText = document.createTextNode(toggleOptions.label);
+        const labelSwitch = document.createElement('span');
         label.appendChild(labelText);
         label.appendChild(labelSwitch);
 
@@ -64,7 +62,7 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
          *
          * @param {Boolean} setActive
          */
-        let switchState = function(setActive) {
+        const switchState = function(setActive) {
             state = setActive;
             document.getElementById(HTMLElement.id + '-' + featureName).checked = state;
             storage.set({key: toggleOptions.storageKey, value: (state ? 'On' : 'Off')});
@@ -81,8 +79,6 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
         );
 
         return {
-            constructor : FeatureToggleSwitchElement,
-
             /**
              * Returns the feature name.
              *
@@ -120,9 +116,9 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
     /**
      * Initialize the component handler.
      */
-    let initialize = function()
+    const initialize = function(reScan = false)
     {
-        verbose && console.info(
+        !reScan && verbose && console.info(
             '%c[Feature Toggle Switch]%c ...looking for Feature Toggle Switch elements.',
             'background:'+consoleColorId+';font-weight:bold;',
             'color:#cecece'
@@ -131,20 +127,22 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
         featureToggleSwitches = document.querySelectorAll('div[data-feature]');
 
         featureToggleSwitches.forEach(function (element) {
-            /** @type {HTMLDivElement|Node} element */
-            if (!element.hasAttribute('id')) {
-                element.setAttribute('id', 'featureToggle' + (idCounter++));
+            if (typeof element.component === 'undefined') {
+                /** @type {HTMLDivElement|Node} element */
+                if (!element.hasAttribute('id')) {
+                    element.setAttribute('id', 'featureToggle' + (idCounter++));
+                }
+
+                const featureName = element.dataset.feature;
+                const toggleOptions = (typeof options[featureName] !== 'undefined')
+                    ? options[featureName]
+                    : {state: false, label: 'Toggle feature "'+featureName+'" On or Off', storageKey: 'feature_'+featureName};
+
+                element.component = new FeatureToggleSwitchElement(element, featureName, toggleOptions);
             }
-
-            let featureName = element.dataset.feature;
-            let toggleOptions = (typeof options[featureName] !== 'undefined')
-                ? options[featureName]
-                : {state: false, label: 'Toggle feature "'+featureName+'" On or Off', storageKey: 'feature_'+featureName};
-
-            element.component = new FeatureToggleSwitchElement(element, featureName, toggleOptions);
         });
 
-        utility.triggerEvent({element: document, eventName: 'Component.FeatureToggleSwitch.Ready'});
+        !reScan && utility.triggerEvent({element: document, eventName: 'Component.FeatureToggleSwitch.Ready'});
     };
 
     /**
@@ -153,9 +151,9 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
      * @param {String} featureToggleName The non-unique name of the FeatureToggle element.
      * @returns {[]}
      */
-    let getElementsByName = function(featureToggleName)
+    const getElementsByName = function(featureToggleName)
     {
-        let components = [];
+        const components = [];
 
         featureToggleSwitches.forEach(function (element) {
             if (typeof element.component !== 'undefined') {
@@ -174,7 +172,7 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
      * @param {String} featureToggleName The non-unique name of the FeatureToggle element.
      * @return {Array}
      */
-    let toggleSwitch = function(featureToggleName)
+    const toggleSwitch = function(featureToggleName)
     {
         featureToggleSwitches.forEach(function (element) {
             if (typeof element.component !== 'undefined') {
@@ -194,7 +192,7 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
      *
      * @param {String} newState The new status: 'on' or 'off'.
      */
-    let toggleAll = function (newState = 'on')
+    const toggleAll = function (newState = 'on')
     {
         if (['on', 'off'].indexOf(newState) === -1) {
             newState = 'on';
@@ -221,8 +219,9 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
     initialize();
 
     return {
-        constructor: FeatureToggleSwitch,
-
+        reScan: function() {
+            initialize();
+        },
         /**
          * Get all FeatureToggle elements by name.
          *

@@ -3,12 +3,11 @@
  *
  * @param {boolean} verbose
  * @returns {*}
- * @constructor
  */
 const Utility = function ({verbose = false})
 {
     /** @type {string} */
-    let consoleColorId = '#D7CFFF';
+    const consoleColorId = '#D7CFFF';
 
     /**
      * Converts a form data to object
@@ -16,9 +15,9 @@ const Utility = function ({verbose = false})
      * @param {FormData} formData
      * @return {Object}
      */
-    let formDataToObject = function ({formData})
+    const formDataToObject = function ({formData})
     {
-        let object = {};
+        const object = {};
 
         formData.forEach(function (value, key) {
             object[key] = value;
@@ -33,9 +32,9 @@ const Utility = function ({verbose = false})
      * @param {Object} object
      * @return {FormData}
      */
-    let objectToFormData = function ({object})
+    const objectToFormData = function ({object})
     {
-        let formData = new FormData();
+        const formData = new FormData();
 
         for (let attribute in object) {
             if (object.hasOwnProperty(attribute)) {
@@ -49,7 +48,7 @@ const Utility = function ({verbose = false})
     /**
      * Initialize component
      */
-    let initialize = function()
+    const initialize = function()
     {
         triggerEvent(document, 'Component.Utility.Ready');
     };
@@ -66,12 +65,12 @@ const Utility = function ({verbose = false})
      * @param {null|function} failureCallback
      * @returns {XMLHttpRequest}
      */
-    let doXmlHttpRequest = function(url, method, async, enctype, data, successCallback, failureCallback)
+    const doXmlHttpRequest = function(url, method, async, enctype, data, successCallback, failureCallback)
     {
-        let rnd = new Date().getTime();
+        const rnd = new Date().getTime();
         url = url + (url.lastIndexOf('?') === -1 ? '?' : '&') + 'timestamp=' + rnd;
 
-        let xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
         xhr.open(method, url, async);
 
         xhr.onreadystatechange = function () {
@@ -133,7 +132,7 @@ const Utility = function ({verbose = false})
      * @param {null|function} successCallback
      * @param {null|function} failureCallback
      */
-    let doFetch = function(url, method, async, enctype, data, successCallback, failureCallback)
+    const doFetch = function(url, method, async, enctype, data, successCallback, failureCallback)
     {
         switch (enctype) {
             case 'application/json':
@@ -161,7 +160,7 @@ const Utility = function ({verbose = false})
                 break;
         }
 
-        let request = {
+        const request = {
             method: method,
             headers: {
                 'Content-Type': enctype,
@@ -186,7 +185,7 @@ const Utility = function ({verbose = false})
                 if (response.ok) {
                     successCallback(response);
                 } else {
-                    let error = new Error(response.statusText || response.status);
+                    const error = new Error(response.statusText || response.status);
                     error.response = response;
                     throw error
                 }
@@ -203,7 +202,7 @@ const Utility = function ({verbose = false})
      * @param {string}  eventName
      * @param {*}       [customData]
      */
-    let triggerEvent = function (element, eventName, customData)
+    const triggerEvent = function (element, eventName, customData)
     {
         let event;
 
@@ -230,7 +229,7 @@ const Utility = function ({verbose = false})
      * @param {Event} event
      * @return {Array}
      */
-    let getEventPath = function (event)
+    const getEventPath = function (event)
     {
         let path = (event.composedPath && event.composedPath()) || event.path,
             target = event.target;
@@ -248,7 +247,7 @@ const Utility = function ({verbose = false})
         function getParents(node, memo)
         {
             memo = memo || [];
-            let parentNode = node.parentNode;
+            const parentNode = node.parentNode;
 
             if (!parentNode) {
                 return memo;
@@ -267,11 +266,11 @@ const Utility = function ({verbose = false})
      *
      * @returns {string}
      */
-    let getDeviceOs = function()
+    const getDeviceOs = function()
     {
         let operatingSystem = 'Unknown';
-        let patterns = ['Win', 'Mac', 'X11', 'Linux', 'iPhone', 'iPad', 'Android'];
-        let supportedOperatingSystems = ['Windows', 'MacOS', 'Unix', 'Linux', 'iOS', 'iOS', 'Android'];
+        const patterns = ['Win', 'Mac', 'X11', 'Linux', 'iPhone', 'iPad', 'Android'];
+        const supportedOperatingSystems = ['Windows', 'MacOS', 'Unix', 'Linux', 'iOS', 'iOS', 'Android'];
 
         for (let i in patterns) {
             if (navigator.platform.indexOf(patterns[i]) !== -1) {
@@ -292,8 +291,6 @@ const Utility = function ({verbose = false})
     initialize();
 
     return {
-        constructor: Utility,
-
         /**
          * Makes an XmlHttpRequest.
          *

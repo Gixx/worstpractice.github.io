@@ -4,7 +4,6 @@
  * @param {object} utility
  * @param {boolean} verbose
  * @returns {*}
- * @constructor
  */
 const LazyLoadImage = function ({utility, verbose = false})
 {
@@ -13,7 +12,7 @@ const LazyLoadImage = function ({utility, verbose = false})
     /** @type {number} */
     let idCounter = 1;
     /** @type {string} */
-    let consoleColorId = '#BFFFF5';
+    const consoleColorId = '#BFFFF5';
     /** @type IntersectionObserver */
     let imageObserver;
 
@@ -26,7 +25,6 @@ const LazyLoadImage = function ({utility, verbose = false})
      *
      * @param {HTMLImageElement|Node} HTMLElement
      * @returns {*}
-     * @constructor
      */
     let LazyLoadImageElement = function ({HTMLElement}) {
         verbose && console.info(
@@ -38,8 +36,6 @@ const LazyLoadImage = function ({utility, verbose = false})
         );
 
         return {
-            constructor: LazyLoadImageElement,
-
             /**
              * Loads the actual image when it gets into view
              */
@@ -47,8 +43,8 @@ const LazyLoadImage = function ({utility, verbose = false})
                 if (!HTMLElement.hasAttribute('data-src')) {
                     return;
                 }
-                let imageSource = HTMLElement.dataset.src;
-                let preload  = new Image();
+                const imageSource = HTMLElement.dataset.src;
+                const preload  = new Image();
 
                 preload.addEventListener('error', function (event) {
                     event.preventDefault();
@@ -124,8 +120,6 @@ const LazyLoadImage = function ({utility, verbose = false})
     initialize();
 
     return {
-        constructor: LazyLoadImage,
-
         /**
          * Returns the collection of lazy-loaded images.
          *

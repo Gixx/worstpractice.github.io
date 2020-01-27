@@ -4,14 +4,13 @@
  * @param {object} utility
  * @param {boolean} verbose
  * @returns {*}
- * @constructor
  */
 const DataStorage = function ({utility, verbose = false})
 {
     /** @type {string} */
-    let consoleColorId = '#13D225';
+    const consoleColorId = '#13D225';
     /** @type {object} */
-    let storage = {};
+    const storage = {};
 
     if (!utility instanceof Utility) {
         throw new ReferenceError('This component requires the Utility component to be loaded.');
@@ -24,7 +23,7 @@ const DataStorage = function ({utility, verbose = false})
     /**
      * Initialize component
      */
-    let initialize = function()
+    const initialize = function()
     {
         initStorageKeys(localStorage);
         initStorageKeys(sessionStorage);
@@ -37,9 +36,9 @@ const DataStorage = function ({utility, verbose = false})
      *
      * @param storageEngine
      */
-    let initStorageKeys = function(storageEngine)
+    const initStorageKeys = function(storageEngine)
     {
-        let storageKeys = Object.keys(storageEngine);
+        const storageKeys = Object.keys(storageEngine);
         let i = storageKeys.length;
 
         while (i--) {
@@ -53,7 +52,7 @@ const DataStorage = function ({utility, verbose = false})
      * @param {string} key   The name of the key
      * @param {string} value The value
      */
-    let setData = function (key, value)
+    const setData = function (key, value)
     {
         verbose && console.info(
             '%c[Data Storage]%c ⚡%c Setting data into dataStorage: %o',
@@ -71,7 +70,7 @@ const DataStorage = function ({utility, verbose = false})
      * @param {string} key The name of the key
      * @returns {string}
      */
-    let getDataByKey = function (key)
+    const getDataByKey = function (key)
     {
         return typeof storage[key] !== 'undefined'
             ? storage[key].getItem(key)
@@ -83,7 +82,7 @@ const DataStorage = function ({utility, verbose = false})
      *
      * @param {string} key The name of the key
      */
-    let deleteDataByKey = function(key)
+    const deleteDataByKey = function(key)
     {
         typeof storage[key] !== 'undefined' && storage[key].removeItem(key);
     };
@@ -98,8 +97,6 @@ const DataStorage = function ({utility, verbose = false})
     initialize();
 
     return {
-        constructor: DataStorage,
-
         /**
          * Set data.
          *
@@ -134,7 +131,7 @@ const DataStorage = function ({utility, verbose = false})
          * @param {boolean} session The data should be deleted when the browser session ends.
          */
         renew: function({key, session = false}) {
-            let value = getDataByKey(key);
+            const value = getDataByKey(key);
 
             if (value !== '') {
                 this.set({key: key, value: value, session: session});

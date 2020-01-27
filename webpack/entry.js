@@ -15,14 +15,14 @@ const utility = new Utility({verbose: true});
  */
 const embedWorstPracticeSample = function () {
     const badCodesCounter = 4;
-    let badCodes = [];
+    const badCodes = [];
 
     for (let i = 1; i <= badCodesCounter; i++) {
         let fileCounter = '' + i;
         badCodes.push(fileCounter.padStart(4, '0') + '.html');
     }
 
-    let date = new Date();
+    const date = new Date();
     let day = date.getDate();
     if (day < 10) {
         day = '0' + day;
@@ -31,9 +31,9 @@ const embedWorstPracticeSample = function () {
     if (month < 10) {
         month = '0' + month;
     }
-    let year = date.getFullYear();
-    let today = parseInt(year + '' + month + '' + day);
-    let codeOfTheDay = today % badCodes.length;
+    const year = date.getFullYear();
+    const today = parseInt(year + '' + month + '' + day);
+    const codeOfTheDay = today % badCodes.length;
 
     utility.fetch({
         url: '/code-of-the-day/' + badCodes[codeOfTheDay],
@@ -50,7 +50,7 @@ const embedWorstPracticeSample = function () {
                 document.querySelector('.codeOfTheDay__content').innerHTML = data;
                 document.querySelector('input.codeOfTheDay__toggle').addEventListener('click', function (event) {
                     /** @type HTMLInputElement */
-                    let element = event.target;
+                    const element = event.target;
                     if (element.checked) {
                         scrollTo({ top: 0, behavior: 'smooth' });
                         // scrollTo(0, 0);
@@ -66,8 +66,8 @@ const embedWorstPracticeSample = function () {
 };
 
 const embedCommentoPlugin = function() {
-    let scriptElement = document.createElement('script');
-    let commento = document.getElementById('commento');
+    const scriptElement = document.createElement('script');
+    const commento = document.getElementById('commento');
 
     if (commento) {
         commento.innerHTML = '';
