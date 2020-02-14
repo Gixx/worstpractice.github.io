@@ -11,9 +11,8 @@ services:
     command: tail -f /dev/null
 
   webpack:
-    build:
-      context: .
-      dockerfile: docker.webpack
     container_name: 'webpack-wp'
+    image: 'node:13'
     volumes:
       - './:/app'
+    command: tail -f /dev/null

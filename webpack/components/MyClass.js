@@ -33,32 +33,19 @@ const MyClass = function()
     {
         // M is the uuid version
         // N is the high bits of clock sequence according to rfc4122
-        const uuidTemplate = 'xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx'.split('');
+        const uuidTemplate = 'xxxxxxxx-xxxx-!xxx-?xxx-xxxxxxxxxxxx'.split('');
         const uuidVersion = 4;
         let uuidVariant, i, random;
         const uuid = [];
 
         for (i = 0; i < uuidTemplate.length; i++) {
             random = 0 | Math.random() * 16;
+            uuidVariant = (random & 0x3)  | 0x8;
 
-            switch (uuidTemplate[i]) {
-                case '-':
-                    uuid[i] = '-';
-                    break;
-
-                case 'M':
-                    uuid[i] = uuidVersion;
-                    break;
-
-                case 'N':
-                    uuidVariant = (random & 0x3)  | 0x8;
-                    uuid[i] = AVAILABLE_CHARACTERS[uuidVariant];
-                    break;
-
-                default:
-                    uuid[i] = AVAILABLE_CHARACTERS[random];
-
-            }
+            uuid[i] = uuidTemplate[i]
+                .replace(/[^\-\!\?]/, AVAILABLE_CHARACTERS[random])
+                .replace('!', uuidVersion)
+                .replace('?', AVAILABLE_CHARACTERS[uuidVariant]);
         }
         return uuid.join('');
     };
