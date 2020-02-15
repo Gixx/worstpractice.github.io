@@ -21,6 +21,9 @@ const MyClass = function()
     const nilUUID = '00000000-0000-0000-0000-000000000000';
 
     /** @type {number} */
+    const SOME_CONSTANT = 1;
+
+    /** @type {number} */
     let readWriteProperty;
 
     /**
@@ -29,12 +32,12 @@ const MyClass = function()
      *
      * @return {string}
      */
-    const generateUUID = function()
+    this.generateUUID = function()
     {
         // M is the uuid version
         // N is the high bits of clock sequence according to rfc4122
         const uuidTemplate = 'xxxxxxxx-xxxx-!xxx-?xxx-xxxxxxxxxxxx'.split('');
-        const uuidVersion = 4;
+        const uuidVersion = '4';
         let uuidVariant, i, random;
         const uuid = [];
 
@@ -51,71 +54,47 @@ const MyClass = function()
     };
 
     /**
-     * @type {MyClass}
-     * @private
+     * Gets the read-only property.
+     *
+     * @returns {string}
      */
-    const __ = {
-        /** @type {number} */
-        SOME_CONSTANT: 1,
-
-        /**
-         * Gets the read-only property.
-         *
-         * @returns {string}
-         */
-        getNilUUID: function()
-        {
-            return nilUUID;
-        },
-
-        /**
-         * Generate and return a valid UUID
-         *
-         * @returns {string}
-         */
-        generateUUID: function()
-        {
-            return generateUUID();
-        },
-
-        /**
-         * Gets the read-write property.
-         *
-         * @returns {number}
-         */
-        getReadWrite: function()
-        {
-            return readWriteProperty;
-        },
-
-        /**
-         * Sets the read-write property.
-         *
-         * @param {*} value Accepts only Integers
-         */
-        setReadWrite: function(value)
-        {
-            if (isNaN(value)) {
-                throw new ReferenceError('Parameter 1 expected to be an integer, ' + (typeof value) + ' given.');
-            }
-
-            readWriteProperty = parseInt(value);
-        },
-
-        /**
-         * Resets the read-write property to its initial state.
-         */
-        resetReadWrite: function()
-        {
-            // Just an example how the public stuff reach each other.
-            this.setReadWrite(this.SOME_CONSTANT);
-        }
+    this.getNilUUID = function()
+    {
+        return nilUUID;
     };
 
-    // Just an example for the init.
-    readWriteProperty = __.SOME_CONSTANT;
+    /**
+     * Gets the read-write property.
+     *
+     * @returns {number}
+     */
+    this.getReadWrite = function()
+    {
+        return readWriteProperty;
+    };
 
-    return Object.freeze(__);
+    /**
+     * Sets the read-write property.
+     *
+     * @param {*} value Accepts only Integers
+     */
+    this.setReadWrite = function(value)
+    {
+        if (isNaN(value)) {
+            throw new ReferenceError('Parameter 1 expected to be an integer, ' + (typeof value) + ' given.');
+        }
+
+        readWriteProperty = parseInt(value);
+    };
+
+    /**
+     * Resets the read-write property to its initial state.
+     */
+    this.resetReadWrite = function()
+    {
+        // Just an example how the public stuff reach each other.
+        this.setReadWrite(SOME_CONSTANT);
+    };
 };
 
 window['MyClass'] = MyClass;
