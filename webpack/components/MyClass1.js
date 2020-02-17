@@ -1,14 +1,16 @@
 /**
- * @returns {Readonly<{generateUUID: (function(*=): string)}>}
+ * @typedef {Object} MyClass1
+ * @property {function(): string} generateUUID
+ * @property {string} nilUUID
+ */
+
+/**
  * @constructor
  */
 const MyClass1 = function()
 {
     /** @type {array} */
     const AVAILABLE_CHARACTERS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-
-    /** @type {string} Nil UUID */
-    const nilUUID = '00000000-0000-0000-0000-000000000000';
 
     /** @type {array} */
     const uuidTemplate = 'xxxxxxxx-xxxx-!xxx-?xxx-xxxxxxxxxxxx'.split('');
@@ -17,13 +19,30 @@ const MyClass1 = function()
     const uuidVersion = '4';
 
     /**
+     * Gets the read-only property.
+     *
+     * @returns {string}
+     */
+    const getNilUUID = function()
+    {
+        return '00000000-0000-0000-0000-000000000000';
+    };
+
+    /** @type {string} */
+    this.nilUUID = getNilUUID();
+
+    /**
      * Generate a valid UUID
      * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
      *
      * @return {string}
      */
-    const generateUUID = function()
+    this.generateUUID = function(isNilUUID = false)
     {
+        if (isNilUUID) {
+            return this.nilUUID;
+        }
+
         let uuidVariant, i, random;
         const uuid = [];
 
@@ -40,23 +59,6 @@ const MyClass1 = function()
         }
         return uuid.join('');
     };
-
-    /**
-     * @type {{generateUUID: (function(*=): string)}}
-     */
-    const __ = {
-        /**
-         * Generate and return a valid UUID
-         *
-         * @returns {string}
-         */
-        generateUUID: function(isNilUUID = false)
-        {
-            return isNilUUID ? nilUUID : generateUUID();
-        }
-    };
-
-    return Object.freeze(__);
 };
 
 window['MyClass1'] = MyClass1;
