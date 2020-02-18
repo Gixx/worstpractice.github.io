@@ -163,9 +163,10 @@
               all know that, in the native way it is not that simple. It needs a different kind of thinking, which I find a bit weird and triple-twisted. There are
               objects of a kind, and since ES6 there are classes too, but not in the <code class="highlighter-rouge">class</code>ical way (Ha-Ha-Ha). Scope, inheritance, access modifiers and in general
               everything is just different. Well, JavaScript is a different animal for sure… that’s what they used to say.</p>
-            <h3 id="create-class-like-things">Create Class-like things</h3>
-            <p>I don’t want to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.
-              The first step for a dummy / lame / rookie / amateur like me is to try to create something for my own. Make it work. Then, when I have some experience,
+            <p>I know, there are many many wonderful frameworks and libraries to develop JavaScript. I could do React, Svelte, Vue and so on. But I don’t. Not right now.
+              I want to do something simple, something on my own. I like to reinvent the wheel, and even if it will be a shitty one, it will be mine. And I don’t want
+              to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.</p>
+            <p>The first step for a dummy / lame / rookie / amateur like me is to try to create something for my own. Make it work. Then, when I have some experience,
               I can learn the proper ‘How’. You can’t qualify yourself to the 100m sprint on the Olympic games until you can’t even walk, can you? And how do you learn
               to walk? Try it, do it, fail and retry.</p>
             <p>So I decided to use my understanding of the <code class="highlighter-rouge">Object</code>, and with the available tools of the JavaScript’s arsenal, I create something, in which I can feel
@@ -175,7 +176,8 @@
               <li>support <code class="highlighter-rouge">public</code> and <code class="highlighter-rouge">private</code> access in some way</li>
               <li>no need for inheritance right now</li>
             </ul>
-            <p>To be comparable I’ve made a <code class="highlighter-rouge">Yet-another</code> UUID generator class. I tried several different ways before I choose the following two:</p>
+            <p>I tried several different ways before I choose the following two cases. Both have pros and cons. To be comparable I’ve made the same <code class="highlighter-rouge">Yet-another</code>
+              UUID generator class.</p>
             <h4 id="way-1-clean-but-vulnerable">Way 1: clean but vulnerable.</h4>
             <p>This can be called a more ‘standard’ solution.</p>
             <div class="language-js highlighter-rouge">
@@ -244,9 +246,6 @@
 62
 63
 64
-65
-66
-67
 </pre>
               </td>
               <td class="rouge-code">
@@ -271,8 +270,6 @@
     <span class="kd">const</span> <span class="nx">uuidVersion</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span><span class="p">;</span>
 
     <span class="cm">/**
-     * Gets the read-only property.
-     *
      * @returns {string}
      */</span>
     <span class="kd">const</span> <span class="nx">getNilUUID</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
@@ -289,7 +286,7 @@
      *
      * @return {string}
      */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">generateUUID</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">isNilUUID</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">generateUUID</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">isNilUUID</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">isNilUUID</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">;</span>
@@ -316,7 +313,6 @@
 <span class="nb">window</span><span class="p">[</span><span class="dl">'</span><span class="s1">MyClass1</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyClass1</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">myObj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass1</span><span class="p">();</span>
-
 </pre>
               </td>
             </tr>
@@ -330,7 +326,7 @@
   <code class="highlighter-rouge">Uncaught TypeError: Cannot read property 'generateUUID' of undefined</code> error.</p>
 <p>All the <code class="highlighter-rouge">const</code> and <code class="highlighter-rouge">let</code> methods and properties will be hidden from “outside”.
   So the <code class="highlighter-rouge">myObj1.getNilUUID();</code> will result a <code class="highlighter-rouge">Uncaught TypeError: myObj1.getNilUUID is not a function</code> error. We can call them to be <code class="highlighter-rouge">private</code>.</p>
-<p>Every property and method having the <code class="highlighter-rouge">this</code> keyword will be reachable from outside. They are definitely <code class="highlighter-rouge">public</code>. But the are heavily vulnerable which
+<p>Every property and method having the <code class="highlighter-rouge">this</code> keyword will be reachable from outside. They are definitely <code class="highlighter-rouge">public</code>. But they are heavily vulnerable which
   I find really disturbing. But that’s the JS way. Try the <code class="highlighter-rouge">document.getElementById = 'sucker';</code> in the console on any website and see what happens. It’s
   also possible to inject new properties and methods into our instance which is also a bit… yuck…</p>
 <div class="language-js highlighter-rouge">
@@ -375,16 +371,17 @@
   <li>It has a cleaner code.</li>
   <li>It’s easier to understand.</li>
   <li>Enforces the <code class="highlighter-rouge">new</code> keyword for instantiation.</li>
-  <li>We have something that makes the code behaves similar like the in PHP with the <code class="highlighter-rouge">private</code> and <code class="highlighter-rouge">public</code> access modifiers.</li>
 </ul>
 <h5 id="cons">Cons:</h5>
 <ul>
   <li>It is vulnerable: every public method and property can be re-defined.</li>
   <li>It has no support for <code class="highlighter-rouge">get</code>, <code class="highlighter-rouge">set</code> and <code class="highlighter-rouge">static</code> keywords.</li>
-  <li>It’s possible to add/attach new properties and methods to the instance.</li>
+  <li>No type check is possible before assigning new value to the public properties.</li>
+  <li>It’s possible to add/attach additional properties and methods to the instance.</li>
 </ul>
 <h4 id="way-2-twisted-thinking-to-protect-the-code">Way 2: twisted thinking to protect the code</h4>
-<p>This one is a nasty motherfucker. We start the same way as previously, but then instead of making publicly available properties and methods, we
+<p>This one is a nasty motherfucker. I found the cons very annoying in the first example, so I tried to figure out, how can I eliminate them.</p>
+<p>In this case we start the same way as previously, but then instead of making publicly available properties and methods, we simply
   <strong>return</strong> with an object.</p>
 <div class="language-js highlighter-rouge">
   <div class="highlight">
@@ -471,6 +468,9 @@
 81
 82
 83
+84
+85
+86
 </pre>
   </td>
   <td class="rouge-code">
@@ -490,8 +490,6 @@
     <span class="kd">const</span> <span class="nx">uuidVersion</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span><span class="p">;</span>
 
     <span class="cm">/**
-     * Gets the read-only property.
-     *
      * @returns {string}
      */</span>
     <span class="kd">const</span> <span class="nx">getNilUUID</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
@@ -500,9 +498,9 @@
     <span class="p">};</span>
 
     <span class="cm">/**
-     * Collection of public properties
+     * Collection of public properties.
+     *
      * @type {Object}
-     * @private
      */</span>
     <span class="kd">const</span> <span class="nx">properties</span> <span class="o">=</span> <span class="p">{</span>
         <span class="na">nilUUID</span><span class="p">:</span> <span class="nx">getNilUUID</span><span class="p">(),</span>
@@ -511,10 +509,14 @@
     <span class="cm">/**
      * Collection of public methods including setters and getters for public properties.
      *
-     * @type 
+     * @type { {readonly nilUUID: Object.nilUUID, generateUUID: (function(*=): string)} }
      */</span>
     <span class="kd">const</span> <span class="nx">methods</span> <span class="o">=</span> <span class="p">{</span>
         <span class="kd">set</span> <span class="nx">nilUUID</span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">newValue</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">nilUUID must store string value, </span><span class="dl">'</span> <span class="o">+</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">newValue</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> given.</span><span class="dl">'</span><span class="p">);</span>
+            <span class="p">}</span>
+
             <span class="nx">properties</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="nx">newValue</span><span class="p">;</span>
         <span class="p">},</span>
 
@@ -524,6 +526,7 @@
 
         <span class="cm">/**
          * Generate and return a valid UUID
+         * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
          *
          * @returns {string}
          */</span>
@@ -568,12 +571,12 @@
 <p>Our goal is the same: create an object where there is a publicly available property (<code class="highlighter-rouge">nilUUID</code>) and a publicly available method (<code class="highlighter-rouge">generateUUID()</code>).</p>
 <p>We construct a new instance with the <code class="highlighter-rouge">new</code> keyword. But unfortunately it’s not mandatory. However, I’d like to use it to keep the illusion.</p>
 <p>As previously all the <code class="highlighter-rouge">const</code> and <code class="highlighter-rouge">let</code> methods and properties will be hidden from “outside”. And here’s the twisty thing: we define two objects in the
-  private part. One for the “<em>public properties</em>” and one for the “<em>public methods</em>”. Within the object we can reach methods and properties with the <code class="highlighter-rouge">this</code>
-  keyword, as we do it in the <code class="highlighter-rouge">generateUUID()</code> method.</p>
-<p>So why we have the “<em>public</em>” properties and methods are separated? Because in the end we will freeze the returning object, which means we can’t change
+  private part. One for the “<em>public properties</em>” and one for the “<em>public methods</em>”. Within each object we can reach methods and properties by the <code class="highlighter-rouge">this</code>
+  keyword, as we do it in the <code class="highlighter-rouge">generateUUID()</code> method. But for cross-referencing between the <code class="highlighter-rouge">properties</code> and <code class="highlighter-rouge">methods</code> we can’t use the <code class="highlighter-rouge">this</code>.</p>
+<p>So why we separate the “<em>public</em>” properties and methods? Because in the end we will freeze the returning <code class="highlighter-rouge">methods</code> object, which means we can’t change
   this object any more. Luckily this does not stand for the contents of Arrays and Objects. In a frozen object we can’t change scalars, but we can
   add/change elements in an array/object. That’s why we collect all the “<em>public</em>” properties separately in an object. And since we can use the <code class="highlighter-rouge">get</code>
-  and <code class="highlighter-rouge">set</code> keywords, we can create the illusion of getting and setting a public property:</p>
+  and <code class="highlighter-rouge">set</code> keywords, we can create the illusion of working directly with the public property:</p>
 <div class="language-js highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -615,14 +618,21 @@
 <ul>
   <li>The public code is in safe. No way to overwrite them.</li>
   <li>It has support for <code class="highlighter-rouge">get</code>, <code class="highlighter-rouge">set</code> and <code class="highlighter-rouge">static</code> keywords.</li>
+  <li>With the <code class="highlighter-rouge">set</code> method we can do type check before assignment.</li>
+  <li>Not possible to add/attach additional properties and methods.</li>
 </ul>
 <h5 id="cons-1">Cons</h5>
 <ul>
   <li>This is far away from readability.</li>
   <li>It’s difficult to understand.</li>
+  <li>Every public, read-write property requires a <code class="highlighter-rouge">set</code> and a <code class="highlighter-rouge">get</code> method.</li>
   <li>The <code class="highlighter-rouge">new</code> keyword is not mandatory.</li>
 </ul>
 <h3 id="conclusion">Conclusion</h3>
+<p>As you can see, in order to eliminate all the negatives from the first solution, I had to sacrifice all the positives from it. But I think it’s worth it,
+  because in the end we want to use the code and not read it. And we can still use the <code class="highlighter-rouge">new</code> keyword if we want to.</p>
+<p>Readability is not a big price to make our object defended from harmful hands. What do you think? Am I right? Am I wrong? Is this really a
+  worst practice?</p>
 </div>
 <footer class="a-footer">
   <h3 class="a-footer__title">About the author</h3>

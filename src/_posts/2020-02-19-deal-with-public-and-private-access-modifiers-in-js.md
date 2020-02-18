@@ -33,9 +33,10 @@ all know that, in the native way it is not that simple. It needs a different kin
 objects of a kind, and since ES6 there are classes too, but not in the `class`ical way (Ha-Ha-Ha). Scope, inheritance, access modifiers and in general
 everything is just different. Well, JavaScript is a different animal for sure... that's what they used to say.
 
-### Create Class-like things
+I know, there are many many wonderful frameworks and libraries to develop JavaScript. I could do React, Svelte, Vue and so on. But I don't. Not right now.
+I want to do something simple, something on my own. I like to reinvent the wheel, and even if it will be a shitty one, it will be mine. And I don't want
+to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.
 
-I don't want to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.
 The first step for a dummy / lame / rookie / amateur like me is to try to create something for my own. Make it work. Then, when I have some experience,
 I can learn the proper 'How'. You can't qualify yourself to the 100m sprint on the Olympic games until you can't even walk, can you? And how do you learn
 to walk? Try it, do it, fail and retry.
@@ -47,7 +48,8 @@ myself comfortable when I code. Of course to achieve this, I had to give up some
 * support `public` and `private` access in some way
 * no need for inheritance right now
 
-To be comparable I've made a `Yet-another` UUID generator class. I tried several different ways before I choose the following two:
+I tried several different ways before I choose the following two cases. Both have pros and cons. To be comparable I've made the same `Yet-another`
+UUID generator class.
 
 #### Way 1: clean but vulnerable.
 
@@ -75,8 +77,6 @@ const MyClass1 = function()
     const uuidVersion = '4';
 
     /**
-     * Gets the read-only property.
-     *
      * @returns {string}
      */
     const getNilUUID = function()
@@ -93,7 +93,7 @@ const MyClass1 = function()
      *
      * @return {string}
      */
-    this.generateUUID = function(isNilUUID = false)
+    this.generateUUID = function (isNilUUID = false)
     {
         if (isNilUUID) {
             return this.nilUUID;
@@ -120,7 +120,6 @@ const MyClass1 = function()
 window['MyClass1'] = MyClass1;
 
 const myObj1 = new MyClass1();
-
 ```
 
 Our goal is to create an object where there is a publicly available property (`nilUUID`) and a publicly available method (`generateUUID()`).
@@ -131,7 +130,7 @@ We construct a new instance with the `new` keyword. If we leave the keyword and 
 All the `const` and `let` methods and properties will be hidden from "outside".
 So the `myObj1.getNilUUID();` will result a `Uncaught TypeError: myObj1.getNilUUID is not a function` error. We can call them to be `private`.
 
-Every property and method having the `this` keyword will be reachable from outside. They are definitely `public`. But the are heavily vulnerable which
+Every property and method having the `this` keyword will be reachable from outside. They are definitely `public`. But they are heavily vulnerable which
 I find really disturbing. But that's the JS way. Try the `document.getElementById = 'sucker';` in the console on any website and see what happens. It's
 also possible to inject new properties and methods into our instance which is also a bit... yuck...
 
@@ -154,16 +153,18 @@ console.log(myObj2.generateUUID); // 'I am so sorry'
 * It has a cleaner code.
 * It's easier to understand.
 * Enforces the `new` keyword for instantiation.
-* We have something that makes the code behaves similar like the in PHP with the `private` and `public` access modifiers.
 
 ##### Cons:
 * It is vulnerable: every public method and property can be re-defined.
 * It has no support for `get`, `set` and `static` keywords.
-* It's possible to add/attach new properties and methods to the instance.
+* No type check is possible before assigning new value to the public properties.
+* It's possible to add/attach additional properties and methods to the instance.
 
 #### Way 2: twisted thinking to protect the code
 
-This one is a nasty motherfucker. We start the same way as previously, but then instead of making publicly available properties and methods, we
+This one is a nasty motherfucker. I found the cons very annoying in the first example, so I tried to figure out, how can I eliminate them.
+
+In this case we start the same way as previously, but then instead of making publicly available properties and methods, we simply
 **return** with an object.
 
 ```js
@@ -183,8 +184,6 @@ const MyClass2 = function()
     const uuidVersion = '4';
 
     /**
-     * Gets the read-only property.
-     *
      * @returns {string}
      */
     const getNilUUID = function()
@@ -193,9 +192,9 @@ const MyClass2 = function()
     };
 
     /**
-     * Collection of public properties
+     * Collection of public properties.
+     *
      * @type {Object}
-     * @private
      */
     const properties = {
         nilUUID: getNilUUID(),
@@ -204,10 +203,14 @@ const MyClass2 = function()
     /**
      * Collection of public methods including setters and getters for public properties.
      *
-     * @type {{readonly nilUUID: Object.nilUUID, generateUUID: (function(*=): string)}}
+     * @type { {readonly nilUUID: Object.nilUUID, generateUUID: (function(*=): string)} }
      */
     const methods = {
         set nilUUID(newValue) {
+            if (typeof newValue !== 'string') {
+                throw new TypeError('nilUUID must store string value, ' + (typeof newValue) + ' given.');
+            }
+
             properties.nilUUID = newValue;
         },
 
@@ -217,6 +220,7 @@ const MyClass2 = function()
 
         /**
          * Generate and return a valid UUID
+         * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
          *
          * @returns {string}
          */
@@ -257,13 +261,13 @@ Our goal is the same: create an object where there is a publicly available prope
 We construct a new instance with the `new` keyword. But unfortunately it's not mandatory. However, I'd like to use it to keep the illusion.
 
 As previously all the `const` and `let` methods and properties will be hidden from "outside". And here's the twisty thing: we define two objects in the
-private part. One for the "*public properties*" and one for the "*public methods*". Within the object we can reach methods and properties with the `this`
-keyword, as we do it in the `generateUUID()` method.
+private part. One for the "*public properties*" and one for the "*public methods*". Within each object we can reach methods and properties by the `this`
+keyword, as we do it in the `generateUUID()` method. But for cross-referencing between the `properties` and `methods` we can't use the `this`.
 
-So why we have the "*public*" properties and methods are separated? Because in the end we will freeze the returning object, which means we can't change
+So why we separate the "*public*" properties and methods? Because in the end we will freeze the returning `methods` object, which means we can't change
 this object any more. Luckily this does not stand for the contents of Arrays and Objects. In a frozen object we can't change scalars, but we can
 add/change elements in an array/object. That's why we collect all the "*public*" properties separately in an object. And since we can use the `get`
-and `set` keywords, we can create the illusion of getting and setting a public property:
+and `set` keywords, we can create the illusion of working directly with the public property:
 
 ```js
 // Get and set public property
@@ -283,10 +287,19 @@ console.log(myObj2.generateUUID); // 'function()...'
 ##### Pros
 * The public code is in safe. No way to overwrite them.
 * It has support for `get`, `set` and `static` keywords.
+* With the `set` method we can do type check before assignment.
+* Not possible to add/attach additional properties and methods.
 
 ##### Cons
 * This is far away from readability.
 * It's difficult to understand.
+* Every public, read-write property requires a `set` and a `get` method.
 * The `new` keyword is not mandatory.
 
 ### Conclusion
+
+As you can see, in order to eliminate all the negatives from the first solution, I had to sacrifice all the positives from it. But I think it's worth it,
+because in the end we want to use the code and not read it. And we can still use the `new` keyword if we want to.
+
+Readability is not a big price to make our object defended from harmful hands. What do you think? Am I right? Am I wrong? Is this really a
+worst practice?

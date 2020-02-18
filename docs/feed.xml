@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-02-17T17:14:46+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-19T20:00:00+01:00</published><updated>2020-02-17T17:14:45+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-02-18T13:59:18+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-19T20:00:00+01:00</published><updated>2020-02-17T17:16:53+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
         &lt;p&gt;You’d better know, I am basically a backend developer. Or, as I used to say with a little bit of humor and a piece of well-deserved self-critics:&lt;/p&gt;
         &lt;blockquote&gt;
         &lt;p&gt;I am a Full-STUCK Señor PHP Developer&lt;/p&gt;
@@ -11,9 +11,10 @@
         all know that, in the native way it is not that simple. It needs a different kind of thinking, which I find a bit weird and triple-twisted. There are
         objects of a kind, and since ES6 there are classes too, but not in the &lt;code class=&quot;highlighter-rouge&quot;&gt;class&lt;/code&gt;ical way (Ha-Ha-Ha). Scope, inheritance, access modifiers and in general
         everything is just different. Well, JavaScript is a different animal for sure… that’s what they used to say.&lt;/p&gt;
-        &lt;h3 id=&quot;create-class-like-things&quot;&gt;Create Class-like things&lt;/h3&gt;
-        &lt;p&gt;I don’t want to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.
-        The first step for a dummy / lame / rookie / amateur like me is to try to create something for my own. Make it work. Then, when I have some experience,
+        &lt;p&gt;I know, there are many many wonderful frameworks and libraries to develop JavaScript. I could do React, Svelte, Vue and so on. But I don’t. Not right now.
+        I want to do something simple, something on my own. I like to reinvent the wheel, and even if it will be a shitty one, it will be mine. And I don’t want
+        to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.&lt;/p&gt;
+        &lt;p&gt;The first step for a dummy / lame / rookie / amateur like me is to try to create something for my own. Make it work. Then, when I have some experience,
         I can learn the proper ‘How’. You can’t qualify yourself to the 100m sprint on the Olympic games until you can’t even walk, can you? And how do you learn
         to walk? Try it, do it, fail and retry.&lt;/p&gt;
         &lt;p&gt;So I decided to use my understanding of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Object&lt;/code&gt;, and with the available tools of the JavaScript’s arsenal, I create something, in which I can feel
@@ -23,7 +24,8 @@
         &lt;li&gt;support &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; access in some way&lt;/li&gt;
         &lt;li&gt;no need for inheritance right now&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;p&gt;To be comparable I’ve made a &lt;code class=&quot;highlighter-rouge&quot;&gt;Yet-another&lt;/code&gt; UUID generator class. I tried several different ways before I choose the following two:&lt;/p&gt;
+        &lt;p&gt;I tried several different ways before I choose the following two cases. Both have pros and cons. To be comparable I’ve made the same &lt;code class=&quot;highlighter-rouge&quot;&gt;Yet-another&lt;/code&gt;
+        UUID generator class.&lt;/p&gt;
         &lt;h4 id=&quot;way-1-clean-but-vulnerable&quot;&gt;Way 1: clean but vulnerable.&lt;/h4&gt;
         &lt;p&gt;This can be called a more ‘standard’ solution.&lt;/p&gt;
         &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
@@ -90,9 +92,6 @@
         62
         63
         64
-        65
-        66
-        67
         &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cm&quot;&gt;/**
         * @typedef {Object} MyClass1
         * @property {function(): string} generateUUID
@@ -110,8 +109,6 @@
         &lt;span class=&quot;cm&quot;&gt;/** @type {string} */&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;uuidVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
-        * Gets the read-only property.
-        *
         * @returns {string}
         */&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNilUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -126,7 +123,7 @@
         *
         * @return {string}
         */&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;generateUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isNilUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;generateUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isNilUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isNilUUID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nilUUID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -154,7 +151,7 @@
         &lt;code class=&quot;highlighter-rouge&quot;&gt;Uncaught TypeError: Cannot read property 'generateUUID' of undefined&lt;/code&gt; error.&lt;/p&gt;
         &lt;p&gt;All the &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt; methods and properties will be hidden from “outside”.
         So the &lt;code class=&quot;highlighter-rouge&quot;&gt;myObj1.getNilUUID();&lt;/code&gt; will result a &lt;code class=&quot;highlighter-rouge&quot;&gt;Uncaught TypeError: myObj1.getNilUUID is not a function&lt;/code&gt; error. We can call them to be &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt;.&lt;/p&gt;
-        &lt;p&gt;Every property and method having the &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; keyword will be reachable from outside. They are definitely &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt;. But the are heavily vulnerable which
+        &lt;p&gt;Every property and method having the &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; keyword will be reachable from outside. They are definitely &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt;. But they are heavily vulnerable which
         I find really disturbing. But that’s the JS way. Try the &lt;code class=&quot;highlighter-rouge&quot;&gt;document.getElementById = 'sucker';&lt;/code&gt; in the console on any website and see what happens. It’s
         also possible to inject new properties and methods into our instance which is also a bit… yuck…&lt;/p&gt;
         &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
@@ -185,16 +182,17 @@
         &lt;li&gt;It has a cleaner code.&lt;/li&gt;
         &lt;li&gt;It’s easier to understand.&lt;/li&gt;
         &lt;li&gt;Enforces the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword for instantiation.&lt;/li&gt;
-        &lt;li&gt;We have something that makes the code behaves similar like the in PHP with the &lt;code class=&quot;highlighter-rouge&quot;&gt;private&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;public&lt;/code&gt; access modifiers.&lt;/li&gt;
         &lt;/ul&gt;
         &lt;h5 id=&quot;cons&quot;&gt;Cons:&lt;/h5&gt;
         &lt;ul&gt;
         &lt;li&gt;It is vulnerable: every public method and property can be re-defined.&lt;/li&gt;
         &lt;li&gt;It has no support for &lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; keywords.&lt;/li&gt;
-        &lt;li&gt;It’s possible to add/attach new properties and methods to the instance.&lt;/li&gt;
+        &lt;li&gt;No type check is possible before assigning new value to the public properties.&lt;/li&gt;
+        &lt;li&gt;It’s possible to add/attach additional properties and methods to the instance.&lt;/li&gt;
         &lt;/ul&gt;
         &lt;h4 id=&quot;way-2-twisted-thinking-to-protect-the-code&quot;&gt;Way 2: twisted thinking to protect the code&lt;/h4&gt;
-        &lt;p&gt;This one is a nasty motherfucker. We start the same way as previously, but then instead of making publicly available properties and methods, we
+        &lt;p&gt;This one is a nasty motherfucker. I found the cons very annoying in the first example, so I tried to figure out, how can I eliminate them.&lt;/p&gt;
+        &lt;p&gt;In this case we start the same way as previously, but then instead of making publicly available properties and methods, we simply
         &lt;strong&gt;return&lt;/strong&gt; with an object.&lt;/p&gt;
         &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
@@ -279,6 +277,9 @@
         81
         82
         83
+        84
+        85
+        86
         &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cm&quot;&gt;/**
         * @returns {string|Readonly&amp;lt;{readonly, nilUUID: Object.nilUUID, generateUUID: (function(*=): string)}&amp;gt;}
         * @constructor
@@ -292,8 +293,6 @@
         &lt;span class=&quot;cm&quot;&gt;/** @type {string} */&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;uuidVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
-        * Gets the read-only property.
-        *
         * @returns {string}
         */&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNilUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -301,9 +300,9 @@
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;00000000-0000-0000-0000-000000000000&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
-        * Collection of public properties
+        * Collection of public properties.
+        *
         * @type {Object}
-        * @private
         */&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;properties&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;nilUUID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNilUUID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
@@ -311,10 +310,13 @@
         &lt;span class=&quot;cm&quot;&gt;/**
         * Collection of public methods including setters and getters for public properties.
         *
-        * @type 
+        * @type { {readonly nilUUID: Object.nilUUID, generateUUID: (function(*=): string)} }
         */&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;methods&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nilUUID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TypeError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;nilUUID must store string value, &lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt; given.&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;nx&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nilUUID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;newValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nilUUID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -322,6 +324,7 @@
         &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
         &lt;span class=&quot;cm&quot;&gt;/**
         * Generate and return a valid UUID
+        * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
         *
         * @returns {string}
         */&lt;/span&gt;
@@ -353,12 +356,12 @@
         &lt;p&gt;Our goal is the same: create an object where there is a publicly available property (&lt;code class=&quot;highlighter-rouge&quot;&gt;nilUUID&lt;/code&gt;) and a publicly available method (&lt;code class=&quot;highlighter-rouge&quot;&gt;generateUUID()&lt;/code&gt;).&lt;/p&gt;
         &lt;p&gt;We construct a new instance with the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword. But unfortunately it’s not mandatory. However, I’d like to use it to keep the illusion.&lt;/p&gt;
         &lt;p&gt;As previously all the &lt;code class=&quot;highlighter-rouge&quot;&gt;const&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;let&lt;/code&gt; methods and properties will be hidden from “outside”. And here’s the twisty thing: we define two objects in the
-        private part. One for the “&lt;em&gt;public properties&lt;/em&gt;” and one for the “&lt;em&gt;public methods&lt;/em&gt;”. Within the object we can reach methods and properties with the &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;
-        keyword, as we do it in the &lt;code class=&quot;highlighter-rouge&quot;&gt;generateUUID()&lt;/code&gt; method.&lt;/p&gt;
-        &lt;p&gt;So why we have the “&lt;em&gt;public&lt;/em&gt;” properties and methods are separated? Because in the end we will freeze the returning object, which means we can’t change
+        private part. One for the “&lt;em&gt;public properties&lt;/em&gt;” and one for the “&lt;em&gt;public methods&lt;/em&gt;”. Within each object we can reach methods and properties by the &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;
+        keyword, as we do it in the &lt;code class=&quot;highlighter-rouge&quot;&gt;generateUUID()&lt;/code&gt; method. But for cross-referencing between the &lt;code class=&quot;highlighter-rouge&quot;&gt;properties&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;methods&lt;/code&gt; we can’t use the &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt;.&lt;/p&gt;
+        &lt;p&gt;So why we separate the “&lt;em&gt;public&lt;/em&gt;” properties and methods? Because in the end we will freeze the returning &lt;code class=&quot;highlighter-rouge&quot;&gt;methods&lt;/code&gt; object, which means we can’t change
         this object any more. Luckily this does not stand for the contents of Arrays and Objects. In a frozen object we can’t change scalars, but we can
         add/change elements in an array/object. That’s why we collect all the “&lt;em&gt;public&lt;/em&gt;” properties separately in an object. And since we can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt;
-        and &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; keywords, we can create the illusion of getting and setting a public property:&lt;/p&gt;
+        and &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; keywords, we can create the illusion of working directly with the public property:&lt;/p&gt;
         &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
         3
@@ -386,14 +389,21 @@
         &lt;ul&gt;
         &lt;li&gt;The public code is in safe. No way to overwrite them.&lt;/li&gt;
         &lt;li&gt;It has support for &lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;static&lt;/code&gt; keywords.&lt;/li&gt;
+        &lt;li&gt;With the &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; method we can do type check before assignment.&lt;/li&gt;
+        &lt;li&gt;Not possible to add/attach additional properties and methods.&lt;/li&gt;
         &lt;/ul&gt;
         &lt;h5 id=&quot;cons-1&quot;&gt;Cons&lt;/h5&gt;
         &lt;ul&gt;
         &lt;li&gt;This is far away from readability.&lt;/li&gt;
         &lt;li&gt;It’s difficult to understand.&lt;/li&gt;
+        &lt;li&gt;Every public, read-write property requires a &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; and a &lt;code class=&quot;highlighter-rouge&quot;&gt;get&lt;/code&gt; method.&lt;/li&gt;
         &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword is not mandatory.&lt;/li&gt;
         &lt;/ul&gt;
-        &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="js" /><category term="oop" /><summary type="html">I asked my frontend-pro friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid.</summary></entry><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-01-21T10:03:24+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
+        &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+        &lt;p&gt;As you can see, in order to eliminate all the negatives from the first solution, I had to sacrifice all the positives from it. But I think it’s worth it,
+        because in the end we want to use the code and not read it. And we can still use the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword if we want to.&lt;/p&gt;
+        &lt;p&gt;Readability is not a big price to make our object defended from harmful hands. What do you think? Am I right? Am I wrong? Is this really a
+        worst practice?&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="js" /><category term="oop" /><summary type="html">I asked my frontend-pro friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid.</summary></entry><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-02-17T17:16:53+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
         &lt;p&gt;The basic idea was not mine. Unfortunately I don’t even remember where I read about if for the first time, so I am unable to place
         credits, and I also unable to tell which solution was the one that give the base for my code. There are tons of tutorials in this
         topic believe me. And now here’s mine.&lt;/p&gt;

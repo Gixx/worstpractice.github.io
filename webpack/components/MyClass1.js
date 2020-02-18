@@ -19,8 +19,6 @@ const MyClass1 = function()
     const uuidVersion = '4';
 
     /**
-     * Gets the read-only property.
-     *
      * @returns {string}
      */
     const getNilUUID = function()
@@ -37,7 +35,7 @@ const MyClass1 = function()
      *
      * @return {string}
      */
-    this.generateUUID = function(isNilUUID = false)
+    this.generateUUID = function (isNilUUID = false)
     {
         if (isNilUUID) {
             return this.nilUUID;

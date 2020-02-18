@@ -14,8 +14,6 @@ const MyClass2 = function()
     const uuidVersion = '4';
 
     /**
-     * Gets the read-only property.
-     *
      * @returns {string}
      */
     const getNilUUID = function()
@@ -24,9 +22,9 @@ const MyClass2 = function()
     };
 
     /**
-     * Collection of public properties
+     * Collection of public properties.
+     *
      * @type {Object}
-     * @private
      */
     const properties = {
         nilUUID: getNilUUID(),
@@ -39,6 +37,10 @@ const MyClass2 = function()
      */
     const methods = {
         set nilUUID(newValue) {
+            if (typeof newValue !== 'string') {
+                throw new TypeError('nilUUID must store string value, ' + (typeof newValue) + ' given.');
+            }
+
             properties.nilUUID = newValue;
         },
 
@@ -48,6 +50,7 @@ const MyClass2 = function()
 
         /**
          * Generate and return a valid UUID
+         * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
          *
          * @returns {string}
          */
