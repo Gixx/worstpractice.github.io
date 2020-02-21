@@ -1,17 +1,17 @@
 ---
 layout: post
 title: "Deal with 'public' and 'private' access modifiers in JS"
-date: "2020-02-19 20:00:00 +0100"
+date: "2020-02-21 08:35:00 +0100"
 level: 'Beginner'
 expiration: 'none'
-illustration: ''
-illustrationCaption: ''
-illustration_share: ''
+illustration: 'private.jpg'
+illustrationCaption: 'Image by <a target="_blank" href="https://pixabay.com/users/aitoff-388338/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1665019">Andrew Martin</a> from <a target="_blank" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1665019">Pixabay</a>'
+illustration_share: 'private_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
 tags:   [js, oop]
 tagLabels: ['JS', 'OOP']
-excerpt: "I asked my frontend-pro friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid."
+excerpt: "I asked my Pro Frontend friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid."
 keywords: "JS, JavaScript, OOP, Object-Oriented Programming, Class, Private, Public, access modifiers, getter, setter"
 review: true
 published: true
