@@ -86,9 +86,6 @@ a img {
 }
 
 p, li {
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -webkit-hyphens: auto;
   hyphens: auto;
 }
 
@@ -136,12 +133,14 @@ p code {
   font-family: $font-monospace;
   background: $worstpractice-tanned;
   padding: 0 0.5rem;
+  hyphens: none;
 }
 
 pre code {
   display: block;
   width: 100%;
   margin: 0;
+  hyphens: none;
 }
 
 .material-icons {

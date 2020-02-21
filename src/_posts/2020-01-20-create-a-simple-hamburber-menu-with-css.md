@@ -10,7 +10,7 @@ illustration_share: 'hamburger_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
 tags:   [css,html,smart]
-tagLabels: ['CSS','HTML', 'Smart']
+tagLabels: ['CSS', 'HTML', 'Smart']
 excerpt: "Let's start with a pretty easy and smart solution. No JavaScript, only CSS."
 review: true
 published: true

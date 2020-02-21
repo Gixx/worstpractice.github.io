@@ -17,7 +17,7 @@ const GdprDialog = function ({utility, storage, storageKey,featureToggle,  verbo
     }
 
     if (!storage instanceof CookieStorage || !storage instanceof DataStorage) {
-        throw new ReferenceError('This component requires either the CookieStorage or the LocalStorage component to be loaded.');
+        throw new ReferenceError('This component requires either the CookieStorage or the DataStorage component to be loaded.');
     }
 
     if (!featureToggle instanceof FeatureToggleSwitch) {

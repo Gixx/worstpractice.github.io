@@ -58,13 +58,14 @@ docker exec -it webpack-wp bash
 Inside the container for the first time it's worth to make sure everything is up to date, so run:
 
 ```
-npm install --no-bin-links
+npm install -g webpack webpack-cli
+cd /app && npm install --no-bin-links
 ```
 
 Then just build (and watch for the changes) the JS bundle:
 
 ```
-webpack -w --watch-poll
+cd /app && webpack -w --watch-poll
 ```
 
 ### To use the Jekyll container
