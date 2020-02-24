@@ -354,14 +354,14 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">);</span> <span class="c1">// '00000000-0000-0000-0000-000000000000'</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// '00000000-0000-0000-0000-000000000000'</span>
 
-<span class="nx">myObj2</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">myObj1</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">);</span> <span class="c1">// 'Hello World!'</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// 'Hello World!'</span>
 
 <span class="c1">// BUT!</span>
 <span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">I am so sorry</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">//  Uncaught TypeError: myObj1.generateUUID is not a function</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">);</span> <span class="c1">// 'I am so sorry'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">);</span> <span class="c1">// 'I am so sorry'</span>
 </pre>
   </td>
 </tr>
@@ -383,6 +383,8 @@
   <li>No type check is possible before assigning new value to the public properties.</li>
   <li>It’s possible to add/attach additional properties and methods to the instance.</li>
 </ul>
+<h5 id="demo">Demo:</h5>
+<p><a target="_blank" href="https://codepen.io/navig80/pen/qBdRNeb?editors=1111">CodePen</a></p>
 <h4 id="way-2-twisted-thinking-to-protect-the-code">Way 2: twisted thinking to protect the code</h4>
 <p>This one is a nasty motherfucker. I found the cons very annoying in the first example, so I tried to figure out, how can I eliminate them.</p>
 <p>In this case we start the same way as previously, but then instead of making publicly available properties and methods, we simply
@@ -632,6 +634,8 @@
   <li>Every public, read-write property requires a <code class="highlighter-rouge">set</code> and a <code class="highlighter-rouge">get</code> method.</li>
   <li>The <code class="highlighter-rouge">new</code> keyword is not mandatory.</li>
 </ul>
+<h5 id="demo-1">Demo:</h5>
+<p><a target="_blank" href="https://codepen.io/navig80/pen/yLNgVye?editors=1111">CodePen</a></p>
 <h3 id="conclusion">Conclusion</h3>
 <p>As you can see, in order to eliminate all the negatives from the first solution, I had to sacrifice all the positives from it. But I think it’s worth it,
   because in the end we want to use the code and not read it. And we can still use the <code class="highlighter-rouge">new</code> keyword if we want to.</p>
