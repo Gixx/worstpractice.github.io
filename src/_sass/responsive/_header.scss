@@ -4,9 +4,25 @@
 
 @import "../fixed/header";
 
-.codeOfTheDay__toggle,
-.codeOfTheDay__content > div,
-.codeOfTheDay__backdrop,
-{
-  display: none;
+.h-header {
+  width: 100vw;
+  padding: 2rem 6rem 0 6rem;
+  height: auto;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.h-header__title a {
+    display: block;
+    position: absolute;
+    width: 69%;
+    height: 0 !important;
+    overflow: hidden;
+    padding-top: 13.7%;
+    top: 12.3%;
+    left: 14.1%;
+    z-index: 10;
+    transform: rotate(-8deg);
+    user-select: none;
+    pointer-events: all;
 }
