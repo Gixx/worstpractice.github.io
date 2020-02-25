@@ -139,14 +139,14 @@ also possible to inject new properties and methods into our instance which is al
 console.log(myObj1.nilUUID); // '00000000-0000-0000-0000-000000000000'
 console.log(myObj1.generateUUID(true)); // '00000000-0000-0000-0000-000000000000'
 
-myObj2.nilUUID = 'Hello World!';
+myObj1.nilUUID = 'Hello World!';
 console.log(myObj1.nilUUID); // 'Hello World!'
 console.log(myObj1.generateUUID(true)); // 'Hello World!'
 
 // BUT!
 myObj1.generateUUID = 'I am so sorry';
 console.log(myObj1.generateUUID(true)); //  Uncaught TypeError: myObj1.generateUUID is not a function
-console.log(myObj2.generateUUID); // 'I am so sorry'
+console.log(myObj1.generateUUID); // 'I am so sorry'
 ```
 
 ##### Pros:
@@ -159,6 +159,9 @@ console.log(myObj2.generateUUID); // 'I am so sorry'
 * It has no support for `get`, `set` and `static` keywords.
 * No type check is possible before assigning new value to the public properties.
 * It's possible to add/attach additional properties and methods to the instance.
+
+##### Demo:
+<a target="_blank" href="https://codepen.io/navig80/pen/qBdRNeb?editors=1111">CodePen</a>
 
 #### Way 2: twisted thinking to protect the code
 
@@ -295,6 +298,9 @@ console.log(myObj2.generateUUID); // 'function()...'
 * It's difficult to understand.
 * Every public, read-write property requires a `set` and a `get` method.
 * The `new` keyword is not mandatory.
+
+##### Demo:
+<a target="_blank" href="https://codepen.io/navig80/pen/yLNgVye?editors=1111">CodePen</a>
 
 ### Conclusion
 
