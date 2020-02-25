@@ -1,0 +1,12 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+@import "../fixed/header";
+
+.codeOfTheDay__toggle,
+.codeOfTheDay__content > div,
+.codeOfTheDay__backdrop,
+{
+  display: none;
+}

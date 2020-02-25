@@ -9,36 +9,24 @@
 @import "common/content";
 @import "common/footer";
 
-/* desktop and tablet landscape */
-@media only screen and (min-width: $desktop-min-width-limit) and (orientation:landscape) {
-  @import "desktop/defaults";
-  @import "desktop/gdpr";
-  @import "desktop/syntax";
-  @import "desktop/header";
-  @import "desktop/navigation";
-  @import "desktop/content";
-  @import "desktop/footer";
+/* normal and large screens (table landscape or desktop) */
+@media only screen and (min-width: $desktop-min-width-limit) {
+  @import "fixed/defaults";
+  @import "fixed/gdpr";
+  @import "fixed/syntax";
+  @import "fixed/header";
+  @import "fixed/navigation";
+  @import "fixed/content";
+  @import "fixed/footer";
 }
 
-/* tablet portrait and mobile landscape   */
-@media only screen and (min-width: $tablet-min-width-limit) and (max-width: $tablet-max-width-limit) and (orientation:portrait),
-  only screen and (max-width: $tablet-max-width-limit) and (orientation:landscape) {
-  @import "tablet/defaults";
-  @import "tablet/gdpr";
-  @import "tablet/syntax";
-  @import "tablet/header";
-  @import "tablet/navigation";
-  @import "tablet/content";
-  @import "tablet/footer";
-}
-
-/* mobile portrait */
-@media only screen and (max-width: $mobile-max-width-limit) and (orientation:portrait) {
-  @import "mobile/defaults";
-  @import "mobile/gdpr";
-  @import "mobile/syntax";
-  @import "mobile/header";
-  @import "mobile/navigation";
-  @import "mobile/content";
-  @import "mobile/footer";
+/* small screens (mobile or table portrait) */
+@media only screen and (max-width: $desktop-min-width-limit - 1) {
+  @import "responsive/defaults";
+  @import "responsive/gdpr";
+  @import "responsive/syntax";
+  @import "responsive/header";
+  @import "responsive/navigation";
+  @import "responsive/content";
+  @import "responsive/footer";
 }
