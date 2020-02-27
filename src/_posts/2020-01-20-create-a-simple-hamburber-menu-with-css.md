@@ -98,9 +98,9 @@ And of course we need the menu body itself and some content to make it useful:
         <nav>
             <h2>Categories</h2>
             <ul>
-                <li><a href="index.html">Cars</a></li>            
-                <li><a href="index.html">Girls</a></li>            
-                <li><a href="index.html">Money</a></li>            
+                <li><a href="index.html">Cars</a></li>
+                <li><a href="index.html">Girls</a></li>
+                <li><a href="index.html">Money</a></li>
             </ul>
         </nav>
     </div>
@@ -127,7 +127,7 @@ To be able to do the CSS job in the right way, I like to visualize the layers an
 be over the other. Until the W3C is not ready with the `Mind Reader API`, I use this simple diagram:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522">
     <figcaption class="a-illustration__caption">Box layers</figcaption>
 </figure>
 
@@ -180,21 +180,21 @@ body {
     <dd>
         It's my personal preference, but I don't like the default cursor over the text. Sometimes it's really hard to find, where you left it.
     </dd>
-    
+
     <dt><code>font-size: 62.5%;</code></dt>
     <dd>
-        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And 
-        later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank"><code>rem</code> unit</a> instead 
-        of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale 
-        properly and the design will not break apart.  
+        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And
+        later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank"><code>rem</code> unit</a> instead
+        of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale
+        properly and the design will not break apart.
     </dd>
-    
+
     <dt><code>orverflow-x: hidden;</code></dt>
     <dd>
-        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on 
-        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead 
-        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
-        appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be 
+        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on
+        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead
+        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar
+        appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be
         <code>100vw + 20px</code>, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
         Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
     </dd>
@@ -325,7 +325,7 @@ around them (also `4px`). Since the pseudo-elements belong to the "_parent_" and
 The measuring looks something like this on the picture:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505">
     <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
 </figure>
 

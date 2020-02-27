@@ -2,33 +2,18 @@
 ---
 
 @import "common/defaults";
-@import "common/gdpr";
 @import "common/syntax";
-@import "common/header";
-@import "common/navigation";
 @import "common/content";
-@import "common/footer";
 
 /* normal and large screens (table landscape or desktop) */
-@media only screen and (min-width: $desktop-min-width-limit) {
-  @import "fixed/defaults";
-  @import "fixed/gdpr";
-  @import "fixed/syntax";
-  @import "fixed/header";
-  @import "fixed/code-of-the-day";
-  @import "fixed/navigation";
-  @import "fixed/content";
-  @import "fixed/footer";
-}
+@import "fixed/defaults";
+@import "fixed/gdpr";
+@import "fixed/syntax";
+@import "fixed/header";
+@import "fixed/code-of-the-day";
+@import "fixed/navigation";
+@import "fixed/content";
+@import "fixed/footer";
 
 /* small screens (mobile or table portrait) */
-@media only screen and (max-width: $desktop-min-width-limit - 1) {
-  @import "responsive/defaults";
-  @import "responsive/gdpr";
-  @import "responsive/syntax";
-  @import "responsive/header";
-  @import "responsive/code-of-the-day";
-  @import "responsive/navigation";
-  @import "responsive/content";
-  @import "responsive/footer";
-}
+@import "responsive/base";

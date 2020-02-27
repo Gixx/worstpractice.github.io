@@ -1,0 +1,60 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+@media only screen and (max-width: $desktop-min-width-limit - 2) {
+  @import "header";
+  @import "code-of-the-day";
+  @import "content";
+  @import "footer";
+}
+
+@media only screen and (max-width: 900px) {
+  .c-content {
+    border-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .l-article {
+    flex-basis: 48.5%;
+
+    .l-header__title {
+      font-size: $size-header-normal;
+      line-height: $size-header-normal-line;
+      max-width: 34rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .c-content__list {
+    max-width: $desktop-content-width-max - 10rem;
+    width: auto;
+    min-width: $desktop-content-width-min - 4rem;
+    padding: 0 2rem;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+
+  .l-article,
+  .c-content__list.--home .l-article:nth-child(1),
+  .c-content__list.--home .l-article:nth-child(2),
+  .c-content__list.--home .l-article:nth-child(3) {
+    flex-basis: 100%;
+
+    .l-header__title {
+      font-size: $size-header-normal;
+      line-height: $size-header-normal-line;
+      max-width: 70rem;
+    }
+
+    .l-excerpt {
+      display: block;
+    }
+  }
+
+  .l-article .l-excerpt {
+    display: none;
+  }
+}

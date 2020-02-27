@@ -4,43 +4,36 @@
 
 // Content
 .c-content {
-  width: $desktop-content-width;
-  padding: $desktop-content-padding $desktop-content-padding ($desktop-content-padding / 2);
+  max-width: $desktop-content-width-max;
+  width: auto;
+  min-width: $desktop-content-width-min;
+  padding: 11.11% 0 5.56% 0;
   margin: 0 auto;
   background-color: $worstpractice-tanned-light;
   border-radius: 0.5rem;
 }
 
-.c-header__title {
-  font-size: $size-header-large;
-  line-height: $size-header-large-line;
-  margin: 3rem 0;
-}
-
-// Article List
-.c-content__list {
-  display: flex;
-  flex-wrap: wrap;
-  width: $desktop-content-width - (2 * $desktop-content-padding);
-  padding: 0;
-  margin: 0;
-}
-
 .c-header {
-  flex-basis: 70rem;
-  width: 70rem;
+  flex-basis: 100%;
+  width: auto;
   margin-right: 0;
+
+  .c-header__title {
+    font-size: $size-header-large;
+    line-height: $size-header-large-line;
+    margin: 3rem 0;
+  }
 }
 
 .c-footer {
-  flex-basis: 70rem;
-  width: 70rem;
+  flex-basis: 100%;
+  width: auto;
   margin-right: 0;
 }
 
 .c-footer nav {
   display: block;
-  width: 70rem;
+  width: 100%;
   height: 2.1rem;
   padding: 0;
 
@@ -48,7 +41,7 @@
     padding: 0;
     margin: 0;
     display: block;
-    width: 35rem;
+    width: 49.9%;
     text-align: left;
     float: left;
     height: 2.1rem;
@@ -59,7 +52,7 @@
     padding: 0;
     margin: 0;
     display: block;
-    width: 35rem;
+    width: 49.9%;
     text-align: right;
     float: right;
     height: 2.1rem;
@@ -67,12 +60,24 @@
   }
 }
 
+// Article List
+.c-content__list {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: $desktop-content-width-max - 10rem;
+  width: auto;
+  min-width: $desktop-content-width-min - 10rem;
+  padding: 0 5rem;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
 .l-article {
-  flex-basis: 22rem;
+  flex-basis: 31.5%;
   flex-shrink: 0;
   flex-grow: 0;
-  width: 22rem;
-  margin: 0 2rem 4rem 0;
+  width: auto;
+  margin: 0 0 4rem 0;
   padding: 0;
 
   .l-excerpt {
@@ -119,15 +124,10 @@
   padding-top: 1rem;
 }
 
-.l-article:nth-child(3n + 0) {
-  margin-right: 0;
-}
-
 .c-content__list.--home {
   .l-article:nth-child(1) {
-    flex-basis: 70rem;
-    width: 70rem;
-    margin-right: 0;
+    flex-basis: 100%;
+    width: auto;
 
     .l-header__title {
       font-size: $size-header-medium;
@@ -142,8 +142,8 @@
 
   .l-article:nth-child(2),
   .l-article:nth-child(3) {
-    flex-basis: 34rem;
-    width: 34rem;
+    flex-basis: 48.5%;
+    width: auto;
 
     .l-header__title {
       font-size: $size-header-normal;

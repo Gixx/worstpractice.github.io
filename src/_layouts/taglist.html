@@ -14,6 +14,14 @@ page_type: tag_list
         {% include post-list-element.html post=post %}
     {%- endfor -%}
 
+    {%- assign listSize = paginator.posts | size -%}
+    {%- capture emptyBoxes -%}
+        {{ listSize | minus: 3 | abs | plus: 3 | modulo: 3 }}
+    {%- endcapture -%}
+    {% for i in (1..emptyBoxes) %}
+    <article class="l-article"></article>
+    {% endfor %}
+
     {%- if paginator.total_pages > paginator.per_page -%}
     <footer class="c-footer">
         {% include pagination.html %}

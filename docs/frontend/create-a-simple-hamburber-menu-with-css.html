@@ -149,7 +149,7 @@
             Let's start with a pretty easy and smart solution. No JavaScript, only CSS.
           </p>
           <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/hamburger.jpg" alt="Create a simple Hamburger menu with CSS only">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/hamburger.jpg" alt="Create a simple Hamburger menu with CSS only">
             <figcaption class="a-illustration__caption">Image by <a href="https://www.dairyqueen.com/" target="_blank">DairyQueen</a></figcaption>
           </figure>
           <div class="a-body">
@@ -276,9 +276,9 @@
         <span class="nt">&lt;nav&gt;</span>
             <span class="nt">&lt;h2&gt;</span>Categories<span class="nt">&lt;/h2&gt;</span>
             <span class="nt">&lt;ul&gt;</span>
-                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Cars<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>            
-                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Girls<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>            
-                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Money<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>            
+                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Cars<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Girls<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Money<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
             <span class="nt">&lt;/ul&gt;</span>
         <span class="nt">&lt;/nav&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
@@ -320,7 +320,7 @@
 <p>To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
   be over the other. Until the W3C is not ready with the <code class="highlighter-rouge">Mind Reader API</code>, I use this simple diagram:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522" />
   <figcaption class="a-illustration__caption">Box layers</figcaption>
 </figure>
 <p>The actual page content will be between the <code class="highlighter-rouge">BODY</code> and the <code class="highlighter-rouge">.m-menu</code> wrapper.</p>
@@ -405,17 +405,17 @@
   </dd>
   <dt><code>font-size: 62.5%;</code></dt>
   <dd>
-    Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And 
-    later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank"><code>rem</code> unit</a> instead 
-    of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale 
-    properly and the design will not break apart.  
+    Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And
+    later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank"><code>rem</code> unit</a> instead
+    of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale
+    properly and the design will not break apart.
   </dd>
   <dt><code>orverflow-x: hidden;</code></dt>
   <dd>
-    We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on 
-    Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead 
-    of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
-    appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be 
+    We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on
+    Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead
+    of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar
+    appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be
     <code>100vw + 20px</code>, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
     Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
   </dd>
@@ -622,7 +622,7 @@
 </ul>
 <p>The measuring looks something like this on the picture:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505" />
   <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
 </figure>
 <h4 id="4-the-toggle">4. The toggle</h4>
