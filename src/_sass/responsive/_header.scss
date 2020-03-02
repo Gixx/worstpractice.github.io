@@ -10,17 +10,14 @@
   pointer-events: none;
 }
 
-.h-header__title a {
-    display: block;
-    position: absolute;
-    width: 69%;
-    height: 0 !important;
-    overflow: hidden;
-    padding-top: 13.7%;
-    top: 12.3%;
-    left: 14.1%;
-    z-index: 10;
+.h-header__title {
+  perspective: none;
+
+  a {
+    width: 70%;
+    padding-top: 15%;
+    top: 10%;
+    left: 13%;
     transform: rotate(-8deg);
-    user-select: none;
-    pointer-events: all;
+  }
 }

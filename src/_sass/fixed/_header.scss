@@ -19,18 +19,19 @@
   background-position: top center;
   background-size: contain;
   background-repeat: no-repeat;
+  perspective: 1000px;
 
   a {
     display: block;
     position: absolute;
-    width: 62rem;
+    width: 97%;
     height: 0 !important;
     overflow: hidden;
-    padding-top: 11rem;
-    top: 5rem;
-    left: 12rem;
+    padding-top: 11%;
+    top: 15%;
+    left: -11%;
     z-index: 10;
-    transform: rotate(-8deg);
+    transform: rotateY(-44deg);
     user-select: none;
     pointer-events: all;
   }
