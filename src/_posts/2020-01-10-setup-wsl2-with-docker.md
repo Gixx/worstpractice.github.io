@@ -45,17 +45,17 @@ take the actions described on the linked pages.
 
 So here are the sources you will need to have a nice DIY-day:
 
-1. <a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank">Install Windows 10</a>.
-2. <a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank">Enable the built-in OpenSSH Client</a> if it's not present by default.
-3. <a href="https://insider.windows.com/en-us/" target="_blank">Join the Insider Program</a>.
-4. <a href="https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview" target="_blank">Change your Insider settings to the "Fast Ring"</a>, to get the Windows **build 18917** or higher.
-5. <a href="https://gitforwindows.org/" target="_blank">Install Git for Windows</a>.
-6. <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">Install WSL1</a>.
-7. <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install" target="_blank">Install WSL2</a>.
-8. <a href="https://docs.docker.com/docker-for-windows/edge-release-notes/" target="_blank">Install the Edge release of the Docker Desktop Community</a>, version 2.1.7.0 or higher
-9. <a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank">Share ENV variables between WSL and Windows</a>
-10. <a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank">Set up a more productive shell</a>
-11. <a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank">Fix the "git push to GitHub from WSL" issue</a>
+1. <a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank" rel="noopener">Install Windows 10</a>.
+2. <a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank" rel="noopener">Enable the built-in OpenSSH Client</a> if it's not present by default.
+3. <a href="https://insider.windows.com/en-us/" target="_blank" rel="noopener">Join the Insider Program</a>.
+4. <a href="https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview" target="_blank" rel="noopener">Change your Insider settings to the "Fast Ring"</a>, to get the Windows **build 18917** or higher.
+5. <a href="https://gitforwindows.org/" target="_blank" rel="noopener">Install Git for Windows</a>.
+6. <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank" rel="noopener">Install WSL1</a>.
+7. <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install" target="_blank" rel="noopener">Install WSL2</a>.
+8. <a href="https://docs.docker.com/docker-for-windows/edge-release-notes/" target="_blank" rel="noopener">Install the Edge release of the Docker Desktop Community</a>, version 2.1.7.0 or higher
+9. <a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank" rel="noopener">Share ENV variables between WSL and Windows</a>
+10. <a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank" rel="noopener">Set up a more productive shell</a>
+11. <a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank" rel="noopener">Fix the "git push to GitHub from WSL" issue</a>
 
 From this point you can start your work with docker, it's easy and fun. If you use PHPStorm for your work, <a href="#phpstorm">I have some tips</a>
 to make your life a little bit easier.
@@ -98,9 +98,9 @@ We need that, we work with that, we work in that.
 
 ### <a name="phpstorm"></a>Fine tuning the PHPStorm terminal
 
-<a href="https://www.jetbrains.com/" target="_blank">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
-for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a>, but if
-you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a> is also a perfect choice.
+<a href="https://www.jetbrains.com/" target="_blank" rel="noopener">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
+for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank" rel="noopener">PHPStorm</a>, but if
+you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank" rel="noopener">WebStorm</a> is also a perfect choice.
 I believe, the common root makes this tutorial valid for the WebStorm as well.
 
 I don't really like the endless path of the Documents folder in Windows, so I usually store my projects on my secondary hard drive: <code>D:\Project</code>.
