@@ -21,3 +21,16 @@
     transform: rotate(-8deg);
   }
 }
+
+.codeOfTheDay {
+  opacity: 0;
+
+  * {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.f-footer__copyright {
+  width: 100%;
+}

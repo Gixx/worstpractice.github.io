@@ -7,7 +7,7 @@
   max-width: $desktop-content-width-max;
   width: auto;
   min-width: $desktop-content-width-min;
-  padding: 11.11% 0 5.56% 0;
+  padding: 7rem 0 5rem;
   margin: 0 auto;
   background-color: $worstpractice-tanned-light;
   border-radius: 0.5rem;
@@ -16,12 +16,13 @@
 .c-header {
   flex-basis: 100%;
   width: auto;
-  margin-right: 0;
+  padding: 0 5rem 5rem;
+  margin: 0 auto;
+  max-width: 80rem;
 
   .c-header__title {
     font-size: $size-header-large;
     line-height: $size-header-large-line;
-    margin: 3rem 0;
   }
 }
 
@@ -29,34 +30,34 @@
   flex-basis: 100%;
   width: auto;
   margin-right: 0;
-}
 
-.c-footer nav {
-  display: block;
-  width: 100%;
-  height: 2.1rem;
-  padding: 0;
-
-  .prev {
-    padding: 0;
-    margin: 0;
+  nav {
     display: block;
-    width: 49.9%;
-    text-align: left;
-    float: left;
+    width: 100%;
     height: 2.1rem;
-    line-height: 2.1rem;
-  }
-
-  .next {
     padding: 0;
-    margin: 0;
-    display: block;
-    width: 49.9%;
-    text-align: right;
-    float: right;
-    height: 2.1rem;
-    line-height: 2.1rem;
+
+    .prev {
+      padding: 0;
+      margin: 0;
+      display: block;
+      width: 49.9%;
+      text-align: left;
+      float: left;
+      height: 2.1rem;
+      line-height: 2.1rem;
+    }
+
+    .next {
+      padding: 0;
+      margin: 0;
+      display: block;
+      width: 49.9%;
+      text-align: right;
+      float: right;
+      height: 2.1rem;
+      line-height: 2.1rem;
+    }
   }
 }
 

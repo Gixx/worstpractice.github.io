@@ -1,19 +1,34 @@
 ---
 ---
 
-@import "common/defaults";
-@import "common/syntax";
-@import "common/content";
-
-/* normal and large screens (table landscape or desktop) */
-@import "fixed/defaults";
-@import "fixed/gdpr";
-@import "fixed/syntax";
-@import "fixed/header";
+/* normal and large screens (tablet landscape or desktop) */
 @import "fixed/code-of-the-day";
-@import "fixed/navigation";
 @import "fixed/content";
+@import "fixed/defaults";
+@import "fixed/feature-toggle";
 @import "fixed/footer";
+@import "fixed/gdpr";
+@import "fixed/header";
+@import "fixed/navigation";
+@import "fixed/syntax";
 
 /* small screens (mobile or table portrait) */
-@import "responsive/base";
+@media only screen and (max-width: 1023px) {
+  @import "responsive/max-1023";
+}
+
+@media only screen and (max-width: 900px) {
+  @import "responsive/max-900";
+}
+
+@media only screen and (max-width: 800px) {
+  @import "responsive/max-800";
+}
+
+@media only screen and (max-width: 680px) {
+  @import "responsive/max-680";
+}
+
+@media only screen and (max-width: 490px) {
+  @import "responsive/max-490";
+}
