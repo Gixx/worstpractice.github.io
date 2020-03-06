@@ -15,13 +15,15 @@
 }
 
 .m-menu__burger {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
   width: 4rem;
-  height: 4rem;
-  top: 1.1rem;
-  left: 1.1rem;
+  height: 3.6rem;
+  top: 1rem;
+  left: 1rem;
   padding: 0.6rem 0.4rem;
+  background: $worstpractice-red;
+  border-radius: 0.5rem;
 
   span,
   span::before,
@@ -31,7 +33,7 @@
     width: 3.2rem;
     height: 0.4rem;
     position: absolute;
-    margin-top: 1.2rem;
+    margin-top: 1rem;
     background: $worstpractice-tanned-light;
     border-radius: 0.3rem;
   }
@@ -125,7 +127,7 @@
 }
 
 .m-menu__backdrop {
-  z-index: 1;
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;

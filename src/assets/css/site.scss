@@ -1,44 +1,34 @@
 ---
 ---
 
-@import "common/defaults";
-@import "common/gdpr";
-@import "common/syntax";
-@import "common/header";
-@import "common/navigation";
-@import "common/content";
-@import "common/footer";
+/* normal and large screens (tablet landscape or desktop) */
+@import "fixed/code-of-the-day";
+@import "fixed/content";
+@import "fixed/defaults";
+@import "fixed/feature-toggle";
+@import "fixed/footer";
+@import "fixed/gdpr";
+@import "fixed/header";
+@import "fixed/navigation";
+@import "fixed/syntax";
 
-/* desktop and tablet landscape */
-@media only screen and (min-width: $desktop-min-width-limit) and (orientation:landscape) {
-  @import "desktop/defaults";
-  @import "desktop/gdpr";
-  @import "desktop/syntax";
-  @import "desktop/header";
-  @import "desktop/navigation";
-  @import "desktop/content";
-  @import "desktop/footer";
+/* small screens (mobile or table portrait) */
+@media only screen and (max-width: 1023px) {
+  @import "responsive/max-1023";
 }
 
-/* tablet portrait and mobile landscape   */
-@media only screen and (min-width: $tablet-min-width-limit) and (max-width: $tablet-max-width-limit) and (orientation:portrait),
-  only screen and (max-width: $tablet-max-width-limit) and (orientation:landscape) {
-  @import "tablet/defaults";
-  @import "tablet/gdpr";
-  @import "tablet/syntax";
-  @import "tablet/header";
-  @import "tablet/navigation";
-  @import "tablet/content";
-  @import "tablet/footer";
+@media only screen and (max-width: 900px) {
+  @import "responsive/max-900";
 }
 
-/* mobile portrait */
-@media only screen and (max-width: $mobile-max-width-limit) and (orientation:portrait) {
-  @import "mobile/defaults";
-  @import "mobile/gdpr";
-  @import "mobile/syntax";
-  @import "mobile/header";
-  @import "mobile/navigation";
-  @import "mobile/content";
-  @import "mobile/footer";
+@media only screen and (max-width: 800px) {
+  @import "responsive/max-800";
+}
+
+@media only screen and (max-width: 680px) {
+  @import "responsive/max-680";
+}
+
+@media only screen and (max-width: 490px) {
+  @import "responsive/max-490";
 }

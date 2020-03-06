@@ -5,7 +5,7 @@ date: "2020-01-20 21:40:00 +0100"
 level: 'Beginner'
 expiration: 'none'
 illustration: 'hamburger.jpg'
-illustrationCaption: 'Image by <a href="https://www.dairyqueen.com/" target="_blank">DairyQueen</a>'
+illustrationCaption: 'Image by <a href="https://www.dairyqueen.com/" target="_blank" rel="noopener">DairyQueen</a>'
 illustration_share: 'hamburger_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
@@ -25,7 +25,7 @@ topic believe me. And now here's mine.
 ### TL;DR
 
 If you don't want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-<a href="https://github.com/Gixx/worstpractice-css-hamburger-menu" target="_blank">GitHub</a>.
+<a href="https://github.com/Gixx/worstpractice-css-hamburger-menu" target="_blank" rel="noopener">GitHub</a>.
 
 ### Build my Burger up!
 
@@ -36,7 +36,7 @@ and adopt this technique to other use cases.
 #### Naming conventions
 
 There are many popular standards and recommendations on the market which should be considered before starting the development.
-I prefer the <a href="https://css-tricks.com/abem-useful-adaptation-bem/" target="_blank">ABEM</a>, but please feel free to use
+I prefer the <a href="https://css-tricks.com/abem-useful-adaptation-bem/" target="_blank" rel="noopener">ABEM</a>, but please feel free to use
 any other you like. The code samples will be straightforward and easy to replace the class names.
 
 #### 1. Wrapper
@@ -59,7 +59,7 @@ others). This symbol became a standard in the last decade, so again:
 There are (at least) three ways to create this icon:
 
 1. Use an image. By itself, or as a background, doesn't matter. A bit old thinking, but definitely the easiest.
-2. Use an Icon Font (like the <a href="https://material.io/resources/icons/" target="_blank">Material Icons</a>). Elegant and popular solution.
+2. Use an Icon Font (like the <a href="https://material.io/resources/icons/" target="_blank" rel="noopener">Material Icons</a>). Elegant and popular solution.
 3. Use meaningless markup and style them with CSS.
 
 I used the third option, because I promised a "CSS-only Hamburger Menu", and not a "CSS-only Hamburger Menu with Image, Font and Cheese".
@@ -98,9 +98,9 @@ And of course we need the menu body itself and some content to make it useful:
         <nav>
             <h2>Categories</h2>
             <ul>
-                <li><a href="index.html">Cars</a></li>            
-                <li><a href="index.html">Girls</a></li>            
-                <li><a href="index.html">Money</a></li>            
+                <li><a href="index.html">Cars</a></li>
+                <li><a href="index.html">Girls</a></li>
+                <li><a href="index.html">Money</a></li>
             </ul>
         </nav>
     </div>
@@ -109,7 +109,7 @@ And of course we need the menu body itself and some content to make it useful:
 
 #### 5. Backdrop
 
-Unfortunately the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank">`::backdrop` CSS pseudo-element</a>
+Unfortunately the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank" rel="noopener">`::backdrop` CSS pseudo-element</a>
 is not supported in every modern browser... ☞ Safari! Hello?? ...so we have do a little bit of workaround.
 
 ```html
@@ -127,7 +127,7 @@ To be able to do the CSS job in the right way, I like to visualize the layers an
 be over the other. Until the W3C is not ready with the `Mind Reader API`, I use this simple diagram:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800">
     <figcaption class="a-illustration__caption">Box layers</figcaption>
 </figure>
 
@@ -167,7 +167,7 @@ body {
 }
 ```
 
-**Explanation**
+##### Explanation
 
 <dl>
     <dt><code>box-sizing: border-box;</code></dt>
@@ -180,21 +180,21 @@ body {
     <dd>
         It's my personal preference, but I don't like the default cursor over the text. Sometimes it's really hard to find, where you left it.
     </dd>
-    
+
     <dt><code>font-size: 62.5%;</code></dt>
     <dd>
-        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And 
-        later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank"><code>rem</code> unit</a> instead 
-        of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale 
-        properly and the design will not break apart.  
+        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And
+        later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank" rel="noopener"><code>rem</code> unit</a> instead
+        of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale
+        properly and the design will not break apart.
     </dd>
-    
+
     <dt><code>orverflow-x: hidden;</code></dt>
     <dd>
-        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on 
-        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead 
-        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
-        appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be 
+        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on
+        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead
+        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar
+        appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be
         <code>100vw + 20px</code>, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
         Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
     </dd>
@@ -309,7 +309,7 @@ This will position the _hamburger icon_ box `11px` from the top left corner. Thi
 }
 ```
 
-**Explanation**
+##### Explanation
 
 So basically we set to hamburger container to `40px ✕ 40px` with thick padding (two times `4px` on the sides and two times `6px` on top and bottom),
 that will reduce the inner area `32px ✕ 28px`. This will be our sandbox. The `32px` width is exactly the with of the horizontal lines (the _layers_
@@ -325,7 +325,7 @@ around them (also `4px`). Since the pseudo-elements belong to the "_parent_" and
 The measuring looks something like this on the picture:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800">
     <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
 </figure>
 
@@ -357,7 +357,7 @@ And of course we have to make the hamburger clickable, so we set the `pointer-ev
 #### 5. The menu
 
 The topmost layer is the menu content. It's up to you how you design it, I prefer to make it similar to the one that the
-<a href="https://getmdl.io/components/index.html#layout-section" target="_blank">Material Design Lite</a> uses. For this tutorial I focus on the menu
+<a href="https://getmdl.io/components/index.html#layout-section" target="_blank" rel="noopener">Material Design Lite</a> uses. For this tutorial I focus on the menu
 "_frame_" only.
 
 ```css
@@ -380,7 +380,7 @@ The topmost layer is the menu content. It's up to you how you design it, I prefe
 }
 ```
 
-**Explanation**
+##### Explanation
 
 We defined a fixed `300px` width and stretched it vertically. By setting the `overflow: auto`, we make sure to support the menus with many entries and
 also make it work on small screens, like smart phones. We also enabled all `pointer-events`, because we want to make the menu items to be clickable.
@@ -390,7 +390,7 @@ We also added a little drop shadow just to visually highlight the menu. You can 
 the size of `315px`. How we get this number? It's the width of the menu (`300px`), the spread of the shadow (`10px`) and a little bit of safety margin
 (`5px`).
 
-And don't think that I am a Math genius, the `cubic-bezier` transition was fine-tuned with the <a href="https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome" target="_blank">Google Chrome's Dev Tools</a>.
+And don't think that I am a Math genius, the `cubic-bezier` transition was fine-tuned with the <a href="https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome" target="_blank" rel="noopener">Google Chrome's Dev Tools</a>.
 
 #### 6. Changing state
 
@@ -439,7 +439,7 @@ did it there, it will also "_played_" backwards when we get back to that state.
 
 ### Live Demo
 
-I drop together a little demo, check it out on <a href="https://codepen.io/navig80/pen/VwYVBmo" target="_blank">CodePen</a>.
+I drop together a little demo, check it out on <a href="https://codepen.io/navig80/pen/VwYVBmo" target="_blank" rel="noopener">CodePen</a>.
 
 ### Conclusion
 

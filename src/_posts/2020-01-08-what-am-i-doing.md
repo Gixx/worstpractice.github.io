@@ -5,7 +5,7 @@ date:   2020-01-08 15:23:00 +0100
 level: ''
 expiration: none
 illustration: 'what.jpg'
-illustrationCaption: 'Image by <a target="_blank" href="https://pixabay.com/users/Alexas_Fotos-686414/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2036211">Alexas_Fotos</a> from <a target="_blank" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2036211">Pixabay</a>'
+illustrationCaption: 'Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/Alexas_Fotos-686414/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2036211">Alexas_Fotos</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2036211">Pixabay</a>'
 illustration_share: 'what_600x600.jpg'
 category: general
 categoryLabel: 'General'

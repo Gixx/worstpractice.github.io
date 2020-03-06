@@ -4,7 +4,7 @@ locale: en_US
 author: 'Gábor Iván'
 author_slug: 'gabor.ivan'
 author_avatar: 'avatar.jpg'
-author_introduction: 'Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.'
+author_introduction: 'Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank" rel="noopener">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.'
 
 application: 'Worst Practice Blog'
 timezone: 'Europe/Berlin'

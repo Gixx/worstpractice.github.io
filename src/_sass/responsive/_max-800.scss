@@ -1,0 +1,13 @@
+@import "../colors";
+@import "../sizes";
+@import "../fonts";
+
+.l-article {
+  flex-basis: 48.5%;
+
+  .l-header__title {
+    font-size: $size-header-normal;
+    line-height: $size-header-normal-line;
+    max-width: 34rem;
+  }
+}

@@ -57,9 +57,11 @@ const embedWorstPracticeSample = function () {
                         scrollTo({ top: 0, behavior: 'smooth' });
                         // scrollTo(0, 0);
                         document.body.style.overflow = 'hidden';
+                        document.querySelector('.codeOfTheDay').style.zIndex = '101';
                     } else {
                         document.body.style.overflowY = 'auto';
                         document.body.style.overflowX = 'hidden';
+                        document.querySelector('.codeOfTheDay').style.zIndex = '99';
                     }
                 });
             });

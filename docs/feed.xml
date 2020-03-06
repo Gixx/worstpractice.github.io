@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-02-24T11:53:53+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-21T08:35:00+01:00</published><updated>2020-02-21T08:35:51+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-03-06T11:38:36+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-21T08:35:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
         &lt;p&gt;You’d better know, I am basically a backend developer. Or, as I used to say with a little bit of humor and a piece of well-deserved self-critics:&lt;/p&gt;
         &lt;blockquote&gt;
         &lt;p&gt;I am a Full-STUCK Señor PHP Developer&lt;/p&gt;
@@ -191,7 +191,7 @@
         &lt;li&gt;It’s possible to add/attach additional properties and methods to the instance.&lt;/li&gt;
         &lt;/ul&gt;
         &lt;h5 id=&quot;demo&quot;&gt;Demo:&lt;/h5&gt;
-        &lt;p&gt;&lt;a target=&quot;_blank&quot; href=&quot;https://codepen.io/navig80/pen/qBdRNeb?editors=1111&quot;&gt;CodePen&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://codepen.io/navig80/pen/qBdRNeb?editors=1111&quot;&gt;CodePen&lt;/a&gt;&lt;/p&gt;
         &lt;h4 id=&quot;way-2-twisted-thinking-to-protect-the-code&quot;&gt;Way 2: twisted thinking to protect the code&lt;/h4&gt;
         &lt;p&gt;This one is a nasty motherfucker. I found the cons very annoying in the first example, so I tried to figure out, how can I eliminate them.&lt;/p&gt;
         &lt;p&gt;In this case we start the same way as previously, but then instead of making publicly available properties and methods, we simply
@@ -402,25 +402,25 @@
         &lt;li&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword is not mandatory.&lt;/li&gt;
         &lt;/ul&gt;
         &lt;h5 id=&quot;demo-1&quot;&gt;Demo:&lt;/h5&gt;
-        &lt;p&gt;&lt;a target=&quot;_blank&quot; href=&quot;https://codepen.io/navig80/pen/yLNgVye?editors=1111&quot;&gt;CodePen&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://codepen.io/navig80/pen/yLNgVye?editors=1111&quot;&gt;CodePen&lt;/a&gt;&lt;/p&gt;
         &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
         &lt;p&gt;As you can see, in order to eliminate all the negatives from the first solution, I had to sacrifice all the positives from it. But I think it’s worth it,
         because in the end we want to use the code and not read it. And we can still use the &lt;code class=&quot;highlighter-rouge&quot;&gt;new&lt;/code&gt; keyword if we want to.&lt;/p&gt;
         &lt;p&gt;Readability is not a big price to make our object defended from harmful hands. What do you think? Am I right? Am I wrong? Is this really a
-        worst practice?&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="js" /><category term="oop" /><summary type="html">I asked my Pro Frontend friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid.</summary></entry><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-02-17T17:16:53+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
+        worst practice?&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="js" /><category term="oop" /><summary type="html">I asked my Pro Frontend friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid.</summary></entry><entry><title type="html">Create a simple Hamburger menu with CSS only</title><link href="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css" rel="alternate" type="text/html" title="Create a simple Hamburger menu with CSS only" /><published>2020-01-20T21:40:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/create-a-simple-hamburber-menu-with-css">&lt;h3 id=&quot;confession&quot;&gt;Confession&lt;/h3&gt;
         &lt;p&gt;The basic idea was not mine. Unfortunately I don’t even remember where I read about if for the first time, so I am unable to place
         credits, and I also unable to tell which solution was the one that give the base for my code. There are tons of tutorials in this
         topic believe me. And now here’s mine.&lt;/p&gt;
         &lt;h3 id=&quot;tldr&quot;&gt;TL;DR&lt;/h3&gt;
         &lt;p&gt;If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-        &lt;a href=&quot;https://github.com/Gixx/worstpractice-css-hamburger-menu&quot; target=&quot;_blank&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;a href=&quot;https://github.com/Gixx/worstpractice-css-hamburger-menu&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
         &lt;h3 id=&quot;build-my-burger-up&quot;&gt;Build my Burger up!&lt;/h3&gt;
         &lt;p&gt;The goal is to create a slide-in menu with semi-transparent, clickable backdrop without any JavaScript, image or font resources.
         Only HTML and CSS. It sounds easy, and after we have done it for the first time, we will see that, it IS really easy to understand
         and adopt this technique to other use cases.&lt;/p&gt;
         &lt;h4 id=&quot;naming-conventions&quot;&gt;Naming conventions&lt;/h4&gt;
         &lt;p&gt;There are many popular standards and recommendations on the market which should be considered before starting the development.
-        I prefer the &lt;a href=&quot;https://css-tricks.com/abem-useful-adaptation-bem/&quot; target=&quot;_blank&quot;&gt;ABEM&lt;/a&gt;, but please feel free to use
+        I prefer the &lt;a href=&quot;https://css-tricks.com/abem-useful-adaptation-bem/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ABEM&lt;/a&gt;, but please feel free to use
         any other you like. The code samples will be straightforward and easy to replace the class names.&lt;/p&gt;
         &lt;h4 id=&quot;1-wrapper&quot;&gt;1. Wrapper&lt;/h4&gt;
         &lt;p&gt;I tried some “wrapper-less” solutions during the development process, but none of them could satisfy my criteria. We &lt;strong&gt;NEED&lt;/strong&gt; a wrapper.
@@ -438,7 +438,7 @@
         &lt;p&gt;There are (at least) three ways to create this icon:&lt;/p&gt;
         &lt;ol&gt;
         &lt;li&gt;Use an image. By itself, or as a background, doesn’t matter. A bit old thinking, but definitely the easiest.&lt;/li&gt;
-        &lt;li&gt;Use an Icon Font (like the &lt;a href=&quot;https://material.io/resources/icons/&quot; target=&quot;_blank&quot;&gt;Material Icons&lt;/a&gt;). Elegant and popular solution.&lt;/li&gt;
+        &lt;li&gt;Use an Icon Font (like the &lt;a href=&quot;https://material.io/resources/icons/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Material Icons&lt;/a&gt;). Elegant and popular solution.&lt;/li&gt;
         &lt;li&gt;Use meaningless markup and style them with CSS.&lt;/li&gt;
         &lt;/ol&gt;
         &lt;p&gt;I used the third option, because I promised a “CSS-only Hamburger Menu”, and not a “CSS-only Hamburger Menu with Image, Font and Cheese”.
@@ -489,16 +489,16 @@
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;nav&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;Categories&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Cars&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;            
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Girls&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;            
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Money&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;            
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Cars&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Girls&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;index.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Money&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/nav&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
         &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;h4 id=&quot;5-backdrop&quot;&gt;5. Backdrop&lt;/h4&gt;
-        &lt;p&gt;Unfortunately the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop&quot; target=&quot;_blank&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;::backdrop&lt;/code&gt; CSS pseudo-element&lt;/a&gt;
+        &lt;p&gt;Unfortunately the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;::backdrop&lt;/code&gt; CSS pseudo-element&lt;/a&gt;
         is not supported in every modern browser… ☞ Safari! Hello?? …so we have do a little bit of workaround.&lt;/p&gt;
         &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
@@ -514,7 +514,7 @@
         &lt;p&gt;To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
         be over the other. Until the W3C is not ready with the &lt;code class=&quot;highlighter-rouge&quot;&gt;Mind Reader API&lt;/code&gt;, I use this simple diagram:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg&quot; width=&quot;800&quot; height=&quot;522&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Box layers&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;The actual page content will be between the &lt;code class=&quot;highlighter-rouge&quot;&gt;BODY&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;.m-menu&lt;/code&gt; wrapper.&lt;/p&gt;
@@ -572,7 +572,7 @@
         &lt;span class=&quot;nl&quot;&gt;overflow-x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;h5 id=&quot;explanation&quot;&gt;Explanation&lt;/h5&gt;
         &lt;dl&gt;
         &lt;dt&gt;&lt;code&gt;box-sizing: border-box;&lt;/code&gt;&lt;/dt&gt;
         &lt;dd&gt;
@@ -585,17 +585,17 @@
         &lt;/dd&gt;
         &lt;dt&gt;&lt;code&gt;font-size: 62.5%;&lt;/code&gt;&lt;/dt&gt;
         &lt;dd&gt;
-        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And 
-        later on you can simply use the &lt;a href=&quot;https://www.w3.org/TR/css-values-3/#rem&quot; target=&quot;_blank&quot;&gt;&lt;code&gt;rem&lt;/code&gt; unit&lt;/a&gt; instead 
-        of &lt;code&gt;px&lt;/code&gt;. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale 
-        properly and the design will not break apart.  
+        Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And
+        later on you can simply use the &lt;a href=&quot;https://www.w3.org/TR/css-values-3/#rem&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;rem&lt;/code&gt; unit&lt;/a&gt; instead
+        of &lt;code&gt;px&lt;/code&gt;. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale
+        properly and the design will not break apart.
         &lt;/dd&gt;
         &lt;dt&gt;&lt;code&gt;orverflow-x: hidden;&lt;/code&gt;&lt;/dt&gt;
         &lt;dd&gt;
-        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on 
-        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead 
-        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
-        appears, takes 20 pixels from the browsing area, and since our HTML is said to be &lt;code&gt;100vw&lt;/code&gt;, the whole thing together will be 
+        We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on
+        Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead
+        of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar
+        appears, takes 20 pixels from the browsing area, and since our HTML is said to be &lt;code&gt;100vw&lt;/code&gt;, the whole thing together will be
         &lt;code&gt;100vw + 20px&lt;/code&gt;, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
         Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
         &lt;/dd&gt;
@@ -739,7 +739,7 @@
         &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.8rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;h5 id=&quot;explanation-1&quot;&gt;Explanation&lt;/h5&gt;
         &lt;p&gt;So basically we set to hamburger container to &lt;code class=&quot;highlighter-rouge&quot;&gt;40px ✕ 40px&lt;/code&gt; with thick padding (two times &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt; on the sides and two times &lt;code class=&quot;highlighter-rouge&quot;&gt;6px&lt;/code&gt; on top and bottom),
         that will reduce the inner area &lt;code class=&quot;highlighter-rouge&quot;&gt;32px ✕ 28px&lt;/code&gt;. This will be our sandbox. The &lt;code class=&quot;highlighter-rouge&quot;&gt;32px&lt;/code&gt; width is exactly the with of the horizontal lines (the &lt;em&gt;layers&lt;/em&gt;
         of the hamburger), and the &lt;code class=&quot;highlighter-rouge&quot;&gt;28px&lt;/code&gt; is also perfect, because it’s an easy to count value when we divide it with &lt;strong&gt;7&lt;/strong&gt;.&lt;/p&gt;
@@ -752,7 +752,7 @@
         &lt;/ul&gt;
         &lt;p&gt;The measuring looks something like this on the picture:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg&quot; width=&quot;800&quot; height=&quot;505&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Measuring the hamburger menu icon&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;h4 id=&quot;4-the-toggle&quot;&gt;4. The toggle&lt;/h4&gt;
@@ -789,7 +789,7 @@
         And of course we have to make the hamburger clickable, so we set the &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events: all&lt;/code&gt;.&lt;/p&gt;
         &lt;h4 id=&quot;5-the-menu&quot;&gt;5. The menu&lt;/h4&gt;
         &lt;p&gt;The topmost layer is the menu content. It’s up to you how you design it, I prefer to make it similar to the one that the
-        &lt;a href=&quot;https://getmdl.io/components/index.html#layout-section&quot; target=&quot;_blank&quot;&gt;Material Design Lite&lt;/a&gt; uses. For this tutorial I focus on the menu
+        &lt;a href=&quot;https://getmdl.io/components/index.html#layout-section&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Material Design Lite&lt;/a&gt; uses. For this tutorial I focus on the menu
         “&lt;em&gt;frame&lt;/em&gt;” only.&lt;/p&gt;
         &lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
         2
@@ -826,14 +826,14 @@
         &lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;h5 id=&quot;explanation-2&quot;&gt;Explanation&lt;/h5&gt;
         &lt;p&gt;We defined a fixed &lt;code class=&quot;highlighter-rouge&quot;&gt;300px&lt;/code&gt; width and stretched it vertically. By setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;overflow: auto&lt;/code&gt;, we make sure to support the menus with many entries and
         also make it work on small screens, like smart phones. We also enabled all &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events&lt;/code&gt;, because we want to make the menu items to be clickable.
         Remember you have to do this only within the wrapper.&lt;/p&gt;
         &lt;p&gt;We also added a little drop shadow just to visually highlight the menu. You can also see that we moved out the menu from the scope to the left with
         the size of &lt;code class=&quot;highlighter-rouge&quot;&gt;315px&lt;/code&gt;. How we get this number? It’s the width of the menu (&lt;code class=&quot;highlighter-rouge&quot;&gt;300px&lt;/code&gt;), the spread of the shadow (&lt;code class=&quot;highlighter-rouge&quot;&gt;10px&lt;/code&gt;) and a little bit of safety margin
         (&lt;code class=&quot;highlighter-rouge&quot;&gt;5px&lt;/code&gt;).&lt;/p&gt;
-        &lt;p&gt;And don’t think that I am a Math genius, the &lt;code class=&quot;highlighter-rouge&quot;&gt;cubic-bezier&lt;/code&gt; transition was fine-tuned with the &lt;a href=&quot;https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome&quot; target=&quot;_blank&quot;&gt;Google Chrome’s Dev Tools&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;And don’t think that I am a Math genius, the &lt;code class=&quot;highlighter-rouge&quot;&gt;cubic-bezier&lt;/code&gt; transition was fine-tuned with the &lt;a href=&quot;https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Google Chrome’s Dev Tools&lt;/a&gt;.&lt;/p&gt;
         &lt;h4 id=&quot;6-changing-state&quot;&gt;6. Changing state&lt;/h4&gt;
         &lt;p&gt;Now we have the menu’s initial style ready. But how will it work? Let’s define the workflow:&lt;/p&gt;
         &lt;ol&gt;
@@ -882,12 +882,12 @@
         &lt;p&gt;Setting the backdrops’s &lt;code class=&quot;highlighter-rouge&quot;&gt;opacity&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;1&lt;/code&gt; will make it appear with a transition effect that we defined in the backdrop’s initial state. And since we
         did it there, it will also “&lt;em&gt;played&lt;/em&gt;” backwards when we get back to that state.&lt;/p&gt;
         &lt;h3 id=&quot;live-demo&quot;&gt;Live Demo&lt;/h3&gt;
-        &lt;p&gt;I drop together a little demo, check it out on &lt;a href=&quot;https://codepen.io/navig80/pen/VwYVBmo&quot; target=&quot;_blank&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;I drop together a little demo, check it out on &lt;a href=&quot;https://codepen.io/navig80/pen/VwYVBmo&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
         &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
         &lt;p&gt;Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
         optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort
         zone of the various frameworks.&lt;/p&gt;
-        &lt;p&gt;Is this a good practice or a worst practice? Please tell me.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="css" /><category term="html" /><category term="smart" /><summary type="html">Let's start with a pretty easy and smart solution. No JavaScript, only CSS.</summary></entry><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
+        &lt;p&gt;Is this a good practice or a worst practice? Please tell me.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="css" /><category term="html" /><category term="smart" /><summary type="html">Let's start with a pretty easy and smart solution. No JavaScript, only CSS.</summary></entry><entry><title type="html">Setup WSL2 with Docker</title><link href="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker" rel="alternate" type="text/html" title="Setup WSL2 with Docker" /><published>2020-01-10T10:00:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/wsl/setup-wsl2-with-docker</id><content type="html" xml:base="http://0.0.0.0:4000/wsl/setup-wsl2-with-docker">&lt;h3 id=&quot;prolog&quot;&gt;Prolog&lt;/h3&gt;
         &lt;p&gt;For this experiment I used my own desktop PC which was recently upgraded after 7 years. New motherboard, new CPU, new
         RAM, new VGA. The upgradable components are the benefits, when you have an old-fashioned workstation. And for the new
         hardware, I installed a brand new Windows 10 Professional. Please don’t start flame war about operating systems, I
@@ -908,17 +908,17 @@
         take the actions described on the linked pages.&lt;/p&gt;
         &lt;p&gt;So here are the sources you will need to have a nice DIY-day:&lt;/p&gt;
         &lt;ol&gt;
-        &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/en-gb/software-download/windows10ISO&quot; target=&quot;_blank&quot;&gt;Install Windows 10&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://winaero.com/blog/enable-openssh-client-windows-10/&quot; target=&quot;_blank&quot;&gt;Enable the built-in OpenSSH Client&lt;/a&gt; if it’s not present by default.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://insider.windows.com/en-us/&quot; target=&quot;_blank&quot;&gt;Join the Insider Program&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview&quot; target=&quot;_blank&quot;&gt;Change your Insider settings to the “Fast Ring”&lt;/a&gt;, to get the Windows &lt;strong&gt;build 18917&lt;/strong&gt; or higher.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://gitforwindows.org/&quot; target=&quot;_blank&quot;&gt;Install Git for Windows&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot; target=&quot;_blank&quot;&gt;Install WSL1&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/wsl2-install&quot; target=&quot;_blank&quot;&gt;Install WSL2&lt;/a&gt;.&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/docker-for-windows/edge-release-notes/&quot; target=&quot;_blank&quot;&gt;Install the Edge release of the Docker Desktop Community&lt;/a&gt;, version 2.1.7.0 or higher&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/&quot; target=&quot;_blank&quot;&gt;Share ENV variables between WSL and Windows&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/&quot; target=&quot;_blank&quot;&gt;Set up a more productive shell&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;https://blog.anaisbetts.org/using-github-credentials-in-wsl2/&quot; target=&quot;_blank&quot;&gt;Fix the “git push to GitHub from WSL” issue&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/en-gb/software-download/windows10ISO&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Install Windows 10&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://winaero.com/blog/enable-openssh-client-windows-10/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Enable the built-in OpenSSH Client&lt;/a&gt; if it’s not present by default.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://insider.windows.com/en-us/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Join the Insider Program&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Change your Insider settings to the “Fast Ring”&lt;/a&gt;, to get the Windows &lt;strong&gt;build 18917&lt;/strong&gt; or higher.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://gitforwindows.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Install Git for Windows&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Install WSL1&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/wsl2-install&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Install WSL2&lt;/a&gt;.&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/docker-for-windows/edge-release-notes/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Install the Edge release of the Docker Desktop Community&lt;/a&gt;, version 2.1.7.0 or higher&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Share ENV variables between WSL and Windows&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Set up a more productive shell&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;https://blog.anaisbetts.org/using-github-credentials-in-wsl2/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Fix the “git push to GitHub from WSL” issue&lt;/a&gt;&lt;/li&gt;
         &lt;/ol&gt;
         &lt;p&gt;From this point you can start your work with docker, it’s easy and fun. If you use PHPStorm for your work, &lt;a href=&quot;#phpstorm&quot;&gt;I have some tips&lt;/a&gt;
         to make your life a little bit easier.&lt;/p&gt;
@@ -933,12 +933,12 @@
         earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
         and mounting manually always sucks.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png&quot; width=&quot;700&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Settings of the Docker Desktop&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;Under the &lt;em&gt;Resources&lt;/em&gt; menu, enable the WSL integration by selecting the Linux distribution you have.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png&quot; width=&quot;700&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Choose your WSL distribution&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;And in the future, first always start the WSL first, and then the Docker Desktop app.&lt;/p&gt;
@@ -948,26 +948,26 @@
         &lt;strong&gt;PowerShell&lt;/strong&gt; has a different purpose, the Git for windows shipped the &lt;strong&gt;BASH.exe&lt;/strong&gt; which is a good start, but now we have the &lt;strong&gt;WSL.exe&lt;/strong&gt;.
         We need that, we work with that, we work in that.&lt;/p&gt;
         &lt;h3 id=&quot;fine-tuning-the-phpstorm-terminal&quot;&gt;&lt;a name=&quot;phpstorm&quot;&gt;&lt;/a&gt;Fine tuning the PHPStorm terminal&lt;/h3&gt;
-        &lt;p&gt;&lt;a href=&quot;https://www.jetbrains.com/&quot; target=&quot;_blank&quot;&gt;JetBrains&lt;/a&gt; is an amazing company, which develops some really fantastic and without-only tools
-        for the developer community. I am a PHP developer, so I use the &lt;a href=&quot;https://www.jetbrains.com/phpstorm/&quot; target=&quot;_blank&quot;&gt;PHPStorm&lt;/a&gt;, but if
-        you feel more comfortable on the frontend side, the &lt;a href=&quot;https://www.jetbrains.com/webstorm/&quot; target=&quot;_blank&quot;&gt;WebStorm&lt;/a&gt; is also a perfect choice.
+        &lt;p&gt;&lt;a href=&quot;https://www.jetbrains.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;JetBrains&lt;/a&gt; is an amazing company, which develops some really fantastic and without-only tools
+        for the developer community. I am a PHP developer, so I use the &lt;a href=&quot;https://www.jetbrains.com/phpstorm/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;PHPStorm&lt;/a&gt;, but if
+        you feel more comfortable on the frontend side, the &lt;a href=&quot;https://www.jetbrains.com/webstorm/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;WebStorm&lt;/a&gt; is also a perfect choice.
         I believe, the common root makes this tutorial valid for the WebStorm as well.&lt;/p&gt;
         &lt;p&gt;I don’t really like the endless path of the Documents folder in Windows, so I usually store my projects on my secondary hard drive: &lt;code&gt;D:\Project&lt;/code&gt;.
         For the sake of clarity I create an example project: &lt;code&gt;MyTestProject&lt;/code&gt;. The PHPStorm sets the built-in terminal’s path to the project root, so the
         Terminal will look something like this:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png&quot; width=&quot;800&quot; height=&quot;571&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The default state of the Terminal tool in PHPStorm&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;The PHPStorm uses the &lt;code&gt;CMD.exe&lt;/code&gt; by default, but luckily we can change that at our own will.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png&quot; width=&quot;800&quot; height=&quot;574&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Terminal settings in PHPStorm&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;If the we change the &lt;code&gt;Shell path&lt;/code&gt;’s value to &lt;code&gt;C:\Windows\System32\wsl.exe&lt;/code&gt;, we see our beautiful PowerlineShell prompt we had
         set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png&quot; width=&quot;800&quot; height=&quot;180&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with the WSL prompt&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:&lt;/p&gt;
@@ -1013,7 +1013,7 @@
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.jpg&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png&quot; width=&quot;800&quot; height=&quot;120&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with wrong default path&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.
@@ -1057,7 +1057,7 @@
         &lt;p&gt;Second, we look for the &lt;code&gt;PROJECT&lt;/code&gt; environment variable. Remember, we’ve just passed it through the WSLENV. If this variable exists, it
         tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work.&lt;/p&gt;
         &lt;h3 id=&quot;thats-all-for-now&quot;&gt;That’s all for now&lt;/h3&gt;
-        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html">I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what-am-i-doing" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-01-20T17:12:52+01:00</updated><id>http://0.0.0.0:4000/general/what-am-i-doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what-am-i-doing">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
+        &lt;p&gt;Am I right? Am I not? Please feel free to share your opinions.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html">I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.</summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what-am-i-doing" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T15:23:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/general/what-am-i-doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what-am-i-doing">&lt;h3 id=&quot;i-cannot-explain-the-why&quot;&gt;I cannot explain the why&lt;/h3&gt;
         &lt;p&gt;For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
         But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
         huge responsibility. And writing a blog is a double-edged weapon.&lt;/p&gt;

@@ -11,7 +11,6 @@
     <meta name="generator" content="jekyll 3.8.5">
     <meta name="revisit-after" content="7 days">
     <meta name="distribution" content="web">
-    <meta name="theme-color" content="#3B5999">
     <meta name="copyright" content="Copyright © 2020 All rights reserved. Worst Practice.">
     <meta name="description" content="">
     <meta name="subject" content="">
@@ -50,24 +49,21 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
     <link rel="manifest" href="/assets/img/icons/site.webmanifest">
-    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileColor" content="#C23F2F">
     <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
     <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#C23F2F">
     <meta name="application-name" content="Worst Practice Blog">
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-    <link rel="stylesheet" href="/assets/css/desktop.css" media="screen and (min-width: 1025px)">
-    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
-    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
-    <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="/assets/css/site.css">
     <script type="application/javascript" src="/assets/js/feature.min.js"></script>
     <script type="application/javascript">
       if (!feature.srcset) {
@@ -83,6 +79,7 @@
     <div class="codeOfTheDay">
       <input class="codeOfTheDay__toggle" type="checkbox">
       <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
       <div class="codeOfTheDay__backdrop"></div>
     </div>
     <div class="m-menu">
@@ -154,7 +151,7 @@
             I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.
           </p>
           <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/fishing.jpg" alt="Setup WSL2 with Docker">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/fishing.jpg" alt="Setup WSL2 with Docker">
             <figcaption class="a-illustration__caption"></figcaption>
           </figure>
           <div class="a-body">
@@ -179,17 +176,17 @@
               take the actions described on the linked pages.</p>
             <p>So here are the sources you will need to have a nice DIY-day:</p>
             <ol>
-              <li><a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank">Install Windows 10</a>.</li>
-              <li><a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank">Enable the built-in OpenSSH Client</a> if it’s not present by default.</li>
-              <li><a href="https://insider.windows.com/en-us/" target="_blank">Join the Insider Program</a>.</li>
-              <li><a href="https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview" target="_blank">Change your Insider settings to the “Fast Ring”</a>, to get the Windows <strong>build 18917</strong> or higher.</li>
-              <li><a href="https://gitforwindows.org/" target="_blank">Install Git for Windows</a>.</li>
-              <li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">Install WSL1</a>.</li>
-              <li><a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install" target="_blank">Install WSL2</a>.</li>
-              <li><a href="https://docs.docker.com/docker-for-windows/edge-release-notes/" target="_blank">Install the Edge release of the Docker Desktop Community</a>, version 2.1.7.0 or higher</li>
-              <li><a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank">Share ENV variables between WSL and Windows</a></li>
-              <li><a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank">Set up a more productive shell</a></li>
-              <li><a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank">Fix the “git push to GitHub from WSL” issue</a></li>
+              <li><a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank" rel="noopener">Install Windows 10</a>.</li>
+              <li><a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank" rel="noopener">Enable the built-in OpenSSH Client</a> if it’s not present by default.</li>
+              <li><a href="https://insider.windows.com/en-us/" target="_blank" rel="noopener">Join the Insider Program</a>.</li>
+              <li><a href="https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview" target="_blank" rel="noopener">Change your Insider settings to the “Fast Ring”</a>, to get the Windows <strong>build 18917</strong> or higher.</li>
+              <li><a href="https://gitforwindows.org/" target="_blank" rel="noopener">Install Git for Windows</a>.</li>
+              <li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank" rel="noopener">Install WSL1</a>.</li>
+              <li><a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install" target="_blank" rel="noopener">Install WSL2</a>.</li>
+              <li><a href="https://docs.docker.com/docker-for-windows/edge-release-notes/" target="_blank" rel="noopener">Install the Edge release of the Docker Desktop Community</a>, version 2.1.7.0 or higher</li>
+              <li><a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank" rel="noopener">Share ENV variables between WSL and Windows</a></li>
+              <li><a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank" rel="noopener">Set up a more productive shell</a></li>
+              <li><a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank" rel="noopener">Fix the “git push to GitHub from WSL” issue</a></li>
             </ol>
             <p>From this point you can start your work with docker, it’s easy and fun. If you use PHPStorm for your work, <a href="#phpstorm">I have some tips</a>
               to make your life a little bit easier.</p>
@@ -204,12 +201,12 @@
               earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
               and mounting manually always sucks.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png" width="700" height="410" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png" width="700" />
               <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
             </figure>
             <p>Under the <em>Resources</em> menu, enable the WSL integration by selecting the Linux distribution you have.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png" width="700" height="410" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png" width="700" />
               <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
             </figure>
             <p>And in the future, first always start the WSL first, and then the Docker Desktop app.</p>
@@ -219,26 +216,26 @@
               <strong>PowerShell</strong> has a different purpose, the Git for windows shipped the <strong>BASH.exe</strong> which is a good start, but now we have the <strong>WSL.exe</strong>.
               We need that, we work with that, we work in that.</p>
             <h3 id="fine-tuning-the-phpstorm-terminal"><a name="phpstorm"></a>Fine tuning the PHPStorm terminal</h3>
-            <p><a href="https://www.jetbrains.com/" target="_blank">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
-              for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a>, but if
-              you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a> is also a perfect choice.
+            <p><a href="https://www.jetbrains.com/" target="_blank" rel="noopener">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
+              for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank" rel="noopener">PHPStorm</a>, but if
+              you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank" rel="noopener">WebStorm</a> is also a perfect choice.
               I believe, the common root makes this tutorial valid for the WebStorm as well.</p>
             <p>I don’t really like the endless path of the Documents folder in Windows, so I usually store my projects on my secondary hard drive: <code>D:\Project</code>.
               For the sake of clarity I create an example project: <code>MyTestProject</code>. The PHPStorm sets the built-in terminal’s path to the project root, so the
               Terminal will look something like this:</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png" width="800" height="571" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png" width="800" />
               <figcaption class="a-illustration__caption">The default state of the Terminal tool in PHPStorm</figcaption>
             </figure>
             <p>The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png" width="800" height="574" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png" width="800" />
               <figcaption class="a-illustration__caption">Terminal settings in PHPStorm</figcaption>
             </figure>
             <p>If the we change the <code>Shell path</code>’s value to <code>C:\Windows\System32\wsl.exe</code>, we see our beautiful PowerlineShell prompt we had
               set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png" width="800" height="180" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png" width="800" />
               <figcaption class="a-illustration__caption">The Terminal tool with the WSL prompt</figcaption>
             </figure>
             <p>It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:</p>
@@ -310,7 +307,7 @@
 </div>
 <p>After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png" width="800" height="120" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png" width="800" />
   <figcaption class="a-illustration__caption">The Terminal tool with wrong default path</figcaption>
 </figure>
 <p>I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.
@@ -397,7 +394,7 @@
   <h3 class="a-footer__title">About the author</h3>
   <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
   <p class="a-footer__author">
-    Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.
+    Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank" rel="noopener">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.
     <br>
     <a href="/author/gabor.ivan/index.html">Read the full story</a>
   </p>
@@ -409,7 +406,7 @@
   </header>
   <div id="commento">
     It seems like that Commento or JavaScript in general is disabled, so no chance to judge me in public. But don't worry, you can
-    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Setup WSL2 with Docker`" target="_blank" rel="noopener noreferrer">write me</a>
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Setup WSL2 with Docker`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
     your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
   </div>
 </aside>

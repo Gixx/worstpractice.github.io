@@ -89,20 +89,36 @@ p, li {
   hyphens: auto;
 }
 
-
-blockquote p {
+blockquote {
   font-family: $font-serif;
   font-weight: 400;
   font-style: italic;
   text-align: justify;
+  padding: 1rem 5rem;
 }
 
-strong {
+blockquote::before {
+  font-family: $font-serif;
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  display: block;
+  content: "“";
+  color: $light-black;
   font-weight: 700;
+  font-size: $size-quote-sign;
+}
 
-  em {
-    font-weight: 700;
-  }
+blockquote::after {
+  font-family: $font-serif;
+  position: absolute;
+  bottom: 3rem;
+  right: 2rem;
+  display: block;
+  content: "”";
+  color: $light-black;
+  font-weight: 700;
+  font-size: $size-quote-sign;
 }
 
 em {
@@ -123,39 +139,37 @@ ins {
   font-style: oblique;
 }
 
-pre * {
-  font-family: $font-monospace;
-  letter-spacing: normal;
+strong {
+  font-weight: 700;
+
+  em {
+    font-weight: 700;
+  }
 }
 
-p code {
-  display: inline-block;
-  font-family: $font-monospace;
-  background: $worstpractice-tanned;
-  padding: 0 0.5rem;
-  hyphens: none;
-}
-
-pre code {
+dl {
   display: block;
-  width: 100%;
-  margin: 0;
-  hyphens: none;
 }
 
-.material-icons {
-  font-family: $font-fantasy;
-  font-weight: 400;
-  font-style: normal;
-  display: inline-block;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'liga';
+dl::after {
+  display: block;
+  content: '';
+  clear: both;
 }
 
+dt {
+  clear: right;
+  float: left;
+  width: 20rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+dt + dd {
+  margin-top: 1rem;
+}
+
+dd {
+  float: right;
+  width: 49.9rem;
+}

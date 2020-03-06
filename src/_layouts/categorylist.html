@@ -29,6 +29,14 @@ page_type: category_list
         {%- endfor -%}
     {%- endif -%}
 
+    {%- assign listSize = paginator.posts | size -%}
+    {%- capture emptyBoxes -%}
+        {{ listSize | minus: 3 | abs | plus: 3 | modulo: 3 }}
+    {%- endcapture -%}
+    {% for i in (1..emptyBoxes) %}
+    <article class="l-article --empty"></article>
+    {% endfor %}
+
     {%- if paginator.total_pages > paginator.per_page -%}
     <footer class="c-footer">
         {% include pagination.html %}

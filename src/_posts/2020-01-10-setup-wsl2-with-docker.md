@@ -45,17 +45,17 @@ take the actions described on the linked pages.
 
 So here are the sources you will need to have a nice DIY-day:
 
-1. <a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank">Install Windows 10</a>.
-2. <a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank">Enable the built-in OpenSSH Client</a> if it's not present by default.
-3. <a href="https://insider.windows.com/en-us/" target="_blank">Join the Insider Program</a>.
-4. <a href="https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview" target="_blank">Change your Insider settings to the "Fast Ring"</a>, to get the Windows **build 18917** or higher.
-5. <a href="https://gitforwindows.org/" target="_blank">Install Git for Windows</a>.
-6. <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank">Install WSL1</a>.
-7. <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install" target="_blank">Install WSL2</a>.
-8. <a href="https://docs.docker.com/docker-for-windows/edge-release-notes/" target="_blank">Install the Edge release of the Docker Desktop Community</a>, version 2.1.7.0 or higher
-9. <a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank">Share ENV variables between WSL and Windows</a>
-10. <a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank">Set up a more productive shell</a>
-11. <a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank">Fix the "git push to GitHub from WSL" issue</a>
+1. <a href="https://www.microsoft.com/en-gb/software-download/windows10ISO" target="_blank" rel="noopener">Install Windows 10</a>.
+2. <a href="https://winaero.com/blog/enable-openssh-client-windows-10/" target="_blank" rel="noopener">Enable the built-in OpenSSH Client</a> if it's not present by default.
+3. <a href="https://insider.windows.com/en-us/" target="_blank" rel="noopener">Join the Insider Program</a>.
+4. <a href="https://www.windowscentral.com/how-switch-between-fast-and-slow-rings-windows-10-insider-preview" target="_blank" rel="noopener">Change your Insider settings to the "Fast Ring"</a>, to get the Windows **build 18917** or higher.
+5. <a href="https://gitforwindows.org/" target="_blank" rel="noopener">Install Git for Windows</a>.
+6. <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" target="_blank" rel="noopener">Install WSL1</a>.
+7. <a href="https://docs.microsoft.com/en-us/windows/wsl/wsl2-install" target="_blank" rel="noopener">Install WSL2</a>.
+8. <a href="https://docs.docker.com/docker-for-windows/edge-release-notes/" target="_blank" rel="noopener">Install the Edge release of the Docker Desktop Community</a>, version 2.1.7.0 or higher
+9. <a href="https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/" target="_blank" rel="noopener">Share ENV variables between WSL and Windows</a>
+10. <a href="https://blog.joaograssi.com/windows-subsystem-for-linux-with-oh-my-zsh-conemu/" target="_blank" rel="noopener">Set up a more productive shell</a>
+11. <a href="https://blog.anaisbetts.org/using-github-credentials-in-wsl2/" target="_blank" rel="noopener">Fix the "git push to GitHub from WSL" issue</a>
 
 From this point you can start your work with docker, it's easy and fun. If you use PHPStorm for your work, <a href="#phpstorm">I have some tips</a>
 to make your life a little bit easier.
@@ -76,14 +76,14 @@ earlier than the WSL2 engine. Because when it happens, none of your local drives
 and mounting manually always sucks.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png" width="700" height="410">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png" width="700">
     <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
 </figure>
 
 Under the _Resources_ menu, enable the WSL integration by selecting the Linux distribution you have.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png" width="700" height="410">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png" width="700">
     <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
 </figure>
 
@@ -98,9 +98,9 @@ We need that, we work with that, we work in that.
 
 ### <a name="phpstorm"></a>Fine tuning the PHPStorm terminal
 
-<a href="https://www.jetbrains.com/" target="_blank">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
-for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PHPStorm</a>, but if
-you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank">WebStorm</a> is also a perfect choice.
+<a href="https://www.jetbrains.com/" target="_blank" rel="noopener">JetBrains</a> is an amazing company, which develops some really fantastic and without-only tools
+for the developer community. I am a PHP developer, so I use the <a href="https://www.jetbrains.com/phpstorm/" target="_blank" rel="noopener">PHPStorm</a>, but if
+you feel more comfortable on the frontend side, the <a href="https://www.jetbrains.com/webstorm/" target="_blank" rel="noopener">WebStorm</a> is also a perfect choice.
 I believe, the common root makes this tutorial valid for the WebStorm as well.
 
 I don't really like the endless path of the Documents folder in Windows, so I usually store my projects on my secondary hard drive: <code>D:\Project</code>.
@@ -108,14 +108,14 @@ For the sake of clarity I create an example project: <code>MyTestProject</code>.
 Terminal will look something like this:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png" width="800" height="571">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png" width="800">
     <figcaption class="a-illustration__caption">The default state of the Terminal tool in PHPStorm</figcaption>
 </figure>
 
 The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png" width="800" height="574">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png" width="800">
     <figcaption class="a-illustration__caption">Terminal settings in PHPStorm</figcaption>
 </figure>
 
@@ -123,7 +123,7 @@ If the we change the <code>Shell path</code>'s value to <code>C:\Windows\System3
 set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png" width="800" height="180">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png" width="800">
     <figcaption class="a-illustration__caption">The Terminal tool with the WSL prompt</figcaption>
 </figure>
 
@@ -162,7 +162,7 @@ CMD tail -f /dev/null
 After finish the set up, the Terminal prompt may - but not necessarily - change from the project's folder to WSL mounting point, and will look something like this:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png" width="800" height="120">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png" width="800">
     <figcaption class="a-illustration__caption">The Terminal tool with wrong default path</figcaption>
 </figure>
 

@@ -1,12 +1,8 @@
 /* Dimensions */
-$desktop-min-width-limit: 1025px;
+$desktop-content-width-min: 31rem;
 $desktop-content-width: 90rem;
+$desktop-content-width-max: 90rem;
 $desktop-content-padding: 10rem;
-
-$tablet-max-width-limit: 1024px;
-$tablet-min-width-limit: 481px;
-
-$mobile-max-width-limit: 480px;
 
 /* Text */
 $size-text-base: 62.5%; /* This should produce 10px, if your browser follows the unspoken rules. */
@@ -66,6 +62,8 @@ $size-header-small: $size-26;
 $size-header-small-line: $size-38;
 $size-header-tiny: $size-24;
 $size-header-tiny-line: $size-36;
+$size-header-x-tiny: $size-20;
+$size-header-x-tiny-line: $size-32;
 
 $size-text-large: $size-24;
 $size-text-large-line: $size-36;

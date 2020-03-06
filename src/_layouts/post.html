@@ -41,7 +41,7 @@ page_type: post_view
 
         {%- if page.illustration != '' -%}
         <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration }}" alt="{{ page.title | escape }}">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/{{ page.date | date: '%Y' }}{{ page.id }}/{{ page.illustration }}" alt="{{ page.title | escape }}">
             {%- if page.illustration-caption != '' -%}
             <figcaption class="a-illustration__caption">{{ page.illustrationCaption }}</figcaption>
             {%- endif -%}
@@ -69,7 +69,7 @@ page_type: post_view
         </header>
         <div id="commento">
             It seems like that Commento or JavaScript in general is disabled, so no chance to judge me in public. But don't worry, you can
-            <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener noreferrer">write me</a>
+            <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `{{ page.title }}`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
             your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
         </div>
     </aside>

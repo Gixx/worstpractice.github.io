@@ -1,10 +1,31 @@
 @import "../colors";
 @import "../sizes";
 @import "../fonts";
+@import "../rouge-themes/gruvbox";
+
+pre * {
+  font-family: $font-monospace;
+  letter-spacing: normal;
+}
+
+p code {
+  display: inline-block;
+  font-family: $font-monospace;
+  background: $worstpractice-tanned;
+  padding: 0 0.5rem;
+  hyphens: none;
+}
+
+pre code {
+  display: block;
+  width: 100%;
+  margin: 0;
+  hyphens: none;
+}
 
 .c-content pre.highlight {
-  width: $desktop-content-width -$desktop-content-padding;
-  margin-left: -$desktop-content-padding / 2;
+  width: 115%;
+  margin-left: -7.5%;
   margin-top: 4rem;
   font-size: $size-sourcecode;
   line-height: $size-sourcecode-line;
@@ -46,13 +67,13 @@
 
   .rouge-table {
     display: block;
-    //width: $desktop-content-width - 2rem;
+    width: max-content;
 
     tbody {
       display: block;
       margin: 0;
       padding: 0;
-      //width: $desktop-content-width - 2rem;
+      width: max-content;
     }
 
     tr {
@@ -60,7 +81,7 @@
       position: relative;
       margin: 0;
       padding: 0;
-      //width: $desktop-content-width - 2rem;
+      width: max-content;
     }
   }
 
@@ -105,4 +126,45 @@
   font-style: italic;
   font-size: $size-sourcecode;
   line-height: $size-sourcecode-line;
+}
+
+.c-content {
+  .highlighter-rouge pre.highlight::before {
+    content: '';
+    display: block;
+    color: $dark-grey;
+    font-weight: 300;
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: $size-sourcecode;
+    line-height: $size-sourcecode-line;
+  }
+
+  .language-php pre.highlight::before {
+    content: 'Source code language: PHP'
+  }
+
+  .language-js pre.highlight::before {
+    content: 'Source code language: JavaScript'
+  }
+
+  .language-css pre.highlight::before {
+    content: 'Source code language: CSS'
+  }
+
+  .language-html pre.highlight::before {
+    content: 'Source code language: HTML'
+  }
+
+  .language-bash pre.highlight::before {
+    content: 'Bash/ZSH'
+  }
+
+  .language-docker pre.highlight::before {
+    content: 'Dockerfile'
+  }
+
+  .language-yaml pre.highlight::before {
+    content: 'YAML file'
+  }
 }

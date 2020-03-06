@@ -11,7 +11,6 @@
     <meta name="generator" content="jekyll 3.8.5">
     <meta name="revisit-after" content="7 days">
     <meta name="distribution" content="web">
-    <meta name="theme-color" content="#3B5999">
     <meta name="copyright" content="Copyright © 2020 All rights reserved. Worst Practice.">
     <meta name="description" content="">
     <meta name="subject" content="">
@@ -50,24 +49,21 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
     <link rel="manifest" href="/assets/img/icons/site.webmanifest">
-    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
     <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileColor" content="#C23F2F">
     <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
     <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#C23F2F">
     <meta name="application-name" content="Worst Practice Blog">
     <meta name="HandheldFriendly" content="true">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
-    <link rel="stylesheet" href="/assets/css/desktop.css" media="screen and (min-width: 1025px)">
-    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (max-width: 1024px) and (orientation:landscape)">
-    <link rel="stylesheet" href="/assets/css/tablet.css"  media="screen and (min-width: 481px) and (max-width: 1024px) and (orientation:portrait)">
-    <link rel="stylesheet" href="/assets/css/mobile.css"  media="screen and (max-width: 480px)">
+    <link rel="stylesheet" href="/assets/css/site.css">
     <script type="application/javascript" src="/assets/js/feature.min.js"></script>
     <script type="application/javascript">
       if (!feature.srcset) {
@@ -83,6 +79,7 @@
     <div class="codeOfTheDay">
       <input class="codeOfTheDay__toggle" type="checkbox">
       <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
       <div class="codeOfTheDay__backdrop"></div>
     </div>
     <div class="m-menu">
@@ -151,8 +148,8 @@
             Let's start with a pretty easy and smart solution. No JavaScript, only CSS.
           </p>
           <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/hamburger.jpg" alt="Create a simple Hamburger menu with CSS only">
-            <figcaption class="a-illustration__caption">Image by <a href="https://www.dairyqueen.com/" target="_blank">DairyQueen</a></figcaption>
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/hamburger.jpg" alt="Create a simple Hamburger menu with CSS only">
+            <figcaption class="a-illustration__caption">Image by <a href="https://www.dairyqueen.com/" target="_blank" rel="noopener">DairyQueen</a></figcaption>
           </figure>
           <div class="a-body">
             <h3 id="confession">Confession</h3>
@@ -161,14 +158,14 @@
               topic believe me. And now here’s mine.</p>
             <h3 id="tldr">TL;DR</h3>
             <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-              <a href="https://github.com/Gixx/worstpractice-css-hamburger-menu" target="_blank">GitHub</a>.</p>
+              <a href="https://github.com/Gixx/worstpractice-css-hamburger-menu" target="_blank" rel="noopener">GitHub</a>.</p>
             <h3 id="build-my-burger-up">Build my Burger up!</h3>
             <p>The goal is to create a slide-in menu with semi-transparent, clickable backdrop without any JavaScript, image or font resources.
               Only HTML and CSS. It sounds easy, and after we have done it for the first time, we will see that, it IS really easy to understand
               and adopt this technique to other use cases.</p>
             <h4 id="naming-conventions">Naming conventions</h4>
             <p>There are many popular standards and recommendations on the market which should be considered before starting the development.
-              I prefer the <a href="https://css-tricks.com/abem-useful-adaptation-bem/" target="_blank">ABEM</a>, but please feel free to use
+              I prefer the <a href="https://css-tricks.com/abem-useful-adaptation-bem/" target="_blank" rel="noopener">ABEM</a>, but please feel free to use
               any other you like. The code samples will be straightforward and easy to replace the class names.</p>
             <h4 id="1-wrapper">1. Wrapper</h4>
             <p>I tried some “wrapper-less” solutions during the development process, but none of them could satisfy my criteria. We <strong>NEED</strong> a wrapper.
@@ -198,7 +195,7 @@
 <p>There are (at least) three ways to create this icon:</p>
 <ol>
   <li>Use an image. By itself, or as a background, doesn’t matter. A bit old thinking, but definitely the easiest.</li>
-  <li>Use an Icon Font (like the <a href="https://material.io/resources/icons/" target="_blank">Material Icons</a>). Elegant and popular solution.</li>
+  <li>Use an Icon Font (like the <a href="https://material.io/resources/icons/" target="_blank" rel="noopener">Material Icons</a>). Elegant and popular solution.</li>
   <li>Use meaningless markup and style them with CSS.</li>
 </ol>
 <p>I used the third option, because I promised a “CSS-only Hamburger Menu”, and not a “CSS-only Hamburger Menu with Image, Font and Cheese”.
@@ -278,9 +275,9 @@
         <span class="nt">&lt;nav&gt;</span>
             <span class="nt">&lt;h2&gt;</span>Categories<span class="nt">&lt;/h2&gt;</span>
             <span class="nt">&lt;ul&gt;</span>
-                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Cars<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>            
-                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Girls<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>            
-                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Money<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>            
+                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Cars<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Girls<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+                <span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">"index.html"</span><span class="nt">&gt;</span>Money<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
             <span class="nt">&lt;/ul&gt;</span>
         <span class="nt">&lt;/nav&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
@@ -294,7 +291,7 @@
 </div>
 </div>
 <h4 id="5-backdrop">5. Backdrop</h4>
-<p>Unfortunately the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank"><code class="highlighter-rouge">::backdrop</code> CSS pseudo-element</a>
+<p>Unfortunately the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop" target="_blank" rel="noopener"><code class="highlighter-rouge">::backdrop</code> CSS pseudo-element</a>
   is not supported in every modern browser… ☞ Safari! Hello?? …so we have do a little bit of workaround.</p>
 <div class="language-html highlighter-rouge">
   <div class="highlight">
@@ -322,7 +319,7 @@
 <p>To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
   be over the other. Until the W3C is not ready with the <code class="highlighter-rouge">Mind Reader API</code>, I use this simple diagram:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" />
   <figcaption class="a-illustration__caption">Box layers</figcaption>
 </figure>
 <p>The actual page content will be between the <code class="highlighter-rouge">BODY</code> and the <code class="highlighter-rouge">.m-menu</code> wrapper.</p>
@@ -394,7 +391,7 @@
 </code></pre>
 </div>
 </div>
-<p><strong>Explanation</strong></p>
+<h5 id="explanation">Explanation</h5>
 <dl>
   <dt><code>box-sizing: border-box;</code></dt>
   <dd>
@@ -407,17 +404,17 @@
   </dd>
   <dt><code>font-size: 62.5%;</code></dt>
   <dd>
-    Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And 
-    later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank"><code>rem</code> unit</a> instead 
-    of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale 
-    properly and the design will not break apart.  
+    Applied on the HTML element. If your browser supports the unspoken rules, then this should set the base size to 10 pixels. And
+    later on you can simply use the <a href="https://www.w3.org/TR/css-values-3/#rem" target="_blank" rel="noopener"><code>rem</code> unit</a> instead
+    of <code>px</code>. Why? Because if the user decides to change the browser's default font sizing, the design will automatically scale
+    properly and the design will not break apart.
   </dd>
   <dt><code>orverflow-x: hidden;</code></dt>
   <dd>
-    We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on 
-    Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead 
-    of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar 
-    appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be 
+    We stretch the HTML, the BODY and also our menu wrapper to the maximum width of the browsing area. In general it's fine, but on
+    Windows the scrollbars are those old-fashioned ones that consumes a narrow area (around 20 pixels) from this browsing area instead
+    of being an overlay like on Mac OSX and on some Linux Distros (e.g.: Ubuntu). So when we have a long content, the vertical scrollbar
+    appears, takes 20 pixels from the browsing area, and since our HTML is said to be <code>100vw</code>, the whole thing together will be
     <code>100vw + 20px</code>, which is wider than it can display, so the horizontal scrollbar will appear too. That is what we try to avoid.
     Of course you have to keep this in mind, and plan your design well to let enough space for the scrollbar.
   </dd>
@@ -611,7 +608,7 @@
 </code></pre>
 </div>
 </div>
-<p><strong>Explanation</strong></p>
+<h5 id="explanation-1">Explanation</h5>
 <p>So basically we set to hamburger container to <code class="highlighter-rouge">40px ✕ 40px</code> with thick padding (two times <code class="highlighter-rouge">4px</code> on the sides and two times <code class="highlighter-rouge">6px</code> on top and bottom),
   that will reduce the inner area <code class="highlighter-rouge">32px ✕ 28px</code>. This will be our sandbox. The <code class="highlighter-rouge">32px</code> width is exactly the with of the horizontal lines (the <em>layers</em>
   of the hamburger), and the <code class="highlighter-rouge">28px</code> is also perfect, because it’s an easy to count value when we divide it with <strong>7</strong>.</p>
@@ -624,7 +621,7 @@
 </ul>
 <p>The measuring looks something like this on the picture:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.jpg" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" />
   <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
 </figure>
 <h4 id="4-the-toggle">4. The toggle</h4>
@@ -673,7 +670,7 @@
   And of course we have to make the hamburger clickable, so we set the <code class="highlighter-rouge">pointer-events: all</code>.</p>
 <h4 id="5-the-menu">5. The menu</h4>
 <p>The topmost layer is the menu content. It’s up to you how you design it, I prefer to make it similar to the one that the
-  <a href="https://getmdl.io/components/index.html#layout-section" target="_blank">Material Design Lite</a> uses. For this tutorial I focus on the menu
+  <a href="https://getmdl.io/components/index.html#layout-section" target="_blank" rel="noopener">Material Design Lite</a> uses. For this tutorial I focus on the menu
   “<em>frame</em>” only.</p>
 <div class="language-css highlighter-rouge">
   <div class="highlight">
@@ -722,14 +719,14 @@
 </code></pre>
 </div>
 </div>
-<p><strong>Explanation</strong></p>
+<h5 id="explanation-2">Explanation</h5>
 <p>We defined a fixed <code class="highlighter-rouge">300px</code> width and stretched it vertically. By setting the <code class="highlighter-rouge">overflow: auto</code>, we make sure to support the menus with many entries and
   also make it work on small screens, like smart phones. We also enabled all <code class="highlighter-rouge">pointer-events</code>, because we want to make the menu items to be clickable.
   Remember you have to do this only within the wrapper.</p>
 <p>We also added a little drop shadow just to visually highlight the menu. You can also see that we moved out the menu from the scope to the left with
   the size of <code class="highlighter-rouge">315px</code>. How we get this number? It’s the width of the menu (<code class="highlighter-rouge">300px</code>), the spread of the shadow (<code class="highlighter-rouge">10px</code>) and a little bit of safety margin
   (<code class="highlighter-rouge">5px</code>).</p>
-<p>And don’t think that I am a Math genius, the <code class="highlighter-rouge">cubic-bezier</code> transition was fine-tuned with the <a href="https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome" target="_blank">Google Chrome’s Dev Tools</a>.</p>
+<p>And don’t think that I am a Math genius, the <code class="highlighter-rouge">cubic-bezier</code> transition was fine-tuned with the <a href="https://www.edreamz.com/blog/fine-tuning-css-transitions-directly-in-chrome" target="_blank" rel="noopener">Google Chrome’s Dev Tools</a>.</p>
 <h4 id="6-changing-state">6. Changing state</h4>
 <p>Now we have the menu’s initial style ready. But how will it work? Let’s define the workflow:</p>
 <ol>
@@ -814,7 +811,7 @@
 <p>Setting the backdrops’s <code class="highlighter-rouge">opacity</code> to <code class="highlighter-rouge">1</code> will make it appear with a transition effect that we defined in the backdrop’s initial state. And since we
   did it there, it will also “<em>played</em>” backwards when we get back to that state.</p>
 <h3 id="live-demo">Live Demo</h3>
-<p>I drop together a little demo, check it out on <a href="https://codepen.io/navig80/pen/VwYVBmo" target="_blank">CodePen</a>.</p>
+<p>I drop together a little demo, check it out on <a href="https://codepen.io/navig80/pen/VwYVBmo" target="_blank" rel="noopener">CodePen</a>.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>Creating something spectacular is not that difficult if we use our imagination and practice a little bit. Even this tutorial is very very easy, and I still could
   optimize it’s structure a little bit while I was writing this article. It’s all about learn, practice and learn again. And don’t be afraid to leave the comfort
@@ -825,7 +822,7 @@
   <h3 class="a-footer__title">About the author</h3>
   <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
   <p class="a-footer__author">
-    Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.
+    Hi, my name is Gábor Iván. I am a PHP developer at <a href="https://www.westwing.com" target="_blank" rel="noopener">Westwing</a>, but I also like to deal with the Frontend part too. Of course, in a non-professional way.
     <br>
     <a href="/author/gabor.ivan/index.html">Read the full story</a>
   </p>
@@ -837,7 +834,7 @@
   </header>
   <div id="commento">
     It seems like that Commento or JavaScript in general is disabled, so no chance to judge me in public. But don't worry, you can
-    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Create a simple Hamburger menu with CSS only`" target="_blank" rel="noopener noreferrer">write me</a>
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Create a simple Hamburger menu with CSS only`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
     your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
   </div>
 </aside>

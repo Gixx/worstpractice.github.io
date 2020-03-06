@@ -5,7 +5,7 @@ date: "2020-02-21 08:35:00 +0100"
 level: 'Beginner'
 expiration: 'none'
 illustration: 'private.jpg'
-illustrationCaption: 'Image by <a target="_blank" href="https://pixabay.com/users/aitoff-388338/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1665019">Andrew Martin</a> from <a target="_blank" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1665019">Pixabay</a>'
+illustrationCaption: 'Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/aitoff-388338/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1665019">Andrew Martin</a> from <a target="_blank" rel="noopener" href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1665019">Pixabay</a>'
 illustration_share: 'private_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
@@ -161,7 +161,7 @@ console.log(myObj1.generateUUID); // 'I am so sorry'
 * It's possible to add/attach additional properties and methods to the instance.
 
 ##### Demo:
-<a target="_blank" href="https://codepen.io/navig80/pen/qBdRNeb?editors=1111">CodePen</a>
+<a target="_blank" rel="noopener" href="https://codepen.io/navig80/pen/qBdRNeb?editors=1111">CodePen</a>
 
 #### Way 2: twisted thinking to protect the code
 
@@ -300,7 +300,7 @@ console.log(myObj2.generateUUID); // 'function()...'
 * The `new` keyword is not mandatory.
 
 ##### Demo:
-<a target="_blank" href="https://codepen.io/navig80/pen/yLNgVye?editors=1111">CodePen</a>
+<a target="_blank" rel="noopener" href="https://codepen.io/navig80/pen/yLNgVye?editors=1111">CodePen</a>
 
 ### Conclusion
 
