@@ -14,10 +14,17 @@
   label {
     position: relative;
     line-height: 3.2rem;
-    display: block;
+    display: flex;
     font-weight: 700;
 
-    span {
+    span:first-child {
+      flex-grow: 1;
+    }
+
+    span:last-child {
+      flex-basis: 6.4rem;
+      flex-grow: 0;
+      flex-shrink: 0;
       position: relative;
       cursor: pointer;
       display: block;
@@ -27,9 +34,10 @@
       width: 6.4rem;
       background: $worstpractice-red;
       transition: background 0.4s ease-in;
+      margin-left: 0.3rem;
     }
 
-    span:before {
+    span:last-child:before {
       border-radius: 50%;
       height: 2.8rem;
       width: 2.8rem;
@@ -49,11 +57,11 @@
     position: absolute;
   }
 
-  input:checked + label span {
+  input:checked + label span:last-child {
     background: $worstpractice-green;
   }
 
-  input:checked + label span:before {
+  input:checked + label span:last-child:before {
     left: 3.4rem;
   }
 }

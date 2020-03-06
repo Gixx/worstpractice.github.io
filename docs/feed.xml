@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-03-03T09:18:17+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-21T08:35:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-03-06T11:38:36+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-21T08:35:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
         &lt;p&gt;You’d better know, I am basically a backend developer. Or, as I used to say with a little bit of humor and a piece of well-deserved self-critics:&lt;/p&gt;
         &lt;blockquote&gt;
         &lt;p&gt;I am a Full-STUCK Señor PHP Developer&lt;/p&gt;
@@ -514,7 +514,7 @@
         &lt;p&gt;To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
         be over the other. Until the W3C is not ready with the &lt;code class=&quot;highlighter-rouge&quot;&gt;Mind Reader API&lt;/code&gt;, I use this simple diagram:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg&quot; width=&quot;800&quot; height=&quot;522&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Box layers&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;The actual page content will be between the &lt;code class=&quot;highlighter-rouge&quot;&gt;BODY&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;.m-menu&lt;/code&gt; wrapper.&lt;/p&gt;
@@ -572,7 +572,7 @@
         &lt;span class=&quot;nl&quot;&gt;overflow-x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;hidden&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;h5 id=&quot;explanation&quot;&gt;Explanation&lt;/h5&gt;
         &lt;dl&gt;
         &lt;dt&gt;&lt;code&gt;box-sizing: border-box;&lt;/code&gt;&lt;/dt&gt;
         &lt;dd&gt;
@@ -739,7 +739,7 @@
         &lt;span class=&quot;nl&quot;&gt;margin-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.8rem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;h5 id=&quot;explanation-1&quot;&gt;Explanation&lt;/h5&gt;
         &lt;p&gt;So basically we set to hamburger container to &lt;code class=&quot;highlighter-rouge&quot;&gt;40px ✕ 40px&lt;/code&gt; with thick padding (two times &lt;code class=&quot;highlighter-rouge&quot;&gt;4px&lt;/code&gt; on the sides and two times &lt;code class=&quot;highlighter-rouge&quot;&gt;6px&lt;/code&gt; on top and bottom),
         that will reduce the inner area &lt;code class=&quot;highlighter-rouge&quot;&gt;32px ✕ 28px&lt;/code&gt;. This will be our sandbox. The &lt;code class=&quot;highlighter-rouge&quot;&gt;32px&lt;/code&gt; width is exactly the with of the horizontal lines (the &lt;em&gt;layers&lt;/em&gt;
         of the hamburger), and the &lt;code class=&quot;highlighter-rouge&quot;&gt;28px&lt;/code&gt; is also perfect, because it’s an easy to count value when we divide it with &lt;strong&gt;7&lt;/strong&gt;.&lt;/p&gt;
@@ -752,7 +752,7 @@
         &lt;/ul&gt;
         &lt;p&gt;The measuring looks something like this on the picture:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg&quot; width=&quot;800&quot; height=&quot;505&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Measuring the hamburger menu icon&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;h4 id=&quot;4-the-toggle&quot;&gt;4. The toggle&lt;/h4&gt;
@@ -826,7 +826,7 @@
         &lt;span class=&quot;nl&quot;&gt;box-shadow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1rem&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rgba&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.75&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;p&gt;&lt;strong&gt;Explanation&lt;/strong&gt;&lt;/p&gt;
+        &lt;h5 id=&quot;explanation-2&quot;&gt;Explanation&lt;/h5&gt;
         &lt;p&gt;We defined a fixed &lt;code class=&quot;highlighter-rouge&quot;&gt;300px&lt;/code&gt; width and stretched it vertically. By setting the &lt;code class=&quot;highlighter-rouge&quot;&gt;overflow: auto&lt;/code&gt;, we make sure to support the menus with many entries and
         also make it work on small screens, like smart phones. We also enabled all &lt;code class=&quot;highlighter-rouge&quot;&gt;pointer-events&lt;/code&gt;, because we want to make the menu items to be clickable.
         Remember you have to do this only within the wrapper.&lt;/p&gt;
@@ -933,12 +933,12 @@
         earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
         and mounting manually always sucks.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png&quot; width=&quot;700&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Settings of the Docker Desktop&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;Under the &lt;em&gt;Resources&lt;/em&gt; menu, enable the WSL integration by selecting the Linux distribution you have.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png&quot; width=&quot;700&quot; height=&quot;410&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png&quot; width=&quot;700&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Choose your WSL distribution&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;And in the future, first always start the WSL first, and then the Docker Desktop app.&lt;/p&gt;
@@ -956,18 +956,18 @@
         For the sake of clarity I create an example project: &lt;code&gt;MyTestProject&lt;/code&gt;. The PHPStorm sets the built-in terminal’s path to the project root, so the
         Terminal will look something like this:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png&quot; width=&quot;800&quot; height=&quot;571&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The default state of the Terminal tool in PHPStorm&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;The PHPStorm uses the &lt;code&gt;CMD.exe&lt;/code&gt; by default, but luckily we can change that at our own will.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png&quot; width=&quot;800&quot; height=&quot;574&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;Terminal settings in PHPStorm&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;If the we change the &lt;code&gt;Shell path&lt;/code&gt;’s value to &lt;code&gt;C:\Windows\System32\wsl.exe&lt;/code&gt;, we see our beautiful PowerlineShell prompt we had
         set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png&quot; width=&quot;800&quot; height=&quot;180&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with the WSL prompt&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:&lt;/p&gt;
@@ -1013,7 +1013,7 @@
         &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
         &lt;p&gt;After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:&lt;/p&gt;
         &lt;figure class=&quot;a-illustration&quot;&gt;
-        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png&quot; width=&quot;800&quot; height=&quot;120&quot; /&gt;
+        &lt;img class=&quot;a-illustration__image&quot; src=&quot;/assets/img/post-illustration-placeholder.png&quot; data-src=&quot;/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png&quot; width=&quot;800&quot; /&gt;
         &lt;figcaption class=&quot;a-illustration__caption&quot;&gt;The Terminal tool with wrong default path&lt;/figcaption&gt;
         &lt;/figure&gt;
         &lt;p&gt;I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.

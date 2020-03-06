@@ -319,7 +319,7 @@
 <p>To be able to do the CSS job in the right way, I like to visualize the layers and boxes in my head. We need to know which element will
   be over the other. Until the W3C is not ready with the <code class="highlighter-rouge">Mind Reader API</code>, I use this simple diagram:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" />
   <figcaption class="a-illustration__caption">Box layers</figcaption>
 </figure>
 <p>The actual page content will be between the <code class="highlighter-rouge">BODY</code> and the <code class="highlighter-rouge">.m-menu</code> wrapper.</p>
@@ -391,7 +391,7 @@
 </code></pre>
 </div>
 </div>
-<p><strong>Explanation</strong></p>
+<h5 id="explanation">Explanation</h5>
 <dl>
   <dt><code>box-sizing: border-box;</code></dt>
   <dd>
@@ -608,7 +608,7 @@
 </code></pre>
 </div>
 </div>
-<p><strong>Explanation</strong></p>
+<h5 id="explanation-1">Explanation</h5>
 <p>So basically we set to hamburger container to <code class="highlighter-rouge">40px ✕ 40px</code> with thick padding (two times <code class="highlighter-rouge">4px</code> on the sides and two times <code class="highlighter-rouge">6px</code> on top and bottom),
   that will reduce the inner area <code class="highlighter-rouge">32px ✕ 28px</code>. This will be our sandbox. The <code class="highlighter-rouge">32px</code> width is exactly the with of the horizontal lines (the <em>layers</em>
   of the hamburger), and the <code class="highlighter-rouge">28px</code> is also perfect, because it’s an easy to count value when we divide it with <strong>7</strong>.</p>
@@ -621,7 +621,7 @@
 </ul>
 <p>The measuring looks something like this on the picture:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" />
   <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
 </figure>
 <h4 id="4-the-toggle">4. The toggle</h4>
@@ -719,7 +719,7 @@
 </code></pre>
 </div>
 </div>
-<p><strong>Explanation</strong></p>
+<h5 id="explanation-2">Explanation</h5>
 <p>We defined a fixed <code class="highlighter-rouge">300px</code> width and stretched it vertically. By setting the <code class="highlighter-rouge">overflow: auto</code>, we make sure to support the menus with many entries and
   also make it work on small screens, like smart phones. We also enabled all <code class="highlighter-rouge">pointer-events</code>, because we want to make the menu items to be clickable.
   Remember you have to do this only within the wrapper.</p>

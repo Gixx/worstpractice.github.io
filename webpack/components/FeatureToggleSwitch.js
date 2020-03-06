@@ -50,7 +50,8 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
 
         const label = document.createElement('label');
         label.setAttribute('for', HTMLElement.id + '-' + featureName);
-        const labelText = document.createTextNode(toggleOptions.label);
+        const labelText = document.createElement('span');
+        labelText.innerHTML =  toggleOptions.label;
         const labelSwitch = document.createElement('span');
         label.appendChild(labelText);
         label.appendChild(labelSwitch);

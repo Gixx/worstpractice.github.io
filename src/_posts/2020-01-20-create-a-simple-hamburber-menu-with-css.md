@@ -127,7 +127,7 @@ To be able to do the CSS job in the right way, I like to visualize the layers an
 be over the other. Until the W3C is not ready with the `Mind Reader API`, I use this simple diagram:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800" height="522">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/layers.jpg" width="800">
     <figcaption class="a-illustration__caption">Box layers</figcaption>
 </figure>
 
@@ -167,7 +167,7 @@ body {
 }
 ```
 
-**Explanation**
+##### Explanation
 
 <dl>
     <dt><code>box-sizing: border-box;</code></dt>
@@ -309,7 +309,7 @@ This will position the _hamburger icon_ box `11px` from the top left corner. Thi
 }
 ```
 
-**Explanation**
+##### Explanation
 
 So basically we set to hamburger container to `40px ✕ 40px` with thick padding (two times `4px` on the sides and two times `6px` on top and bottom),
 that will reduce the inner area `32px ✕ 28px`. This will be our sandbox. The `32px` width is exactly the with of the horizontal lines (the _layers_
@@ -325,7 +325,7 @@ around them (also `4px`). Since the pseudo-elements belong to the "_parent_" and
 The measuring looks something like this on the picture:
 
 <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800" height="505">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/frontend/create-a-simple-hamburber-menu-with-css/measuring.jpg" width="800">
     <figcaption class="a-illustration__caption">Measuring the hamburger menu icon</figcaption>
 </figure>
 
@@ -380,7 +380,7 @@ The topmost layer is the menu content. It's up to you how you design it, I prefe
 }
 ```
 
-**Explanation**
+##### Explanation
 
 We defined a fixed `300px` width and stretched it vertically. By setting the `overflow: auto`, we make sure to support the menus with many entries and
 also make it work on small screens, like smart phones. We also enabled all `pointer-events`, because we want to make the menu items to be clickable.

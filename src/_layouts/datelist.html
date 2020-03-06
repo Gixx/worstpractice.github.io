@@ -16,6 +16,6 @@ layout: default
         {{ listSize | minus: 3 | abs | plus: 3 | modulo: 3 }}
     {%- endcapture -%}
     {% for i in (1..emptyBoxes) %}
-    <article class="l-article"></article>
+    <article class="l-article --empty"></article>
     {% endfor %}
 </section>

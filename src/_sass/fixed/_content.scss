@@ -81,6 +81,10 @@
   margin: 0 0 4rem 0;
   padding: 0;
 
+  &.--empty {
+    margin: 0;
+  }
+
   .l-excerpt {
     display: none;
   }
@@ -160,7 +164,8 @@
 
 // Article
 .a-article {
-  padding-bottom: 2rem;
+  padding: 0 10rem 2rem;
+  margin: 0 auto;
 }
 
 .a-header__title {
@@ -189,8 +194,8 @@
 }
 
 .a-illustration {
-  width: $desktop-content-width -$desktop-content-padding;
-  margin-left: -$desktop-content-padding / 2;
+  width: 115%;
+  margin-left: -7.5%;
   margin-bottom: 3.2rem;
 }
 
@@ -415,8 +420,13 @@
 .a-footer__author {
   vertical-align: top;
   display: inline-block;
-  height: 12rem;
+  min-height: 12rem;
   width: calc(100% - 14rem);
+}
+
+.a-comments {
+  padding: 0 10rem;
+  margin: 0 auto;
 }
 
 .a-comments__title {

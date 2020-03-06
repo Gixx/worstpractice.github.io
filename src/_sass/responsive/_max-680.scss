@@ -4,6 +4,11 @@
 
 .c-content {
   padding: 2rem 0;
+
+  pre.highlight {
+    width: 110%;
+    margin-left: -5%;
+  }
 }
 
 .c-header {
@@ -34,5 +39,43 @@
     font-size: $size-header-normal;
     line-height: $size-header-normal-line;
     max-width: 70rem;
+  }
+}
+
+.a-article {
+  padding: 0 5rem 2rem;
+}
+
+.a-header {
+  .a-header__title {
+    font-size: $size-header-medium;
+    line-height: $size-header-medium-line;
+  }
+}
+
+.a-excerpt {
+  font-size: $size-text-medium;
+  line-height: $size-text-medium-line;
+  padding-bottom: 5rem;
+}
+
+.a-illustration {
+  width: 110%;
+  margin-left: -5%;
+}
+
+.a-comments {
+  padding: 0 5rem;
+}
+
+.g-gdpr {
+  .g-header {
+    height: auto;
+    padding: 2rem;
+  }
+
+  .g-header__title {
+    font-size: $size-header-medium;
+    line-height: $size-header-medium-line;
   }
 }
