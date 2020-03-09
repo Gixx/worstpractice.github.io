@@ -22,7 +22,7 @@ const LazyLoadImage = function ({utility, verbose = false})
         throw new ReferenceError('This component requires the Utility component to be loaded.');
     }
 
-    if (typeof IntersectionObserver !== 'undefined') {
+    if (typeof IntersectionObserver === 'undefined') {
         intersectionObserverIsSupported = false;
 
         verbose && console.info(
