@@ -7,8 +7,6 @@ require('./components/CookieStorage');
 require('./components/FeatureToggleSwitch');
 require('./components/LazyLoadImage');
 require('./components/GdprDialog');
-require('./components/MyClass1');
-require('./components/MyClass2');
 
 const utility = new Utility({verbose: true});
 

@@ -13,25 +13,39 @@ const LazyLoadImage = function ({utility, verbose = false})
     let idCounter = 1;
     /** @type {string} */
     const consoleColorId = '#BFFFF5';
-    /** @type IntersectionObserver */
+    /** @type {IntersectionObserver|IntersectionObserverFallback} */
     let imageObserver;
-    /** @type {boolean} */
-    let intersectionObserverIsSupported = true;
 
     if (!utility instanceof Utility) {
         throw new ReferenceError('This component requires the Utility component to be loaded.');
     }
 
-    if (typeof IntersectionObserver === 'undefined') {
-        intersectionObserverIsSupported = false;
-
+    const IntersectionObserverFallback = function() {
         verbose && console.info(
             '%c[Lazy Load Image]%c ✖%c the IntersectionObserver function is not supported. Loading images in normal mode.',
             'background:'+consoleColorId+';font-weight:bold;',
             'color:red',
             'color:#599bd6'
         );
-    }
+
+        return {
+            observe: function (element) {
+                element.src = element.dataset.src;
+
+                verbose && console.info(
+                    '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
+                    'background:'+consoleColorId+';font-weight:bold;',
+                    'color:orange;font-weight:bold',
+                    'color:#599bd6',
+                    '#'+element.getAttribute('id')
+                );
+            }
+        }
+    };
+
+    const intersectionObserverClass = typeof IntersectionObserver !== 'undefined'
+        ? IntersectionObserver
+        : IntersectionObserverFallback;
 
     /**
      * Adds lazy-load behaviour to an image element.
@@ -39,7 +53,7 @@ const LazyLoadImage = function ({utility, verbose = false})
      * @param {HTMLImageElement|Node} HTMLElement
      * @returns {*}
      */
-    let LazyLoadImageElement = function ({HTMLElement}) {
+    const LazyLoadImageElement = function ({HTMLElement}) {
         verbose && console.info(
             '%c[Lazy Load Image]%c ✚%c an image element initialized %o',
             'background:'+consoleColorId+';font-weight:bold;',
@@ -91,7 +105,7 @@ const LazyLoadImage = function ({utility, verbose = false})
     /**
      * Initializes the loader and collects the elements.
      */
-    let initialize = function()
+    const initialize = function()
     {
         verbose && console.info(
             '%c[Lazy Load Image]%c ...looking for image elements.',
@@ -101,37 +115,23 @@ const LazyLoadImage = function ({utility, verbose = false})
 
         lazyLoadImages = document.querySelectorAll('img[data-src]');
 
-        if (intersectionObserverIsSupported) {
-            imageObserver = new IntersectionObserver((entries, imgObserver) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        /** @type LazyLoadImageElement lazyLoadImageElement */
-                        let lazyLoadImageElement = entry.target.component;
-                        lazyLoadImageElement.loadImage();
-                    }
-                })
-            });
-        }
+        imageObserver = new intersectionObserverClass((entries, imgObserver) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    /** @type LazyLoadImageElement lazyLoadImageElement */
+                    let lazyLoadImageElement = entry.target.component;
+                    lazyLoadImageElement.loadImage();
+                }
+            })
+        });
 
         lazyLoadImages.forEach(function (element) {
             if (!element.hasAttribute('id')) {
                 element.setAttribute('id', 'lazyImage' + (idCounter++));
             }
 
-            if (intersectionObserverIsSupported) {
-                element.component = new LazyLoadImageElement({HTMLElement: element});
-                imageObserver.observe(element);
-            } else {
-                element.src = element.dataset.src;
-
-                verbose && console.info(
-                    '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
-                    'background:'+consoleColorId+';font-weight:bold;',
-                    'color:orange;font-weight:bold',
-                    'color:#599bd6',
-                    '#'+element.getAttribute('id')
-                );
-            }
+            element.component = new LazyLoadImageElement({HTMLElement: element});
+            imageObserver.observe(element);
         });
 
         utility.triggerEvent({element: document, eventName: 'Component.LazyLoadImage.Ready'});
