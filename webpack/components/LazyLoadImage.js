@@ -15,9 +15,22 @@ const LazyLoadImage = function ({utility, verbose = false})
     const consoleColorId = '#BFFFF5';
     /** @type IntersectionObserver */
     let imageObserver;
+    /** @type {boolean} */
+    let intersectionObserverIsSupported = true;
 
     if (!utility instanceof Utility) {
         throw new ReferenceError('This component requires the Utility component to be loaded.');
+    }
+
+    if (typeof IntersectionObserver !== 'undefined') {
+        intersectionObserverIsSupported = false;
+
+        verbose && console.info(
+            '%c[Lazy Load Image]%c ✖%c the IntersectionObserver function is not supported. Loading images in normal mode.',
+            'background:'+consoleColorId+';font-weight:bold;',
+            'color:red',
+            'color:#599bd6'
+        );
     }
 
     /**
@@ -86,25 +99,39 @@ const LazyLoadImage = function ({utility, verbose = false})
             'color:#cecece'
         );
 
-        imageObserver = new IntersectionObserver((entries, imgObserver) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    /** @type LazyLoadImageElement lazyLoadImageElement */
-                    let lazyLoadImageElement = entry.target.component;
-                    lazyLoadImageElement.loadImage();
-                }
-            })
-        });
-
         lazyLoadImages = document.querySelectorAll('img[data-src]');
+
+        if (intersectionObserverIsSupported) {
+            imageObserver = new IntersectionObserver((entries, imgObserver) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        /** @type LazyLoadImageElement lazyLoadImageElement */
+                        let lazyLoadImageElement = entry.target.component;
+                        lazyLoadImageElement.loadImage();
+                    }
+                })
+            });
+        }
 
         lazyLoadImages.forEach(function (element) {
             if (!element.hasAttribute('id')) {
                 element.setAttribute('id', 'lazyImage' + (idCounter++));
             }
 
-            element.component = new LazyLoadImageElement({HTMLElement: element});
-            imageObserver.observe(element);
+            if (intersectionObserverIsSupported) {
+                element.component = new LazyLoadImageElement({HTMLElement: element});
+                imageObserver.observe(element);
+            } else {
+                element.src = element.dataset.src;
+
+                verbose && console.info(
+                    '%c[Lazy Load Image]%c ⚡%c an image element loaded %o',
+                    'background:'+consoleColorId+';font-weight:bold;',
+                    'color:orange;font-weight:bold',
+                    'color:#599bd6',
+                    '#'+element.getAttribute('id')
+                );
+            }
         });
 
         utility.triggerEvent({element: document, eventName: 'Component.LazyLoadImage.Ready'});

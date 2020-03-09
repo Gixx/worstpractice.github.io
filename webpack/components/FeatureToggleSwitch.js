@@ -211,7 +211,7 @@ const FeatureToggleSwitch = function ({utility, storage, options = {}, verbose =
     };
 
     verbose && console.info(
-        '%c[Feature Toggle Switch]%c ✔%c The Feature Toggle Switch element component loaded.',
+        '%c[Feature Toggle Switch]%c ✔%c The Feature Toggle Switch component loaded.',
         'background:'+consoleColorId+';font-weight:bold;',
         'color:green; font-weight:bold;',
         'color:black; font-weight:bold;'

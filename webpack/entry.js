@@ -102,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             storageKey: PRIVACY_COMMENTO_STORAGE_NAME
         },
     };
+
     new LazyLoadImage({utility: utility, verbose: true});
     const featureToggle = new FeatureToggleSwitch({utility: utility, storage: dataStorage, options: featureToggleOptions,  verbose: true});
     new GdprDialog({utility: utility, storage: dataStorage, storageKey: PRIVACY_ACCEPT_STORAGE_NAME, featureToggle: featureToggle, verbose: true});
