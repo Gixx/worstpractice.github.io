@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-03-09T11:02:42+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-21T08:35:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-03-11T15:05:28+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Why I dropped the `Mobile-first` approach</title><link href="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach" rel="alternate" type="text/html" title="Why I dropped the `Mobile-first` approach" /><published>2020-03-11T15:05:00+01:00</published><updated>2020-03-11T15:05:27+01:00</updated><id>http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach">&lt;h3 id=&quot;the-wrong-decision&quot;&gt;The (wrong) decision&lt;/h3&gt;
+        &lt;p&gt;It was late 2019. I was working on this blog in my free time since months, and I still couldn’t see the end. I was struggling with the
+        design - as always - and my creativity went into the &lt;code class=&quot;highlighter-rouge&quot;&gt;not good enough&lt;/code&gt; infinite loop, and started to reject any ideas came up.
+        Meanwhile the backend part - if we can  talk about backend for a static website - went pretty well. Luckily I could heavily build on
+        my experiences when I created my family blog, the &lt;a href=&quot;https://thomas.von.fuerstenfeld.blog&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Thomas von Fürstenfeld&lt;/a&gt;.&lt;/p&gt;
+        &lt;p&gt;It was almost Christmas season, when I finally had a design idea flashed in my mind. Since I felt I’m running out of time, I tried to
+        sketch it up as simple as possible and drop all the unnecessary things. What remain was the color scheme and the header. That’s enough
+        for the start.&lt;/p&gt;
+        &lt;p&gt;And this was the exact moment when I had to decide what is more important for me:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Start the blog in the very beginning of 2020, even if the price is I have to drop the &lt;code class=&quot;highlighter-rouge&quot;&gt;Mobile-first&lt;/code&gt; approach, or&lt;/li&gt;
+        &lt;li&gt;Do it properly, nice and clean, and maybe I will be able to publish it only in the summer maybe?&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;Since I already had the domain bought in February 2019, I didn’t want to waste any time more. I really felt that if I don’t publish
+        this blog in the first days of the New Year, I will get into the &lt;code class=&quot;highlighter-rouge&quot;&gt;not good enough&lt;/code&gt; rejecting loop again… So I chose to give a damn
+        on the handheld versions for a while, just do it, publish it. Anyway, developers develop on desktops, don’t they?&lt;/p&gt;
+        &lt;h3 id=&quot;the-help-of-the-years-in-the-business&quot;&gt;The help of the years in the business&lt;/h3&gt;
+        &lt;p&gt;So my own tech blog started, and I also wrote my first articles. I shared the links to a small group of developers, to check, read, and
+        give some feedback about their impressions, etc. Among the many many positive feedback, there was one returning topic:&lt;/p&gt;
+        &lt;blockquote&gt;
+        &lt;p&gt;Where is the mobile version?&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;I realized, my assumption - that the web developers usually sits in front of a desktop computer and browse the Internet on their 24
+        inch monitors - was totally wrong. I can’t avoid to create a version for the tablets and the mobile devices too.&lt;/p&gt;
+        &lt;p&gt;Luckily, without really focus on the semantic aspects, somehow I was able to create a nice, clean and tidy &lt;code class=&quot;highlighter-rouge&quot;&gt;HTML&lt;/code&gt; structure in the
+        first wave, and with the guiding help of the &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://css-tricks.com/abem-useful-adaptation-bem/&quot;&gt;ABEM&lt;/a&gt;
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;CSS&lt;/code&gt; class naming convention, the style definitions were also became pretty flexible. This happens when you stare the monitor
+        long enough: you get experiences which with time become skills.&lt;/p&gt;
+        &lt;h3 id=&quot;surprise-motherer&quot;&gt;Surprise, Mother#@!$er!&lt;/h3&gt;
+        &lt;p&gt;First I tried to figure out, what I should change to make this website look relatively good on the smaller screens. And here
+        came the surprise: only a few parts required different styles. And some of these changes can be
+        applied directly on the “global” styles. Great, isn’t it? I was happy I don’t have to refactor the whole frontend.&lt;/p&gt;
+        &lt;p&gt;So in the end, in one week of free time work, I was able to create a decent mobile and tablet version for this website. Unfortunately
+        I had to give up the “Monitor with terrible code” (hidden) feature, because the dynamically positioning an element, which has the
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;perspective&lt;/code&gt; style transformation applied on it, is very difficult, and it exceeds my current capabilities.&lt;/p&gt;
+        &lt;p&gt;So I modified the header, and I spliced off the &lt;code class=&quot;highlighter-rouge&quot;&gt;title with the woman&lt;/code&gt; and the &lt;code class=&quot;highlighter-rouge&quot;&gt;monitor&lt;/code&gt;. This way I could gently hide the monitor
+        as soon as the header starts to shrink.&lt;/p&gt;
+        &lt;p&gt;Also the smallest screens got a &lt;code class=&quot;highlighter-rouge&quot;&gt;title only&lt;/code&gt; header to maximize the useful area of the page. In fact this graphical change caused
+        the biggest headache because the actual version of the design was never saved in an editable source (whatta loooser!), and I had to
+        remember all those tiny adjustments to add them again. The rest of the job on the CSS side (overwrite margin, padding, font-size)
+        were just a matter of manual measuring.&lt;/p&gt;
+        &lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+        &lt;p&gt;When you have time, it’s worth to invest in planning, and thinking in the &lt;code class=&quot;highlighter-rouge&quot;&gt;mobile-first approach&lt;/code&gt;. Most of the people reads articles
+        on their mobile phones or tablets. Those, who refuse to support these devices will loose potential customers. For me, it’s not a
+        disaster, I don’t think there are many people visiting this new and unknown website. And since I have taken up the responsive(ish)
+        design, my future readers will know about my design failure only from this article.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="responsive" /><category term="mobile" /><category term="design" /><summary type="html">...and how I regret it. At least a little bit.</summary></entry><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with 'public' and 'private' access modifiers in JS" /><published>2020-02-21T08:35:00+01:00</published><updated>2020-03-02T13:33:03+01:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js">&lt;h3 id=&quot;my-concept&quot;&gt;My concept&lt;/h3&gt;
         &lt;p&gt;You’d better know, I am basically a backend developer. Or, as I used to say with a little bit of humor and a piece of well-deserved self-critics:&lt;/p&gt;
         &lt;blockquote&gt;
         &lt;p&gt;I am a Full-STUCK Señor PHP Developer&lt;/p&gt;
