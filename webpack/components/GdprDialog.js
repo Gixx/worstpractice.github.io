@@ -30,7 +30,7 @@ const GdprDialog = function ({utility, storage, storageKey,featureToggle,  verbo
      * @param {HTMLDivElement} HTMLElement
      * @returns {*}
      */
-    let GdprDialogElement = function ({HTMLElement})
+    const GdprDialogElement = function ({HTMLElement})
     {
         const acceptAllButton = HTMLElement.querySelector('.g-buttons__acceptAll');
         const closeButton = HTMLElement.querySelector('.g-buttons__close');
@@ -131,7 +131,7 @@ const GdprDialog = function ({utility, storage, storageKey,featureToggle,  verbo
     /**
      * Initializes the component and collects the elements.
      */
-    let initialize = function ()
+    const initialize = function ()
     {
 
         if (storage.get({key: storageKey}) !== 'On') {
