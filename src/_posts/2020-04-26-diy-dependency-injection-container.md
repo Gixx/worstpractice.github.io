@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "DIY Dependency Injection Container, Part 1"
-date: "2020-04-26 23:29:00 +0100"
+date: "2020-04-26 22:29:00 +0100"
 level: 'intermediate'
 expiration: 'none'
 illustration: 'dependency-injection.jpg'
