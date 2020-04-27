@@ -1,4 +1,276 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-03-18T16:21:57+01:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Why I dropped the `Mobile-first` approach</title><link href="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach" rel="alternate" type="text/html" title="Why I dropped the `Mobile-first` approach" /><published>2020-03-11T15:05:00+01:00</published><updated>2020-03-11T15:34:44+01:00</updated><id>http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach">&lt;h3 id=&quot;the-wrong-decision&quot;&gt;The (wrong) decision&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2020-04-27T08:23:35+02:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">DIY Dependency Injection Container, Part 1</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 1" /><published>2020-04-27T00:29:00+02:00</published><updated>2020-04-27T08:23:35+02:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container">&lt;p&gt;It’s very important to clarify: &lt;strong&gt;Do not reinvent the wheel&lt;/strong&gt;. There are numerous great, well maintained, continuously
+        developed solutions on the market written by professional developers, who enjoy the support of their large community. 
+        I am talking about the big fish like Symfony, Laravel, Zend etc. So if you need a component for your web application,
+        it’s better to look around first.&lt;/p&gt;
+        &lt;p&gt;This article became too long, so I decided to split up to three parts:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;Introduction and the Interface&lt;/li&gt;
+        &lt;li&gt;The configuration file&lt;/li&gt;
+        &lt;li&gt;The Dependency Injection Container implementation&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h3 id=&quot;tldr&quot;&gt;TL;DR&lt;/h3&gt;
+        &lt;p&gt;If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
+        &lt;a href=&quot;https://github.com/Gixx/worstpractice-dependency-injection&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        &lt;h3 id=&quot;your-path-is-your-decision&quot;&gt;Your path is your decision&lt;/h3&gt;
+        &lt;p&gt;Of course nobody can force you to NOT Do It Yourself. It all depend on what your project requires. So let’s suppose, you
+        are not allowed to use third party components for some very mysterious reasons. But you want to write a modern, clean, 
+        object-oriented code and follow the &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://medium.com/successivetech/s-o-l-i-d-the-first-5-principles-of-object-oriented-design-with-php-b6d2742c90d7&quot;&gt;
+        &lt;acronym title=&quot;Single-responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency Inversion&quot;&gt;SOLID&lt;/acronym&gt;
+        Principles&lt;/a&gt; as much as possible.&lt;/p&gt;
+        &lt;p&gt;You look up the books of smart people about smart things. Best practices, software design patterns or just sit on the latest
+        hype train. Whatever you do - unless you choose to do functional programming - sooner or later you will meet with the 
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;Dependency Injection&lt;/code&gt; technique. And you realize it’s pretty cool, and you need it.&lt;/p&gt;
+        &lt;p&gt;But first let’s talk about something that is the core of most of the PHP websites in the world today. Even if you are a
+        &lt;em&gt;&lt;q cite=&quot;https://starwars.fandom.com/wiki/Padawan&quot; title=&quot;Jedi student in the Star Wars Universe&quot;&gt;young padawan&lt;/q&gt;&lt;/em&gt; and
+        you have never ever heard about it, and you never had to deal with it, it’s important.&lt;/p&gt;
+        &lt;h4 id=&quot;autoloader&quot;&gt;Autoloader&lt;/h4&gt;
+        &lt;p&gt;Not that far in past, only a decade and a half ago, every PHP project was loud about the autoloading of objects. 
+        There was a kind of race between masterminds who can create the best, more performing, more fool-proof &lt;code class=&quot;highlighter-rouge&quot;&gt;__autoload&lt;/code&gt; function. 
+        I talk about the era, when there were no &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://stackoverflow.com&quot;&gt;Stack Overflow&lt;/a&gt; 
+        (2008), not even &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://symfony.com/&quot;&gt;Symfony Framework&lt;/a&gt; (2007) or 
+        &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://framework.zend.com/&quot;&gt;Zend Framework&lt;/a&gt; (2006). I talk about the era, when 
+        everybody was happy to start their green-field projects in the brand new, (and finally but only more-or-less)
+        Object-Oriented, PHP 5 (2004).&lt;/p&gt;
+        &lt;p&gt;Later, we got the &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://www.php-fig.org/psr/psr-0/&quot;&gt;PSR-0&lt;/a&gt; that was suppose to 
+        show the way to a better future by giving us a recommendation for the autoloading. But time passes and the PSR-0 became 
+        obsolete. Today its direct descendant, the &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://www.php-fig.org/psr/psr-4/&quot;&gt;PSR-4&lt;/a&gt; 
+        is in charge.&lt;/p&gt;
+        &lt;p&gt;And if we keep the recommendations of the PSR-4, and we use &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://getcomposer.org/doc/00-intro.md&quot;&gt;composer&lt;/a&gt; too, 
+        we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoloading. 
+        Here’s an example of the &lt;code class=&quot;highlighter-rouge&quot;&gt;composer.json&lt;/code&gt; configuration:&lt;/p&gt;
+        &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;autoload&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;psr-4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;WorstPractice\\&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;./src/WorstPractice&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;…then all you need to do is to include the composer’s autoload file in the entry points of you web application:&lt;/p&gt;
+        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;k&quot;&gt;require_once&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;__DIR__&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/vendor/autoload.php'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$myObject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\WorstPractice\Component\MyClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;blockquote&gt;
+        &lt;p&gt;Okay, now the classes can load, but what is this dependency thing?&lt;/p&gt;
+        &lt;/blockquote&gt;
+        &lt;p&gt;I already assumed, that you want to write clean code and follow the &lt;strong&gt;S.O.L.I.D.&lt;/strong&gt; principles. And what is &lt;strong&gt;D&lt;/strong&gt; in this
+        acronym?&lt;/p&gt;
+        &lt;h4 id=&quot;d-is-for-dependency-inversion-principle&quot;&gt;D is for Dependency Inversion Principle&lt;/h4&gt;
+        &lt;p&gt;The Dependency Inversion Principle in a nutshell:&lt;/p&gt;
+        &lt;ol&gt;
+        &lt;li&gt;High-level modules should not depend on low-level modules. Both should depend on the abstraction.&lt;/li&gt;
+        &lt;li&gt;Abstractions should not depend on details. Details should depend on abstractions.&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;p&gt;If you don’t understand, check &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; title=&quot;stackify.com: SOLID Design Principles Explained: Dependency Inversion Principle with Code Examples&quot; href=&quot;https://stackify.com/dependency-inversion-principle/&quot;&gt;this great tutorial&lt;/a&gt;
+        with explanations and examples.&lt;/p&gt;
+        &lt;h4 id=&quot;dependency-injection&quot;&gt;Dependency Injection&lt;/h4&gt;
+        &lt;p&gt;Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC). Although this shows us a 
+        causal relationship, actually these terms are generally used interchangeably to describe the same design pattern.&lt;/p&gt;
+        &lt;p&gt;I hope I could confuse you enough, so let’s just use &lt;strong&gt;DI&lt;/strong&gt; from now.&lt;/p&gt;
+        &lt;h4 id=&quot;di-container&quot;&gt;DI Container&lt;/h4&gt;
+        &lt;p&gt;The &lt;strong&gt;DI Container&lt;/strong&gt; is a framework/module/component/library for implementing automatic dependency injection. It manages 
+        object creation, and also injects dependencies to the classes.&lt;/p&gt;
+        &lt;h3 id=&quot;lets-get-is-started&quot;&gt;Let’s get is started&lt;/h3&gt;
+        &lt;p&gt;Up till now you may already used software design patterns, such as &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://en.wikipedia.org/wiki/Facade_pattern#PHP&quot;&gt;Facade&lt;/a&gt;,
+        &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://en.wikipedia.org/wiki/Singleton_pattern#PHP_implementation&quot;&gt;Singleton&lt;/a&gt; or
+        &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)#PHP&quot;&gt;Factory&lt;/a&gt;, etc.&lt;/p&gt;
+        &lt;p&gt;Well, in the world of dependency injection, we can easily get rid of them, making the code cleaner, and more readable for other
+        human lifeforms. And last but not least it helps a lot to your &lt;acronym title=&quot;Integrated Development Environment&quot;&gt;IDE&lt;/acronym&gt; 
+        to discover the call chains. One of the primary benefits of DI is the ability to swap implementations of the injected class. That
+        makes extremely easy to unit test classes.&lt;/p&gt;
+        &lt;p&gt;If you are familiar with the big framework’s DI Container solutions, you already know how it works: You create a spooky
+        configuration where you define the relationship and dependencies between classes and control additional behaviour
+        such as returning the same instance every time or create new one (Singleton, motherfucker!).&lt;/p&gt;
+        &lt;h4 id=&quot;diy-di-container&quot;&gt;DIY DI Container&lt;/h4&gt;
+        &lt;p&gt;If we don’t want to use third party libraries - and we already clarified this several times -, let’s create out own:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;One Interface, because of the &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://stackify.com/interface-segregation-principle/&quot;&gt;Interface Segregation Principle&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;A reasonably clean and understandable configuration file&lt;/li&gt;
+        &lt;li&gt;One single class to rule them all&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;h5 id=&quot;the-interface&quot;&gt;The Interface&lt;/h5&gt;
+        &lt;p&gt;I wrote in the beginning of this article that you don’t need to reinvent the wheel. Or not completely. There are agreements
+        on how a DI Container should behave. And there is a quasi standard for it. And a standard is not a library, a standard is a
+        collection of rules and blueprints. You wouldn’t start to build your dream house without a blueprint, would you? I guess no.&lt;/p&gt;
+        &lt;p&gt;So let’s grab this blueprint, and take a closer look.&lt;/p&gt;
+        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
+        16
+        17
+        18
+        19
+        20
+        21
+        22
+        23
+        24
+        25
+        26
+        27
+        28
+        29
+        30
+        31
+        32
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kn&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Psr\Container&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;cd&quot;&gt;/**
+        * Describes the interface of a container that exposes methods to read its entries.
+        */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ContainerInterface&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;cd&quot;&gt;/**
+        * Finds an entry of the container by its identifier and returns it.
+        *
+        * @param string $id Identifier of the entry to look for.
+        *
+        * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
+        * @throws ContainerExceptionInterface Error while retrieving the entry.
+        *
+        * @return mixed Entry.
+        */&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;cd&quot;&gt;/**
+        * Returns true if the container can return an entry for the given identifier.
+        * Returns false otherwise.
+        *
+        * `has($id)` returning true does not mean that `get($id)` will not throw an exception.
+        * It does however mean that `get($id)` will not throw a `NotFoundExceptionInterface`.
+        *
+        * @param string $id Identifier of the entry to look for.
+        *
+        * @return bool
+        */&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;has&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Now we have a nice blueprint, but this blueprint unfortunately isn’t perfect. A good start, but there are some problems:&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;It’s backward compatible with earlier PHP editions, which means no type hinting:
+        &lt;ul&gt;
+        &lt;li&gt;no parameter type hints, and we can’t add them for the implementation either.&lt;/li&gt;
+        &lt;li&gt;no return types, but luckily we can override this.&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;It suggests to create new Exceptions that implement these two &lt;code class=&quot;highlighter-rouge&quot;&gt;NotFoundExceptionInterface&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;ContainerExceptionInterface&lt;/code&gt;.&lt;br /&gt;
+        Honestly I always preferred the use the built-in ones. Those cover most of our needs.&lt;/li&gt;
+        &lt;li&gt;There is no declaration of adding instances to the container, but sometimes you can’t set up everything in the configuration.&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;We have two chances:&lt;/p&gt;
+        &lt;ol&gt;
+        &lt;li&gt;Use the &lt;code class=&quot;highlighter-rouge&quot;&gt;Psr\Container\ContainerInterface&lt;/code&gt; and extend it, but we will loose on the type hinting.&lt;/li&gt;
+        &lt;li&gt;Create our own interface but whenever somebody requires the DI to be &lt;code class=&quot;highlighter-rouge&quot;&gt;instanceof Psr\Container\ContainerInterface&lt;/code&gt;, ours will fail.&lt;/li&gt;
+        &lt;/ol&gt;
+        &lt;p&gt;And because of implementation interchangeability - though reluctantly -, I still choose the first option. Let’s extend, and
+        create the possibility to add instantiated objects to the container. Since this interface has a repository, we don’t&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;what’s more, we shouldn’t - copy it but import it. Run the following in the command line in your project’s document root:&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;composer require psr/container
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;…or add it manually to your &lt;code class=&quot;highlighter-rouge&quot;&gt;composer.json&lt;/code&gt; file:&lt;/p&gt;
+        &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;require&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;php&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;=7.4&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;psr/container&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;Additionally we set a requirement on the PHP version too. Now it’s time to create our interface: 
+        &lt;code class=&quot;highlighter-rouge&quot;&gt;src/WorstPractice/Component/DependencyInjection/ContainerInterface.php&lt;/code&gt;&lt;/p&gt;
+        &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+        11
+        12
+        13
+        14
+        15
+        16
+        17
+        18
+        19
+        20
+        21
+        22
+        23
+        24
+        25
+        26
+        &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;
+        &lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;declare&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;strict_types&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kn&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;WorstPractice\Component\DependencyInjection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;Psr\Container\ContainerInterface&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;PsrContainerInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;RuntimeException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;cd&quot;&gt;/**
+        * Interface ContainerInterface
+        * @package WorstPractice\Component\DependencyInjection
+        */&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ContainerInterface&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PsrContainerInterface&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;cd&quot;&gt;/**
+        * Register the service object instance.
+        *
+        * @param string $identifier
+        * @param object $serviceInstance
+        * @param bool   $isShared
+        * @throws RuntimeException
+        */&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$identifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$serviceInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$isShared&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p&gt;As you can see, I really mean to use the strict types. I think that is the most important feature improvement in PHP lately.
+        However, a DI Container is typically NOT a service that can be typed pretty well, unless we call the &lt;code class=&quot;highlighter-rouge&quot;&gt;object&lt;/code&gt; a precise
+        type hint.&lt;/p&gt;
+        &lt;p&gt;So what does this Interface do? It extends the &lt;code class=&quot;highlighter-rouge&quot;&gt;Psr\Container\ContainerInterface&lt;/code&gt; to keep its benefits. Then we declared
+        our extravagant method: &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt;. It has three parameters, two is mandatory, the third is optional.&lt;/p&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$identifier&lt;/code&gt;: String. It’s the instance’s class name, or just an alias of your choice. It’s important that the value 
+        to be unique, or match to a configuration definition, that has not been initialized yet.&lt;/li&gt;
+        &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$instance&lt;/code&gt;: Object. It’s an object that have been initialized already but not destructed yet.&lt;/li&gt;
+        &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;$isShared&lt;/code&gt;: Boolean. It will tell the DI container how this instance should be handled upon getting it: return a clone (new 
+        instance every time) or the same instance (be like a singleton, but without the hateful &lt;code class=&quot;highlighter-rouge&quot;&gt;::getInstance();&lt;/code&gt;)&lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;p&gt;The method in normal case should not return anything. Why it should? Do we wait any kind of response? The only response 
+        should be an exception, that is thrown when we try to add an instance with an alias that is already instantiated.
+        This show how important is to use this method wisely. It’s not a common case when we need this, and that is why it’s not part
+        of the PSR Interface. 
+        However other implementations, like the &lt;a target=&quot;_blank&quot; rel=&quot;noopener&quot; href=&quot;https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php&quot;&gt;Symfony DI&lt;/a&gt;
+        (just to pick one) also feels it important to have this &lt;code class=&quot;highlighter-rouge&quot;&gt;set&lt;/code&gt; method. So ours won’t be that renitent.&lt;/p&gt;
+        &lt;p&gt;In the next part we will plan the configuration file.&lt;/p&gt;</content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="solid-principles" /><summary type="html">Like many of my fate companions, I do home office too. And by staying at home, I can save 2-3 hours of travelling every day. So I decided to practice a little bit.</summary></entry><entry><title type="html">Why I dropped the `Mobile-first` approach</title><link href="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach" rel="alternate" type="text/html" title="Why I dropped the `Mobile-first` approach" /><published>2020-03-11T15:05:00+01:00</published><updated>2020-03-11T15:34:44+01:00</updated><id>http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach">&lt;h3 id=&quot;the-wrong-decision&quot;&gt;The (wrong) decision&lt;/h3&gt;
         &lt;p&gt;It was late 2019. I was working on this blog in my free time since months, and I still couldn’t see the end. I was struggling with the
         design - as always - and my creativity went into the &lt;code class=&quot;highlighter-rouge&quot;&gt;not good enough&lt;/code&gt; infinite loop, and started to reject any ideas came up.
         Meanwhile the backend part - if we can  talk about backend for a static website - went pretty well. Luckily I could heavily build on

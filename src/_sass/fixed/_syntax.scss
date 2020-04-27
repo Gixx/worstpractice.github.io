@@ -144,6 +144,10 @@ pre code {
     content: 'Source code language: PHP'
   }
 
+  .language-json pre.highlight::before {
+    content: 'Source code language: JSON'
+  }
+
   .language-js pre.highlight::before {
     content: 'Source code language: JavaScript'
   }

@@ -263,10 +263,28 @@
     line-height: $size-header-normal-line;
   }
 
+  h4::before {
+    content: '⪢  ';
+    font-size: $size-header-tiny;
+    line-height: $size-header-normal-line;
+    font-weight: normal;
+    vertical-align: top;
+    color: $dark-grey;
+  }
+
   h5 {
     margin: 1.2rem 0 1rem 0;
     font-size: $size-header-small;
     line-height: $size-header-small-line;
+  }
+
+  h5::before {
+    content: '⫸  ';
+    font-size: $size-header-x-tiny;
+    line-height: $size-header-small-line;
+    font-weight: normal;
+    vertical-align: top;
+    color: $dark-grey;
   }
 
   p {
@@ -279,6 +297,10 @@
 
   ul, ol {
     margin: 1.6rem 0 3.2rem 0;
+  }
+
+  li ul, li ol {
+    margin: 0;
   }
 
   a {
