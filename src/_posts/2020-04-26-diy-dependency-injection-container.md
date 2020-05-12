@@ -135,7 +135,7 @@ If we don't want to use third party libraries - and we already clarified this se
 * A reasonably clean and understandable configuration file
 * One single class to rule them all
 
-##### The Interface
+### The Interface
 
 I wrote in the beginning of this article that you don't need to reinvent the wheel. Or not completely. There are agreements
 on how a DI Container should behave. And there is a quasi standard for it. And a standard is not a library, a standard is a
@@ -261,4 +261,4 @@ However other implementations, like the <a target="_blank" rel="noopener" href="
 (just to pick one) also feels it important to have this `set` method. So ours won't be that renitent.
     
 
-In the next part we will plan the configuration file.
+In the <a rel="next" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">next part</a> we will plan the configuration file.
