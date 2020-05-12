@@ -17,7 +17,7 @@ review: true
 published: true
 ---
 
-In the <a rel="prev" href="/backend/diy-dependency-injection-container">previous part</a>, we talked about software engineering principles,
+In the <a rel="prev" href="/backend/diy-dependency-injection-container" title="DIY Dependency Injection Container, Part 1">previous part</a>, we talked about software engineering principles,
 about the dependency injection and its benefits, and we started to create our own implementation. We've finished with the
 Interface so far. In this article we will configuration the configuration data.
 
@@ -244,7 +244,7 @@ and we will immediately know if we need to keep resolve the dependency for the p
 #### Post-init calls
 
 Sometimes, to fully prepare a service, we need to call a method or to do an additional setup that we can't necessarily
-do upon initializing the service. A typical example was the NySQL's `charset` option which was ignored prior to PHP 5.3.6
+do upon initializing the service. A typical example was the MySQL's `charset` option which was ignored prior to PHP 5.3.6
 so we had to set it explicitly:
 
 ```php
