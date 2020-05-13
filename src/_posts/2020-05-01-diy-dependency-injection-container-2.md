@@ -41,7 +41,7 @@ services:
       - '%config.user%'
       - '%config.password%'
 
-  queu.builder:
+  queue.builder:
     class: \Namespace\To\Messaging\Queue\Builder
     public: false
 
