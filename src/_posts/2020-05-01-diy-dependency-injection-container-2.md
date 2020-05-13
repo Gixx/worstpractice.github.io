@@ -208,7 +208,7 @@ $config = [
 * We could use some special character (like `@`) to mark class references, as they do in the Symfony YAML configs: 
     ```yaml
     services:
-        makes.no.sence.service:
+        makes.no.sense.service:
             class: \Namespace\To\Service\MakesNoSense
             arguments:
                 - 'some.service'
