@@ -1,0 +1,55 @@
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="cd">/**
+ * Found in a legacy code
+ * This beauty will always return something even if the column doesn't exists.
+ *
+ * Do you see the problem?
+ */</span>
+<span class="k">function</span> <span class="nf">getColumnContent</span><span class="p">(</span><span class="nv">$columnName</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$tableHeaders</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$tableData</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$content</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="nv">$columnIndex</span> <span class="o">=</span> <span class="nb">array_search</span><span class="p">(</span><span class="nv">$columnName</span><span class="p">,</span> <span class="nv">$tableHeaders</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tableData</span> <span class="k">as</span> <span class="nv">$lineNr</span> <span class="o">=&gt;</span> <span class="nv">$line</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">[</span><span class="nv">$columnIndex</span><span class="p">]))</span> <span class="p">{</span> 
+            <span class="nv">$content</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$line</span><span class="p">[</span><span class="nv">$columnIndex</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nv">$content</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>

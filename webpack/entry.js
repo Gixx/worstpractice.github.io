@@ -14,7 +14,7 @@ const utility = new Utility({verbose: true});
  * Embed a "Worst practice" code sample.
  */
 const embedWorstPracticeSample = function () {
-    const badCodesCounter = 4;
+    const badCodesCounter = 5;
     const badCodes = [];
 
     for (let i = 1; i <= badCodesCounter; i++) {
