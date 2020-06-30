@@ -4,6 +4,7 @@ page_type: author
 title: 'About Gabor Ivan'
 ---
 
+<meta http-equiv="refresh" content="5;url=https://gaborivan.de">
 <section class="c-content__post">
     <article class="a-article">
         <header class="a-header">
@@ -11,7 +12,18 @@ title: 'About Gabor Ivan'
         </header>
 
         <p>
-            This is my name and I like it.
+            This page will redirect you to the <a href="https://gaborivan.de" target="_blank">gaborivan.de</a>
+            website in <strong id="counter">5 seconds</strong>.
         </p>
     </article>
 </section>
+<script type="application/javascript">
+    let counter = 5;
+
+    window.setInterval(function() {
+        counter--;
+        counter = Math.max(0, counter);
+        document.getElementById('counter').innerHTML = counter + ' second' + (counter > 1 ? 's' : '');
+    }, 1000)();
+</script>
+
