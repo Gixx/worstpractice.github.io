@@ -39,10 +39,10 @@ The output should show something like this:
         <th>CONTAINER ID</th><th>IMAGE</th><th>COMMAND</th><th>CREATED</th><th>STATUS</th><th>PORTS</th><th>NAMES</th>
     </tr>
     <tr>
-        <td>d2e7e9b864f4</td><td>jekyll/jekyll:3.8</td><td>"/usr/jekyll/bin/ent…"</td><td>8 minutes ago</td><td>Up 8 minutes</td><td>0.0.0.0:4000->4000/tcp, 35729/tcp</td><td>jekyll</td>
+        <td>d2e7e9b864f4</td><td>jekyll/jekyll:3.8</td><td>"/usr/jekyll/bin/ent…"</td><td>8 minutes ago</td><td>Up 8 minutes</td><td>0.0.0.0:4000->4000/tcp, 35729/tcp</td><td>worstpracticegithubio_webpack_1</td>
     </tr>
     <tr>
-        <td>7cf0ac694204</td><td>jmfirth/webpack</td><td>"tail -f /dev/null"</td><td>8 minutes ago</td><td>Up 8 minutes</td><td>3000/tcp</td><td>webpack</td>
+        <td>7cf0ac694204</td><td>jmfirth/webpack</td><td>"tail -f /dev/null"</td><td>8 minutes ago</td><td>Up 8 minutes</td><td>3000/tcp</td><td>worstpracticegithubio_webpack_1</td>
     </tr>
 </table>
 
@@ -65,7 +65,7 @@ cd /app && npm install --no-bin-links
 Then just build (and watch for the changes) the JS bundle:
 
 ```
-cd /app && webpack -w --watch-poll
+cd /app && webpack -w
 ```
 
 ### To use the Jekyll container
@@ -115,7 +115,7 @@ docker-compose down -v
 The concept is simple. The Webpack is watching for changes in the `./webpack` folder. If there's any,
 it will immediately build the new minimized script into the `./src/assets/js/site.min.js` file.
 
-But the whole `./src` folder is under the survillance of the Jekyll, which is also waiting for changes.
+But the whole `./src` folder is under the surveillance of the Jekyll, which is also waiting for changes.
 When the Webpack generates the new file, Jekyll will catch it, and rebuilds the website.
 
 That's simple.

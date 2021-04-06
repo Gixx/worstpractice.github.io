@@ -1,6 +1,7 @@
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+    mode: 'production',
     entry: "./webpack/entry.js",
     output: {
         path: __dirname + '/src/assets/js/',
@@ -17,8 +18,9 @@ module.exports = {
         minimize: true,
         minimizer: [
             new TerserPlugin({
-                cache: true,
-                sourceMap: false,
+                terserOptions: {
+                    sourceMap: false,
+                },
                 extractComments: true,
                 test: /\.js(\?.*)?$/i,
             }),
