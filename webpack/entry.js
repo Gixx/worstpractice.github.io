@@ -7,7 +7,11 @@ require('./components/FeatureToggleSwitch');
 require('./components/LazyLoadImage');
 require('./components/GdprDialog');
 
-const utility = new Utility({verbose: true});
+let utility = null;
+
+document.addEventListener('DOMContentLoaded', function(event) {
+    utility = new Utility({verbose: true});
+})
 
 /**
  * Embed a "Worst practice" code sample.
