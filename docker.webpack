@@ -1,7 +1,0 @@
-FROM node:latest
-
-WORKDIR /app
-
-RUN npm install webpack@4.41.2 -g
-RUN npm install webpack-cli@3.3.10 -g
-CMD tail -f /dev/null

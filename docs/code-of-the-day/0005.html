@@ -30,13 +30,13 @@
  *
  * Do you see the problem?
  */</span>
-<span class="k">function</span> <span class="nf">getColumnContent</span><span class="p">(</span><span class="nv">$columnName</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$tableHeaders</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$tableData</span><span class="p">)</span>
+<span class="k">function</span> <span class="n">getColumnContent</span><span class="p">(</span><span class="nv">$columnName</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$tableHeaders</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$tableData</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="nv">$content</span> <span class="o">=</span> <span class="p">[];</span>
     <span class="nv">$columnIndex</span> <span class="o">=</span> <span class="nb">array_search</span><span class="p">(</span><span class="nv">$columnName</span><span class="p">,</span> <span class="nv">$tableHeaders</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
     
     <span class="k">foreach</span> <span class="p">(</span><span class="nv">$tableData</span> <span class="k">as</span> <span class="nv">$lineNr</span> <span class="o">=&gt;</span> <span class="nv">$line</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">[</span><span class="nv">$columnIndex</span><span class="p">]))</span> <span class="p">{</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">[</span><span class="nv">$columnIndex</span><span class="p">]))</span> <span class="p">{</span> 
             <span class="nv">$content</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$line</span><span class="p">[</span><span class="nv">$columnIndex</span><span class="p">];</span>
         <span class="p">}</span>
     <span class="p">}</span>

@@ -1,7 +1,8 @@
 <!DOCTYPE html><html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>DIY Dependency Injection Container, Part 2&nbsp;-&nbsp;Worst Practice</title>
+    <title>DIY Dependency Injection Container, Part 2&nbsp;-&nbsp;Worst Practice
+    </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,15 +13,17 @@
     <meta name="revisit-after" content="7 days">
     <meta name="distribution" content="web">
     <meta name="copyright" content="Copyright © 2020 All rights reserved. Worst Practice.">
-    <meta name="description" content="">
+    <meta name="description" content="
+">
     <meta name="subject" content="">
     <meta name="keywords" content="PHP 7.4, dependency injection, Clean code, S.O.L.I.D., SOLID Principles, Interface">
     <!-- facebook share -->
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Worst Practice">
-    <meta property="og:title" content="DIY Dependency Injection Container, Part 2&nbsp;-&nbsp;Worst Practice">
+    <meta property="og:title" content="DIY Dependency Injection Container, Part 2&nbsp;-&nbsp;Worst Practice
+">
     <meta property="og:url" content="https://www.worstpractice.dev/backend/diy-dependency-injection-container-2">
-    <meta name="date" content="2020-05-12T10:37:00+02:00">
+    <meta name="date" content="2020-05-12T08:37:00+00:00">
     <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2020/backend/diy-dependency-injection-container-2/dependency-injection.jpg">
     <meta property="og:image:width" content="600">
     <meta property="og:image:height" content="600">
@@ -29,7 +32,7 @@
     <meta property="fb:app_id" content="2178081495757871">
     <meta property="og:type" content="article">
     <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
-    <meta property="article:published_time" content="2020-05-12T10:37:00+02:00">
+    <meta property="article:published_time" content="2020-05-12T08:37:00+00:00">
     <meta property="article:tag" content="blog"/>
     <!-- twitter share -->
     <meta name="twitter:title" content="DIY Dependency Injection Container, Part 2">
@@ -38,7 +41,8 @@
     <meta name="twitter:description" content="The second step on our journey to create a stand-alone Dependency Injection Container. Discuss about the configuration doesn&#39;t sound too interesting, but it ...">
     <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2020/backend/diy-dependency-injection-container-2/dependency-injection_600x600.jpg">
     <link rel="canonical" href="https://www.worstpractice.dev">
-    <link rel="alternate" type="application/rss+xml" title="DIY Dependency Injection Container, Part 2&nbsp;-&nbsp;Worst Practice" href="/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="DIY Dependency Injection Container, Part 2&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
     <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/backend/diy-dependency-injection-container-2">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
@@ -100,15 +104,17 @@
             <li><a class="m-menu__link -backend -current" href="/backend">Backend</a></li>
             <li><a class="m-menu__link -frontend" href="/frontend">Frontend</a></li>
             <li><a class="m-menu__link -wsl" href="/wsl">WSL</a></li>
-            <li><a class="m-menu__link -general" href="/general">General</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
           </ul>
         </nav>
         <nav>
           <h2 class="m-menu__title">Tags</h2>
           <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -personal" rel="tag" href="/tags/personal/">personal <sup>1</sup></a></li>
             <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>3</sup></a></li>
             <li><a class="m-menu__link -dic" rel="tag" href="/tags/dic/">DIC <sup>3</sup></a></li>
-            <li><a class="m-menu__link -clean-code" rel="tag" href="/tags/clean-code/">Clean code <sup>3</sup></a></li>
           </ul>
           <a class="m-menu__link -more" href="/tags/">More</a>
         </nav>
@@ -137,7 +143,8 @@
           <header class="a-header">
             <h2 class="a-header__title">DIY Dependency Injection Container, Part 2</h2>
             <div class="a-header__meta">
-              <p class="a-meta__date">Posted on May&nbsp;12, 2020 10:37</p>
+              <p class="a-meta__date">Posted on May&nbsp;12, 2020 08:37
+              </p>
               <p class="a-meta__category">Posted under the <a href="/backend/index.html">Backend</a> category</p>
               <p class="a-meta__level">Level: intermediate</p>
               <p class="a-meta__tags">Posted with the following tags:
@@ -195,11 +202,11 @@
       <span class="pi">-</span> <span class="s1">'</span><span class="s">%config.user%'</span>
       <span class="pi">-</span> <span class="s1">'</span><span class="s">%config.password%'</span>
 
-  <span class="s">queue.builder</span><span class="pi">:</span>
+  <span class="na">queue.builder</span><span class="pi">:</span>
     <span class="na">class</span><span class="pi">:</span> <span class="s">\Namespace\To\Messaging\Queue\Builder</span>
     <span class="na">public</span><span class="pi">:</span> <span class="no">false</span>
 
-  <span class="s">some.spooky.service</span><span class="pi">:</span>
+  <span class="na">some.spooky.service</span><span class="pi">:</span>
     <span class="na">class</span><span class="pi">:</span> <span class="s">\Namespace\To\Spooky\Service</span>
     <span class="na">factory</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">@queue.builder'</span><span class="pi">,</span> <span class="nv">queue</span><span class="pi">]</span>
     <span class="na">calls</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">someMethod</span><span class="pi">,</span> <span class="pi">[</span><span class="s1">'</span><span class="s">some</span><span class="nv"> </span><span class="s">parameter'</span><span class="pi">]]</span>
@@ -240,7 +247,7 @@
 <h3 id="define-the-required-structure">Define the required structure</h3>
 <p>In the previous section the YAML code is a perfect example to draw inspiration from it. It describes a clean 
   structure with several behaviours that we will try more or less copy. The YAML is good for many things and not only 
-  for dependency injections, which in the most common use-case (Symfony of course) defined under the <code class="highlighter-rouge">services</code> block. 
+  for dependency injections, which in the most common use-case (Symfony of course) defined under the <code class="language-plaintext highlighter-rouge">services</code> block. 
   But since our configuration will be a PHP array, and we want it to use only for the DI, we skip this level:</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -263,7 +270,7 @@
 </div>
 <h4 id="service-identifier">Service identifier</h4>
 <p>A service identifier is a string of characters. Oh GOD, you didn’t belive it, did you? It can be a fantasy name as well 
-  as a real class name including the <code class="highlighter-rouge">::class</code> constant:</p>
+  as a real class name including the <code class="language-plaintext highlighter-rouge">::class</code> constant:</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -287,7 +294,7 @@
     <span class="s2">"</span><span class="se">\\</span><span class="s2">Namespace</span><span class="se">\\</span><span class="s2">To</span><span class="se">\\</span><span class="s2">MyClass"</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="c1">// ...</span>
     <span class="p">],</span>
-    <span class="nx">\Namespace\To\Another\Service</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="err">\</span><span class="nc">Namespace\To\Another\Service</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="c1">// ...</span>
     <span class="p">],</span>
 <span class="p">];</span>
@@ -320,14 +327,14 @@
   </td>
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">\Namespace\To\MyService</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="err">\</span><span class="nc">Namespace\To\MyService</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="c1">// no need the 'class` key here</span>
     <span class="p">],</span>
-    <span class="nx">\Namespace\To\Some\ServiceInterface</span><span class="o">::</span><span class="na">class</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">\Namespace\To\Some\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="err">\</span><span class="nc">Namespace\To\Some\ServiceInterface</span><span class="o">::</span><span class="n">class</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="err">\</span><span class="nc">Namespace\To\Some\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
     <span class="p">],</span>
     <span class="s2">"</span><span class="se">\\</span><span class="s2">Namespace</span><span class="se">\\</span><span class="s2">To</span><span class="se">\\</span><span class="s2">AbstractService"</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">\Namespace\To\Another\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="err">\</span><span class="nc">Namespace\To\Another\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
     <span class="p">],</span>   
 <span class="p">];</span>
 </pre>
@@ -357,9 +364,9 @@
     <pre><span class="c1">// WRONG !!!</span>
 <span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'some.service'</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">\Namespace\To\Some\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="err">\</span><span class="nc">Namespace\To\Some\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
     <span class="p">],</span>
-    <span class="nx">\Namespace\To\Some\ServiceInterface</span><span class="o">::</span><span class="na">class</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="err">\</span><span class="nc">Namespace\To\Some\ServiceInterface</span><span class="o">::</span><span class="n">class</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="s1">'some.service'</span><span class="p">,</span>
     <span class="p">],</span>
 <span class="p">];</span>
@@ -373,7 +380,7 @@
 </div>
 <h4 id="class-constructor-arguments">Class constructor arguments</h4>
 <p>Of course the dependency injection makes no sense, when all our services are simple objects without any initial data.
-  Yes, we can use <code class="highlighter-rouge">setters</code> instead of constructor arguments, but I think it should be a matter of our own taste. 
+  Yes, we can use <code class="language-plaintext highlighter-rouge">setters</code> instead of constructor arguments, but I think it should be a matter of our own taste. 
   Both the constructor arguments and the setter methods have tops and flops, I won’t discriminate one for the other. I 
   used to keep myself to a simple rule: under a sane amount of parameters I prefer to use constructor arguments.</p>
 <div class="language-php highlighter-rouge">
@@ -390,8 +397,8 @@
   </td>
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nx">\Namespace\To\Some\ServiceInterface</span><span class="o">::</span><span class="na">class</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">\Namespace\To\Some\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="err">\</span><span class="nc">Namespace\To\Some\ServiceInterface</span><span class="o">::</span><span class="n">class</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="err">\</span><span class="nc">Namespace\To\Some\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
         <span class="s1">'arguments'</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">'some parameter'</span>
         <span class="p">],</span>       
@@ -430,7 +437,7 @@
   <td class="rouge-code">
     <pre><span class="kn">namespace</span> <span class="nn">Namespace\To\My\Service</span><span class="p">;</span>
 
-<span class="kn">use</span> <span class="nn">Namespace\To\Some\Service</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Namespace\To\Some\Service</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">MakesNoSense</span> <span class="p">{</span>
     <span class="cd">/** @var string */</span>
@@ -438,9 +445,9 @@
     <span class="cd">/** @var SomeService */</span>
     <span class="k">private</span> <span class="nv">$service</span><span class="p">;</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$serviceIdentifier</span><span class="p">,</span> <span class="nx">Service</span> <span class="nv">$service</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">serviceIdentifier</span> <span class="o">=</span> <span class="nv">$serviceIdentifier</span><span class="p">;</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">service</span> <span class="o">=</span> <span class="nv">$service</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$serviceIdentifier</span><span class="p">,</span> <span class="kt">Service</span> <span class="nv">$service</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceIdentifier</span> <span class="o">=</span> <span class="nv">$serviceIdentifier</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">service</span> <span class="o">=</span> <span class="nv">$service</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="c1">// ...</span>
 <span class="p">}</span>
@@ -471,9 +478,9 @@
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'some.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">Namespace\To\Some\Service</span><span class="o">::</span><span class="na">class</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nc">Namespace\To\Some\Service</span><span class="o">::</span><span class="n">class</span>
     <span class="p">],</span>
-    <span class="nx">Namespace\To\My\Service\MakesNoSense</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nc">Namespace\To\My\Service\MakesNoSense</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="s1">'arguments'</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">'some.service'</span><span class="p">,</span>
             <span class="s1">'some.service'</span>
@@ -492,7 +499,7 @@
 <ul>
   <li>We can use Reflection class to find out the parameter types, but that would go too far, and would make the code 
     unnecessarily complex. And maybe slow too.</li>
-  <li>We could use some special character (like <code class="highlighter-rouge">@</code>) to mark class references, as they do in the Symfony YAML configs:
+  <li>We could use some special character (like <code class="language-plaintext highlighter-rouge">@</code>) to mark class references, as they do in the Symfony YAML configs:
     <div class="language-yaml highlighter-rouge">
       <div class="highlight">
         <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -505,7 +512,7 @@
       </td>
       <td class="rouge-code">
         <pre>  <span class="na">services</span><span class="pi">:</span>
-      <span class="s">makes.no.sense.service</span><span class="pi">:</span>
+      <span class="na">makes.no.sense.service</span><span class="pi">:</span>
           <span class="na">class</span><span class="pi">:</span> <span class="s">\Namespace\To\Service\MakesNoSense</span>
           <span class="na">arguments</span><span class="pi">:</span>
               <span class="pi">-</span> <span class="s1">'</span><span class="s">some.service'</span>
@@ -518,7 +525,7 @@
 </code></pre>
 </div>
     </div>
-<p>… but this would require an extra <code class="highlighter-rouge">substr</code> or <code class="highlighter-rouge">strpos</code> check.</p>
+<p>… but this would require an extra <code class="language-plaintext highlighter-rouge">substr</code> or <code class="language-plaintext highlighter-rouge">strpos</code> check.</p>
 </li>
 <li>Or we can use a straightforward trick to mark which parameter is scalar and which is not.</li>
 </ul>
@@ -545,9 +552,9 @@
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'some.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">Namespace\To\Some\Service</span><span class="o">::</span><span class="na">class</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nc">Namespace\To\Some\Service</span><span class="o">::</span><span class="n">class</span>
     <span class="p">],</span>
-    <span class="nx">Namespace\To\My\Service\MakesNoSense</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nc">Namespace\To\My\Service\MakesNoSense</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="s1">'arguments'</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">'Service identifier parameter'</span> <span class="o">=&gt;</span> <span class="s1">'some.service'</span><span class="p">,</span>
             <span class="s1">'some.service'</span>
@@ -566,7 +573,7 @@
   and we will immediately know if we need to keep resolve the dependency for the parameter or just pass it as is.</p>
 <h4 id="post-init-calls">Post-init calls</h4>
 <p>Sometimes, to fully prepare a service, we need to call a method or to do an additional setup that we can’t necessarily
-  do upon initializing the service. A typical example was the MySQL’s <code class="highlighter-rouge">charset</code> option which was ignored prior to PHP 5.3.6
+  do upon initializing the service. A typical example was the MySQL’s <code class="language-plaintext highlighter-rouge">charset</code> option which was ignored prior to PHP 5.3.6
   so we had to set it explicitly:</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -577,9 +584,9 @@
 </pre>
   </td>
   <td class="rouge-code">
-    <pre><span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PDO</span><span class="p">(</span><span class="s2">"mysql:host=</span><span class="nv">$host</span><span class="s2">;dbname=</span><span class="nv">$db</span><span class="s2">;charset=utf8"</span><span class="p">,</span>  <span class="nv">$user</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">defined</span><span class="p">(</span><span class="s1">'PHP_VERSION_ID'</span><span class="p">)</span> <span class="o">||</span> <span class="nx">PHP_VERSION_ID</span> <span class="o">&lt;=</span> <span class="mi">50306</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$connection</span><span class="o">-&gt;</span><span class="na">exec</span><span class="p">(</span><span class="s2">"set names utf8"</span><span class="p">);</span>
+    <pre><span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PDO</span><span class="p">(</span><span class="s2">"mysql:host=</span><span class="nv">$host</span><span class="s2">;dbname=</span><span class="nv">$db</span><span class="s2">;charset=utf8"</span><span class="p">,</span>  <span class="nv">$user</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">defined</span><span class="p">(</span><span class="s1">'PHP_VERSION_ID'</span><span class="p">)</span> <span class="o">||</span> <span class="kc">PHP_VERSION_ID</span> <span class="o">&lt;=</span> <span class="mi">50306</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$connection</span><span class="o">-&gt;</span><span class="nb">exec</span><span class="p">(</span><span class="s2">"set names utf8"</span><span class="p">);</span>
 <span class="p">}</span>
 </pre>
   </td>
@@ -613,16 +620,16 @@
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'form.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">Namespace\To\Form\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nc">Namespace\To\Form\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
         <span class="s1">'argument'</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">'action'</span> <span class="o">=&gt;</span> <span class="s1">'login.php'</span><span class="p">,</span>
             <span class="s1">'method'</span> <span class="o">=&gt;</span> <span class="s1">'POST'</span>
         <span class="p">],</span>
         <span class="s1">'calls'</span> <span class="o">=&gt;</span> <span class="p">[</span>           
-            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'username'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="nx">\Namespace\To\Form\Element\TextInput</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
-            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="nx">\Namespace\To\Form\Element\PasswordInput</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
-            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">,</span>  <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'Login'</span><span class="p">,</span> <span class="nx">\Namespace\To\Form\Element\SubmitButton</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
-            <span class="p">[</span><span class="s1">'addValidator'</span><span class="p">,</span> <span class="p">[</span><span class="nx">\Namespace\To\Form\Validator\CredentialValidator</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'username'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="err">\</span><span class="nc">Namespace\To\Form\Element\TextInput</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="err">\</span><span class="nc">Namespace\To\Form\Element\PasswordInput</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">,</span>  <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'Login'</span><span class="p">,</span> <span class="err">\</span><span class="nc">Namespace\To\Form\Element\SubmitButton</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addValidator'</span><span class="p">,</span> <span class="p">[</span><span class="err">\</span><span class="nc">Namespace\To\Form\Validator\CredentialValidator</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
         <span class="p">],</span>
     <span class="p">],</span>  
 <span class="p">];</span>
@@ -636,16 +643,16 @@
 </div>
 <p>So in this example we define the config for a HTML Form service. There are constructor scalar parameters, and instead of
   creating the form by injecting all the necessary elements, we instead add them with public methods. This is just a very
-  simple example, but it shows pretty well, how the <code class="highlighter-rouge">calls</code> sub-key is built up:</p>
+  simple example, but it shows pretty well, how the <code class="language-plaintext highlighter-rouge">calls</code> sub-key is built up:</p>
 <ul>
-  <li>Every element of the <code class="highlighter-rouge">calls</code> sub-key is an array that defines one single method call.</li>
+  <li>Every element of the <code class="language-plaintext highlighter-rouge">calls</code> sub-key is an array that defines one single method call.</li>
   <li>The first item of each array is the method name. It must exists as a public method within the class.</li>
   <li>The second item is an array again. It’s the argument list of the method and it’s optional in those cases when the 
-    method doesn’t require any parameters. This list behaves the same way as the <code class="highlighter-rouge">argument</code> list for the class.</li>
+    method doesn’t require any parameters. This list behaves the same way as the <code class="language-plaintext highlighter-rouge">argument</code> list for the class.</li>
   <li>One method can be called multiple times.</li>
 </ul>
 <h4 id="singleton">Singleton</h4>
-<p>This one is a simple boolean key, called <code class="highlighter-rouge">shared</code>. If it’s TRUE, it means that the instance will be shared along the 
+<p>This one is a simple boolean key, called <code class="language-plaintext highlighter-rouge">shared</code>. If it’s TRUE, it means that the instance will be shared along the 
   runtime whenever we need it. Otherwise a new instance will be returned by the DIC.</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -663,10 +670,10 @@
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'some.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">Namespace\To\Some\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nc">Namespace\To\Some\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
         <span class="s1">'shared'</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
     <span class="p">],</span>
-    <span class="nx">Namespace\To\My\Service\MakesNoSense</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nc">Namespace\To\My\Service\MakesNoSense</span><span class="o">::</span><span class="n">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
         <span class="s1">'shared'</span> <span class="o">=&gt;</span> <span class="kc">false</span>   
     <span class="p">]</span>
 <span class="p">];</span>
@@ -678,13 +685,13 @@
 </code></pre>
 </div>
 </div>
-<p>If the <code class="highlighter-rouge">shared</code> sub-key does not present, it will be considered as TRUE by default.</p>
+<p>If the <code class="language-plaintext highlighter-rouge">shared</code> sub-key does not present, it will be considered as TRUE by default.</p>
 <h4 id="inheritance">Inheritance</h4>
 <p>In some cases we want to inherit configuration to avoid unnecessary code repeats, and apply only the differences. We
-  will be able to do this with the <code class="highlighter-rouge">inherits</code> key. The value must be an existing <code class="highlighter-rouge">service identifier</code>, other than the 
+  will be able to do this with the <code class="language-plaintext highlighter-rouge">inherits</code> key. The value must be an existing <code class="language-plaintext highlighter-rouge">service identifier</code>, other than the 
   current one. Both self- of invalid referencing should raise an error.</p>
 <p>To make it less complex, let’s say, if any of the sub-key’s value is changed, the full sub-key should be presented. 
-  Also, the <code class="highlighter-rouge">shared</code> key must present if differs form the ancestor’s. So if for the ancestor the shared is FALSE, and 
+  Also, the <code class="language-plaintext highlighter-rouge">shared</code> key must present if differs form the ancestor’s. So if for the ancestor the shared is FALSE, and 
   the descendant should be TRUE, then it must present explicitly, the default behaviour will not applied in this case.</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -720,16 +727,16 @@
   <td class="rouge-code">
     <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'form.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nx">Namespace\To\Form\Service</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nc">Namespace\To\Form\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
         <span class="s1">'argument'</span> <span class="o">=&gt;</span> <span class="p">[</span>
             <span class="s1">'action'</span> <span class="o">=&gt;</span> <span class="s1">'/login.php'</span><span class="p">,</span>
             <span class="s1">'method'</span> <span class="o">=&gt;</span> <span class="s1">'POST'</span>
         <span class="p">],</span>
         <span class="s1">'calls'</span> <span class="o">=&gt;</span> <span class="p">[</span>           
-            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'username'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="nx">\Namespace\To\Form\Element\TextInput</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
-            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="nx">\Namespace\To\Form\Element\PasswordInput</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
-            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">,</span>  <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'Login'</span><span class="p">,</span> <span class="nx">\Namespace\To\Form\Element\SubmitButton</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
-            <span class="p">[</span><span class="s1">'addValidator'</span><span class="p">,</span> <span class="p">[</span><span class="nx">\Namespace\To\Form\Validator\CredentialValidator</span><span class="o">::</span><span class="na">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'username'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="err">\</span><span class="nc">Namespace\To\Form\Element\TextInput</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'password'</span><span class="p">,</span> <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">''</span><span class="p">,</span> <span class="err">\</span><span class="nc">Namespace\To\Form\Element\PasswordInput</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addElement'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'name'</span> <span class="o">=&gt;</span> <span class="s1">'submit'</span><span class="p">,</span>  <span class="s1">'value'</span> <span class="o">=&gt;</span> <span class="s1">'Login'</span><span class="p">,</span> <span class="err">\</span><span class="nc">Namespace\To\Form\Element\SubmitButton</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
+            <span class="p">[</span><span class="s1">'addValidator'</span><span class="p">,</span> <span class="p">[</span><span class="err">\</span><span class="nc">Namespace\To\Form\Validator\CredentialValidator</span><span class="o">::</span><span class="n">class</span><span class="p">]],</span>
         <span class="p">],</span>
         <span class="s1">'shared'</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>   
     <span class="p">],</span>
@@ -771,8 +778,8 @@
   <header class="a-comments__title">
     <h4>It's time to judge me!</h4>
   </header>
-  <div id="commento">
-    It seems like that Commento or JavaScript in general is disabled, so no chance to judge me in public. But don't worry, you can
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
     <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `DIY Dependency Injection Container, Part 2`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
     your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
   </div>
@@ -781,7 +788,7 @@
 </main>
 <footer class="f-footer">
   <p class="f-footer__copyright">
-    <small>Copyright © 2021 All rights reserved. Worst Practice</small>
+    <small>Copyright © 2022 All rights reserved. Worst Practice</small>
   </p>
 </footer>
 </body>

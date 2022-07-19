@@ -29,20 +29,20 @@
  * @return bool|null|object
  * @throws Exception
  */</span>
-<span class="k">function</span> <span class="nf">auth_user</span><span class="p">()</span>
+<span class="k">function</span> <span class="n">auth_user</span><span class="p">()</span>
 <span class="p">{</span>
     <span class="k">global</span> <span class="nv">$dev_test_pass</span><span class="p">;</span>
     <span class="nv">$valid</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="nx">AND</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$dev_test_pass</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">goto</span> <span class="nx">admin</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'admin'</span> <span class="k">AND</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]</span> <span class="o">==</span> <span class="nv">$dev_test_pass</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">goto</span> <span class="n">admin</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="nv">$valid</span> <span class="o">=</span> <span class="nx">app</span><span class="o">::</span><span class="na">getinstance</span><span class="p">()</span>
-        <span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'Auth_Service'</span><span class="p">)</span>
-        <span class="o">-&gt;</span><span class="na">login</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">],</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]);</span>
+    <span class="nv">$valid</span> <span class="o">=</span> <span class="n">app</span><span class="o">::</span><span class="nf">getinstance</span><span class="p">()</span>
+        <span class="o">-&gt;</span><span class="nf">get</span><span class="p">(</span><span class="s1">'Auth_Service'</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="nf">login</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">'login'</span><span class="p">],</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'pass'</span><span class="p">]);</span>
 
-    <span class="nx">admin</span><span class="o">:</span>
+    <span class="n">admin</span><span class="o">:</span>
     <span class="k">return</span> <span class="nv">$valid</span><span class="p">;</span>
 <span class="p">}</span>
 </pre>
