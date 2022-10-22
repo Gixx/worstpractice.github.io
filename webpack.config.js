@@ -1,7 +1,6 @@
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    mode: 'production',
     entry: "./webpack/entry.js",
     output: {
         path: __dirname + '/src/assets/js/',

@@ -160,6 +160,14 @@ pre code {
     content: 'Source code language: HTML'
   }
 
+  .language-typescript pre.highlight::before {
+    content: 'Source code language: Typescript'
+  }
+
+  .language-jsx pre.highlight::before {
+    content: 'Source code language: JSX'
+  }
+
   .language-bash pre.highlight::before {
     content: 'Bash/ZSH'
   }

@@ -46,14 +46,14 @@ The output should show something like this:
 To access the container, you need to simply run:
 
 ```
-$> docker exec -it worst-practice bash
+$> docker exec -it -u dev worst-practice bash
 ```
 
 Inside the container for the first time it's worth to make sure everything is up-to-date, so run:
 
 ```
-bash-5.1# npm install --no-bin-links
-bash-5.1# bundle install
+bash-5.1# npm install
+bash-5.1# sudo bundle install
 ```
 If everything is set up, then build the content with (inside the container):
 

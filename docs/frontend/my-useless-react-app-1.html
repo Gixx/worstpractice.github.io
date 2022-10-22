@@ -1,0 +1,516 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My useless React App, Part 1&nbsp;-&nbsp;Worst Practice
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="jekyll 3.8.5">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="copyright" content="Copyright © 2022 All rights reserved. Worst Practice.">
+    <meta name="description" content="
+">
+    <meta name="subject" content="">
+    <meta name="keywords" content="React, Webpack, JavaScript, Typescript, Chakra">
+    <!-- facebook share -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Worst Practice">
+    <meta property="og:title" content="My useless React App, Part 1&nbsp;-&nbsp;Worst Practice
+">
+    <meta property="og:url" content="https://www.worstpractice.dev/frontend/my-useless-react-app-1">
+    <meta name="date" content="2022-10-22T22:00:00+00:00">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2022/frontend/my-useless-react-app-1/react.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:description" content="A developer needs to develop. Not only as an everyday job, but also in knowledge. And since I am not really interested in the DevOps way, I looked at my othe...">
+    <meta property="fb:admins" content="ivan.gabor.80">
+    <meta property="fb:app_id" content="2178081495757871">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
+    <meta property="article:published_time" content="2022-10-22T22:00:00+00:00">
+    <meta property="article:tag" content="blog"/>
+    <!-- twitter share -->
+    <meta name="twitter:title" content="My useless React App, Part 1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@gaborivan1980">
+    <meta name="twitter:description" content="A developer needs to develop. Not only as an everyday job, but also in knowledge. And since I am not really interested in the DevOps way, I looked at my othe...">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2022/frontend/my-useless-react-app-1/react_600x600.jpg">
+    <link rel="canonical" href="https://www.worstpractice.dev">
+    <link rel="alternate" type="application/rss+xml" title="My useless React App, Part 1&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/frontend/my-useless-react-app-1">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+    <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#C23F2F">
+    <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#C23F2F">
+    <meta name="application-name" content="Worst Practice Blog">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#C23F2F">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.srcset) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/site.min.js"></script>
+  </head>
+  <body>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
+    </header>
+    <div class="codeOfTheDay">
+      <input class="codeOfTheDay__toggle" type="checkbox">
+      <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
+      <div class="codeOfTheDay__backdrop"></div>
+    </div>
+    <div class="m-menu">
+      <div class="m-menu__burger">
+        <span></span>
+      </div>
+      <input class="m-menu__toggle" type="checkbox" />
+      <div class="m-menu__content">
+        <nav>
+          <h2 class="m-menu__title">Worst Practice</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -home" href="/">Home</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Categories</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -frontend -current" href="/frontend">Frontend</a></li>
+            <li><a class="m-menu__link -backend" href="/backend">Backend</a></li>
+            <li><a class="m-menu__link -wsl" href="/wsl">WSL</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Tags</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -personal" rel="tag" href="/tags/personal/">personal <sup>1</sup></a></li>
+            <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>3</sup></a></li>
+            <li><a class="m-menu__link -dic" rel="tag" href="/tags/dic/">DIC <sup>3</sup></a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/tags/">More</a>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Archive</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/archive/2022-10/">October, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2021-04/">April, 2021</a></li>
+            <li><a class="m-menu__link " href="/archive/2020-06/">June, 2020</a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/archive/">More</a>
+        </nav>
+        <nav>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/imprint.html">Imprint</a></li>
+            <li><a class="m-menu__link " href="/terms.html">Terms of Use</a></li>
+            <li><a class="m-menu__link " href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="m-menu__backdrop"></div>
+    </div>
+    <main class="c-content">
+      <section class="c-content__article">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">My useless React App, Part 1</h2>
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on October&nbsp;22, 2022 22:00
+              </p>
+              <p class="a-meta__category">Posted under the <a href="/frontend/index.html">Frontend</a> category</p>
+              <p class="a-meta__level">Level: beginner</p>
+              <p class="a-meta__tags">Posted with the following tags:
+                <a href="/tags/react/index.html">#React</a>, 
+                <a href="/tags/js/index.html">#JS</a>, 
+                <a href="/tags/webpack/index.html">#Webpack</a>, 
+                <a href="/tags/typescript/index.html">#Typescript</a>, 
+                <a href="/tags/chakra/index.html">#Chakra</a>
+              </p>
+            </div>
+          </header>
+          <p class="a-excerpt">
+            A developer needs to develop. Not only as an everyday job, but also in knowledge. And since I am not really interested in the DevOps way, I looked at my other beloved part, the Frontend. So I said “<em>It's better later than never</em>” and started to learn React.
+          </p>
+          <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/react.jpg" alt="My useless React App, Part 1">
+            <figcaption class="a-illustration__caption">Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a></figcaption>
+          </figure>
+          <div class="a-body">
+            <h3 id="the-glorious-plans">The glorious plans</h3>
+            <p>I thought I know JavaScript enough that to understand React will be a piece of cake. I thought I will adopt the knowledge in no time and
+              also mastering the TypeScript to be able to write super strict typed clean code. Well, more or less I was right. I was right that I have some
+              knowledge in JavaScript. And basically that’s all.</p>
+            <p>But that was not enough. As soon as I realized that I started to look for articles “<em>for dummies</em>” to understand what part of the 
+              ECMAScript 6, 7, 8, … 2022 or ES.Next I didn’t know about… well, it was a huge list. Some of them was familiar but didn’t really use, 
+              while some of them (like the arrow function) was earned my hate, and I refused to use it any time. What a bad behavior, isn’t it? 
+              And of course there were many small but important thing I didn’t know about. So I had to learn them.</p>
+            <p>So first I had to reset my bad attitude, and accept the knowledge I refused. Now me and the arrow functions are like Jack Lemon and Walter Matthau
+              in the legendary movie, <em>The Odd Couple</em>.</p>
+            <h3 id="the-reachable-goals">The reachable goals</h3>
+            <p>First of all, I had to set up some goals to reach. These were:</p>
+            <ul>
+              <li>Use the main <em>React.JS</em> and alternative solutions like, Angular, Vue or Preact etc.</li>
+              <li>Use <em>Typescript</em>, to be as strict in typing as possible, and do whatever is necessary to avoid the <code class="language-plaintext highlighter-rouge">any</code>.</li>
+              <li>Use <em>SCSS</em>, because it’s a minimum effort to use it in a project like this, and also a logical decision.</li>
+              <li>Use an external library for the UIX, but I also should be able to override the behaviour when necessary.</li>
+              <li>Use <em>Webpack</em> to hold it all together.</li>
+            </ul>
+            <h3 id="tldr">TL;DR</h3>
+            <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
+              <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
+            <h3 id="too-long-to-be-in-one-article">Too long to be in one article</h3>
+            <p>Honestly I started writing this article already in April, but I was too busy to finish. Meanwhile, I could improve the code a lot.
+              For example, the Typescript support and the <a href="https://chakra-ui.com/" target="_blank" rel="noopener">Chakra UI</a> added only
+              in the recent days. That’s why now I decided to split up the topic into multiple smaller articles, so I can get better into the
+              details and not just throw in some chunks.</p>
+            <h3 id="part-1">Part 1.</h3>
+            <h4 id="the-application">The application</h4>
+            <p>Many people would probably create a market ready product to demonstrate their knowledge. But not me. I create an application
+              that is completely useless. It’s purpose to have some common features and use cases work together that are easy to copy and
+              paste to a real product later. It will be a kind of proof of concept. So what I want to have here:</p>
+            <ul>
+              <li>I want a form encapsulated into the React application. For now, it won’t post anywhere.</li>
+              <li>I need a select box that loads its option values from an endpoint (in this case from a json file)</li>
+              <li>I need a text box which content changes depending on the selected dropdown value</li>
+              <li>I need a button that changes its style depending on the selected dropdown value</li>
+              <li>I need a checkbox that can block the button to change its style</li>
+            </ul>
+            <p>This all looks stupid for the first sight, and for the second too, but if you think about it, these use cases are very common.</p>
+            <h4 id="the-folder-structure">The folder structure</h4>
+            <p>Okay, now we know what we want, so let’s start working. In the first step we create some folders and files:</p>
+            <figure class="a-illustration">
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/tree.png" width="252" />
+              <figcaption class="a-illustration__caption">Basic folder structure</figcaption>
+            </figure>
+            <p>For the credit, I have to mention, I “generated” the image above with the help of the following tools:</p>
+            <ul>
+              <li>icons by <a target="_blank" rel="noopener" href="https://icons8.com">Icons8</a></li>
+              <li>folder tree by <a target="_blank" rel="noopener" href="https://www.jstree.com/">JsTree</a></li>
+            </ul>
+            <p>I think I don’t have to describe the files and folders, those few who may read this blog probably already know the basics. 
+              If not, I can highly recommend the <a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> website
+              where you can find many great courses. There’s even a free course about React that I also used to learn the basics.</p>
+            <h4 id="the-start">The start</h4>
+            <p>I started this journey already in 2020 during the first wave of the Covid pandemic in Europe. That time the plan was only
+              Webpack + React. Unfortunately I didn’t document my work, and now I can’t remember how it started, and what were the tops and 
+              flops during the learning process. The first version of the application was so lame and simple, I didn’t feel good enough
+              to publish it.</p>
+            <p>I needed Webpack + React. So I looked for a working solution on the internet. Webinars, blogs and
+              <a href="https://www.stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> topics helped a lot. Copied the
+              most promising ones, made them work and the job was done. This was basically my starting point, and I assume everybody, who
+              used Webpack and React earlier will know how it looks like more or less: Webpack, Babel, React, Sass etc.</p>
+            <h4 id="adding-the-typescript">Adding the Typescript</h4>
+            <p>On the summer of 2022 I get back to this blogpost. I decided I pimp the application up a bit, and follow the rules
+              of the nature by rewrite the whole thing in Typescript.</p>
+            <h5 id="packagejson">package.json</h5>
+            <p>So the problem for me was that I had to add also the <code class="language-plaintext highlighter-rouge">Typescript</code> to the configuration, and make it work
+              together with the React and Webpack. With a fast search I could find the packages I have to add to the <code class="language-plaintext highlighter-rouge">package.json</code>:</p>
+            <div class="language-json highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre><span class="p">{</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"@types/fork-ts-checker-webpack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.4.5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@typescript-eslint/eslint-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~5.40.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@typescript-eslint/parser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~5.40.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fork-ts-checker-webpack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~7.2.13"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"prop-types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~15.8.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts-node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~10.9.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typescript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~4.8.4"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<h5 id="webpackconfigts">webpack.config.ts</h5>
+<p>For the Webpack, I had to change the extension of the webpack configuration from <code class="language-plaintext highlighter-rouge">.js</code> to <code class="language-plaintext highlighter-rouge">.ts</code> and 
+  add/change some settings inside. Not sure, but maybe changing the file extension is optional.</p>
+<p>The <code class="language-plaintext highlighter-rouge">entry</code> option changed from <code class="language-plaintext highlighter-rouge">.jsx</code> to the Typescript equivalent <code class="language-plaintext highlighter-rouge">.tsx</code>:</p>
+<div class="language-typescript highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nx">entry</span><span class="p">:</span> <span class="nx">pathSrc</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/scripts/app.tsx</span><span class="dl">'</span><span class="p">,</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Then the module rules needed some Typescript support (both <code class="language-plaintext highlighter-rouge">.ts</code> and <code class="language-plaintext highlighter-rouge">.tsx</code> along with <code class="language-plaintext highlighter-rouge">.js</code> and <code class="language-plaintext highlighter-rouge">.jsx</code>) by adding a new 
+  preset to the <code class="language-plaintext highlighter-rouge">babel-loader</code>:</p>
+<div class="language-typescript highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kr">module</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">rules</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.(</span><span class="sr">ts|js</span><span class="se">)</span><span class="sr">x</span><span class="se">?</span><span class="sr">$/</span><span class="p">,</span>
+            <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
+            <span class="na">use</span><span class="p">:</span> <span class="p">{</span>
+                <span class="na">loader</span><span class="p">:</span> <span class="dl">'</span><span class="s1">babel-loader</span><span class="dl">'</span><span class="p">,</span>
+                <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="na">presets</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="dl">'</span><span class="s1">@babel/preset-env</span><span class="dl">'</span><span class="p">,</span>
+                        <span class="dl">'</span><span class="s1">@babel/preset-react</span><span class="dl">'</span><span class="p">,</span>
+                        <span class="dl">'</span><span class="s1">@babel/preset-typescript</span><span class="dl">'</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Changed the <code class="language-plaintext highlighter-rouge">resolve</code> setting to catch the new extensions:</p>
+<div class="language-typescript highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nx">resolve</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">extensions</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">.tsx</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.ts</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.js</span><span class="dl">'</span><span class="p">],</span>
+<span class="p">},</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>And in the end adding a new plugin that runs TypeScript type checker:</p>
+<div class="language-typescript highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nx">plugins</span><span class="p">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">ForkTsCheckerWebpackPlugin</span><span class="p">({</span>
+        <span class="na">async</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">}),</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="tsconfigjson">tsconfig.json</h5>
+<p>Then I added the <code class="language-plaintext highlighter-rouge">tsconfig.json</code> to the project. For what this file is, and what its purpose, read the 
+  <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">official documentation</a>.
+  My configuration has a few extra options compared to the documentation:</p>
+<div class="language-json highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{</span><span class="w">
+  </span><span class="nl">"compilerOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"lib"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"dom"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dom.iterable"</span><span class="p">,</span><span class="w"> </span><span class="s2">"esnext"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"allowJs"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"skipLibCheck"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"esModuleInterop"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es6"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sourceMap"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"declaration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"strict"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"forceConsistentCasingInFileNames"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"allowSyntheticDefaultImports"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"experimentalDecorators"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"emitDecoratorMetadata"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"moduleResolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"resolveJsonModule"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isolatedModules"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"noEmit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jsx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"react"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"typeRoots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"node_modules/@types"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"include"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/scripts"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"exclude"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"node_modules"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src/styles"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Unfortunately I have no idea, which blog I get these settings from, and why they are good or necessary.</p>
+<h4 id="checking">Checking</h4>
+<p>To check if all these changes work well, I made a dummy application that simply outputs a “Hello World”.
+  So in the <code class="language-plaintext highlighter-rouge">src/scripts</code> folder I created the <code class="language-plaintext highlighter-rouge">app.tsx</code> file:</p>
+<div class="language-jsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#root</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Hello World<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;,</span>
+    <span class="nx">app</span>
+<span class="p">)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Yes, for the moment now it’s “only” a React code, but don’t forget: it will go through the Typescript parser. And if there’s
+  no error during the build, then we can assume it’s working.</p>
+<p>With this flimsy explanation and lame tutorial I finish the first part. In the next article I will show the different components,
+  and will write about the difficulties I faced, and also the features I learned and adopted.</p>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
+  <p class="a-footer__author">
+    Hi, my name is Gábor Iván. I am an old-school Full stack developer, which means I deal with Backend (PHP), Frontend (HTML, CSS, JS), and a little bit of Webdesign. No DevOPS, sorry.
+    <br>
+    <a href="/author/gabor.ivan/index.html">Read the full story</a>
+  </p>
+</footer>
+</article>
+<aside class="a-comments">
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `My useless React App, Part 1`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
+</aside>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2022 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+</body>
+</html>
