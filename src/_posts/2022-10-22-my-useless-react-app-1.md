@@ -5,7 +5,7 @@ date: "2022-10-22 23:00:00 +0100"
 level: 'beginner'
 expiration: 'none'
 illustration: 'react.jpg'
-illustrationCaption: 'Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a>'
+illustrationCaption: 'Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a>'
 illustration_share: 'react_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
@@ -203,7 +203,38 @@ Unfortunately I have no idea, which blog I get these settings from, and why they
 #### Checking
 
 To check if all these changes work well, I made a dummy application that simply outputs a "Hello World".
-So in the `src/scripts` folder I created the `app.tsx` file: 
+
+First we need a template. In the configuration we can add the `HTMLWebpackPlugin` to define and deal with it:
+
+```typescript
+new HtmlWebpackPlugin({
+    title: 'React + Webpack test',
+    template: pathSrc + '/template.html', // template file
+    filename: pathBuild + '/index.html', // output file
+}),
+```
+Great. Now let's see our super simple template content:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+Note that we basically did nothing here, just give a sane minimal frame for out application. We don't even include any
+JavaScript or CSS files. The only strange part is the title, where we insert a configuration value. The same we defined 
+for the `HTMLWebpackPlugin`. But this template is empty so far, so create the dummy application. To do so, create the 
+`app.tsx` file in the `src/scripts` folder with the following content:
+
 ```jsx
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -217,6 +248,8 @@ ReactDOM.render(
 ```
 Yes, for the moment now it's "only" a React code, but don't forget: it will go through the Typescript parser. And if there's
 no error during the build, then we can assume it's working.
+
+If you run the `npm run start` command, you should see the Hello World in the browser.
 
 With this flimsy explanation and lame tutorial I finish the first part. In the next article I will show the different components,
 and will write about the difficulties I faced, and also the features I learned and adopted.

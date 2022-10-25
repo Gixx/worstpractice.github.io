@@ -161,7 +161,7 @@
           </p>
           <figure class="a-illustration">
             <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/react.jpg" alt="My useless React App, Part 1">
-            <figcaption class="a-illustration__caption">Image by <a href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a></figcaption>
+            <figcaption class="a-illustration__caption">Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a></figcaption>
           </figure>
           <div class="a-body">
             <h3 id="the-glorious-plans">The glorious plans</h3>
@@ -447,8 +447,75 @@
 </div>
 <p>Unfortunately I have no idea, which blog I get these settings from, and why they are good or necessary.</p>
 <h4 id="checking">Checking</h4>
-<p>To check if all these changes work well, I made a dummy application that simply outputs a “Hello World”.
-  So in the <code class="language-plaintext highlighter-rouge">src/scripts</code> folder I created the <code class="language-plaintext highlighter-rouge">app.tsx</code> file:</p>
+<p>To check if all these changes work well, I made a dummy application that simply outputs a “Hello World”.</p>
+<p>First we need a template. In the configuration we can add the <code class="language-plaintext highlighter-rouge">HTMLWebpackPlugin</code> to define and deal with it:</p>
+<div class="language-typescript highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+    <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">React + Webpack test</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">template</span><span class="p">:</span> <span class="nx">pathSrc</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/template.html</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// template file</span>
+    <span class="na">filename</span><span class="p">:</span> <span class="nx">pathBuild</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/index.html</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// output file</span>
+<span class="p">}),</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Great. Now let’s see our super simple template content:</p>
+<div class="language-html highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"x-ua-compatible"</span> <span class="na">content=</span><span class="s">"ie=edge"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;title&gt;&lt;</span><span class="err">%=</span> <span class="na">htmlWebpackPlugin.options.title</span> <span class="err">%</span><span class="nt">&gt;&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"root"</span><span class="nt">&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Note that we basically did nothing here, just give a sane minimal frame for out application. We don’t even include any
+  JavaScript or CSS files. The only strange part is the title, where we insert a configuration value. The same we defined 
+  for the <code class="language-plaintext highlighter-rouge">HTMLWebpackPlugin</code>. But this template is empty so far, so create the dummy application. To do so, create the 
+  <code class="language-plaintext highlighter-rouge">app.tsx</code> file in the <code class="language-plaintext highlighter-rouge">src/scripts</code> folder with the following content:</p>
 <div class="language-jsx highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -482,6 +549,7 @@
 </div>
 <p>Yes, for the moment now it’s “only” a React code, but don’t forget: it will go through the Typescript parser. And if there’s
   no error during the build, then we can assume it’s working.</p>
+<p>If you run the <code class="language-plaintext highlighter-rouge">npm run start</code> command, you should see the Hello World in the browser.</p>
 <p>With this flimsy explanation and lame tutorial I finish the first part. In the next article I will show the different components,
   and will write about the difficulties I faced, and also the features I learned and adopted.</p>
 </div>
