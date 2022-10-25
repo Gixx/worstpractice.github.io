@@ -19,7 +19,14 @@ published: false
 
 ### Disclaimer
 
-The [Part 1](/frontend/my-useless-react-app-1) was a shaking up for me from the year-long winter sleep. It was a bit rushy writing, because I didn't wanna
-jump in the middle without any warm up. Getting to the very start point was really not a big deal after reading all those blogs, tutorials and watch the
-<a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> React courses. The real difficulty there was to add the 
-Typescript to the game. Of course, it's a piece of cake now.
+The [Part 1](/frontend/my-useless-react-app-1) was a shaking up for me from the year-long winter sleep. It was a bit rushy 
+writing, because I didn't wanna jump in the middle of this tutorial without any warm up. Getting to the very start point
+was really not a big deal after reading all those blogs, tutorials and watch the 
+<a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> React courses. The real 
+difficulty there was to add the Typescript to the game. Of course, it's a piece of cake now.
+
+### TL;DR
+
+And again, if you don't want to waste your time reading this tutorial, and you only need a working code sample, please 
+check the source code on <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.
+

@@ -64,6 +64,7 @@ paste to a real product later. It will be a kind of proof of concept. So what I 
 * I need a text box which content changes depending on the selected dropdown value
 * I need a button that changes its style depending on the selected dropdown value
 * I need a checkbox that can block the button to change its style
+* I need an alert box to comment some events
 
 This all looks stupid for the first sight, and for the second too, but if you think about it, these use cases are very common.
 
