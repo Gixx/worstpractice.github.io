@@ -74,12 +74,8 @@ Okay, now we know what we want, so let's start working. In the first step we cre
 
 <figure class="a-illustration">
     <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/tree.png" width="252">
-    <figcaption class="a-illustration__caption">Basic folder structure</figcaption>
+    <figcaption class="a-illustration__caption">Basic folder structure. Icons by <a target="_blank" rel="noopener" href="https://icons8.com">Icons8</a>, generated with <a target="_blank" rel="noopener" href="https://www.jstree.com/">JsTree</a></figcaption>
 </figure>
-
-For the credit, I have to mention, I "generated" the image above with the help of the following tools:
-* icons by <a target="_blank" rel="noopener" href="https://icons8.com">Icons8</a> 
-* folder tree by <a target="_blank" rel="noopener" href="https://www.jstree.com/">JsTree</a>
 
 I think I don't have to describe the files and folders, those few who may read this blog probably already know the basics. 
 If not, I can highly recommend the <a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> website
