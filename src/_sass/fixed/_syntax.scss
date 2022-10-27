@@ -156,6 +156,10 @@ pre code {
     content: 'Source code language: CSS'
   }
 
+  .language-sass pre.highlight::before {
+    content: 'Source code language: SASS'
+  }
+
   .language-html pre.highlight::before {
     content: 'Source code language: HTML'
   }
@@ -166,6 +170,10 @@ pre code {
 
   .language-jsx pre.highlight::before {
     content: 'Source code language: JSX'
+  }
+
+  .language-tsx pre.highlight::before {
+    content: 'Source code language: TSX'
   }
 
   .language-bash pre.highlight::before {

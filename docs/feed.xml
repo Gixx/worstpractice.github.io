@@ -1,69 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-10-25T10:30:25+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">My useless React App, Part 1</title><link href="http://0.0.0.0:4000/frontend/my-useless-react-app-1" rel="alternate" type="text/html" title="My useless React App, Part 1" /><published>2022-10-22T22:00:00+00:00</published><updated>2022-10-25T10:29:12+00:00</updated><id>http://0.0.0.0:4000/frontend/my-useless-react-app-1</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/my-useless-react-app-1"><![CDATA[<h3 id="the-glorious-plans">The glorious plans</h3>
-      <p>I thought I know JavaScript enough that to understand React will be a piece of cake. I thought I will adopt the knowledge in no time and
-        also mastering the TypeScript to be able to write super strict typed clean code. Well, more or less I was right. I was right that I have some
-        knowledge in JavaScript. And basically that’s all.</p>
-      <p>But that was not enough. As soon as I realized that I started to look for articles “<em>for dummies</em>” to understand what part of the 
-        ECMAScript 6, 7, 8, … 2022 or ES.Next I didn’t know about… well, it was a huge list. Some of them was familiar but didn’t really use, 
-        while some of them (like the arrow function) was earned my hate, and I refused to use it any time. What a bad behavior, isn’t it? 
-        And of course there were many small but important thing I didn’t know about. So I had to learn them.</p>
-      <p>So first I had to reset my bad attitude, and accept the knowledge I refused. Now me and the arrow functions are like Jack Lemon and Walter Matthau
-        in the legendary movie, <em>The Odd Couple</em>.</p>
-      <h3 id="the-reachable-goals">The reachable goals</h3>
-      <p>First of all, I had to set up some goals to reach. These were:</p>
-      <ul>
-        <li>Use the main <em>React.JS</em> and alternative solutions like, Angular, Vue or Preact etc.</li>
-        <li>Use <em>Typescript</em>, to be as strict in typing as possible, and do whatever is necessary to avoid the <code class="language-plaintext highlighter-rouge">any</code>.</li>
-        <li>Use <em>SCSS</em>, because it’s a minimum effort to use it in a project like this, and also a logical decision.</li>
-        <li>Use an external library for the UIX, but I also should be able to override the behaviour when necessary.</li>
-        <li>Use <em>Webpack</em> to hold it all together.</li>
-      </ul>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-10-27T13:24:35+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">My useless React App, Part 2</title><link href="http://0.0.0.0:4000/frontend/my-useless-react-app-2" rel="alternate" type="text/html" title="My useless React App, Part 2" /><published>2022-10-27T15:00:00+00:00</published><updated>2022-10-27T13:24:34+00:00</updated><id>http://0.0.0.0:4000/frontend/my-useless-react-app-2</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/my-useless-react-app-2"><![CDATA[<h3 id="disclaimer">Disclaimer</h3>
+      <p>The <a href="/frontend/my-useless-react-app-1">Part 1</a> was a shaking up for me from the year-long winter sleep. It was a bit rushy 
+        writing, because I didn’t wanna jump in the middle of this tutorial without any warm up. Getting to the very start point
+        was really not a big deal after reading all those blogs, tutorials and watch the 
+        <a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> React courses. The real 
+        difficulty there was to add the Typescript to the game. Of course, it’s a piece of cake now.</p>
       <h3 id="tldr">TL;DR</h3>
-      <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-        <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
-      <h3 id="too-long-to-be-in-one-article">Too long to be in one article</h3>
-      <p>Honestly I started writing this article already in April, but I was too busy to finish. Meanwhile, I could improve the code a lot.
-        For example, the Typescript support and the <a href="https://chakra-ui.com/" target="_blank" rel="noopener">Chakra UI</a> added only
-        in the recent days. That’s why now I decided to split up the topic into multiple smaller articles, so I can get better into the
-        details and not just throw in some chunks.</p>
-      <h3 id="part-1">Part 1.</h3>
-      <h4 id="the-application">The application</h4>
-      <p>Many people would probably create a market ready product to demonstrate their knowledge. But not me. I create an application
-        that is completely useless. It’s purpose to have some common features and use cases work together that are easy to copy and
-        paste to a real product later. It will be a kind of proof of concept. So what I want to have here:</p>
-      <ul>
-        <li>I want a form encapsulated into the React application. For now, it won’t post anywhere.</li>
-        <li>I need a select box that loads its option values from an endpoint (in this case from a json file)</li>
-        <li>I need a text box which content changes depending on the selected dropdown value</li>
-        <li>I need a button that changes its style depending on the selected dropdown value</li>
-        <li>I need a checkbox that can block the button to change its style</li>
-        <li>I need an alert box to comment some events</li>
-      </ul>
-      <p>This all looks stupid for the first sight, and for the second too, but if you think about it, these use cases are very common.</p>
-      <h4 id="the-folder-structure">The folder structure</h4>
-      <p>Okay, now we know what we want, so let’s start working. In the first step we create some folders and files:</p>
-      <figure class="a-illustration">
-        <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/tree.png" width="252" />
-        <figcaption class="a-illustration__caption">Basic folder structure. Icons by <a target="_blank" rel="noopener" href="https://icons8.com">Icons8</a>, generated with <a target="_blank" rel="noopener" href="https://www.jstree.com/">JsTree</a></figcaption>
-      </figure>
-      <p>I think I don’t have to describe the files and folders, those few who may read this blog probably already know the basics. 
-        If not, I can highly recommend the <a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> website
-        where you can find many great courses. There’s even a free course about React that I also used to learn the basics.</p>
-      <h4 id="the-start">The start</h4>
-      <p>I started this journey already in 2020 during the first wave of the Covid pandemic in Europe. That time the plan was only
-        Webpack + React. Unfortunately I didn’t document my work, and now I can’t remember how it started, and what were the tops and 
-        flops during the learning process. The first version of the application was so lame and simple, I didn’t feel good enough
-        to publish it.</p>
-      <p>I needed Webpack + React. So I looked for a working solution on the internet. Webinars, blogs and
-        <a href="https://www.stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> topics helped a lot. Copied the
-        most promising ones, made them work and the job was done. This was basically my starting point, and I assume everybody, who
-        used Webpack and React earlier will know how it looks like more or less: Webpack, Babel, React, Sass etc.</p>
-      <h4 id="adding-the-typescript">Adding the Typescript</h4>
-      <p>On the summer of 2022 I get back to this blogpost. I decided I pimp the application up a bit, and follow the rules
-        of the nature by rewrite the whole thing in Typescript.</p>
-      <h5 id="packagejson">package.json</h5>
-      <p>So the problem for me was that I had to add also the <code class="language-plaintext highlighter-rouge">Typescript</code> to the configuration, and make it work
-        together with the React and Webpack. With a fast search I could find the packages I have to add to the <code class="language-plaintext highlighter-rouge">package.json</code>:</p>
-      <div class="language-json highlighter-rouge">
+      <p>And again, if you don’t want to waste your time reading this tutorial, and you only need a working code sample, please 
+        check the source code on <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
+      <h3 id="inside-out-outside-in">Inside out, outside in</h3>
+      <p>Now we have a working basic, it’s time to add the features. For a while, they will be dummies.</p>
+      <h4 id="the-application">The Application</h4>
+      <p>Open the <code class="language-plaintext highlighter-rouge">src/script/app.tsx</code> file and modify the “<em>Hello World</em>” application:</p>
+      <div class="language-jsx highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -76,10 +24,697 @@
 9
 10
 11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
 </pre>
         </td>
         <td class="rouge-code">
-          <pre><span class="p">{</span><span class="w">
+          <pre><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">ChakraProvider</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">Box</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/layout</span><span class="dl">'</span>
+<span class="k">import</span> <span class="dl">'</span><span class="s1">../styles/app.scss</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#root</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">Messagebar</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="p">=</span><span class="s">"messagebar"</span><span class="p">&gt;</span>This is an alert box<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;)</span>
+<span class="kd">const</span> <span class="nx">Heading</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello there!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;)</span>
+<span class="kd">const</span> <span class="nx">Form</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">form</span><span class="p">&gt;&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="p">=</span><span class="s">"submit"</span><span class="p">&gt;</span>Dummy<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;&lt;/</span><span class="nt">form</span><span class="p">&gt;)</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+    <span class="p">&lt;</span><span class="nc">ChakraProvider</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nc">MessageBar</span><span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nc">Box</span> <span class="na">id</span><span class="p">=</span><span class="s">"box"</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Heading</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Form</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">Box</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nc">ChakraProvider</span><span class="p">&gt;,</span>
+    <span class="nx">app</span>
+<span class="p">)</span>
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>But before we could compile, we have to create the <code class="language-plaintext highlighter-rouge">src/styles/app.scss</code> too:</p>
+<div class="language-sass highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="cm">/* Variables */
+</span><span class="nv">$size-text-base</span><span class="p">:</span> <span class="m">62</span><span class="mi">.5%</span><span class="err">;</span> <span class="o">/*</span> <span class="n">This</span> <span class="n">should</span> <span class="n">produce</span> <span class="m">10px</span><span class="o">,</span> <span class="n">if</span> <span class="n">your</span> <span class="n">browser</span> <span class="n">follows</span> <span class="n">the</span> <span class="n">unspoken</span> <span class="n">rules</span><span class="o">.</span> <span class="o">*/</span>
+
+<span class="cm">/* Definitions */
+</span><span class="nt">html</span> <span class="err">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="err">;</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="err">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="err">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100vw</span><span class="err">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">100vh</span><span class="err">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="nv">$size-text-base</span><span class="err">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="no">white</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="nt">body</span> <span class="err">{</span>
+  <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="err">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="err">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="err">;</span>
+  <span class="nl">min-height</span><span class="p">:</span> <span class="m">100vh</span><span class="err">;</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="m">400</span><span class="err">;</span>
+  <span class="nl">font-style</span><span class="p">:</span> <span class="nb">normal</span><span class="err">;</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1</span><span class="mi">.6rem</span><span class="err">;</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.9rem</span><span class="err">;</span>
+  <span class="nl">letter-spacing</span><span class="p">:</span> <span class="m">0</span><span class="mi">.01rem</span><span class="err">;</span>
+  <span class="na">scroll-behavior</span><span class="p">:</span> <span class="n">smooth</span><span class="err">;</span>
+  <span class="nl">overflow-x</span><span class="p">:</span> <span class="nb">hidden</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="nn">#root</span> <span class="err">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">100vw</span><span class="err">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">100vh</span><span class="err">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="no">cadetblue</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="nn">#box</span> <span class="err">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="err">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">60rem</span><span class="err">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">50%</span><span class="err">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="err">;</span>
+  <span class="nl">transform</span><span class="p">:</span> <span class="nf">translate</span><span class="p">(</span><span class="m">-50%</span><span class="o">,</span> <span class="m">-50%</span><span class="p">)</span><span class="err">;</span>
+  <span class="nl">background</span><span class="p">:</span> <span class="no">white</span><span class="err">;</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">2rem</span><span class="err">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">1</span><span class="mi">.5rem</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="nn">#messagebar</span> <span class="err">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="err">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">100</span><span class="err">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">1rem</span><span class="err">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="err">;</span>
+  <span class="nl">transform</span><span class="p">:</span> <span class="nf">translateX</span><span class="p">(</span><span class="m">-50%</span><span class="p">)</span><span class="err">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">50rem</span><span class="err">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">green</span><span class="err">;</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">white</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="nt">button</span> <span class="err">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">0</span><span class="mi">.2rem</span> <span class="nb">outset</span> <span class="n">lightgray</span> <span class="o">!</span><span class="n">important</span><span class="err">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="no">darkgray</span> <span class="o">!</span><span class="n">important</span><span class="err">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="mi">.2rem</span> <span class="m">0</span><span class="mi">.5rem</span> <span class="o">!</span><span class="n">important</span><span class="err">;</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="err">;</span>
+<span class="err">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Okay, now let’s see what we have here. If you read the <a href="https://chakra-ui.com/getting-started" rel="noopener" target="_blank">Chakra tutorial</a>,
+  then you will know we have to encapsulate our whole application into the <code class="language-plaintext highlighter-rouge">&lt;ChakraProvider&gt;</code> JSX tag. Whatever we do inside,
+  it can be a regular JSX component, a simple HTML or preferably a <a href="https://chakra-ui.com/docs/components" rel="noopener" target="_blank">Chakra component</a>.</p>
+<p>First we need a <code class="language-plaintext highlighter-rouge">&lt;MessageBar&gt;</code> that will show information regarding some JavaScript events. Then we need some greeting text
+  represented by the <code class="language-plaintext highlighter-rouge">&lt;Heading&gt;</code> and a <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code>.</p>
+<p>Right now none of them is doing anything. Let’s take a look at the components, and fine tune them.</p>
+<h4 id="the-heading">The &lt;Heading&gt;</h4>
+<p>The <code class="language-plaintext highlighter-rouge">&lt;Heading&gt;</code> actually is just fine as is:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">const</span> <span class="nx">Heading</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello there!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>We don’t need to touch, I didn’t have any plan with it other than adding a greeting message.</p>
+<h4 id="the-messagebar">The &lt;MessageBar&gt;</h4>
+<p>Let’s define the purpose. We can say for example, we want to see the alert notification whenever the window size changes.</p>
+<p>To achieve that, we need <em>hooks</em>! We wouldn’t, if we used the <em>React Class Components</em>, but for some unknown reason -  at 
+  least it’s unknown for me - the JS world don’t want to hear about classes and methods and private properties and other 
+  classical OOP stuffs… They want functions! But a not too long time ago, they faced a situation when they couldn’t use the 
+  <em>Class Components’</em> state and lifecycle mechanism, so they invented the <em>HOOKS</em>! I bet, under the hood the hooks are some 
+  kind of helluva big cracking, hacking, antipattern pile of stinky junk. But that’s what we have, that’s what we have to use:</p>
+<ul>
+  <li><em>useState</em> that lets you add React state to function components.</li>
+  <li><em>useEffect</em> lets you express different kinds of side effects after a component renders.</li>
+</ul>
+<p>And also we will need to use the Chakra UI:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span><span class="p">,</span> <span class="nx">FunctionComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">Alert</span><span class="p">,</span> <span class="nx">AlertIcon</span><span class="p">,</span> <span class="nx">AlertTitle</span><span class="p">,</span> <span class="nx">AlertDescription</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span><span class="nx">Box</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/layout</span><span class="dl">'</span>
+
+<span class="cm">/**
+ * Renders a &lt;div&gt; element with some calculated data.
+ *
+ * @constructor
+ */</span>
+<span class="kd">const</span> <span class="nx">MessageBar</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="p">[[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">],</span> <span class="nx">setWindowSize</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="kr">number</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nc">Alert</span> <span class="na">id</span><span class="p">=</span><span class="s">"messagebar"</span> <span class="na">status</span><span class="p">=</span><span class="s">"info"</span> <span class="na">variant</span><span class="p">=</span><span class="s">"top-accent"</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">AlertIcon</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Box</span> <span class="na">className</span><span class="p">=</span><span class="s">"chakra-alert__content"</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nc">AlertTitle</span><span class="p">&gt;</span>The browser window is resized<span class="p">&lt;/</span><span class="nc">AlertTitle</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nc">AlertDescription</span><span class="p">&gt;</span>The window size now is <span class="si">{</span><span class="nx">x</span><span class="si">}</span> x <span class="si">{</span><span class="nx">y</span><span class="si">}</span><span class="p">&lt;/</span><span class="nc">AlertDescription</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nc">Box</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nc">Alert</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">MessageBar</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>As you can see, we didn’t add any magic here so far, just getting the window sizes and put them into the <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code>
+  variables, and we printed them out.</p>
+<p>To have the magic work, let’s add the <code class="language-plaintext highlighter-rouge">useEffect</code>:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>    <span class="c1">// ...</span>
+    <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">handleResize</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">setWindowSize</span><span class="p">([</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">])</span>
+        <span class="p">}</span>
+
+        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+    
+        <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+    <span class="p">},</span> <span class="p">[])</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="c1">// ...</span>
+    <span class="p">)</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>By default - according to the definition - the <code class="language-plaintext highlighter-rouge">useEffect</code> runs both after the first render and after every update. But 
+  in our case we want it to run only once, specifically when the page is rendered. How to do this? Just simply pass an empty 
+  array (<code class="language-plaintext highlighter-rouge">[]</code>) as a second argument. This tells React that our effect doesn’t depend on any values from props or state, so 
+  it never needs to re-run. And indeed, our effect depends on a window event. We also return the <code class="language-plaintext highlighter-rouge">useEffect</code> with a function. 
+  It is the <code class="language-plaintext highlighter-rouge">cleanup function</code>, mainly to avoid memory leaks. Runs automatically, nice to have.</p>
+<p>We also want this alert to appear only when the event is triggered. So let’s extend this <code class="language-plaintext highlighter-rouge">useEffect</code> function (showing
+  only the additions):</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">const</span> <span class="nx">MessageBar</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">isVisible</span><span class="p">,</span> <span class="nx">setVisibility</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nb">Boolean</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+
+    <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="na">timerIds</span><span class="p">:</span> <span class="nb">Array</span><span class="o">&lt;</span><span class="kr">number</span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="kd">const</span> <span class="nx">handleResize</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">setWindowSize</span><span class="p">([</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">])</span>
+            <span class="nx">cancelTimeoutHide</span><span class="p">()</span>
+            <span class="nx">showAlertBox</span><span class="p">()</span>
+            <span class="nx">timeoutHideAlertBox</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">showAlertBox</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">setVisibility</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">timeoutHideAlertBox</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">timerIds</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">setVisibility</span><span class="p">(</span><span class="kc">false</span><span class="p">),</span> <span class="mi">1500</span><span class="p">))</span>
+        <span class="p">}</span>
+
+        <span class="kd">const</span> <span class="nx">cancelTimeoutHide</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">timerIds</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nb">window</span><span class="p">.</span><span class="nx">clearTimeout</span><span class="p">(</span><span class="nx">timerIds</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+            <span class="p">}</span>
+            <span class="nx">timerIds</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">},</span> <span class="p">[])</span>
+
+    <span class="k">return</span> <span class="nx">isVisible</span> <span class="p">?</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nc">Alert</span> <span class="na">id</span><span class="p">=</span><span class="s">"size-alert"</span> <span class="na">status</span><span class="p">=</span><span class="s">"info"</span> <span class="na">variant</span><span class="p">=</span><span class="s">"top-accent"</span><span class="p">&gt;</span>
+            <span class="si">{</span><span class="cm">/* ... */</span><span class="si">}</span>
+        <span class="p">&lt;/</span><span class="nc">Alert</span><span class="p">&gt;</span>
+    <span class="p">)</span> <span class="p">:</span> <span class="p">&lt;&gt;&lt;/&gt;</span>
+<span class="p">}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>So we introduce a new state the <code class="language-plaintext highlighter-rouge">isVisible</code>. This controls whether the alert box “is visible” or not. Wow, what a miracle!
+  How? When it’s visible, the component returns the alert box content, otherwise it returns and empty JSX tag, which makes the
+  React renderer to remove the box from the source code.</p>
+<p>We also added three new methods:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">showAlert</code>: shows the alert box</li>
+  <li><code class="language-plaintext highlighter-rouge">timeoutHideAlert</code>: sets timeouts to hide the alert box.</li>
+  <li><code class="language-plaintext highlighter-rouge">cancelTimeoutHideAlert</code>: clears the timeouts that were not executed yet.</li>
+</ul>
+<p>Why do we need array to collect the IDs? It is simply just to give room for more actions here. If you check the 
+  <a href="https://github.com/Gixx/worstpractice-react/blob/main/src/scripts/components/MessageBar.tsx" rel="noopener" target="_blank">source code on GitHub</a>,
+  you will see, I added another timout to add/remove a class name change that will make some CSS transition effect.</p>
+<h4 id="the-form">The &lt;Form&gt;</h4>
+<p>The Form. In <a href="/frontend/my-useless-react-app-1">Part 1</a> I set up the specification about the form and what it should be
+  capable of. Just to recap, these were:</p>
+<ul>
+  <li>I need a select box that loads its option values from an endpoint (in this case from a json file)</li>
+  <li>I need a text box which content changes depending on the selected dropdown value</li>
+  <li>I need a button that changes its style depending on the selected dropdown value</li>
+  <li>I need a checkbox that can block the button to change its style</li>
+</ul>
+<p>For now let’s construct a dummy form component. What can I say? I love dummy things! I’m dummy! Yaaaay!</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">FunctionComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="dl">'</span><span class="s1">./Form/style.scss</span><span class="dl">'</span>
+
+<span class="cm">/**
+ * Renders a form with a couple of subcomponents within
+ */</span>
+<span class="kd">const</span> <span class="nx">Form</span><span class="p">:</span> <span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">SelectBox</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">select</span><span class="p">&gt;&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="p">=</span><span class="s">"1"</span><span class="p">&gt;</span>A select box value<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;&lt;/</span><span class="nt">select</span><span class="p">&gt;)</span>
+    <span class="kd">const</span> <span class="nx">InputField</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="p">=</span><span class="s">"text"</span> <span class="na">value</span><span class="p">=</span><span class="s">"An input field value"</span> <span class="p">/&gt;)</span>
+    <span class="kd">const</span> <span class="nx">Check</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">label</span><span class="p">&gt;</span>A checkbox: <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="p">=</span><span class="s">"checkbox"</span> <span class="na">value</span><span class="p">=</span><span class="s">"1"</span> <span class="p">/&gt;&lt;/</span><span class="nt">label</span><span class="p">&gt;)</span>
+    <span class="kd">const</span> <span class="nx">Submit</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="p">=</span><span class="s">"submit"</span><span class="p">&gt;</span>A submit button<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;)</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="p">=</span><span class="s">'MyForm'</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">SelectBox</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">InputField</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Check</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Submit</span><span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">Form</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>You can see, I imported a stylesheet too. That’s a nice way to group together component source with its styles. In the 
+  webpack configuration we make sure that the styles won’t be inlined. Honestly I hate when a production code is full of 
+  inline styles. Let’s keep it for debugging, and keep the styles in their well deserved own file. To do so, let’s modify the
+  <code class="language-plaintext highlighter-rouge">webpack.config.ts</code> file:</p>
+<div class="language-typescript highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="k">import</span> <span class="nx">MiniCssExtractPlugin</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">mini-css-extract-plugin</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">config</span><span class="p">:</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">Configuration</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">module</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">rules</span><span class="p">:</span> <span class="p">[</span>
+            <span class="c1">// ...</span>
+            <span class="p">{</span>
+                <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.(</span><span class="sr">scss|css</span><span class="se">)</span><span class="sr">$/</span><span class="p">,</span>
+                <span class="na">use</span><span class="p">:</span> <span class="p">[</span>
+                    <span class="nx">MiniCssExtractPlugin</span><span class="p">.</span><span class="nx">loader</span><span class="p">,</span>
+                    <span class="p">{</span><span class="na">loader</span><span class="p">:</span> <span class="dl">'</span><span class="s1">css-loader</span><span class="dl">'</span><span class="p">,</span> <span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">importLoaders</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">sourceMap</span><span class="p">:</span> <span class="kc">false</span><span class="p">}},</span>
+                    <span class="p">{</span><span class="na">loader</span><span class="p">:</span> <span class="dl">'</span><span class="s1">postcss-loader</span><span class="dl">'</span><span class="p">,</span> <span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">sourceMap</span><span class="p">:</span> <span class="kc">true</span><span class="p">}},</span>
+                    <span class="p">{</span><span class="na">loader</span><span class="p">:</span> <span class="dl">'</span><span class="s1">sass-loader</span><span class="dl">'</span><span class="p">,</span> <span class="na">options</span><span class="p">:</span> <span class="p">{</span><span class="na">sourceMap</span><span class="p">:</span> <span class="kc">true</span><span class="p">}},</span>
+                <span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">],</span>
+    <span class="p">},</span>
+    <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span>
+        <span class="c1">// ...</span>
+        <span class="k">new</span> <span class="nx">MiniCssExtractPlugin</span><span class="p">({</span>
+            <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">assets/styles/[name].[contenthash].css</span><span class="dl">'</span><span class="p">,</span>
+            <span class="na">chunkFilename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">[id].css</span><span class="dl">'</span><span class="p">,</span>
+        <span class="p">}),</span>
+        <span class="c1">// ...</span>
+    <span class="p">],</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now create the <code class="language-plaintext highlighter-rouge">src/scripts/components/Form/style.scss</code> file. Notice this stylesheet not under the <code class="language-plaintext highlighter-rouge">src/styles</code>, where we
+  have the general <code class="language-plaintext highlighter-rouge">app.scss</code>. With this <code class="language-plaintext highlighter-rouge">import</code> we can make sure it will be included, compiled and minified too. For now
+  keep it simple, but you can pimp it up anytime.</p>
+<div class="language-sass highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nn">#MyForm</span> <span class="err">{</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">20px</span><span class="err">;</span>
+<span class="err">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now we have a very basic, no-use form. Let’s pause here for a while, take a breath and play around. In the next article
+  we will build the Form’s subcomponents and make the whole thing work. Cheers!</p>
+]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="react" /><category term="js" /><category term="webpack" /><category term="typescript" /><category term="chakra" /><summary type="html"><![CDATA[After we have the working development environment, now it's time to create the components to fulfill my criteria I set up previously.]]></summary></entry><entry><title type="html">My useless React App, Part 1</title><link href="http://0.0.0.0:4000/frontend/my-useless-react-app-1" rel="alternate" type="text/html" title="My useless React App, Part 1" /><published>2022-10-22T22:00:00+00:00</published><updated>2022-10-25T10:29:12+00:00</updated><id>http://0.0.0.0:4000/frontend/my-useless-react-app-1</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/my-useless-react-app-1"><![CDATA[<h3 id="the-glorious-plans">The glorious plans</h3>
+  <p>I thought I know JavaScript enough that to understand React will be a piece of cake. I thought I will adopt the knowledge in no time and
+    also mastering the TypeScript to be able to write super strict typed clean code. Well, more or less I was right. I was right that I have some
+    knowledge in JavaScript. And basically that’s all.</p>
+  <p>But that was not enough. As soon as I realized that I started to look for articles “<em>for dummies</em>” to understand what part of the 
+    ECMAScript 6, 7, 8, … 2022 or ES.Next I didn’t know about… well, it was a huge list. Some of them was familiar but didn’t really use, 
+    while some of them (like the arrow function) was earned my hate, and I refused to use it any time. What a bad behavior, isn’t it? 
+    And of course there were many small but important thing I didn’t know about. So I had to learn them.</p>
+  <p>So first I had to reset my bad attitude, and accept the knowledge I refused. Now me and the arrow functions are like Jack Lemon and Walter Matthau
+    in the legendary movie, <em>The Odd Couple</em>.</p>
+  <h3 id="the-reachable-goals">The reachable goals</h3>
+  <p>First of all, I had to set up some goals to reach. These were:</p>
+  <ul>
+    <li>Use the main <em>React.JS</em> and alternative solutions like, Angular, Vue or Preact etc.</li>
+    <li>Use <em>Typescript</em>, to be as strict in typing as possible, and do whatever is necessary to avoid the <code class="language-plaintext highlighter-rouge">any</code>.</li>
+    <li>Use <em>SCSS</em>, because it’s a minimum effort to use it in a project like this, and also a logical decision.</li>
+    <li>Use an external library for the UIX, but I also should be able to override the behaviour when necessary.</li>
+    <li>Use <em>Webpack</em> to hold it all together.</li>
+  </ul>
+  <h3 id="tldr">TL;DR</h3>
+  <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
+    <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
+  <h3 id="too-long-to-be-in-one-article">Too long to be in one article</h3>
+  <p>Honestly I started writing this article already in April, but I was too busy to finish. Meanwhile, I could improve the code a lot.
+    For example, the Typescript support and the <a href="https://chakra-ui.com/" target="_blank" rel="noopener">Chakra UI</a> added only
+    in the recent days. That’s why now I decided to split up the topic into multiple smaller articles, so I can get better into the
+    details and not just throw in some chunks.</p>
+  <h3 id="part-1">Part 1.</h3>
+  <h4 id="the-application">The application</h4>
+  <p>Many people would probably create a market ready product to demonstrate their knowledge. But not me. I create an application
+    that is completely useless. It’s purpose to have some common features and use cases work together that are easy to copy and
+    paste to a real product later. It will be a kind of proof of concept. So what I want to have here:</p>
+  <ul>
+    <li>I want a form encapsulated into the React application. For now, it won’t post anywhere.</li>
+    <li>I need a select box that loads its option values from an endpoint (in this case from a json file)</li>
+    <li>I need a text box which content changes depending on the selected dropdown value</li>
+    <li>I need a button that changes its style depending on the selected dropdown value</li>
+    <li>I need a checkbox that can block the button to change its style</li>
+    <li>I need an alert box to comment some events</li>
+  </ul>
+  <p>This all looks stupid for the first sight, and for the second too, but if you think about it, these use cases are very common.</p>
+  <h4 id="the-folder-structure">The folder structure</h4>
+  <p>Okay, now we know what we want, so let’s start working. In the first step we create some folders and files:</p>
+  <figure class="a-illustration">
+    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/tree.png" width="252" />
+    <figcaption class="a-illustration__caption">Basic folder structure. Icons by <a target="_blank" rel="noopener" href="https://icons8.com">Icons8</a>, generated with <a target="_blank" rel="noopener" href="https://www.jstree.com/">JsTree</a></figcaption>
+  </figure>
+  <p>I think I don’t have to describe the files and folders, those few who may read this blog probably already know the basics. 
+    If not, I can highly recommend the <a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> website
+    where you can find many great courses. There’s even a free course about React that I also used to learn the basics.</p>
+  <h4 id="the-start">The start</h4>
+  <p>I started this journey already in 2020 during the first wave of the Covid pandemic in Europe. That time the plan was only
+    Webpack + React. Unfortunately I didn’t document my work, and now I can’t remember how it started, and what were the tops and 
+    flops during the learning process. The first version of the application was so lame and simple, I didn’t feel good enough
+    to publish it.</p>
+  <p>I needed Webpack + React. So I looked for a working solution on the internet. Webinars, blogs and
+    <a href="https://www.stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> topics helped a lot. Copied the
+    most promising ones, made them work and the job was done. This was basically my starting point, and I assume everybody, who
+    used Webpack and React earlier will know how it looks like more or less: Webpack, Babel, React, Sass etc.</p>
+  <h4 id="adding-the-typescript">Adding the Typescript</h4>
+  <p>On the summer of 2022 I get back to this blogpost. I decided I pimp the application up a bit, and follow the rules
+    of the nature by rewrite the whole thing in Typescript.</p>
+  <h5 id="packagejson">package.json</h5>
+  <p>So the problem for me was that I had to add also the <code class="language-plaintext highlighter-rouge">Typescript</code> to the configuration, and make it work
+    together with the React and Webpack. With a fast search I could find the packages I have to add to the <code class="language-plaintext highlighter-rouge">package.json</code>:</p>
+  <div class="language-json highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+    </td>
+    <td class="rouge-code">
+      <pre><span class="p">{</span><span class="w">
   </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"@types/fork-ts-checker-webpack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.4.5"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"@typescript-eslint/eslint-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~5.40.1"</span><span class="p">,</span><span class="w">
@@ -91,10 +726,10 @@
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -4796,24 +5431,4 @@
   tries to use it as a folder name, and additionally to the previous, it tries to enter into it. If we set it up correctly, this should work.</p>
 <h3 id="thats-all-for-now">That’s all for now</h3>
 <p>Am I right? Am I not? Please feel free to share your opinions.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html"><![CDATA[I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.]]></summary></entry><entry><title type="html">What am I doing???</title><link href="http://0.0.0.0:4000/general/what-am-i-doing" rel="alternate" type="text/html" title="What am I doing???" /><published>2020-01-08T14:23:00+00:00</published><updated>2022-10-05T19:13:18+00:00</updated><id>http://0.0.0.0:4000/general/what-am-i-doing</id><content type="html" xml:base="http://0.0.0.0:4000/general/what-am-i-doing"><![CDATA[<h3 id="i-cannot-explain-the-why">I cannot explain the why</h3>
-  <p>For a long time now I always felt I want to shout out to the world all the crazy ideas I have in my mind.
-    But also I am full of fear. With lots of fears, because writing articles and publish them to the public is a
-    huge responsibility. And writing a blog is a double-edged weapon.</p>
-  <ul>
-    <li>What if I write something rubbish, because the English is not my mother tongue?</li>
-    <li>What if I write something absolutely wrong, because I was too lazy to read a book in the given topic?</li>
-    <li>What if I write something totally bullshit, that ruins my prestige to a level, where nobody will ever count with me again?</li>
-  </ul>
-  <h3 id="what-will-i-present-here">What will I present here?</h3>
-  <p>Tips and tricks. Ideas and workarounds. Smart and stupid solutions. Tutorials for the dummy me, to have them later
-    when I need them. And of course, it would be amazing if someone else other than me would also find these articles useful.</p>
-  <p>To fulfill this goal, I will try my best to entertain You. I will try to explain every detail of my ideas, and present not only
-    code samples but also links to the working source codes.</p>
-  <p>I had some private projects in the past that were really good to train myself, but they mostly remained unfinished.
-    My plan is to atomize these projects as much as possible, and create standalone modules or libraries, then publish
-    them here one-by-one.</p>
-  <p>I don’t say, that I am a top programmer with super-human knowledge in every programming language and technology. I know
-    what I know, but I don’t know what I know wrong. The I am sure of one thing: I’d like to share my experiences. And I
-    hope You welcome them. And You - dear visitor - can correct me, and judge me any time.</p>
-  ]]></content><author><name>Gábor Iván</name></author><category term="general" /><category term="personal" /><summary type="html"><![CDATA[It is like a professional suicide. I decided to share my thoughts in various IT-related topics. Maybe a good idea, maybe not. The people of the Internet will judge me.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="wsl" /><category term="docker" /><category term="wsl2" /><category term="poweline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html"><![CDATA[I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.]]></summary></entry></feed>
