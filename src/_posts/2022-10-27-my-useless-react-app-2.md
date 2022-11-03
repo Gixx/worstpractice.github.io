@@ -5,7 +5,7 @@ date: "2022-10-27 16:00:00 +0100"
 level: 'beginner'
 expiration: 'none'
 illustration: 'react_components.jpg'
-illustrationCaption: 'Image by <a rel="noopener" target="_blank" href="https://pixabay.com/users/stevepb-282134/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=674828">Steve Buissinne</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=674828">Pixabay</a>'
+illustrationCaption: 'Image by <a rel="noopener" target="_blank" href="https://pixabay.com/users/stevepb-282134/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=674828">Steve Buissinne</a> from <a rel="noopener" target="_blank" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=674828">Pixabay</a>'
 illustration_share: 'react_components_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'
@@ -158,18 +158,13 @@ kind of helluva big cracking, hacking, antipattern pile of stinky junk. But that
 * *useState* that lets you add React state to function components.
 * *useEffect* lets you express different kinds of side effects after a component renders.
 
-And also we will need to use the Chakra UI:
+And also we will need to use the Chakra UI. Create the `src/scripts/components/MessageBar.tsx`:
 
 ```tsx
 import React, {useState, useEffect, FunctionComponent} from 'react'
 import {Alert, AlertIcon, AlertTitle, AlertDescription} from '@chakra-ui/react'
 import {Box} from '@chakra-ui/layout'
 
-/**
- * Renders a <div> element with some calculated data.
- *
- * @constructor
- */
 const MessageBar:FunctionComponent = function()
 {
     const [[x, y], setWindowSize] = useState<number[]>([window.innerWidth, window.innerHeight])
@@ -286,26 +281,24 @@ capable of. Just to recap, these were:
 * I need a checkbox that can block the button to change its style
 
 For now let's construct a dummy form component. What can I say? I love dummy things! I'm dummy! Yaaaay!
+Create the `src/scripts/components/Form.tsx`:
 
 ```tsx
 import React, {FunctionComponent} from 'react'
 import './Form/style.scss'
 
-/**
- * Renders a form with a couple of subcomponents within
- */
 const Form: FunctionComponent = function ()
 {
     const SelectBox = () => (<select><option value="1">A select box value</option></select>)
     const InputField = () => (<input type="text" value="An input field value" />)
-    const Check = () => (<label>A checkbox: <input type="checkbox" value="1" /></label>)
+    const Lock = () => (<label>A checkbox to lock state: <input type="checkbox" value="1" /></label>)
     const Submit = () => (<button type="submit">A submit button</button>)
 
     return (
         <form id='MyForm' onSubmit={event => event.preventDefault()}>
             <SelectBox/><br/>
             <InputField/><br/>
-            <Check/><br/>
+            <Lock/><br/>
             <Submit/>
         </form>
     )
@@ -354,7 +347,7 @@ Now create the `src/scripts/components/Form/style.scss` file. Notice this styles
 have the general `app.scss`. With this `import` we can make sure it will be included, compiled and minified too. For now
 keep it simple, but you can pimp it up anytime.
 
-```sass
+```css
 #MyForm {
   padding: 20px;
 }

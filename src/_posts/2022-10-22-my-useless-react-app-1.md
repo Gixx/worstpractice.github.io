@@ -5,7 +5,7 @@ date: "2022-10-22 23:00:00 +0100"
 level: 'beginner'
 expiration: 'none'
 illustration: 'react.jpg'
-illustrationCaption: 'Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a>'
+illustrationCaption: 'Image by <a target="_blank" rel="noopener" href="https://pixabay.com/users/geralt-9301/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Gerd Altmann</a> from <a rel="noopener" target="_blank" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=598820">Pixabay</a>'
 illustration_share: 'react_600x600.jpg'
 category: 'frontend'
 categoryLabel: 'Frontend'

@@ -176,6 +176,10 @@ pre code {
     content: 'Source code language: TSX'
   }
 
+  .language-diff pre.highlight::before {
+    content: 'Diff comparision'
+  }
+
   .language-bash pre.highlight::before {
     content: 'Bash/ZSH'
   }

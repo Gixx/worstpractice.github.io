@@ -1,0 +1,1318 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>My useless React App, Part 3&nbsp;-&nbsp;Worst Practice
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="jekyll 3.8.5">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="copyright" content="Copyright © 2022 All rights reserved. Worst Practice.">
+    <meta name="description" content="
+">
+    <meta name="subject" content="">
+    <meta name="keywords" content="React, Webpack, JavaScript, Typescript, Chakra">
+    <!-- facebook share -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Worst Practice">
+    <meta property="og:title" content="My useless React App, Part 3&nbsp;-&nbsp;Worst Practice
+">
+    <meta property="og:url" content="https://www.worstpractice.dev/frontend/my-useless-react-app-3">
+    <meta name="date" content="2022-11-01T15:00:00+00:00">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2022/frontend/my-useless-react-app-3/react_form.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:description" content="So far we scratched only the surface, now it&#39;s time dig deeper and add functionality and some tricks to our form. No pain, no gain - that&#39;s what they used to...">
+    <meta property="fb:admins" content="ivan.gabor.80">
+    <meta property="fb:app_id" content="2178081495757871">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
+    <meta property="article:published_time" content="2022-11-01T15:00:00+00:00">
+    <meta property="article:tag" content="blog"/>
+    <!-- twitter share -->
+    <meta name="twitter:title" content="My useless React App, Part 3">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@gaborivan1980">
+    <meta name="twitter:description" content="So far we scratched only the surface, now it&#39;s time dig deeper and add functionality and some tricks to our form. No pain, no gain - that&#39;s what they used to...">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2022/frontend/my-useless-react-app-3/react_form_600x600.jpg">
+    <link rel="canonical" href="https://www.worstpractice.dev">
+    <link rel="alternate" type="application/rss+xml" title="My useless React App, Part 3&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/frontend/my-useless-react-app-3">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+    <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#C23F2F">
+    <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#C23F2F">
+    <meta name="application-name" content="Worst Practice Blog">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#C23F2F">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.srcset) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/site.min.js"></script>
+  </head>
+  <body>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
+    </header>
+    <div class="codeOfTheDay">
+      <input class="codeOfTheDay__toggle" type="checkbox">
+      <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
+      <div class="codeOfTheDay__backdrop"></div>
+    </div>
+    <div class="m-menu">
+      <div class="m-menu__burger">
+        <span></span>
+      </div>
+      <input class="m-menu__toggle" type="checkbox" />
+      <div class="m-menu__content">
+        <nav>
+          <h2 class="m-menu__title">Worst Practice</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -home" href="/">Home</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Categories</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -frontend -current" href="/frontend">Frontend</a></li>
+            <li><a class="m-menu__link -backend" href="/backend">Backend</a></li>
+            <li><a class="m-menu__link -wsl" href="/wsl">WSL</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Tags</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -personal" rel="tag" href="/tags/personal/">personal <sup>1</sup></a></li>
+            <li><a class="m-menu__link -js" rel="tag" href="/tags/js/">JS <sup>4</sup></a></li>
+            <li><a class="m-menu__link -webpack" rel="tag" href="/tags/webpack/">Webpack <sup>3</sup></a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/tags/">More</a>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Archive</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/archive/2022-11/">November, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-10/">October, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2021-04/">April, 2021</a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/archive/">More</a>
+        </nav>
+        <nav>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/imprint.html">Imprint</a></li>
+            <li><a class="m-menu__link " href="/terms.html">Terms of Use</a></li>
+            <li><a class="m-menu__link " href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="m-menu__backdrop"></div>
+    </div>
+    <main class="c-content">
+      <section class="c-content__article">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">My useless React App, Part 3</h2>
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on November&nbsp; 1, 2022 15:00
+              </p>
+              <p class="a-meta__category">Posted under the <a href="/frontend/index.html">Frontend</a> category</p>
+              <p class="a-meta__level">Level: beginner</p>
+              <p class="a-meta__tags">Posted with the following tags:
+                <a href="/tags/react/index.html">#React</a>, 
+                <a href="/tags/js/index.html">#JS</a>, 
+                <a href="/tags/webpack/index.html">#Webpack</a>, 
+                <a href="/tags/typescript/index.html">#Typescript</a>, 
+                <a href="/tags/chakra/index.html">#Chakra</a>
+              </p>
+            </div>
+          </header>
+          <p class="a-excerpt">
+            So far we scratched only the surface, now it's time dig deeper and add functionality and some tricks to our form. No pain, no gain - that's what they used to say.
+          </p>
+          <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-3/react_form.jpg" alt="My useless React App, Part 3">
+            <figcaption class="a-illustration__caption">Image by <a rel="noopener" target="_blank" href="https://pixabay.com/users/krissie-49050/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2398693">Krissie</a> from <a rel="noopener" target="_blank" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2398693">Pixabay</a></figcaption>
+          </figure>
+          <div class="a-body">
+            <h3 id="tldr">TL;DR</h3>
+            <p><a href="https://en.wikipedia.org/wiki/In_medias_res" rel="noopener" target="_blank"><em>In medias res?</em></a> No problem. 
+              If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the 
+              source code on <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
+            <h3 id="the-selectbox">The &lt;SelectBox&gt;</h3>
+            <p>In <a href="/frontend/my-useless-react-app-2">Part 2</a> we already built the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component with dummy children components.
+              And in <a href="/frontend/my-useless-react-app-1">Part 1</a> we set up the base specification for the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code> as well:</p>
+            <ul>
+              <li>I need a select box that loads its option values from an endpoint (in this case from a json file)</li>
+            </ul>
+            <p>Okay, so let’s get is started. First recreate the dummy component as a separate component in the 
+              <code class="language-plaintext highlighter-rouge">src/scripts/components/Form/SelectBox.tsx</code> file:</p>
+            <div class="language-tsx highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">FunctionComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Select</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/react</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">SelectBox</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nc">Select</span> <span class="na">placeholder</span><span class="p">=</span><span class="s">"A select box value"</span> <span class="na">variant</span><span class="p">=</span><span class="s">"outline"</span> <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="nx">onSelectChange</span><span class="si">}</span> <span class="p">/&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="nx">SelectBox</span><span class="p">)</span>
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<p>We added an extra spice to the soup here in the last row: <code class="language-plaintext highlighter-rouge">export default React.memo(SelectBox)</code>. By default, if a component
+  has any update, it will re-render all child components as well. But in some cases this is unnecessary for a child component.
+  With the <code class="language-plaintext highlighter-rouge">React.memo</code> we can memorize any component, and it will be re-rendered only when that specific component has 
+  changes.</p>
+<p>Now add some eye-candy around this, so modify the JSX part:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>
+            Select the motto of the day:
+            <span class="p">&lt;</span><span class="nc">Select</span> <span class="na">placeholder</span><span class="p">=</span><span class="s">"Motto of the day"</span> <span class="na">variant</span><span class="p">=</span><span class="s">"outline"</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">)</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now, we need elements to be loaded. To do it properly we create a new child component for the <code class="language-plaintext highlighter-rouge">&lt;option&gt;</code> HTML elements.
+  Create the <code class="language-plaintext highlighter-rouge">src/scripts/components/Form/SelectBox/Option.tsx</code> file:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">FunctionComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+
+<span class="kr">interface</span> <span class="nx">OptionData</span> <span class="p">{</span>
+    <span class="nl">value</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="nx">label</span><span class="p">:</span> <span class="kr">string</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Option</span><span class="p">:</span><span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">OptionData</span><span class="o">&gt;</span> <span class="o">=</span>
+    <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="p">&gt;</span><span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">label</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;)</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="nx">Option</span><span class="p">)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Here we defined the <code class="language-plaintext highlighter-rouge">&lt;Option&gt;</code> component and defined its label and value to be strings. Now let’s use it in the
+  <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code>:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">Option</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./SelectBox/Option</span><span class="dl">'</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Okay, we have the component included, but how to load data? We use promise chain! Another fancy behaviour of the modern
+  JavaScript.</p>
+<p>First we have to define the external data source. It can be an API with JSON response or anything else. In our case we
+  will use a static <code class="language-plaintext highlighter-rouge">.json</code> file. Create the <code class="language-plaintext highlighter-rouge">assets/data/motto.json</code>:</p>
+<div class="language-json highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Good day to learn React!"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"safe"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spider-man 4 life!"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"safe"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What you can do today, you can do it tomorrow either."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"safe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Then in the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code> component create a new <del>method</del> <em>function</em> that will load the data:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">const</span> <span class="nx">SelectBox</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">mottoElements</span><span class="p">,</span> <span class="nx">setMottos</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="o">&lt;</span><span class="nx">JSX</span><span class="p">.</span><span class="nx">Element</span><span class="p">[]</span><span class="o">&gt;</span><span class="p">([])</span>
+    
+    <span class="kd">const</span> <span class="nx">getMottos</span> <span class="o">=</span> <span class="p">():</span><span class="k">void</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/assets/data/motto.json</span><span class="dl">'</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="kd">const</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">Option</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span><span class="si">}</span> <span class="na">label</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span> <span class="p">/&gt;</span>
+                <span class="p">})</span>
+
+                <span class="nx">setMottos</span><span class="p">(</span><span class="nx">elements</span><span class="p">)</span>
+            <span class="p">})</span>
+
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+   <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Okay but this is not good in TypeScript wise. We need to define types here. First we define the loaded data:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">const</span> <span class="nx">SelectBox</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">type</span> <span class="nx">Motto</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">id</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+        <span class="na">safe</span><span class="p">:</span> <span class="nx">boolean</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Then we use this type when we map the loaded data:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">const</span> <span class="nx">elements</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">item</span><span class="p">:</span><span class="nx">Motto</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">&lt;</span><span class="nc">Option</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span><span class="si">}</span> <span class="na">label</span><span class="p">=</span><span class="si">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">text</span><span class="si">}</span> <span class="p">/&gt;</span>
+<span class="p">})</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>As you see, we passed the value and label properties to the <code class="language-plaintext highlighter-rouge">&lt;Option&gt;</code> component, that will be waiting for. So when 
+  the JSON file is loaded, the promise chain starts, converts the JSON content into JavaScript array of objects, then we 
+  convert it into array of <code class="language-plaintext highlighter-rouge">&lt;Option&gt;</code> components and store this in a component state.</p>
+<p>Now let’s use the loaded elements in the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code>:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">&lt;</span><span class="nc">Select</span> <span class="na">placeholder</span><span class="p">=</span><span class="s">"Motto of the day"</span> <span class="na">variant</span><span class="p">=</span><span class="s">"outline"</span><span class="p">&gt;</span>
+    <span class="si">{</span><span class="nx">mottoElements</span><span class="si">}</span>
+<span class="p">&lt;/</span><span class="nc">Select</span><span class="p">&gt;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>As a final step, make the data load upon the component render. In <a href="/frontend/my-useless-react-app-2">Part 2</a> we learned
+  about the <code class="language-plaintext highlighter-rouge">useEffect</code> and we need exactly the same:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">const</span> <span class="nx">SelectBox</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">const</span> <span class="nx">getMottos</span> <span class="o">=</span> <span class="p">():</span><span class="k">void</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="nx">useEffect</span><span class="p">(</span><span class="nx">getMottos</span><span class="p">,</span> <span class="p">[])</span>
+
+   <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>We are almost done. In the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component let’s exchange the dummy component to this new one:</p>
+<div class="language-diff highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="gi">+   import SelectBox from './Form/SelectBox'
+</span>    
+    const Form: FunctionComponent = function ()
+    {
+<span class="gd">-       const SelectBox = () =&gt; (&lt;select&gt;&lt;option value="1"&gt;A select box value&lt;/option&gt;&lt;/select&gt;)
+</span>    }
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="the-inputfield">The &lt;InputField&gt;</h3>
+<p>The second form component is the <code class="language-plaintext highlighter-rouge">&lt;InputField&gt;</code>, which almost as simple as it sounds, but we had an extra criteria for it:</p>
+<ul>
+  <li>I need a text box which content changes depending on the selected dropdown value.</li>
+</ul>
+<p>Okay, now create the <code class="language-plaintext highlighter-rouge">src/scripts/components/Form/InputField.tsx</code> file:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">FunctionComponent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Input</span><span class="p">,</span> <span class="nx">InputGroup</span><span class="p">,</span> <span class="nx">InputLeftAddon</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/react</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">InputField</span><span class="p">:</span><span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">InputGroup</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nc">InputLeftAddon</span> <span class="na">children</span><span class="p">=</span><span class="s">'Is it safe?'</span> <span class="p">/&gt;</span>
+                <span class="p">&lt;</span><span class="nc">Input</span>
+                    <span class="na">placeholder</span><span class="p">=</span><span class="s">'Yes or No'</span>
+                    <span class="na">variant</span><span class="p">=</span><span class="s">'filled'</span>
+                    <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span>
+                <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nc">InputGroup</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="nx">InputField</span><span class="p">)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This is as simple as it can be, so make it complex. Just a little. First, let’s typehint that <code class="language-plaintext highlighter-rouge">props</code>, because the TypeScript 
+  interpreter won’t like it this way.</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">type</span> <span class="nx">InputProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">value</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">InputField</span><span class="p">:</span><span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">InputProps</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Easy, isn’t it? The next thing is to add some sugar flavor: when we click inside the input field, make the whole value be
+  selected. It’s useful. Two things to add here: a function that makes the selection, and an event listener that calls this 
+  function.</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">const</span> <span class="nx">InputField</span><span class="p">:</span><span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">InputProps</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">onClick</span> <span class="o">=</span> <span class="p">(</span><span class="nx">target</span><span class="p">:</span> <span class="nx">HTMLInputElement</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">target</span><span class="p">.</span><span class="nx">setSelectionRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">InputGroup</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nc">InputLeftAddon</span> <span class="na">children</span><span class="p">=</span><span class="s">'Is it safe?'</span> <span class="p">/&gt;</span>
+                <span class="p">&lt;</span><span class="nc">Input</span>
+                    <span class="na">placeholder</span><span class="p">=</span><span class="s">'Yes or No'</span>
+                    <span class="na">variant</span><span class="p">=</span><span class="s">'filled'</span>
+                    <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span>
+                    <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">onClick</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span> <span class="k">as</span> <span class="nx">HTMLInputElement</span><span class="p">)</span><span class="si">}</span>
+                <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nc">InputGroup</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Well, I cheated a little, since the event listener is already written in the Chakra component, I needed only to pass the
+  new function to it. You can notice that in the function we didn’t get the value from the input field, but we used the
+  <code class="language-plaintext highlighter-rouge">props</code> instead. It’s a nice way to reduce complexity, since the input field’s value is already in the <code class="language-plaintext highlighter-rouge">props</code>, so no need
+  to go to DOM level to extract it from the field itself.</p>
+<p>Our specification said, it should change the value whenever the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code> changes. How to do this?  First I scratched
+  my head, but then I read after the good solutions, and realized the most obvious way: do this whole process in the common
+  parent, in the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component. So open the <code class="language-plaintext highlighter-rouge">src/scripts/components/Form.tsx</code> file and add the following:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="k">import</span> <span class="nx">InputField</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./Form/InputField</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">Form</span><span class="p">:</span> <span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="p">[</span><span class="nx">value</span><span class="p">,</span> <span class="nx">setValue</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
+    <span class="c1">// ...</span>
+   
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="p">=</span><span class="s">'MyForm'</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">SelectBox</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">InputField</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">value</span><span class="si">}</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="si">{</span><span class="cm">/* ... */</span><span class="si">}</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This will store the <code class="language-plaintext highlighter-rouge">value</code> in the component state and pass it to the <code class="language-plaintext highlighter-rouge">&lt;InputField&gt;</code> component. But how will the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code>
+  change the value? The answer is twisted: we create a callback function that sets the <code class="language-plaintext highlighter-rouge">value</code> and pass this callback to the
+  <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code> which will call it when it changes. Clear? No? Ok, then create the callback in the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code>:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">const</span> <span class="nx">Form</span><span class="p">:</span> <span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="kd">const</span> <span class="nx">onSelectChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">isSafe</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">setValue</span><span class="p">(</span><span class="nx">isSafe</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Yes</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">No</span><span class="dl">'</span><span class="p">)</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="p">=</span><span class="s">'MyForm'</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">event</span> <span class="o">=&gt;</span> <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">()</span><span class="si">}</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">SelectBox</span> <span class="na">onSelectChange</span><span class="p">=</span><span class="si">{</span><span class="nx">onSelectChange</span><span class="si">}</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nc">InputField</span> <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">value</span><span class="si">}</span><span class="p">/&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+            <span class="si">{</span><span class="cm">/* ... */</span><span class="si">}</span>
+        <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>So this callback must get a Boolean parameter and if it’s TRUE, then the <code class="language-plaintext highlighter-rouge">value</code> will be “<em>Yes</em>”, otherwise “<em>No</em>”.
+  Now add the following to the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code> component:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">type</span> <span class="nx">SelectProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">onSelectChange</span><span class="p">:</span> <span class="p">(</span><span class="na">isSafe</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">SelectBox</span><span class="p">:</span><span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">SelectProps</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">onSelectChange</span><span class="p">:</span><span class="nx">ChangeEventHandler</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">:</span> <span class="nx">ChangeEvent</span><span class="o">&lt;</span><span class="nx">HTMLInputElement</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">newValue</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+        <span class="kd">const</span> <span class="nx">selectedMotto</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="nx">props</span><span class="p">.</span><span class="nx">onSelectChange</span><span class="p">((</span><span class="nx">selectedMotto</span><span class="p">?.</span><span class="nx">safe</span><span class="p">)</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">{</span><span class="cm">/* ... */</span><span class="p">}</span>
+                <span class="p">&lt;</span><span class="nc">Select</span> <span class="na">placeholder</span><span class="p">=</span><span class="s">"Motto of the day"</span> <span class="na">variant</span><span class="p">=</span><span class="s">"outline"</span> <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="nx">onSelectChange</span><span class="si">}</span><span class="p">&gt;</span>
+        <span class="si">{</span><span class="cm">/* ... */</span><span class="si">}</span>
+    )
+}
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Note, we defined a type for the props, and changed the component signature as well. Then we created a callback that will 
+  be called by the Chakra component when the <code class="language-plaintext highlighter-rouge">&lt;select&gt;</code> field changes. When this callback is called it will get the new
+  selected value from the regular DOM event, and calls the callback that we passed through the <code class="language-plaintext highlighter-rouge">props</code>. I mean it <strong>would</strong> call.
+  Now it can’t since we lost the fetched raw data when we converted into <code class="language-plaintext highlighter-rouge">&lt;Option&gt;</code> components. Fix this too:</p>
+<div class="language-diff highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="gi">+   import React, {useState, useEffect, FunctionComponent, ChangeEvent, ChangeEventHandler} from 'react'
+</span>    // ...
+    const SelectBox:FunctionComponent&lt;SelectProps&gt; = function(props)
+    {
+        // ...
+<span class="gi">+       type MottoStore = Array&lt;Motto&gt;;
++       const [mottos, setData] = useState&lt;MottoStore&gt;([])
+</span>        // ...
+        const onSelectChange:ChangeEventHandler = (event: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+            // ...
+<span class="gi">+           const selectedMotto = mottos.find((item:Motto) =&gt; item.id === newValue)
+</span>            // ...
+        }
+        //...        
+        const getMottos = ():void =&gt; {
+            fetch('/assets/data/motto.json')
+                .then(response =&gt; response.json())
+                .then((data) =&gt; {
+                    const elements = data.map((item:Motto) =&gt; {
+                        return &lt;Option value={item.id.toString()} label={item.text} /&gt;
+                    })
+    
+                    setMottos(elements)
+<span class="gi">+                   setData(data)
+</span>                })
+    
+            return
+        }
+    }
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>So what happens here? When we fetch the JSON data, we store it with the <code class="language-plaintext highlighter-rouge">setMottos</code> hook. Since we already defined the type
+  of each item in the JSON array, we can define the type of this array as well. So did we with the <code class="language-plaintext highlighter-rouge">MottoStore</code>. It’s an
+  array of <code class="language-plaintext highlighter-rouge">Motto</code>s. Cool. And now in the <code class="language-plaintext highlighter-rouge">onSelectChange</code> we can use this array knowing the exact type of each
+  item, so we can refer one property of them safely. That’s why it worth to use TypeScript! When we find the selected item,
+  we call the callback function with TRUE or FALSE depending on the <code class="language-plaintext highlighter-rouge">safe</code> property. And remember: this callback will set 
+  the value in the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component.</p>
+<p>So by changing the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code>’s selection the <code class="language-plaintext highlighter-rouge">&lt;InputField&gt;</code>’s value will be “Yes” or “No”. Of course, you can change 
+  the <code class="language-plaintext highlighter-rouge">&lt;InputField&gt;</code>’s value with any free text if you wish.</p>
+<h3 id="the-submit">The &lt;Submit&gt;</h3>
+<p>In the order of the elements the checkbox would be the next, but its functionality depends on the button, so first let’s
+  see this button. Again, our specification was:</p>
+<ul>
+  <li>I need a button that changes its style depending on the selected dropdown value</li>
+</ul>
+<p>Create the <code class="language-plaintext highlighter-rouge">src/scripts/components/Form/Submit.tsx</code> file:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">FunctionComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Button</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/react</span><span class="dl">'</span>
+
+<span class="kd">type</span> <span class="nx">SubmitProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">value</span><span class="p">:</span> <span class="kr">string</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Submit</span><span class="p">:</span><span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">SubmitProps</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">enabled</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">yes</span><span class="dl">'</span>
+    <span class="kd">const</span> <span class="nx">style</span> <span class="o">=</span> <span class="nx">enabled</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">teal</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">red</span><span class="dl">'</span>
+    <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">enabled</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">OK</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">Cancel</span><span class="dl">'</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nc">Button</span> <span class="na">colorScheme</span><span class="p">=</span><span class="si">{</span> <span class="nx">style</span> <span class="si">}</span> <span class="na">variant</span><span class="p">=</span><span class="s">"solid"</span> <span class="na">type</span><span class="p">=</span><span class="s">"submit"</span><span class="p">&gt;</span>
+            <span class="si">{</span><span class="nx">text</span><span class="si">}</span>
+        <span class="p">&lt;/</span><span class="nc">Button</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="nx">Submit</span><span class="p">)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>After what we achieved with the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code> and with the <code class="language-plaintext highlighter-rouge">&lt;Inputfield&gt;</code>, it’s not a big deal to understand how this 
+  button component works. It must get a <code class="language-plaintext highlighter-rouge">value</code> parameter, which must be “<em>yes</em>” (after making it lower case) or anything else.
+  This will set an <code class="language-plaintext highlighter-rouge">enabled</code> variable to TRUE or FALSE. When it’s TRUE, the button will be a green (teal) OK, otherwise it
+  will be a red Cancel. Wonderful.</p>
+<p>Make it use in the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component:</p>
+<div class="language-diff highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>    // ...
+<span class="gi">+   import InputField from './Form/Submit'
+</span>    
+    const Form: FunctionComponent = function ()
+    {
+        // ...
+<span class="gd">-       const Submit = () =&gt; (&lt;button type="submit"&gt;A submit button&lt;/button&gt;)
+</span>       
+        return (
+            &lt;form id='MyForm' onSubmit={event =&gt; event.preventDefault()}&gt;
+                {/* ... */}
+<span class="gi">+               &lt;Submit value={value}/&gt;&lt;br/&gt;
+</span>            &lt;/form&gt;
+        )
+    }
+    // ...
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>And since we set and store the <code class="language-plaintext highlighter-rouge">value</code> in the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component, we can easily pass it to the <code class="language-plaintext highlighter-rouge">&lt;Submit&gt;</code> component as well.</p>
+<h3 id="the-lock">The &lt;Lock&gt;</h3>
+<p>Our last component will be a checkbox. Remember our criteria regarding its purpose:</p>
+<ul>
+  <li>I need a checkbox that can block the button to change its style</li>
+</ul>
+<p>So we need a checkbox. Whenever we check this checkbox the <code class="language-plaintext highlighter-rouge">&lt;Submit&gt;</code>’s style must be intact. So this has its own value
+  that should affect another component. Sounds familiar, we did something similar with the <code class="language-plaintext highlighter-rouge">&lt;SelectBox&gt;</code>, didn’t we?
+  Good, now let’s create the <code class="language-plaintext highlighter-rouge">src/scripts/components/Form/Lock.tsx</code> file:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">FunctionComponent</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Checkbox</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@chakra-ui/react</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">Lock</span><span class="p">:</span> <span class="nx">FunctionComponent</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Checkbox</span> <span class="na">size</span><span class="p">=</span><span class="s">"lg"</span> <span class="na">colorScheme</span><span class="p">=</span><span class="s">"green"</span><span class="p">&gt;</span>
+                Lock button state?
+            <span class="p">&lt;/</span><span class="nc">Checkbox</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="nx">Lock</span><span class="p">)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This won’t do much, because we need to know the initial state, and we need a callback that will handle the changes. Just
+  define the <code class="language-plaintext highlighter-rouge">props</code> type, and pass the properties to the Chakra component:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">type</span> <span class="nx">CheckboxProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">locked</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">,</span>
+    <span class="na">onLockChange</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">void</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Lock</span><span class="p">:</span> <span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">CheckboxProps</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nc">Checkbox</span> <span class="na">size</span><span class="p">=</span><span class="s">"lg"</span> <span class="na">colorScheme</span><span class="p">=</span><span class="s">"green"</span> <span class="na">isChecked</span><span class="p">=</span><span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">locked</span><span class="si">}</span> <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onLockChange</span><span class="si">}</span>
+            <span class="p">&gt;</span>
+                <span class="si">{</span><span class="cm">/* ... */</span><span class="si">}</span>
+            <span class="p">&lt;/</span><span class="nc">Checkbox</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>So whether the <code class="language-plaintext highlighter-rouge">&lt;Lock&gt;</code> component is checked or not, a boolean data will control. And we need to define the void function
+  for the callback. And as before we do this in the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> component:</p>
+<div class="language-diff highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>    // ...
+<span class="gi">+   import Lock from './Form/Lock'
+</span>    
+    const Form: FunctionComponent = function ()
+    {
+        // ...
+<span class="gi">+       const [locked, setLocked] = useState(true)
+</span>    
+        // ...
+<span class="gi">+       const onLockChange = () =&gt; setLocked(!locked)
+</span>        // ...
+<span class="gd">-       const Lock = () =&gt; (&lt;label&gt;A checkbox to lock state: &lt;input type="checkbox" value="1" /&gt;&lt;/label&gt;)   
+</span>    
+        return (
+            &lt;form id='MyForm' onSubmit={event =&gt; event.preventDefault()}&gt;
+                &lt;SelectBox onSelectChange={onSelectChange}/&gt;&lt;br/&gt;
+                &lt;InputField value={value} onInputChange={onInputChange}/&gt;&lt;br/&gt;
+<span class="gi">+               &lt;Lock locked={locked} onLockChange={onLockChange}/&gt;&lt;br/&gt;
++               &lt;Submit value={value} locked={locked}/&gt;
+</span>            &lt;/form&gt;
+        )
+    }
+    // ...
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Okay, now the checkbox can call the function and the <code class="language-plaintext highlighter-rouge">&lt;Form&gt;</code> will store its state in the <code class="language-plaintext highlighter-rouge">locked</code> variable. As you can
+  see, we also passed this variable to the <code class="language-plaintext highlighter-rouge">&lt;Submit&gt;</code> component, so let’s make it be used:</p>
+<div class="language-tsx highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="kd">type</span> <span class="nx">SubmitProps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">value</span><span class="p">:</span> <span class="kr">string</span><span class="p">,</span>
+    <span class="na">locked</span><span class="p">:</span> <span class="nx">boolean</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Submit</span><span class="p">:</span><span class="nx">FunctionComponent</span><span class="o">&lt;</span><span class="nx">SubmitProps</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">isLocked</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">:</span><span class="nx">SubmitProps</span><span class="p">,</span> <span class="nx">nextProps</span><span class="p">:</span><span class="nx">SubmitProps</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nx">prevProps</span> <span class="o">===</span> <span class="nx">nextProps</span> <span class="o">||</span> <span class="nx">nextProps</span><span class="p">.</span><span class="nx">locked</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">React</span><span class="p">.</span><span class="nx">memo</span><span class="p">(</span><span class="nx">Submit</span><span class="p">,</span> <span class="nx">isLocked</span><span class="p">)</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Hey, what is this? A new behavior! And yes, the <code class="language-plaintext highlighter-rouge">React.memo</code> can do more than just remember the actual state of a component 
+  and avoid its re-rendering, but it also can do this under certain circumstances. With the second parameter we can add an 
+  expression / callback / function to decide, whether it should change the state or not. I don’t know, I didn’t dig the sources,
+  but I assume in the background the component technically receives the new props, but this callback decides to not apply the
+  changes when the locked property is TRUE.</p>
+<p>How it does this? The <code class="language-plaintext highlighter-rouge">isLocked</code> callback will get two parameters:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">prevProps</code>: the component’s props before the change</li>
+  <li><code class="language-plaintext highlighter-rouge">nextProps</code>: the component’s props to apply to make the change happen</li>
+</ul>
+<p>Simply we just check if there were any change between the two states (default behaviour) OR the checkbox is checked in 
+  the new properties. Super mega awesome!</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-3/useless_react_app.png" width="800" />
+  <figcaption class="a-illustration__caption">My first and completely useless React application</figcaption>
+</figure>
+<h3 id="recap">Recap</h3>
+<p>So what we achieved? In short: made a useless React application. In details:</p>
+<ul>
+  <li>We get together <code class="language-plaintext highlighter-rouge">Webpack</code>, <code class="language-plaintext highlighter-rouge">React</code> and <code class="language-plaintext highlighter-rouge">Typescript</code> in a solid, maintainable, well-structured code base.</li>
+  <li>We used a third party UI to pimp the shit up.</li>
+  <li>We learned how to create <code class="language-plaintext highlighter-rouge">React</code> components written in <code class="language-plaintext highlighter-rouge">Typescript</code> that can share data with each other.</li>
+  <li>We could avoid to use the hateful <code class="language-plaintext highlighter-rouge">any</code>.</li>
+</ul>
+<p>Now one question left: Is this the worst practice?</p>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
+  <p class="a-footer__author">
+    Hi, my name is Gábor Iván. I am an old-school Full stack developer, which means I deal with Backend (PHP), Frontend (HTML, CSS, JS), and a little bit of Webdesign. No DevOPS, sorry.
+    <br>
+    <a href="/author/gabor.ivan/index.html">Read the full story</a>
+  </p>
+</footer>
+</article>
+<aside class="a-comments">
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `My useless React App, Part 3`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
+</aside>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2022 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+</body>
+</html>
