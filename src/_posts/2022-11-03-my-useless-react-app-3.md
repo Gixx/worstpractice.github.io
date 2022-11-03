@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "My useless React App, Part 3"
-date: "2022-11-01 16:00:00 +0100"
+date: "2022-11-03 11:00:00 +0100"
 level: 'beginner'
 expiration: 'none'
 illustration: 'react_form.jpg'
