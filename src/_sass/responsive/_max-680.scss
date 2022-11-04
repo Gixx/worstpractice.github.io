@@ -79,3 +79,7 @@
     line-height: $size-header-medium-line;
   }
 }
+
+.c-content__tags > .a-article > div {
+  column-count: 2;
+}

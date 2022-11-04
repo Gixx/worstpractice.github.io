@@ -479,3 +479,12 @@
   margin: 2rem 0 1rem 0;
   text-align: center;
 }
+
+// Tag list
+.c-content__tags > .a-article > div {
+  column-count: 3;
+
+  & > nav {
+    break-inside: avoid-column;
+  }
+}

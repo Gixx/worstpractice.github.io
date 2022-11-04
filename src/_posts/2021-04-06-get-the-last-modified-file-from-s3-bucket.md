@@ -9,8 +9,8 @@ illustrationCaption: ''
 illustration_share: 'download_600x600.jpg'
 category: 'backend'
 categoryLabel: 'Backend'
-tags:   [php,aws,s3-bucket]
-tagLabels: ['PHP', 'AWS', 'S3 Bucket']
+tags:   [php74,aws,s3-bucket]
+tagLabels: ['PHP 7.4', 'AWS', 'S3 Bucket']
 excerpt: "Recently I had to make my hands dirty with the AWS S3, and I faced a problem of getting the latest/newest file from a bucket with PHP."
 keywords: "PHP, AWS, S3 Bucket, Client, ListObjectsV2, Last modified, descending order"
 review: true

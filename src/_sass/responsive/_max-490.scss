@@ -150,3 +150,7 @@ dd, dt {
     height: 30rem;
   }
 }
+
+.c-content__tags > .a-article > div {
+  column-count: 1;
+}

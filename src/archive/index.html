@@ -13,8 +13,10 @@ title: 'Archive'
         </header>
         <ul>
             {%- for dateSlug in dateSlugs -%}
+                {% unless forloop.last %}
             {%- assign dateLabel = dateLabels[forloop.index0] -%}
             <li><a class="date date-{{ dateSlug }}{% if dateSlug == currentDateSlug %} current{% endif %}" href="/archive/{{ dateSlug }}/">{{ dateLabel | strip }}</a></li>
+                {% endunless %}
             {%- endfor -%}
         </ul>
     </article>
