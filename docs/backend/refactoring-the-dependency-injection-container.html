@@ -156,7 +156,7 @@
             </div>
           </header>
           <p class="a-excerpt">
-            Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it's time to get back there and practice the refactoring it a bit.
+            Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it's time to get back there and practice the refactoring.
           </p>
           <figure class="a-illustration">
             <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/refactoring-the-dependency-injection-container/refactoring.jpg" alt="Refactoring the Dependency Injection Container">
@@ -172,22 +172,23 @@
               someone even dare to install it, there were many mistakes made.</p>
             <p><strong>First</strong>: leaving the configuration as an array. False statement <a href="https://worstpractice.dev/backend/diy-dependency-injection-container-2#choose-the-right-weapon" rel="noopener" target="_blank">made by me</a>:</p>
             <blockquote>
-              <p>And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative array or Iterable class. Then why should we waste our time on this?</p>
+              <p>And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
+                array or Iterable class. Then why should we waste our time on this?</p>
             </blockquote>
             <p><strong>Second</strong>: comes from the first actually: the type strictness became unmaintainable. I even had to add some ignores and
-              exceptions to the <code class="language-plaintext highlighter-rouge">phpstan</code>’s configuration, to pass all tests.</p>
+              exceptions to the <code class="language-plaintext highlighter-rouge">PHPStan</code>’s configuration, to pass all tests.</p>
             <p><strong>Third</strong>: closed the possibility to use other config parsers, so one can make their own (e.g.: XML, YAML, ini, etc.).</p>
             <h3 id="planning">Planning</h3>
-            <p>I decided, if I refactor the code, I will do it right. So I aimed to rewrite anything necessary in PHP version 8.2. Today,
-              as I’m writing this article, the PHP 8.2 is still not released yet officially, I could use only the Release Candidate version.</p>
+            <p>I decided, when I refactor the code, I will do it right. So I aimed to rewrite everything in PHP 8.2. Today,
+              as I’m writing this article, the PHP 8.2 is still not officially released, and I could use only the Release Candidate version.</p>
             <p>I assumed and accepted that some tools won’t work as expected as partial or full lack of PHP 8.2 support. I as right
               unfortunately. I had to give up using the <code class="language-plaintext highlighter-rouge">PHP CS</code>, the <code class="language-plaintext highlighter-rouge">CS Fixer</code>, and the 
               <a href="https://scrutinizer-ci.com/" rel="noopener" target="_blank">Scrutinizer</a>’s code quality checks. But the two
               most important, the <code class="language-plaintext highlighter-rouge">PHPUnit</code> and the <code class="language-plaintext highlighter-rouge">PHPStan</code> static analyser are still on duty, so I’m satisfied.</p>
             <p>I also decided to eliminate all the <code class="language-plaintext highlighter-rouge">PHPStan</code> exceptions I made, and go for full throttle on maximum level with the checks.</p>
-            <h3 id="the-structure">The structure</h3>
-            <p>The original DIC (form now I will refer it as <code class="language-plaintext highlighter-rouge">v.1.0</code>) was only one simple class with all together 430 rows of code with 
-              comments. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
+            <h3 id="the-old-structure">The old structure</h3>
+            <p>The original DIC (form now I will refer it as <code class="language-plaintext highlighter-rouge">v.1.0</code>) was only one simple class with altogether 430 rows of code and 
+              comment. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
               there, I will need to go Kansas and jump deep into that goddamn rabbit hole.</p>
             <p>In <code class="language-plaintext highlighter-rouge">v.1.0</code> there were no structure. I used arrays everywhere for everything. These were the main “sub-containers”:</p>
             <div class="language-php highlighter-rouge">
@@ -260,6 +261,7 @@
 <h4 id="shared">Shared</h4>
 <p>A boolean data, that defines whether the class must be singleton or should be instantiated every time we retrieve it from
   the container.</p>
+<h3 id="the-new-structure">The new structure</h3>
 <p>Now we understand the structure of the configuration, that makes a bit more sense for those class properties:</p>
 <ul>
   <li>One to store the raw config.</li>
@@ -270,8 +272,8 @@
 <p>To make this whole mess type-safe, we need to find a way to define all units for the configuration. 
   Just a fast thinking to write our the grocery list:</p>
 <ul>
-  <li><strong>Argument item</strong> - One particular parameter. It stores the index (position), the type (string, integer, boolean etc), 
-    the value and if it’s a service reference or not.</li>
+  <li><strong>Argument item</strong> - One particular parameter. It stores the index (position), the type (string, integer, boolean etc.), 
+    the value and whether it’s a service reference or not.</li>
   <li><strong>Argument collection</strong> - This stores all the <strong>Argument items</strong>, that will be passed to the class constructor.</li>
   <li><strong>Callable item</strong> - The method name and the method’s parameter list (which is an Argument collection).</li>
   <li><strong>Callable collection</strong> - This stores all the <strong>Callable items</strong>, we want to call after the service is initialized.</li>
@@ -416,8 +418,8 @@
 </code></pre>
 </div>
 </div>
-<p>The <code class="language-plaintext highlighter-rouge">ServiceLibrary</code> in <code class="language-plaintext highlighter-rouge">v.1.0</code> was basically part of the <code class="language-plaintext highlighter-rouge">Container</code>, now I separated them to be more readable and also 
-  simplify the responsibilities. According to the Single responsibility principal, a class should have one and only one 
+<p>The <code class="language-plaintext highlighter-rouge">ServiceLibrary</code> in <code class="language-plaintext highlighter-rouge">v.1.0</code> was basically part of the <code class="language-plaintext highlighter-rouge">Container</code>, now I separated these two to be more readable and also 
+  simplify the responsibilities. According to the <strong>Single responsibility principal</strong>, a class should have one and only one 
   reason to change, meaning that a class should have only one job. Okay, maybe I failed on this, but I can say the following:</p>
 <ul>
   <li>The library’s responsibility is to prepare all the data for the container. This includes calling the parser, resolve the
@@ -457,10 +459,10 @@
 </div>
 </div>
 <p>Tried to solve it with <a href="https://phpstan.org/writing-php-code/phpdoc-types#iterables" rel="noopener" target="_blank">PHPDoc Types</a>
-  and PHP Attributes (such as <a href="https://blog.jetbrains.com/phpstorm/2020/10/phpstorm-2020-3-eap-4/#ArrayShape" rel="noopener" target="_blank">ArrayShape</a>) 
-  too but pre-defining the service’s (1st level), call list’s (2nd level), method’s (3rd level) parameter list (4th level),
-  where any parameter can be an array too, became way too complicated. Also in the config the call list itself is a mixed
-  array, taking the zero indexed element is the method name, and the first indexed element is the attribute list array.</p>
+  and PHP Attributes (such as <a href="https://blog.jetbrains.com/phpstorm/2020/10/phpstorm-2020-3-eap-4/#ArrayShape" rel="noopener" target="_blank">ArrayShape</a>), 
+  but pre-defining the service’s (1st level) call list’s (2nd level) method’s (3rd level) parameter list (4th level),
+  where any parameter can be an array too, became way too complicated. Also in the config, the call list itself is a mixed
+  array, because the zero indexed element is the method name is string, and the first indexed element is the attribute list is an array.</p>
 <p>No doubt, it’s a mess. Not a small one, but huge. How to solve it then? Well… it’s called <code class="language-plaintext highlighter-rouge">ConfigParserInterface</code>! We
   define it simple and the Library will use the implementation:</p>
 <div class="language-php highlighter-rouge">
@@ -503,7 +505,7 @@
   only the <code class="language-plaintext highlighter-rouge">ArrayParser</code>. Later, I may create an <code class="language-plaintext highlighter-rouge">XMLParser</code> or a <code class="language-plaintext highlighter-rouge">YamlParser</code> (by including the Symfony’s Yaml parser class).</p>
 <p>The question is still the same, and I avoid the hot porridge, like a cat.</p>
 <h5 id="array-to-object">Array to Object</h5>
-<p>So a mixed array should be converted to object? Can we do it in one step? If yes, please send me a good solution, what I 
+<p>So a mixed array should be converted to object. Can we do it in one step? If yes, please send me a good solution, anything I 
   tried were all wrong, or just simply didn’t fit here.</p>
 <p>Then, can we do it in two steps?</p>
 <div class="language-plaintext highlighter-rouge">
@@ -545,11 +547,11 @@
 </div>
 <p>Oh, yes! The <code class="language-plaintext highlighter-rouge">json_encode</code> eats <code class="language-plaintext highlighter-rouge">mixed</code> data and produces a <code class="language-plaintext highlighter-rouge">string</code> (or <code class="language-plaintext highlighter-rouge">false</code>). The <code class="language-plaintext highlighter-rouge">json_decode</code>, in the other hand, eats 
   a <code class="language-plaintext highlighter-rouge">string</code> and produces an <code class="language-plaintext highlighter-rouge">array</code>. <strong>Or an Object!</strong></p>
-<p>But what kind of object? It’s the built-in <code class="language-plaintext highlighter-rouge">stdClass</code>. And since it’s an object we can use <code class="language-plaintext highlighter-rouge">ReflectionObject</code> on it, and 
+<p>But what kind of object? It’s the built-in <code class="language-plaintext highlighter-rouge">stdClass</code>. And since it’s an object, we can use <code class="language-plaintext highlighter-rouge">ReflectionObject</code> on it, and 
   also can feed into the <code class="language-plaintext highlighter-rouge">foreach</code> construct, because by design the <code class="language-plaintext highlighter-rouge">foreach</code> works not only with arrays, but also with objects 
-  that have public properties. And the <code class="language-plaintext highlighter-rouge">stdClass</code> is nothing more than public properties.</p>
+  that have public properties. And the <code class="language-plaintext highlighter-rouge">stdClass</code> is not more than public properties.</p>
 <p>Great! The most difficult part is done. We go through the data, build the <strong>items</strong>, add them to the <strong>collections</strong>, cast
-  everything to the right type, since what we have to cast, is for sure can’t be an array, therefore we won’t have such errors
+  everything to the right type. Since anything that we have to cast, is for sure can’t be an array, therefore we won’t have such errors
   as <code class="language-plaintext highlighter-rouge">PHP Warning:  Array to string conversion</code>.</p>
 <p>“By any means necessary” - that’s what they used to say. And my goal was to achieve strict types. Result?</p>
 <figure class="a-illustration">

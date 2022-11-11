@@ -11,7 +11,7 @@ category: 'backend'
 categoryLabel: 'Backend'
 tags:   [php82,refactor,dic,clean-code]
 tagLabels: ['PHP 8.2', 'Refactoring', 'DIC', 'Clean code']
-excerpt: "Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it's time to get back there and practice the refactoring it a bit."
+excerpt: "Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it's time to get back there and practice the refactoring."
 keywords: "PHP 8.2, dependency injection, Clean code, S.O.L.I.D., SOLID Principles, Interface, PHPUnit, PHPStan"
 review: true
 published: true
@@ -29,17 +29,18 @@ Although my <abbr title="Do It Yourself Dependency Injection Container">DIY DIC<
 someone even dare to install it, there were many mistakes made.
 
 **First**: leaving the configuration as an array. False statement <a href="https://worstpractice.dev/backend/diy-dependency-injection-container-2#choose-the-right-weapon" rel="noopener" target="_blank">made by me</a>: 
->  And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative array or Iterable class. Then why should we waste our time on this?
+> And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
+> array or Iterable class. Then why should we waste our time on this?
 
 **Second**: comes from the first actually: the type strictness became unmaintainable. I even had to add some ignores and
-exceptions to the `phpstan`'s configuration, to pass all tests.
+exceptions to the `PHPStan`'s configuration, to pass all tests.
 
 **Third**: closed the possibility to use other config parsers, so one can make their own (e.g.: XML, YAML, ini, etc.).
 
 ### Planning
 
-I decided, if I refactor the code, I will do it right. So I aimed to rewrite anything necessary in PHP version 8.2. Today,
-as I'm writing this article, the PHP 8.2 is still not released yet officially, I could use only the Release Candidate version.
+I decided, when I refactor the code, I will do it right. So I aimed to rewrite everything in PHP 8.2. Today,
+as I'm writing this article, the PHP 8.2 is still not officially released, and I could use only the Release Candidate version.
 
 I assumed and accepted that some tools won't work as expected as partial or full lack of PHP 8.2 support. I as right
 unfortunately. I had to give up using the `PHP CS`, the `CS Fixer`, and the 
@@ -48,10 +49,10 @@ most important, the `PHPUnit` and the `PHPStan` static analyser are still on dut
 
 I also decided to eliminate all the `PHPStan` exceptions I made, and go for full throttle on maximum level with the checks.
 
-### The structure
+### The old structure
 
-The original DIC (form now I will refer it as `v.1.0`) was only one simple class with all together 430 rows of code with 
-comments. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
+The original DIC (form now I will refer it as `v.1.0`) was only one simple class with altogether 430 rows of code and 
+comment. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
 there, I will need to go Kansas and jump deep into that goddamn rabbit hole.
 
 In `v.1.0` there were no structure. I used arrays everywhere for everything. These were the main "sub-containers":
@@ -111,6 +112,8 @@ must have exactly two items:
 A boolean data, that defines whether the class must be singleton or should be instantiated every time we retrieve it from
 the container.
 
+### The new structure
+
 Now we understand the structure of the configuration, that makes a bit more sense for those class properties: 
 * One to store the raw config.
 * One that has all the inheritance solved.
@@ -120,8 +123,8 @@ Now we understand the structure of the configuration, that makes a bit more sens
 To make this whole mess type-safe, we need to find a way to define all units for the configuration. 
 Just a fast thinking to write our the grocery list:
 
-* **Argument item** - One particular parameter. It stores the index (position), the type (string, integer, boolean etc), 
-  the value and if it's a service reference or not.
+* **Argument item** - One particular parameter. It stores the index (position), the type (string, integer, boolean etc.), 
+  the value and whether it's a service reference or not.
 * **Argument collection** - This stores all the **Argument items**, that will be passed to the class constructor.
 * **Callable item** - The method name and the method's parameter list (which is an Argument collection).
 * **Callable collection** - This stores all the **Callable items**, we want to call after the service is initialized.
@@ -207,8 +210,8 @@ class ArgumentItemCollection implements IteratorAggregate
 }
 ```
 
-The `ServiceLibrary` in `v.1.0` was basically part of the `Container`, now I separated them to be more readable and also 
-simplify the responsibilities. According to the Single responsibility principal, a class should have one and only one 
+The `ServiceLibrary` in `v.1.0` was basically part of the `Container`, now I separated these two to be more readable and also 
+simplify the responsibilities. According to the **Single responsibility principal**, a class should have one and only one 
 reason to change, meaning that a class should have only one job. Okay, maybe I failed on this, but I can say the following:
 
 * The library's responsibility is to prepare all the data for the container. This includes calling the parser, resolve the
@@ -234,10 +237,10 @@ always complained about the missing types on the Iterables, such like:
 ```
 
 Tried to solve it with <a href="https://phpstan.org/writing-php-code/phpdoc-types#iterables" rel="noopener" target="_blank">PHPDoc Types</a> 
-and PHP Attributes (such as <a href="https://blog.jetbrains.com/phpstorm/2020/10/phpstorm-2020-3-eap-4/#ArrayShape" rel="noopener" target="_blank">ArrayShape</a>) 
-too but pre-defining the service's (1st level), call list's (2nd level), method's (3rd level) parameter list (4th level),
-where any parameter can be an array too, became way too complicated. Also in the config the call list itself is a mixed
-array, taking the zero indexed element is the method name, and the first indexed element is the attribute list array. 
+and PHP Attributes (such as <a href="https://blog.jetbrains.com/phpstorm/2020/10/phpstorm-2020-3-eap-4/#ArrayShape" rel="noopener" target="_blank">ArrayShape</a>), 
+but pre-defining the service's (1st level) call list's (2nd level) method's (3rd level) parameter list (4th level),
+where any parameter can be an array too, became way too complicated. Also in the config, the call list itself is a mixed
+array, because the zero indexed element is the method name is string, and the first indexed element is the attribute list is an array. 
 
 No doubt, it's a mess. Not a small one, but huge. How to solve it then? Well... it's called `ConfigParserInterface`! We
 define it simple and the Library will use the implementation:
@@ -263,7 +266,7 @@ The question is still the same, and I avoid the hot porridge, like a cat.
 
 ##### Array to Object
 
-So a mixed array should be converted to object? Can we do it in one step? If yes, please send me a good solution, what I 
+So a mixed array should be converted to object. Can we do it in one step? If yes, please send me a good solution, anything I 
 tried were all wrong, or just simply didn't fit here.
 
 Then, can we do it in two steps?
@@ -287,12 +290,12 @@ $generalObjectData = json_decode(json: $jsonData, associative: false, flags: JSO
 Oh, yes! The `json_encode` eats `mixed` data and produces a `string` (or `false`). The `json_decode`, in the other hand, eats 
 a `string` and produces an `array`. **Or an Object!** 
 
-But what kind of object? It's the built-in `stdClass`. And since it's an object we can use `ReflectionObject` on it, and 
+But what kind of object? It's the built-in `stdClass`. And since it's an object, we can use `ReflectionObject` on it, and 
 also can feed into the `foreach` construct, because by design the `foreach` works not only with arrays, but also with objects 
-that have public properties. And the `stdClass` is nothing more than public properties.
+that have public properties. And the `stdClass` is not more than public properties.
 
 Great! The most difficult part is done. We go through the data, build the **items**, add them to the **collections**, cast
-everything to the right type, since what we have to cast, is for sure can't be an array, therefore we won't have such errors
+everything to the right type. Since anything that we have to cast, is for sure can't be an array, therefore we won't have such errors
 as `PHP Warning:  Array to string conversion`.
 
 "By any means necessary" - that's what they used to say. And my goal was to achieve strict types. Result?
