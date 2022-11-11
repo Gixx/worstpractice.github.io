@@ -24,7 +24,7 @@ Interface so far. In this article we will configuration the configuration data.
 ### TL;DR
 
 If you don't want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-<a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.
+<a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.
 
 ### Choose the right weapon
 
@@ -62,7 +62,7 @@ see five options to choose from:
 
 Well, we already discussed in the previous part, that we don't want to use any third-party libraries, so option 1 and 3 fell off. 
 Maybe we can't add PECL extensions to our current setup, so option 2 also fell off. Write an own parser? Waste time to 
-create a complex a codebase that covers the full YAML standard and we maybe don't even need the half of the YAML's knowledge?
+create a complex a codebase that covers the full YAML standard, and we maybe don't even need the half of the YAML's knowledge?
 And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
 array or Iterable class. Then why should we waste our time on this?
 
@@ -93,7 +93,7 @@ $config = [
 
 #### Service identifier
 
-A service identifier is a string of characters. Oh GOD, you didn't belive it, did you? It can be a fantasy name as well 
+A service identifier is a string of characters. Oh GOD, you didn't believe it, did you? It can be a fantasy name as well 
 as a real class name including the `::class` constant:
 
 ```php
@@ -221,7 +221,7 @@ Let's think about the third option. What do we have in PHP that can differentiat
 
 ##### INDEXES!
 
-What's more: **associative indexes**. And since class names are more-or-less self descriptive parameter values, 
+What's more: **associative indexes**. And since class names are more-or-less self-descriptive parameter values, 
 I would say, let's use an explicit string index (key) for the scalar parameters only. So our previous config will look 
 like this:
 
@@ -308,7 +308,7 @@ If the `shared` sub-key does not present, it will be considered as TRUE by defau
 
 In some cases we want to inherit configuration to avoid unnecessary code repeats, and apply only the differences. We
 will be able to do this with the `inherits` key. The value must be an existing `service identifier`, other than the 
-current one. Both self- of invalid referencing should raise an error.
+current one. Both self- or invalid referencing should raise an error.
 
 To make it less complex, let's say, if any of the sub-key's value is changed, the full sub-key should be presented. 
 Also, the `shared` key must present if differs form the ancestor's. So if for the ancestor the shared is FALSE, and 

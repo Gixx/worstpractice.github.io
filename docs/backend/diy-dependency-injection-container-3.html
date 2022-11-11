@@ -166,12 +166,12 @@
               we defined the structure of the configuration data, and planned the behaviour we want our DI to follow.</p>
             <h3 id="tldr">TL;DR</h3>
             <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-              <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+              <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
             <h3 id="to-tdd-or-not-to-tdd">to TDD or not to TDD?</h3>
             <p>This is always a question. Hardcore, fanatical, pop eyed far-side coders will hate me when I say: TDD is not for everyone and is not for every
               code. TDD requires a different thinking, a different learning path. For example for me, I’m not yet able to understand how can I do anything in
-              TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid
-              and you know what the goal is but you don’t know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
+              TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid,
+              and you know what the goal is, but you don’t know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
               but everything else is dark, so you have to feel the way with your feet to avoid traps, and roadblocks.</p>
             <p>But now it’s not a dark room. I know the goal, and I clearly see the path. Maybe there will be traps hidden, but I will try to cover not only the happy 
               path with tests. Not coding in TDD way doesn’t mean I don’t write tests. Test are not only important but ought to be mandatory.</p>
@@ -397,7 +397,7 @@
 <ul>
   <li>the service is instantiated and registered into the Service Container.</li>
   <li>the service is not instantiated yet but registered into the Service Library.</li>
-  <li>the service is not registered into any internal storage but exists in the raw configuration or the it’s a loadable class.</li>
+  <li>the service is not registered into any internal storage but exists in the raw configuration, or it’s a loadable class.</li>
 </ul>
 <p>Be clean and simple, create three additional checker methods to cover these cases:</p>
 <div class="language-php highlighter-rouge">
@@ -755,7 +755,7 @@
   </td>
   <td class="rouge-code">
     <pre><span class="cd">/**
- * @var array An array to to detect reference loops.
+ * @var array An array to detect reference loops.
  */</span>
 <span class="k">private</span> <span class="kt">array</span> <span class="nv">$referenceLoopDetector</span> <span class="o">=</span> <span class="p">[];</span>
 </pre>
@@ -1590,10 +1590,10 @@
 <h3 id="conclusion">Conclusion</h3>
 <p>It was a fun to create this simple and small DI class. But even if it works well - I am pretty sure about that - I don’t recommend to
   use it in production, because I will probably won’t maintain it too long. I made it for practice, to improve my skill and to 
-  do something I can write about in this blog.</p>
+  do something I can write about on this blog.</p>
 <p>You can get the full source code with the unit tests and docker setup and instruction at 
   <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
-<p>I hope, you enjoyed this mini series, maybe others will follow.</p>
+<p>I hope, you enjoyed this miniseries, maybe others will follow.</p>
 </div>
 <footer class="a-footer">
   <h3 class="a-footer__title">About the author</h3>

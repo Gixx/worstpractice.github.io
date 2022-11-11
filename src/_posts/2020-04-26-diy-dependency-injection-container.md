@@ -31,7 +31,7 @@ This article became too long, so I decided to split up to three parts:
 ### TL;DR
 
 If you don't want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-<a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.
+<a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.
 
 ### Your path is your decision  
 
@@ -51,7 +51,7 @@ you have never ever heard about it, and you never had to deal with it, it's impo
 
 #### Autoloader
 
-Not that far in past, only a decade and a half ago, every PHP project was loud about the autoloading of objects. 
+Not that far in past, only a decade and a half ago, every PHP project was loud about the autoload of objects. 
 There was a kind of race between masterminds who can create the best, more performing, more fool-proof `__autoload` function. 
 I talk about the era, when there were no <a target="_blank" rel="noopener" href="https://stackoverflow.com">Stack Overflow</a> 
 (2008), not even <a target="_blank" rel="noopener" href="https://symfony.com/">Symfony Framework</a> (2007) or 
@@ -60,12 +60,12 @@ everybody was happy to start their green-field projects in the brand new, (and f
 Object-Oriented, PHP 5 (2004). 
 
 Later, we got the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-0/">PSR-0</a> that was suppose to 
-show the way to a better future by giving us a recommendation for the autoloading. But time passes and the PSR-0 became 
+show the way to a better future by giving us a recommendation to autoload. But time passes and the PSR-0 became 
 obsolete. Today its direct descendant, the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-4/">PSR-4</a> 
 is in charge.
 
 And if we keep the recommendations of the PSR-4, and we use <a target="_blank" rel="noopener" href="https://getcomposer.org/doc/00-intro.md">composer</a> too, 
-we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoloading. 
+we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoload. 
 Here's an example of the `composer.json` configuration:
 
 ```json
@@ -97,7 +97,8 @@ The Dependency Inversion Principle in a nutshell:
 1. High-level modules should not depend on low-level modules. Both should depend on the abstraction.
 2. Abstractions should not depend on details. Details should depend on abstractions.
 
-If you don't understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained: Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
+If you don't understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained: 
+Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
 with explanations and examples.
 
 #### Dependency Injection
@@ -188,7 +189,7 @@ Now we have a nice blueprint, but this blueprint unfortunately isn't perfect. A 
 * There is no declaration of adding instances to the container, but sometimes you can't set up everything in the configuration. 
 
 We have two chances:
-1. Use the `Psr\Container\ContainerInterface` and extend it, but we will loose on the type hinting.
+1. Use the `Psr\Container\ContainerInterface` and extend it, but we will lose on the type hinting.
 2. Create our own interface but whenever somebody requires the DI to be `instanceof Psr\Container\ContainerInterface`, ours will fail.
 
 And because of implementation interchangeability - though reluctantly -, I still choose the first option. Let's extend, and
@@ -208,7 +209,7 @@ composer require psr/container
   },
 ```
 
-Additionally we set a requirement on the PHP version too. Now it's time to create our interface: 
+Additionally, we set a requirement on the PHP version too. Now it's time to create our interface: 
 `src/WorstPractice/Component/DependencyInjection/ContainerInterface.php`
 
 ```php
@@ -257,7 +258,7 @@ The method in normal case should not return anything. Why it should? Do we wait 
 should be an exception, that is thrown when we try to add an instance with an alias that is already instantiated.
 This show how important is to use this method wisely. It's not a common case when we need this, and that is why it's not part
 of the PSR Interface. 
-However other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
+However, other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
 (just to pick one) also feels it important to have this `set` method. So ours won't be that renitent.
     
 

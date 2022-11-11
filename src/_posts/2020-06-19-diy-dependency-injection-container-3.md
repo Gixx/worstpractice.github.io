@@ -23,14 +23,14 @@ we defined the structure of the configuration data, and planned the behaviour we
 ### TL;DR
 
 If you don't want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-<a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.
+<a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.
 
 ### to TDD or not to TDD?
 
 This is always a question. Hardcore, fanatical, pop eyed far-side coders will hate me when I say: TDD is not for everyone and is not for every
 code. TDD requires a different thinking, a different learning path. For example for me, I'm not yet able to understand how can I do anything in
-TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid
-and you know what the goal is but you don't know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
+TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid,
+and you know what the goal is, but you don't know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
 but everything else is dark, so you have to feel the way with your feet to avoid traps, and roadblocks.
 
 But now it's not a dark room. I know the goal, and I clearly see the path. Maybe there will be traps hidden, but I will try to cover not only the happy 
@@ -157,7 +157,7 @@ The answer is pretty simple. The DI has a service if:
 
 * the service is instantiated and registered into the Service Container.
 * the service is not instantiated yet but registered into the Service Library.
-* the service is not registered into any internal storage but exists in the raw configuration or the it's a loadable class.
+* the service is not registered into any internal storage but exists in the raw configuration, or it's a loadable class.
 
 Be clean and simple, create three additional checker methods to cover these cases:
 
@@ -352,7 +352,7 @@ new internal storage to store all the services which are involved in the current
 
 ```php
 /**
- * @var array An array to to detect reference loops.
+ * @var array An array to detect reference loops.
  */
 private array $referenceLoopDetector = [];
 ```
@@ -846,9 +846,9 @@ it's structure in the PHPDoc. I understand the concept behind the idea, it's jus
 
 It was a fun to create this simple and small DI class. But even if it works well - I am pretty sure about that - I don't recommend to
 use it in production, because I will probably won't maintain it too long. I made it for practice, to improve my skill and to 
-do something I can write about in this blog.  
+do something I can write about on this blog.  
 
 You can get the full source code with the unit tests and docker setup and instruction at 
 <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.
 
-I hope, you enjoyed this mini series, maybe others will follow.
+I hope, you enjoyed this miniseries, maybe others will follow.

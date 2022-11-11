@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-11-04T07:14:41+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">My useless React App, Part 3</title><link href="http://0.0.0.0:4000/frontend/my-useless-react-app-3" rel="alternate" type="text/html" title="My useless React App, Part 3" /><published>2022-11-03T10:00:00+00:00</published><updated>2022-11-03T09:51:50+00:00</updated><id>http://0.0.0.0:4000/frontend/my-useless-react-app-3</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/my-useless-react-app-3"><![CDATA[<h3 id="tldr">TL;DR</h3>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-11-11T08:33:23+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">My useless React App, Part 3</title><link href="http://0.0.0.0:4000/frontend/my-useless-react-app-3" rel="alternate" type="text/html" title="My useless React App, Part 3" /><published>2022-11-03T10:00:00+00:00</published><updated>2022-11-03T09:51:50+00:00</updated><id>http://0.0.0.0:4000/frontend/my-useless-react-app-3</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/my-useless-react-app-3"><![CDATA[<h3 id="tldr">TL;DR</h3>
       <p><a href="https://en.wikipedia.org/wiki/In_medias_res" rel="noopener" target="_blank"><em>In medias res?</em></a> No problem. 
         If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the 
         source code on <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -2722,16 +2722,16 @@
 </div>
 <p>This will return a string with the file’s key on the S3 bucket, or <code class="language-plaintext highlighter-rouge">NULL</code> if the bucket with the given prefix is empty.
   You can also create a method that downloads the file from the S3 bucket, but let it be a homework.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="aws" /><category term="s3-bucket" /><summary type="html"><![CDATA[Recently I had to make my hands dirty with the AWS S3, and I faced a problem of getting the latest/newest file from a bucket with PHP.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 3</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container-3" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 3" /><published>2020-06-19T16:20:00+00:00</published><updated>2022-11-04T07:10:11+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container-3</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container-3"><![CDATA[<p>In the <a rel="prev" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">previous part</a>, 
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="aws" /><category term="s3-bucket" /><summary type="html"><![CDATA[Recently I had to make my hands dirty with the AWS S3, and I faced a problem of getting the latest/newest file from a bucket with PHP.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 3</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container-3" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 3" /><published>2020-06-19T16:20:00+00:00</published><updated>2022-11-04T15:57:14+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container-3</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container-3"><![CDATA[<p>In the <a rel="prev" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">previous part</a>, 
     we defined the structure of the configuration data, and planned the behaviour we want our DI to follow.</p>
   <h3 id="tldr">TL;DR</h3>
   <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-    <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+    <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
   <h3 id="to-tdd-or-not-to-tdd">to TDD or not to TDD?</h3>
   <p>This is always a question. Hardcore, fanatical, pop eyed far-side coders will hate me when I say: TDD is not for everyone and is not for every
     code. TDD requires a different thinking, a different learning path. For example for me, I’m not yet able to understand how can I do anything in
-    TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid
-    and you know what the goal is but you don’t know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
+    TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid,
+    and you know what the goal is, but you don’t know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
     but everything else is dark, so you have to feel the way with your feet to avoid traps, and roadblocks.</p>
   <p>But now it’s not a dark room. I know the goal, and I clearly see the path. Maybe there will be traps hidden, but I will try to cover not only the happy 
     path with tests. Not coding in TDD way doesn’t mean I don’t write tests. Test are not only important but ought to be mandatory.</p>
@@ -2957,7 +2957,7 @@
 <ul>
   <li>the service is instantiated and registered into the Service Container.</li>
   <li>the service is not instantiated yet but registered into the Service Library.</li>
-  <li>the service is not registered into any internal storage but exists in the raw configuration or the it’s a loadable class.</li>
+  <li>the service is not registered into any internal storage but exists in the raw configuration, or it’s a loadable class.</li>
 </ul>
 <p>Be clean and simple, create three additional checker methods to cover these cases:</p>
 <div class="language-php highlighter-rouge">
@@ -3315,7 +3315,7 @@
   </td>
   <td class="rouge-code">
     <pre><span class="cd">/**
- * @var array An array to to detect reference loops.
+ * @var array An array to detect reference loops.
  */</span>
 <span class="k">private</span> <span class="kt">array</span> <span class="nv">$referenceLoopDetector</span> <span class="o">=</span> <span class="p">[];</span>
 </pre>
@@ -4150,16 +4150,16 @@
 <h3 id="conclusion">Conclusion</h3>
 <p>It was a fun to create this simple and small DI class. But even if it works well - I am pretty sure about that - I don’t recommend to
   use it in production, because I will probably won’t maintain it too long. I made it for practice, to improve my skill and to 
-  do something I can write about in this blog.</p>
+  do something I can write about on this blog.</p>
 <p>You can get the full source code with the unit tests and docker setup and instruction at 
   <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
-<p>I hope, you enjoyed this mini series, maybe others will follow.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><summary type="html"><![CDATA[It's time to finish our simple dependency injection container, and see if it works as expected.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 2</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container-2" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 2" /><published>2020-05-12T08:37:00+00:00</published><updated>2022-11-04T07:10:07+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container-2</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container-2"><![CDATA[<p>In the <a rel="prev" href="/backend/diy-dependency-injection-container" title="DIY Dependency Injection Container, Part 1">previous part</a>, we talked about software engineering principles,
+<p>I hope, you enjoyed this miniseries, maybe others will follow.</p>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><summary type="html"><![CDATA[It's time to finish our simple dependency injection container, and see if it works as expected.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 2</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container-2" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 2" /><published>2020-05-12T08:37:00+00:00</published><updated>2022-11-04T15:58:49+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container-2</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container-2"><![CDATA[<p>In the <a rel="prev" href="/backend/diy-dependency-injection-container" title="DIY Dependency Injection Container, Part 1">previous part</a>, we talked about software engineering principles,
     about the dependency injection and its benefits, and we started to create our own implementation. We’ve finished with the
     Interface so far. In this article we will configuration the configuration data.</p>
   <h3 id="tldr">TL;DR</h3>
   <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-    <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+    <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
   <h3 id="choose-the-right-weapon">Choose the right weapon</h3>
   <p>You have probably met with the world wide popular <acronym title="YAML Ain't Markup Language">YAML</acronym> file format. If not,
     then I tell you that the YAML is a human friendly data serialization standard for all programming languages. It can look
@@ -4220,7 +4220,7 @@
 </ol>
 <p>Well, we already discussed in the previous part, that we don’t want to use any third-party libraries, so option 1 and 3 fell off. 
   Maybe we can’t add PECL extensions to our current setup, so option 2 also fell off. Write an own parser? Waste time to 
-  create a complex a codebase that covers the full YAML standard and we maybe don’t even need the half of the YAML’s knowledge?
+  create a complex a codebase that covers the full YAML standard, and we maybe don’t even need the half of the YAML’s knowledge?
   And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
   array or Iterable class. Then why should we waste our time on this?</p>
 <h4 id="pros-of-the-array-based-configuration">Pros of the array-based configuration</h4>
@@ -4260,7 +4260,7 @@
 </div>
 </div>
 <h4 id="service-identifier">Service identifier</h4>
-<p>A service identifier is a string of characters. Oh GOD, you didn’t belive it, did you? It can be a fantasy name as well 
+<p>A service identifier is a string of characters. Oh GOD, you didn’t believe it, did you? It can be a fantasy name as well 
   as a real class name including the <code class="language-plaintext highlighter-rouge">::class</code> constant:</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -4522,7 +4522,7 @@
 </ul>
 <p>Let’s think about the third option. What do we have in PHP that can differentiate two identical values in an array?</p>
 <h5 id="indexes">INDEXES!</h5>
-<p>What’s more: <strong>associative indexes</strong>. And since class names are more-or-less self descriptive parameter values, 
+<p>What’s more: <strong>associative indexes</strong>. And since class names are more-or-less self-descriptive parameter values, 
   I would say, let’s use an explicit string index (key) for the scalar parameters only. So our previous config will look 
   like this:</p>
 <div class="language-php highlighter-rouge">
@@ -4680,7 +4680,7 @@
 <h4 id="inheritance">Inheritance</h4>
 <p>In some cases we want to inherit configuration to avoid unnecessary code repeats, and apply only the differences. We
   will be able to do this with the <code class="language-plaintext highlighter-rouge">inherits</code> key. The value must be an existing <code class="language-plaintext highlighter-rouge">service identifier</code>, other than the 
-  current one. Both self- of invalid referencing should raise an error.</p>
+  current one. Both self- or invalid referencing should raise an error.</p>
 <p>To make it less complex, let’s say, if any of the sub-key’s value is changed, the full sub-key should be presented. 
   Also, the <code class="language-plaintext highlighter-rouge">shared</code> key must present if differs form the ancestor’s. So if for the ancestor the shared is FALSE, and 
   the descendant should be TRUE, then it must present explicitly, the default behaviour will not applied in this case.</p>
@@ -4754,7 +4754,7 @@
 <p>And that is all. We covered all the options we need from our DIC implementation to support. And it’s only a very small
   subset of what the YAML is capable of, yet enough for us.</p>
 <p>In the next part we will create our DIC implementation.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="yaml" /><summary type="html"><![CDATA[The second step on our journey to create a stand-alone Dependency Injection Container. Discuss about the configuration doesn't sound too interesting, but it can hold us some surprises.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 1</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 1" /><published>2020-04-26T21:29:00+00:00</published><updated>2022-11-04T07:10:04+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container"><![CDATA[<p>It’s very important to clarify: <strong>Do not reinvent the wheel</strong>. There are numerous great, well maintained, continuously
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="yaml" /><summary type="html"><![CDATA[The second step on our journey to create a stand-alone Dependency Injection Container. Discuss about the configuration doesn't sound too interesting, but it can hold us some surprises.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 1</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 1" /><published>2020-04-26T21:29:00+00:00</published><updated>2022-11-04T16:02:08+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container"><![CDATA[<p>It’s very important to clarify: <strong>Do not reinvent the wheel</strong>. There are numerous great, well maintained, continuously
     developed solutions on the market written by professional developers, who enjoy the support of their large community. 
     I am talking about the big fish like Symfony, Laravel, Zend etc. So if you need a component for your web application,
     it’s better to look around first.</p>
@@ -4766,7 +4766,7 @@
   </ul>
   <h3 id="tldr">TL;DR</h3>
   <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-    <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+    <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
   <h3 id="your-path-is-your-decision">Your path is your decision</h3>
   <p>Of course nobody can force you to NOT Do It Yourself. It all depend on what your project requires. So let’s suppose, you
     are not allowed to use third party components for some very mysterious reasons. But you want to write a modern, clean, 
@@ -4780,7 +4780,7 @@
     <em><q cite="https://starwars.fandom.com/wiki/Padawan" title="Jedi student in the Star Wars Universe">young padawan</q></em> and
     you have never ever heard about it, and you never had to deal with it, it’s important.</p>
   <h4 id="autoloader">Autoloader</h4>
-  <p>Not that far in past, only a decade and a half ago, every PHP project was loud about the autoloading of objects. 
+  <p>Not that far in past, only a decade and a half ago, every PHP project was loud about the autoload of objects. 
     There was a kind of race between masterminds who can create the best, more performing, more fool-proof <code class="language-plaintext highlighter-rouge">__autoload</code> function. 
     I talk about the era, when there were no <a target="_blank" rel="noopener" href="https://stackoverflow.com">Stack Overflow</a>
     (2008), not even <a target="_blank" rel="noopener" href="https://symfony.com/">Symfony Framework</a> (2007) or 
@@ -4788,11 +4788,11 @@
     everybody was happy to start their green-field projects in the brand new, (and finally but only more-or-less)
     Object-Oriented, PHP 5 (2004).</p>
   <p>Later, we got the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-0/">PSR-0</a> that was suppose to 
-    show the way to a better future by giving us a recommendation for the autoloading. But time passes and the PSR-0 became 
+    show the way to a better future by giving us a recommendation to autoload. But time passes and the PSR-0 became 
     obsolete. Today its direct descendant, the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-4/">PSR-4</a>
     is in charge.</p>
   <p>And if we keep the recommendations of the PSR-4, and we use <a target="_blank" rel="noopener" href="https://getcomposer.org/doc/00-intro.md">composer</a> too, 
-    we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoloading. 
+    we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoload. 
     Here’s an example of the <code class="language-plaintext highlighter-rouge">composer.json</code> configuration:</p>
   <div class="language-json highlighter-rouge">
     <div class="highlight">
@@ -4852,7 +4852,7 @@
   <li>High-level modules should not depend on low-level modules. Both should depend on the abstraction.</li>
   <li>Abstractions should not depend on details. Details should depend on abstractions.</li>
 </ol>
-<p>If you don’t understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained: Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
+<p>If you don’t understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained:  Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
   with explanations and examples.</p>
 <h4 id="dependency-injection">Dependency Injection</h4>
 <p>Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC). Although this shows us a 
@@ -4975,7 +4975,7 @@
 </ul>
 <p>We have two chances:</p>
 <ol>
-  <li>Use the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> and extend it, but we will loose on the type hinting.</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> and extend it, but we will lose on the type hinting.</li>
   <li>Create our own interface but whenever somebody requires the DI to be <code class="language-plaintext highlighter-rouge">instanceof Psr\Container\ContainerInterface</code>, ours will fail.</li>
 </ol>
 <p>And because of implementation interchangeability - though reluctantly -, I still choose the first option. Let’s extend, and
@@ -5020,7 +5020,7 @@
 </code></pre>
 </div>
 </div>
-<p>Additionally we set a requirement on the PHP version too. Now it’s time to create our interface: 
+<p>Additionally, we set a requirement on the PHP version too. Now it’s time to create our interface: 
   <code class="language-plaintext highlighter-rouge">src/WorstPractice/Component/DependencyInjection/ContainerInterface.php</code></p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -5103,7 +5103,7 @@
   should be an exception, that is thrown when we try to add an instance with an alias that is already instantiated.
   This show how important is to use this method wisely. It’s not a common case when we need this, and that is why it’s not part
   of the PSR Interface. 
-  However other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
+  However, other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
   (just to pick one) also feels it important to have this <code class="language-plaintext highlighter-rouge">set</code> method. So ours won’t be that renitent.</p>
 <p>In the <a rel="next" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">next part</a> we will plan the configuration file.</p>
 ]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="solid-principles" /><summary type="html"><![CDATA[Like many of my fate companions, I do home office too. And by staying at home, I can save 2-3 hours of travelling every day. So I decided to practice a little bit.]]></summary></entry><entry><title type="html">Why I dropped the `Mobile-first` approach</title><link href="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach" rel="alternate" type="text/html" title="Why I dropped the `Mobile-first` approach" /><published>2020-03-11T14:05:00+00:00</published><updated>2022-10-05T19:13:18+00:00</updated><id>http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach"><![CDATA[<h3 id="the-wrong-decision">The (wrong) decision</h3>

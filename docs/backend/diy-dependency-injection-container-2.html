@@ -168,7 +168,7 @@
               Interface so far. In this article we will configuration the configuration data.</p>
             <h3 id="tldr">TL;DR</h3>
             <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-              <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+              <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
             <h3 id="choose-the-right-weapon">Choose the right weapon</h3>
             <p>You have probably met with the world wide popular <acronym title="YAML Ain't Markup Language">YAML</acronym> file format. If not,
               then I tell you that the YAML is a human friendly data serialization standard for all programming languages. It can look
@@ -229,7 +229,7 @@
 </ol>
 <p>Well, we already discussed in the previous part, that we don’t want to use any third-party libraries, so option 1 and 3 fell off. 
   Maybe we can’t add PECL extensions to our current setup, so option 2 also fell off. Write an own parser? Waste time to 
-  create a complex a codebase that covers the full YAML standard and we maybe don’t even need the half of the YAML’s knowledge?
+  create a complex a codebase that covers the full YAML standard, and we maybe don’t even need the half of the YAML’s knowledge?
   And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
   array or Iterable class. Then why should we waste our time on this?</p>
 <h4 id="pros-of-the-array-based-configuration">Pros of the array-based configuration</h4>
@@ -269,7 +269,7 @@
 </div>
 </div>
 <h4 id="service-identifier">Service identifier</h4>
-<p>A service identifier is a string of characters. Oh GOD, you didn’t belive it, did you? It can be a fantasy name as well 
+<p>A service identifier is a string of characters. Oh GOD, you didn’t believe it, did you? It can be a fantasy name as well 
   as a real class name including the <code class="language-plaintext highlighter-rouge">::class</code> constant:</p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -531,7 +531,7 @@
 </ul>
 <p>Let’s think about the third option. What do we have in PHP that can differentiate two identical values in an array?</p>
 <h5 id="indexes">INDEXES!</h5>
-<p>What’s more: <strong>associative indexes</strong>. And since class names are more-or-less self descriptive parameter values, 
+<p>What’s more: <strong>associative indexes</strong>. And since class names are more-or-less self-descriptive parameter values, 
   I would say, let’s use an explicit string index (key) for the scalar parameters only. So our previous config will look 
   like this:</p>
 <div class="language-php highlighter-rouge">
@@ -689,7 +689,7 @@
 <h4 id="inheritance">Inheritance</h4>
 <p>In some cases we want to inherit configuration to avoid unnecessary code repeats, and apply only the differences. We
   will be able to do this with the <code class="language-plaintext highlighter-rouge">inherits</code> key. The value must be an existing <code class="language-plaintext highlighter-rouge">service identifier</code>, other than the 
-  current one. Both self- of invalid referencing should raise an error.</p>
+  current one. Both self- or invalid referencing should raise an error.</p>
 <p>To make it less complex, let’s say, if any of the sub-key’s value is changed, the full sub-key should be presented. 
   Also, the <code class="language-plaintext highlighter-rouge">shared</code> key must present if differs form the ancestor’s. So if for the ancestor the shared is FALSE, and 
   the descendant should be TRUE, then it must present explicitly, the default behaviour will not applied in this case.</p>

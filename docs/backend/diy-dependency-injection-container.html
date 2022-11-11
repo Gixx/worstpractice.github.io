@@ -175,7 +175,7 @@
             </ul>
             <h3 id="tldr">TL;DR</h3>
             <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-              <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+              <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
             <h3 id="your-path-is-your-decision">Your path is your decision</h3>
             <p>Of course nobody can force you to NOT Do It Yourself. It all depend on what your project requires. So let’s suppose, you
               are not allowed to use third party components for some very mysterious reasons. But you want to write a modern, clean, 
@@ -189,7 +189,7 @@
               <em><q cite="https://starwars.fandom.com/wiki/Padawan" title="Jedi student in the Star Wars Universe">young padawan</q></em> and
               you have never ever heard about it, and you never had to deal with it, it’s important.</p>
             <h4 id="autoloader">Autoloader</h4>
-            <p>Not that far in past, only a decade and a half ago, every PHP project was loud about the autoloading of objects. 
+            <p>Not that far in past, only a decade and a half ago, every PHP project was loud about the autoload of objects. 
               There was a kind of race between masterminds who can create the best, more performing, more fool-proof <code class="language-plaintext highlighter-rouge">__autoload</code> function. 
               I talk about the era, when there were no <a target="_blank" rel="noopener" href="https://stackoverflow.com">Stack Overflow</a>
               (2008), not even <a target="_blank" rel="noopener" href="https://symfony.com/">Symfony Framework</a> (2007) or 
@@ -197,11 +197,11 @@
               everybody was happy to start their green-field projects in the brand new, (and finally but only more-or-less)
               Object-Oriented, PHP 5 (2004).</p>
             <p>Later, we got the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-0/">PSR-0</a> that was suppose to 
-              show the way to a better future by giving us a recommendation for the autoloading. But time passes and the PSR-0 became 
+              show the way to a better future by giving us a recommendation to autoload. But time passes and the PSR-0 became 
               obsolete. Today its direct descendant, the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-4/">PSR-4</a>
               is in charge.</p>
             <p>And if we keep the recommendations of the PSR-4, and we use <a target="_blank" rel="noopener" href="https://getcomposer.org/doc/00-intro.md">composer</a> too, 
-              we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoloading. 
+              we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoload. 
               Here’s an example of the <code class="language-plaintext highlighter-rouge">composer.json</code> configuration:</p>
             <div class="language-json highlighter-rouge">
               <div class="highlight">
@@ -261,7 +261,7 @@
   <li>High-level modules should not depend on low-level modules. Both should depend on the abstraction.</li>
   <li>Abstractions should not depend on details. Details should depend on abstractions.</li>
 </ol>
-<p>If you don’t understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained: Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
+<p>If you don’t understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained:  Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
   with explanations and examples.</p>
 <h4 id="dependency-injection">Dependency Injection</h4>
 <p>Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC). Although this shows us a 
@@ -384,7 +384,7 @@
 </ul>
 <p>We have two chances:</p>
 <ol>
-  <li>Use the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> and extend it, but we will loose on the type hinting.</li>
+  <li>Use the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> and extend it, but we will lose on the type hinting.</li>
   <li>Create our own interface but whenever somebody requires the DI to be <code class="language-plaintext highlighter-rouge">instanceof Psr\Container\ContainerInterface</code>, ours will fail.</li>
 </ol>
 <p>And because of implementation interchangeability - though reluctantly -, I still choose the first option. Let’s extend, and
@@ -429,7 +429,7 @@
 </code></pre>
 </div>
 </div>
-<p>Additionally we set a requirement on the PHP version too. Now it’s time to create our interface: 
+<p>Additionally, we set a requirement on the PHP version too. Now it’s time to create our interface: 
   <code class="language-plaintext highlighter-rouge">src/WorstPractice/Component/DependencyInjection/ContainerInterface.php</code></p>
 <div class="language-php highlighter-rouge">
   <div class="highlight">
@@ -512,7 +512,7 @@
   should be an exception, that is thrown when we try to add an instance with an alias that is already instantiated.
   This show how important is to use this method wisely. It’s not a common case when we need this, and that is why it’s not part
   of the PSR Interface. 
-  However other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
+  However, other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
   (just to pick one) also feels it important to have this <code class="language-plaintext highlighter-rouge">set</code> method. So ours won’t be that renitent.</p>
 <p>In the <a rel="next" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">next part</a> we will plan the configuration file.</p>
 </div>
