@@ -1,0 +1,1064 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Refactoring the Dependency Injection Container&nbsp;-&nbsp;Worst Practice
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="jekyll 3.8.5">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="copyright" content="Copyright © 2022 All rights reserved. Worst Practice.">
+    <meta name="description" content="
+">
+    <meta name="subject" content="">
+    <meta name="keywords" content="PHP 8.2, dependency injection, Clean code, S.O.L.I.D., SOLID Principles, Interface, PHPUnit, PHPStan">
+    <!-- facebook share -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Worst Practice">
+    <meta property="og:title" content="Refactoring the Dependency Injection Container&nbsp;-&nbsp;Worst Practice
+">
+    <meta property="og:url" content="https://www.worstpractice.dev/backend/refactoring-the-dependency-injection-container">
+    <meta name="date" content="2022-11-11T15:10:00+00:00">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2022/backend/refactoring-the-dependency-injection-container/refactoring.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:description" content="Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it&#39;s time to get back there and practice the refactor...">
+    <meta property="fb:admins" content="ivan.gabor.80">
+    <meta property="fb:app_id" content="2178081495757871">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
+    <meta property="article:published_time" content="2022-11-11T15:10:00+00:00">
+    <meta property="article:tag" content="blog"/>
+    <!-- twitter share -->
+    <meta name="twitter:title" content="Refactoring the Dependency Injection Container">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@gaborivan1980">
+    <meta name="twitter:description" content="Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it&#39;s time to get back there and practice the refactor...">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2022/backend/refactoring-the-dependency-injection-container/refactoring_600x600.jpg">
+    <link rel="canonical" href="https://www.worstpractice.dev">
+    <link rel="alternate" type="application/rss+xml" title="Refactoring the Dependency Injection Container&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/backend/refactoring-the-dependency-injection-container">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+    <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#C23F2F">
+    <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#C23F2F">
+    <meta name="application-name" content="Worst Practice Blog">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#C23F2F">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.srcset) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/site.min.js"></script>
+  </head>
+  <body>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
+    </header>
+    <div class="codeOfTheDay">
+      <input class="codeOfTheDay__toggle" type="checkbox">
+      <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
+      <div class="codeOfTheDay__backdrop"></div>
+    </div>
+    <div class="m-menu">
+      <div class="m-menu__burger">
+        <span></span>
+      </div>
+      <input class="m-menu__toggle" type="checkbox" />
+      <div class="m-menu__content">
+        <nav>
+          <h2 class="m-menu__title">Worst Practice</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -home" href="/">Home</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Categories</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -backend -current" href="/backend">Backend</a></li>
+            <li><a class="m-menu__link -frontend" href="/frontend">Frontend</a></li>
+            <li><a class="m-menu__link -wsl" href="/wsl">WSL</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Tags</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -personal" rel="tag" href="/tags/personal/">personal <sup>1</sup></a></li>
+            <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>4</sup></a></li>
+            <li><a class="m-menu__link -js" rel="tag" href="/tags/js/">JS <sup>4</sup></a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/tags/">More</a>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Archive</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/archive/2022-11/">November, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-10/">October, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2021-04/">April, 2021</a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/archive/">More</a>
+        </nav>
+        <nav>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/imprint.html">Imprint</a></li>
+            <li><a class="m-menu__link " href="/terms.html">Terms of Use</a></li>
+            <li><a class="m-menu__link " href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="m-menu__backdrop"></div>
+    </div>
+    <main class="c-content">
+      <section class="c-content__article">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">Refactoring the Dependency Injection Container</h2>
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on November&nbsp;11, 2022 15:10
+              </p>
+              <p class="a-meta__category">Posted under the <a href="/backend/index.html">Backend</a> category</p>
+              <p class="a-meta__level">Level: intermediate</p>
+              <p class="a-meta__tags">Posted with the following tags:
+                <a href="/tags/php82/index.html">#PHP 8.2</a>, 
+                <a href="/tags/refactor/index.html">#Refactoring</a>, 
+                <a href="/tags/dic/index.html">#DIC</a>, 
+                <a href="/tags/clean-code/index.html">#Clean code</a>
+              </p>
+            </div>
+          </header>
+          <p class="a-excerpt">
+            Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it's time to get back there and practice the refactoring it a bit.
+          </p>
+          <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/refactoring-the-dependency-injection-container/refactoring.jpg" alt="Refactoring the Dependency Injection Container">
+            <figcaption class="a-illustration__caption">Image by <a rel="noopener" target="_blank" href="https://pixabay.com/users/stevepb-282134/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=840835">Steve Buissinne</a> from <a rel="noopener" target="_blank" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=840835">Pixabay</a></figcaption>
+          </figure>
+          <div class="a-body">
+            <h3 id="tldr">TL;DR</h3>
+            <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
+              <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+            <h3 id="valuation-of-the-original">Valuation of the original</h3>
+            <p>Although my <abbr title="Do It Yourself Dependency Injection Container">DIY DIC</abbr> has it tops and lops, and according to the
+              <a href="https://packagist.org/packages/gixx/worstpractice-dependency-injection/stats" rel="noopener" target="_blank">Packagist</a>,
+              someone even dare to install it, there were many mistakes made.</p>
+            <p><strong>First</strong>: leaving the configuration as an array. False statement <a href="https://worstpractice.dev/backend/diy-dependency-injection-container-2#choose-the-right-weapon" rel="noopener" target="_blank">made by me</a>:</p>
+            <blockquote>
+              <p>And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative array or Iterable class. Then why should we waste our time on this?</p>
+            </blockquote>
+            <p><strong>Second</strong>: comes from the first actually: the type strictness became unmaintainable. I even had to add some ignores and
+              exceptions to the <code class="language-plaintext highlighter-rouge">phpstan</code>’s configuration, to pass all tests.</p>
+            <p><strong>Third</strong>: closed the possibility to use other config parsers, so one can make their own (e.g.: XML, YAML, ini, etc.).</p>
+            <h3 id="planning">Planning</h3>
+            <p>I decided, if I refactor the code, I will do it right. So I aimed to rewrite anything necessary in PHP version 8.2. Today,
+              as I’m writing this article, the PHP 8.2 is still not released yet officially, I could use only the Release Candidate version.</p>
+            <p>I assumed and accepted that some tools won’t work as expected as partial or full lack of PHP 8.2 support. I as right
+              unfortunately. I had to give up using the <code class="language-plaintext highlighter-rouge">PHP CS</code>, the <code class="language-plaintext highlighter-rouge">CS Fixer</code>, and the 
+              <a href="https://scrutinizer-ci.com/" rel="noopener" target="_blank">Scrutinizer</a>’s code quality checks. But the two
+              most important, the <code class="language-plaintext highlighter-rouge">PHPUnit</code> and the <code class="language-plaintext highlighter-rouge">PHPStan</code> static analyser are still on duty, so I’m satisfied.</p>
+            <p>I also decided to eliminate all the <code class="language-plaintext highlighter-rouge">PHPStan</code> exceptions I made, and go for full throttle on maximum level with the checks.</p>
+            <h3 id="the-structure">The structure</h3>
+            <p>The original DIC (form now I will refer it as <code class="language-plaintext highlighter-rouge">v.1.0</code>) was only one simple class with all together 430 rows of code with 
+              comments. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
+              there, I will need to go Kansas and jump deep into that goddamn rabbit hole.</p>
+            <p>In <code class="language-plaintext highlighter-rouge">v.1.0</code> there were no structure. I used arrays everywhere for everything. These were the main “sub-containers”:</p>
+            <div class="language-php highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre>    <span class="cd">/**
+     * @var array The full raw configuration data
+     */</span>
+    <span class="k">private</span> <span class="kt">array</span> <span class="nv">$configuration</span><span class="p">;</span>
+    <span class="cd">/**
+     * @var array The configuration data with resolved inherited configuration.
+     */</span>
+    <span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceConfiguration</span><span class="p">;</span>
+    <span class="cd">/**
+     * @var array The instantiation-ready library with all necessary data.
+     */</span>
+    <span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceLibrary</span><span class="p">;</span>
+    <span class="cd">/**
+     * @var array The instantiated services.
+     */</span>
+    <span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceContainer</span><span class="p">;</span>
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<p>To understand why I needed them, first let’s analyse what one single service configuration can be built from:</p>
+<h4 id="id">ID</h4>
+<p>The service identifier. It’s the first level key in the configuration array, therefore it must be unique. Can be a real 
+  class name, or just an alias.</p>
+<h4 id="class">Class</h4>
+<p>This record stores the class name. It’s optional with conditions: either the service identifier points to a real class, 
+  or the <code class="language-plaintext highlighter-rouge">inherits</code> presents and points to another service in the configuration.</p>
+<h4 id="inherits">Inherits</h4>
+<p>A not so real pointer. It stores the identifier of another service in the configuration. This record is optional.</p>
+<h4 id="arguments">Arguments</h4>
+<p>A mixed type array that stores the parameters for the service constructor. If any of the parameters is not a pointer to 
+  another service, the array must be associative and the given parameter must be indexed with string literals. Numeric indexes
+  will be treated as service pointers to inject. This parameter is optional with conditions: either the service does not
+  require explicit parameters (empty or all has defaults), or the <code class="language-plaintext highlighter-rouge">inherits</code> presents, and the “parent” class’ settings will
+  be used.</p>
+<h4 id="calls">Calls</h4>
+<p>A multidimensional, mixed typed array. Every (1st level) item in this array is an array too. Those (2nd level) arrays
+  must have exactly two items:</p>
+<ul>
+  <li>a string literal that holds the public and callable method name of the actual service</li>
+  <li>a list of the arguments, built the same way as the class constructor’s arguments previously.</li>
+</ul>
+<h4 id="shared">Shared</h4>
+<p>A boolean data, that defines whether the class must be singleton or should be instantiated every time we retrieve it from
+  the container.</p>
+<p>Now we understand the structure of the configuration, that makes a bit more sense for those class properties:</p>
+<ul>
+  <li>One to store the raw config.</li>
+  <li>One that has all the inheritance solved.</li>
+  <li>One with all data set for the instantiate process.</li>
+  <li>One to store the service instances.</li>
+</ul>
+<p>To make this whole mess type-safe, we need to find a way to define all units for the configuration. 
+  Just a fast thinking to write our the grocery list:</p>
+<ul>
+  <li><strong>Argument item</strong> - One particular parameter. It stores the index (position), the type (string, integer, boolean etc), 
+    the value and if it’s a service reference or not.</li>
+  <li><strong>Argument collection</strong> - This stores all the <strong>Argument items</strong>, that will be passed to the class constructor.</li>
+  <li><strong>Callable item</strong> - The method name and the method’s parameter list (which is an Argument collection).</li>
+  <li><strong>Callable collection</strong> - This stores all the <strong>Callable items</strong>, we want to call after the service is initialized.</li>
+  <li><strong>Config item</strong> - This is the 1:1 typed class representation of the config data. It stores the identifier (<code class="language-plaintext highlighter-rouge">ID</code>), the 
+    service class name (<code class="language-plaintext highlighter-rouge">Class</code>), the inheritance reference (<code class="language-plaintext highlighter-rouge">Inherits</code>), the class’ constructor arguments (<code class="language-plaintext highlighter-rouge">Arguments</code>, 
+    which is an Argument collection), the methods that will be called (<code class="language-plaintext highlighter-rouge">Calls</code>, which is a Callable collection), and the 
+    flag to be singleton or not (<code class="language-plaintext highlighter-rouge">Shared</code>). Besides the <code class="language-plaintext highlighter-rouge">ID</code> all the other properties can be NULL.</li>
+  <li><strong>Config model</strong> - This stores all the <strong>Config items</strong>.</li>
+  <li><strong>Config parser</strong> - This will get a config data from any kind of input (specified by the parser class) and creates the
+    <strong>Config items</strong> and stores them in the <strong>Config model</strong>.</li>
+  <li><strong>Library and Books</strong> - A library store books. The <strong>Books</strong> are in this case the ready-to-instantiate versions of the 
+    <strong>Config Items</strong>. The <strong>Library</strong> should browse the catalog (<strong>Config model</strong>), solve the inheritance chain (if there’s, 
+    any), and create the <strong>Books</strong>.</li>
+  <li><strong>Container</strong> - that instantiates the services by:
+    <ul>
+      <li>Get the right service’s information (<strong>Book</strong>) from the <strong>Library</strong>.</li>
+      <li>Resolve the argument list references (get the other service’s instance).</li>
+      <li>Create the service instance by passing (injecting) the constructor parameters.</li>
+      <li>Call the defined method(s) with the defined parameters (with resolved argument list references) after the initialization.</li>
+      <li>Store (cache) the initialized instance in an internal list for later use.</li>
+    </ul>
+  </li>
+</ul>
+<h3 id="challenges">Challenges</h3>
+<p>The <code class="language-plaintext highlighter-rouge">ArgumentItem</code>, the <code class="language-plaintext highlighter-rouge">CallableItem</code>, the <code class="language-plaintext highlighter-rouge">ConfigItem</code> and the <code class="language-plaintext highlighter-rouge">ServiceBook</code> classes are super simple, strictly typed, 
+  readonly classes (PHP 8.2!). Okay, the <code class="language-plaintext highlighter-rouge">ConfigItem</code> has mostly nullable properties, but this is by purpose: the <strong>Config items</strong>
+  can store partial data, the <strong>Books</strong> are required to store all necessary data. And <strong>Library</strong>’s duty is to provide all 
+  these data either by resolving the inheritance or by setting the defaults. For example the <strong>Shared</strong> flag is by default 
+  <code class="language-plaintext highlighter-rouge">TRUE</code> when not presents.</p>
+<p>Just to show some example, here is the <code class="language-plaintext highlighter-rouge">ConfigItem</code>:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">declare</span><span class="p">(</span><span class="n">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection\ConfigModel</span><span class="p">;</span>
+
+<span class="n">readonly</span> <span class="kd">class</span> <span class="nc">ConfigItem</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">public</span> <span class="n">string</span> <span class="nv">$id</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="kt">?string</span> <span class="nv">$class</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="kt">?string</span> <span class="nv">$inherits</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="kt">?ArgumentItemCollection</span> <span class="nv">$arguments</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="kt">?CallableItemCollection</span> <span class="nv">$calls</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="kt">?bool</span> <span class="nv">$isShared</span><span class="p">,</span>
+    <span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>The <code class="language-plaintext highlighter-rouge">ArgumentItemCollection</code>, the <code class="language-plaintext highlighter-rouge">CallableItemCollection</code> and the <code class="language-plaintext highlighter-rouge">ConfigModel</code> classes are almost as simple as the 
+  “Items” were. Here I chose to store the items into an internal, “single level, every item has the same type”-kind of array 
+  (let’s call it <code class="language-plaintext highlighter-rouge">list</code>). Public and readonly in this case wouldn’t be good, because we need to add the items one-by-one and 
+  not once through the constructor. But to still make possible to be used in a <code class="language-plaintext highlighter-rouge">foreach</code>, they implement the <code class="language-plaintext highlighter-rouge">IteratorAggregate</code>
+  interface.</p>
+<p>One typical case is the <code class="language-plaintext highlighter-rouge">ArgumentItemCollection</code>:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">declare</span><span class="p">(</span><span class="n">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection\ConfigModel</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">IteratorAggregate</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">Traversable</span><span class="p">;</span>
+
+<span class="cd">/**
+ * @implements IteratorAggregate&lt;int, ArgumentItem&gt;
+ */</span>
+<span class="kd">class</span> <span class="nc">ArgumentItemCollection</span> <span class="kd">implements</span> <span class="nc">IteratorAggregate</span>
+<span class="p">{</span>
+    <span class="cd">/** @var array&lt;int, ArgumentItem&gt; $items */</span>
+    <span class="k">private</span> <span class="kt">array</span> <span class="nv">$items</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">ArgumentItem</span> <span class="nv">$item</span><span class="p">):</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">items</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$item</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">final</span> <span class="k">public</span> <span class="k">function</span> <span class="n">getIterator</span><span class="p">():</span> <span class="kt">Traversable</span>
+    <span class="p">{</span>
+        <span class="k">yield</span> <span class="n">from</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">items</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>The <code class="language-plaintext highlighter-rouge">ServiceLibrary</code> in <code class="language-plaintext highlighter-rouge">v.1.0</code> was basically part of the <code class="language-plaintext highlighter-rouge">Container</code>, now I separated them to be more readable and also 
+  simplify the responsibilities. According to the Single responsibility principal, a class should have one and only one 
+  reason to change, meaning that a class should have only one job. Okay, maybe I failed on this, but I can say the following:</p>
+<ul>
+  <li>The library’s responsibility is to prepare all the data for the container. This includes calling the parser, resolve the
+    inheritance chains etc.</li>
+  <li>The container’s responsibility is to create instances from the data that the library provided to it.</li>
+</ul>
+<p>It’s all just a  matter of perspective, isn’t it?</p>
+<h4 id="the-biggest-challenge">The biggest challenge</h4>
+<p>The biggest challenge was to solve, how can I convert a multi-mixed-typeless array to a strictly typed structure of objects.
+  Creating the strictly typed class structure was relatively easy. To fill them with data was the problem. The <code class="language-plaintext highlighter-rouge">PHPStan</code>
+  always complained about the missing types on the Iterables, such like:</p>
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>------ ------------------------------------------------------------------------------------------------- 
+ Line   WorstPractice/Component/DependencyInjection/ConfigModel/CallableItemCollection.php
+------ ------------------------------------------------------------------------------------------------- 
+ 27     Property WorstPractice\Component\DependencyInjection\ConfigModel\CallableItemCollection::$items  
+        type has no value type specified in iterable type array.
+        💡 See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type        
+------ ------------------------------------------------------------------------------------------------- 
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Tried to solve it with <a href="https://phpstan.org/writing-php-code/phpdoc-types#iterables" rel="noopener" target="_blank">PHPDoc Types</a>
+  and PHP Attributes (such as <a href="https://blog.jetbrains.com/phpstorm/2020/10/phpstorm-2020-3-eap-4/#ArrayShape" rel="noopener" target="_blank">ArrayShape</a>) 
+  too but pre-defining the service’s (1st level), call list’s (2nd level), method’s (3rd level) parameter list (4th level),
+  where any parameter can be an array too, became way too complicated. Also in the config the call list itself is a mixed
+  array, taking the zero indexed element is the method name, and the first indexed element is the attribute list array.</p>
+<p>No doubt, it’s a mess. Not a small one, but huge. How to solve it then? Well… it’s called <code class="language-plaintext highlighter-rouge">ConfigParserInterface</code>! We
+  define it simple and the Library will use the implementation:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">declare</span><span class="p">(</span><span class="n">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection</span><span class="p">;</span>
+
+<span class="kn">use</span> <span class="nc">WorstPractice\Component\DependencyInjection\ConfigModel\ArgumentItemCollection</span><span class="p">;</span>
+<span class="kn">use</span> <span class="nc">WorstPractice\Component\DependencyInjection\ConfigModel\CallableItemCollection</span><span class="p">;</span>
+
+<span class="kd">interface</span> <span class="nc">ConfigParserInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">parse</span><span class="p">(</span><span class="kt">mixed</span> <span class="nv">$config</span><span class="p">):</span> <span class="kt">ConfigModel</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>As you can see, I simply set the <code class="language-plaintext highlighter-rouge">$config</code> to be “mixed”, and whatever the implementation do inside must result a <code class="language-plaintext highlighter-rouge">ConfigModel</code>.
+  Great theory, but I still have to solve the parsing under the close surveillance of the <code class="language-plaintext highlighter-rouge">PHPStan</code>. For this task I made
+  only the <code class="language-plaintext highlighter-rouge">ArrayParser</code>. Later, I may create an <code class="language-plaintext highlighter-rouge">XMLParser</code> or a <code class="language-plaintext highlighter-rouge">YamlParser</code> (by including the Symfony’s Yaml parser class).</p>
+<p>The question is still the same, and I avoid the hot porridge, like a cat.</p>
+<h5 id="array-to-object">Array to Object</h5>
+<p>So a mixed array should be converted to object? Can we do it in one step? If yes, please send me a good solution, what I 
+  tried were all wrong, or just simply didn’t fit here.</p>
+<p>Then, can we do it in two steps?</p>
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>Array =&gt; ? =&gt; Object 
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Looks familiar. What if, when the <code class="language-plaintext highlighter-rouge">?</code> means <code class="language-plaintext highlighter-rouge">String</code>?</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/refactoring-the-dependency-injection-container/json.jpg" width="800" />
+  <figcaption class="a-illustration__caption">Source: <a href="https://imgflip.com/memegenerator" rel="noopener" target="_blank">Meme Generator</a></figcaption>
+</figure>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$jsonData</span> <span class="o">=</span> <span class="nb">json_encode</span><span class="p">(</span><span class="n">value</span><span class="o">:</span> <span class="nv">$config</span><span class="p">,</span> <span class="n">flags</span><span class="o">:</span> <span class="no">JSON_THROW_ON_ERROR</span><span class="p">);</span>
+<span class="nv">$generalObjectData</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="n">json</span><span class="o">:</span> <span class="nv">$jsonData</span><span class="p">,</span> <span class="n">associative</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="n">flags</span><span class="o">:</span> <span class="no">JSON_THROW_ON_ERROR</span><span class="p">);</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Oh, yes! The <code class="language-plaintext highlighter-rouge">json_encode</code> eats <code class="language-plaintext highlighter-rouge">mixed</code> data and produces a <code class="language-plaintext highlighter-rouge">string</code> (or <code class="language-plaintext highlighter-rouge">false</code>). The <code class="language-plaintext highlighter-rouge">json_decode</code>, in the other hand, eats 
+  a <code class="language-plaintext highlighter-rouge">string</code> and produces an <code class="language-plaintext highlighter-rouge">array</code>. <strong>Or an Object!</strong></p>
+<p>But what kind of object? It’s the built-in <code class="language-plaintext highlighter-rouge">stdClass</code>. And since it’s an object we can use <code class="language-plaintext highlighter-rouge">ReflectionObject</code> on it, and 
+  also can feed into the <code class="language-plaintext highlighter-rouge">foreach</code> construct, because by design the <code class="language-plaintext highlighter-rouge">foreach</code> works not only with arrays, but also with objects 
+  that have public properties. And the <code class="language-plaintext highlighter-rouge">stdClass</code> is nothing more than public properties.</p>
+<p>Great! The most difficult part is done. We go through the data, build the <strong>items</strong>, add them to the <strong>collections</strong>, cast
+  everything to the right type, since what we have to cast, is for sure can’t be an array, therefore we won’t have such errors
+  as <code class="language-plaintext highlighter-rouge">PHP Warning:  Array to string conversion</code>.</p>
+<p>“By any means necessary” - that’s what they used to say. And my goal was to achieve strict types. Result?</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/refactoring-the-dependency-injection-container/stan.gif" width="660" />
+  <figcaption class="a-illustration__caption">PHPStan results</figcaption>
+</figure>
+<h3 id="language-features">Language features</h3>
+<p>The <code class="language-plaintext highlighter-rouge">v.1.0</code> was written in <code class="language-plaintext highlighter-rouge">PHP 7.4</code>. This, the <code class="language-plaintext highlighter-rouge">v1.1</code> is written in <code class="language-plaintext highlighter-rouge">PHP 8.2</code>. Normally it’s a huge step, but since I wrote 
+  the <code class="language-plaintext highlighter-rouge">v.1.0</code> carefully and paid attention to write a clean and nice code, the refactor from language-wise was not a big deal.</p>
+<p>If it had been <code class="language-plaintext highlighter-rouge">PHP 5.3</code> or older, then I would have definitely sweat into my pants. Anyway, there are a few PHP versions 
+  between <code class="language-plaintext highlighter-rouge">v.1.0</code> and <code class="language-plaintext highlighter-rouge">v.1.1</code>, so just for curiosity, let’s take a look of the language features I could add to improve the
+  new code’s value, and also to explain why I require PHP 8.2 for this package…</p>
+<h4 id="features-from-php-80">Features from PHP 8.0</h4>
+<p>There are many good features even in PHP 7.4 I didn’t use so far, but our task is not to use all of them, but to use what
+  we need. So the first new language features I used during the refactor were:</p>
+<h5 id="nullsafe-operator">Nullsafe operator</h5>
+<p>With the addition of the <a href="https://stitcher.io/blog/php-8-nullsafe-operator" rel="noopener" target="_blank">Nullsafe operator</a>,
+  we can now have null coalescing-like behaviour on methods!</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$isInstantiable</span> <span class="o">=</span> <span class="nv">$reflectionClass</span><span class="o">-&gt;</span><span class="nf">isInstantiable</span><span class="p">()</span> 
+    <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="n">int</span><span class="p">)</span> <span class="nv">$reflectionClass</span><span class="o">-&gt;</span><span class="nf">getConstructor</span><span class="p">()</span><span class="o">?-&gt;</span><span class="nf">getNumberOfRequiredParameters</span><span class="p">())</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="named-arguments">Named arguments</h5>
+<p>This is one of my favourite, and long awaited feature. 
+  <a href="https://stitcher.io/blog/php-8-named-arguments" rel="noopener" target="_blank">Named arguments</a> allow you to 
+  pass in values to a function, by specifying the value name, so that you don’t have to take their order into consideration, 
+  and you can also skip optional parameters!</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="o">-&gt;</span><span class="nf">set</span><span class="p">(</span>
+    <span class="n">id</span><span class="o">:</span> <span class="nv">$id</span><span class="p">,</span>
+    <span class="n">class</span><span class="o">:</span> <span class="nv">$serviceInstance</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="n">shared</span><span class="o">:</span> <span class="nv">$isShared</span>
+<span class="p">);</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>However, it’s not only good to skip parameters, but also labeling parameters to make it easier to read and understand:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">json_decode</span><span class="p">(</span><span class="nv">$parameter</span><span class="p">,</span> <span class="n">associative</span><span class="o">:</span> <span class="kc">true</span><span class="p">);</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="match-expression">Match expression</h5>
+<p>The <a href="" rel="noopener" target="_blank">match</a> can return values, doesn’t require break statements, can combine 
+  conditions, uses strict type comparisons and doesn’t do any type coercion.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">setParameterType</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$parameter</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$type</span><span class="p">):</span> <span class="kt">mixed</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nf">match</span> <span class="p">(</span><span class="nv">$type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="s1">'boolean'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">bool</span><span class="p">)</span> <span class="nv">$parameter</span><span class="p">,</span>
+        <span class="s1">'integer'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="nv">$parameter</span><span class="p">,</span>
+        <span class="s1">'double'</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">float</span><span class="p">)</span> <span class="nv">$parameter</span><span class="p">,</span>
+        <span class="s1">'array'</span> <span class="o">=&gt;</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$parameter</span><span class="p">,</span> <span class="n">associative</span><span class="o">:</span> <span class="kc">true</span><span class="p">),</span>
+        <span class="s1">'NULL'</span> <span class="o">=&gt;</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="k">default</span> <span class="o">=&gt;</span> <span class="nv">$parameter</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="constructor-property-promotion">Constructor property promotion</h5>
+<p>Oh, yes! Previously you defined properties in the class, then you listed them in the class constructor arguments, then
+  you made the assignment in the constructor… You had to type almost the same three times. 
+  <a href="https://stitcher.io/blog/constructor-promotion-in-php-8" rel="noopener" target="_blank">Up till now</a>.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">class</span> <span class="nc">CallableItem</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">public</span> <span class="n">string</span> <span class="nv">$method</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="nc">ArgumentItemCollection</span> <span class="nv">$arguments</span><span class="p">,</span>
+    <span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="the-mixed-type">The mixed type</h5>
+<p>When you can’t specify what you have, this new <a href="https://stitcher.io/blog/new-in-php-8#new-mixed-type-rfc" rel="noopener" target="_blank">mixed type</a>
+  comes to help you out.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">public</span> <span class="k">function</span> <span class="n">stringifyValue</span><span class="p">(</span><span class="kt">mixed</span> <span class="nv">$value</span><span class="p">):</span> <span class="kt">string</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">is_object</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">||</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+        <span class="o">?</span> <span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="nb">json_encode</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+        <span class="o">:</span> <span class="nb">strval</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="the-throw-exception">The throw exception</h5>
+<p>Previously the <code class="language-plaintext highlighter-rouge">throw</code> was a statement, now it’s an expression. Therefore, we can use it anywhere where expressions are
+  possible to use. Very, very useful to avoid extra checks.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">public</span> <span class="k">function</span> <span class="n">get</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$id</span><span class="p">):</span> <span class="kt">ConfigItem</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">items</span><span class="p">[</span><span class="nv">$id</span><span class="p">]</span> <span class="o">??</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">OutOfBoundsException</span><span class="p">(</span>
+        <span class="nb">sprintf</span><span class="p">(</span><span class="nv">$message</span><span class="p">,</span> <span class="nv">$id</span><span class="p">),</span>
+        <span class="nv">$code</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="allowing-class-on-objects">Allowing <code class="language-plaintext highlighter-rouge">::class</code> on objects</h5>
+<p>It’s now possible to use <code class="language-plaintext highlighter-rouge">::class</code> on objects, instead of having to use <code class="language-plaintext highlighter-rouge">get_class()</code> on them.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="o">-&gt;</span><span class="nf">set</span><span class="p">(</span>
+    <span class="n">id</span><span class="o">:</span> <span class="nv">$id</span><span class="p">,</span>
+    <span class="n">class</span><span class="o">:</span> <span class="nv">$serviceInstance</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
+    <span class="n">shared</span><span class="o">:</span> <span class="nv">$isShared</span>
+<span class="p">);</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="trailing-comma-in-parameter-lists">Trailing comma in parameter lists</h5>
+<p>Small but useful improvement. In most cases I try to avoid to leave trailing commas, but now if I forget, I won’t get any 
+  error. Comes in handy, when copy-pasting similar parameters, for example in a <code class="language-plaintext highlighter-rouge">var_dump</code>:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">var_dump</span><span class="p">(</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="nb">getType</span><span class="p">(),</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="nb">getType</span><span class="p">(),</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="nb">getType</span><span class="p">(),</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="nb">getType</span><span class="p">(),</span>
+ <span class="nv">$data</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">-&gt;</span><span class="nb">getType</span><span class="p">(),</span>
+<span class="p">);</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>There are many useful new features in PHP 8.0 that I didn’t use. Check the 
+  <a href="https://stitcher.io/blog/new-in-php-8" rel="noopener" target="_blank">stitcher.io</a> for details.</p>
+<h4 id="features-from-php-81">Features from PHP 8.1</h4>
+<p>Although the PHP 8.0 shot most of the black powder, the 8.1 still hold some goodies in the back pocket.</p>
+<h5 id="enum">Enum</h5>
+<p>The <a href="https://stitcher.io/blog/php-enums" rel="noopener" target="_blank">Enums</a> are great to have. The benefit 
+  of enums is that they represent a collection of constant values, but most importantly those values can be typed. But what
+  I really like, is now this constants can have quasi-multiple value from multiple types. Okay probably this is not the most
+  precise definition.</p>
+<p>I found the enum extremely useful for the errors:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection</span><span class="p">;</span>
+
+<span class="n">enum</span> <span class="nc">Error</span>
+<span class="p">{</span>
+    <span class="k">case</span> <span class="no">ERROR_CLASS_NOT_FOUND</span><span class="p">;</span>
+    <span class="k">case</span> <span class="no">ERROR_CLASS_NOT_INSTANTIABLE</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getCode</span><span class="p">():</span> <span class="kt">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">match</span> <span class="p">(</span><span class="nv">$this</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">::</span><span class="no">ERROR_CLASS_NOT_FOUND</span> <span class="o">=&gt;</span> <span class="mi">1000</span><span class="p">,</span>
+            <span class="k">self</span><span class="o">::</span><span class="no">ERROR_CLASS_NOT_INSTANTIABLE</span> <span class="o">=&gt;</span> <span class="mi">1001</span><span class="p">,</span>
+            <span class="c1">// ...</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getMessageTemplate</span><span class="p">():</span> <span class="kt">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nf">match</span> <span class="p">(</span><span class="nv">$this</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">self</span><span class="o">::</span><span class="no">ERROR_CLASS_NOT_FOUND</span> <span class="o">=&gt;</span> <span class="s1">'Class "%s" not found.'</span><span class="p">,</span>
+            <span class="k">self</span><span class="o">::</span><span class="no">ERROR_CLASS_NOT_INSTANTIABLE</span> <span class="o">=&gt;</span> <span class="s1">'The given service (%s) is not an instantiable class.'</span><span class="p">,</span>
+            <span class="c1">// ...</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Then somewhere else in the code:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nv">$serviceBook</span><span class="o">-&gt;</span><span class="nf">class</span><span class="p">(</span><span class="mf">...</span><span class="nv">$argumentList</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Throwable</span> <span class="nv">$exception</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
+        <span class="nb">sprintf</span><span class="p">(</span><span class="nc">Error</span><span class="o">::</span><span class="no">ERROR_CLASS_NOT_INSTANTIABLE</span><span class="o">-&gt;</span><span class="nf">getMessageTemplate</span><span class="p">(),</span> <span class="nv">$id</span><span class="p">),</span>
+        <span class="nc">Error</span><span class="o">::</span><span class="no">ERROR_CLASS_NOT_INSTANTIABLE</span><span class="o">-&gt;</span><span class="nf">getCode</span><span class="p">(),</span>
+        <span class="nv">$exception</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="new-in-initializers"><code class="language-plaintext highlighter-rouge">new</code> in initializers</h5>
+<p>This <a href="https://stitcher.io/blog/php-81-new-in-initializers" rel="noopener" target="_blank">feature</a> proposes 
+  to allow use of new expressions inside parameter default values, attribute arguments, static variable initializers and 
+  global constant initializers. This is a very-very useful feature.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">public</span> <span class="k">function</span> <span class="n">set</span><span class="p">(</span>
+    <span class="kt">string</span> <span class="nv">$id</span><span class="p">,</span>
+    <span class="kt">?string</span> <span class="nv">$class</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="kt">ArgumentItemCollection</span> <span class="nv">$arguments</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArgumentItemCollection</span><span class="p">(),</span>
+    <span class="kt">CallableItemCollection</span> <span class="nv">$calls</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CallableItemCollection</span><span class="p">(),</span>
+    <span class="kt">bool</span> <span class="nv">$shared</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">):</span> <span class="kt">void</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">library</span><span class="p">[</span><span class="nv">$id</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServiceBook</span><span class="p">(</span>
+        <span class="n">class</span><span class="o">:</span> <span class="nv">$class</span> <span class="o">??</span> <span class="nv">$id</span><span class="p">,</span>
+        <span class="n">arguments</span><span class="o">:</span> <span class="nv">$arguments</span><span class="p">,</span>
+        <span class="n">calls</span><span class="o">:</span> <span class="nv">$calls</span><span class="p">,</span>
+        <span class="n">shared</span><span class="o">:</span> <span class="nv">$shared</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="readonly-properties">Readonly properties</h5>
+<p>The end of an era. An era where you had to define properties as <code class="language-plaintext highlighter-rouge">private</code> and manually create <code class="language-plaintext highlighter-rouge">getters</code> because you
+  wanted to protect them to be overwritten. Now class properties can be marked as <a href="https://stitcher.io/blog/php-81-readonly-properties" rel="noopener" target="_blank">readonly</a>, 
+  meaning they can only be written once. Either by the constructor, or by any other method. Absolutely love it!</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">private</span> <span class="n">readonly</span> <span class="nc">ConfigParserInterface</span> <span class="nv">$configParser</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>There are many useful new features in PHP 8.1 that I didn’t use. Check the
+  <a href="https://stitcher.io/blog/new-in-php-81" rel="noopener" target="_blank">stitcher.io</a> for details.</p>
+<h4 id="features-from-php-82">Features from PHP 8.2</h4>
+<p>This one is easy. I used only one new feature specifically from this release: the <a href="https://stitcher.io/blog/new-in-php-82#readonly-classes-rfc" rel="noopener" target="_blank">readonly classes</a>.
+  It adds syntactic sugar to make all class properties readonly at once.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection\ConfigModel</span><span class="p">;</span>
+
+<span class="n">readonly</span> <span class="kd">class</span> <span class="nc">CallableItem</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">public</span> <span class="n">string</span> <span class="nv">$method</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="nc">ArgumentItemCollection</span> <span class="nv">$arguments</span><span class="p">,</span>
+    <span class="p">)</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>There are many useful new features in PHP 8.2 that I didn’t use. Check the
+  <a href="https://stitcher.io/blog/new-in-php-82" rel="noopener" target="_blank">stitcher.io</a> for details.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>I think it was worth to refactor the old code. In one hand, it was fun to make some useful improvements in code quality, 
+  but in the other, I learned a lot of new language features, that I can in the future. Except when I have to deal with 
+  PHP 5 legacy projects.</p>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
+  <p class="a-footer__author">
+    Hi, my name is Gábor Iván. I am an old-school Full stack developer, which means I deal with Backend (PHP), Frontend (HTML, CSS, JS), and a little bit of Webdesign. No DevOPS, sorry.
+    <br>
+    <a href="/author/gabor.ivan/index.html">Read the full story</a>
+  </p>
+</footer>
+</article>
+<aside class="a-comments">
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Refactoring the Dependency Injection Container`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
+</aside>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2022 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+</body>
+</html>

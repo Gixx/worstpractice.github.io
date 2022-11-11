@@ -75,6 +75,10 @@ a[target=_blank]::after {
   vertical-align:  super;
 }
 
+abbr {
+  cursor: help;
+}
+
 img {
   max-width: 100%;
   margin: 0.5rem 0;
