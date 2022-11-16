@@ -22,9 +22,9 @@
     <meta property="og:site_name" content="Worst Practice">
     <meta property="og:title" content="Setup WSL2 with Docker&nbsp;-&nbsp;Worst Practice
 ">
-    <meta property="og:url" content="https://www.worstpractice.dev/wsl/setup-wsl2-with-docker">
+    <meta property="og:url" content="https://www.worstpractice.dev/devenv/setup-wsl2-with-docker">
     <meta name="date" content="2020-01-10T09:00:00+00:00">
-    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2020/wsl/setup-wsl2-with-docker/fishing.jpg">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2020/devenv/setup-wsl2-with-docker/fishing.jpg">
     <meta property="og:image:width" content="600">
     <meta property="og:image:height" content="600">
     <meta property="og:description" content="I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.">
@@ -39,11 +39,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:creator" content="@gaborivan1980">
     <meta name="twitter:description" content="I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.">
-    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2020/wsl/setup-wsl2-with-docker/fishing_600x600.jpg">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2020/devenv/setup-wsl2-with-docker/fishing_600x600.jpg">
     <link rel="canonical" href="https://www.worstpractice.dev">
     <link rel="alternate" type="application/rss+xml" title="Setup WSL2 with Docker&nbsp;-&nbsp;Worst Practice
 " href="/feed.xml">
-    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/wsl/setup-wsl2-with-docker">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/devenv/setup-wsl2-with-docker">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
@@ -103,7 +103,7 @@
           <ul class="m-menu__navigation">
             <li><a class="m-menu__link -backend" href="/backend">Backend</a></li>
             <li><a class="m-menu__link -frontend" href="/frontend">Frontend</a></li>
-            <li><a class="m-menu__link -wsl -current" href="/wsl">WSL</a></li>
+            <li><a class="m-menu__link -devenv -current" href="/devenv">Development Environment</a></li>
             <li><a class="m-menu__link -general
 " href="/general
 ">General</a></li>
@@ -147,12 +147,12 @@
               </p>
               <p class="a-meta__expiration">Estimated date of expiration: June&nbsp; 1, 2020
               </p>
-              <p class="a-meta__category">Posted under the <a href="/wsl/index.html">WSL</a> category</p>
+              <p class="a-meta__category">Posted under the <a href="/devenv/index.html">Development Environment</a> category</p>
               <p class="a-meta__level">Level: Beginner</p>
               <p class="a-meta__tags">Posted with the following tags:
                 <a href="/tags/docker/index.html">#Docker</a>, 
                 <a href="/tags/wsl2/index.html">#WSL2</a>, 
-                <a href="/tags/poweline-shell/index.html">#Powerline Shell</a>, 
+                <a href="/tags/powerline-shell/index.html">#Powerline Shell</a>, 
                 <a href="/tags/phpstorm/index.html">#PHPStorm</a>, 
                 <a href="/tags/windows/index.html">#Windows</a>
               </p>
@@ -162,7 +162,7 @@
             I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.
           </p>
           <figure class="a-illustration">
-            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/fishing.jpg" alt="Setup WSL2 with Docker">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/fishing.jpg" alt="Setup WSL2 with Docker">
             <figcaption class="a-illustration__caption"></figcaption>
           </figure>
           <div class="a-body">
@@ -178,7 +178,7 @@
             <h4 id="before-you-start">Before you start</h4>
             <p>The following list will change soon, as Microsoft will ship all the new features in Q2 2020 (if they can keep the deadlines).
               That is why I set the expiration day of this article to the upcoming months. So this tutorial is for those who don’t want to
-              wait and are not afraid of taking a little bit of risk.</p>
+              wait and are not afraid of taking a bit of risk.</p>
             <h4 id="the-list">The list</h4>
             <p>It might be too long to write a step-by-step tutorial, and we all know, that when we need something, we only need to search
               for it on the Internet, and there’s a high chance to find the right solution. No need to reinvent the wheel.</p>
@@ -207,7 +207,7 @@
               Microsoft actually added it to the Windows at all. Otherwise I would install some third party solution. But the built-in
               is just as good as any other or even better.</p>
             <h4 id="in-step-8-issues-with-the-docker-desktop">In step #8: Issues with the Docker Desktop</h4>
-            <p>After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
+            <p>After installing the Edge release, start the application (look for it in the system tray), right-click on the icon and
               choose the settings. There <strong>you MUST uncheck</strong> the <em>Start Docker Desktop when you log in</em> option to avoid to start automatically
               earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
               and mounting manually always sucks.</p>

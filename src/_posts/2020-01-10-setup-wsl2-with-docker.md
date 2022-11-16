@@ -7,9 +7,9 @@ expiration: "2020-06-01"
 illustration: 'fishing.jpg'
 illustrationCaption: ''
 illustration_share: 'fishing_600x600.jpg'
-category: wsl
-categoryLabel: 'WSL'
-tags:   [docker,wsl2,poweline-shell,phpstorm,windows]
+category: devenv
+categoryLabel: 'Development Environment'
+tags:   [docker,wsl2,powerline-shell,phpstorm,windows]
 tagLabels: ['Docker','WSL2', 'Powerline Shell','PHPStorm','Windows']
 excerpt: 'I collected all the steps I had to make to build a full-value (web)development environment on Windows 10.'
 review: true
@@ -32,7 +32,7 @@ to use than ever before.
 
 The following list will change soon, as Microsoft will ship all the new features in Q2 2020 (if they can keep the deadlines).
 That is why I set the expiration day of this article to the upcoming months. So this tutorial is for those who don't want to
-wait and are not afraid of taking a little bit of risk.
+wait and are not afraid of taking a bit of risk.
 
 #### The list
 
@@ -70,7 +70,7 @@ is just as good as any other or even better.
 
 #### In step #8: Issues with the Docker Desktop
 
-After installing the Edge release, start the application (look for it in the system tray), right click on the icon and
+After installing the Edge release, start the application (look for it in the system tray), right-click on the icon and
 choose the settings. There **you MUST uncheck** the _Start Docker Desktop when you log in_ option to avoid to start automatically
 earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
 and mounting manually always sucks.
