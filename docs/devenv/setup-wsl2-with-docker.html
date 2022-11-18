@@ -112,9 +112,9 @@
         <nav>
           <h2 class="m-menu__title">Tags</h2>
           <ul class="m-menu__navigation">
-            <li><a class="m-menu__link -personal" rel="tag" href="/tags/personal/">personal <sup>1</sup></a></li>
             <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>4</sup></a></li>
             <li><a class="m-menu__link -js" rel="tag" href="/tags/js/">JS <sup>4</sup></a></li>
+            <li><a class="m-menu__link -dic" rel="tag" href="/tags/dic/">DIC <sup>4</sup></a></li>
           </ul>
           <a class="m-menu__link -more" href="/tags/">More</a>
         </nav>
@@ -143,7 +143,7 @@
           <header class="a-header">
             <h2 class="a-header__title">Setup WSL2 with Docker</h2>
             <div class="a-header__meta">
-              <p class="a-meta__date">Posted on January&nbsp;10, 2020 09:00
+              <p class="a-meta__date">Posted on January&nbsp;10, 2020 @ 09:00
               </p>
               <p class="a-meta__expiration">Estimated date of expiration: June&nbsp; 1, 2020
               </p>
@@ -212,12 +212,12 @@
               earlier than the WSL2 engine. Because when it happens, none of your local drives will be mounted in any of the Docker containers
               and mounting manually always sucks.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop.png" width="700" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/docker-desktop.png" width="700" />
               <figcaption class="a-illustration__caption">Settings of the Docker Desktop</figcaption>
             </figure>
             <p>Under the <em>Resources</em> menu, enable the WSL integration by selecting the Linux distribution you have.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/docker-desktop-2.png" width="700" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/docker-desktop-2.png" width="700" />
               <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
             </figure>
             <p>And in the future, first always start the WSL first, and then the Docker Desktop app.</p>
@@ -235,18 +235,18 @@
               For the sake of clarity I create an example project: <code>MyTestProject</code>. The PHPStorm sets the built-in terminal’s path to the project root, so the
               Terminal will look something like this:</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm.png" width="800" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/phpstorm.png" width="800" />
               <figcaption class="a-illustration__caption">The default state of the Terminal tool in PHPStorm</figcaption>
             </figure>
             <p>The PHPStorm uses the <code>CMD.exe</code> by default, but luckily we can change that at our own will.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-2.png" width="800" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/phpstorm-2.png" width="800" />
               <figcaption class="a-illustration__caption">Terminal settings in PHPStorm</figcaption>
             </figure>
             <p>If the we change the <code>Shell path</code>’s value to <code>C:\Windows\System32\wsl.exe</code>, we see our beautiful PowerlineShell prompt we had
               set up in the step #10. First you need to close any opened PHPStorm Terminal window to make the changes take affect.</p>
             <figure class="a-illustration">
-              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-3.png" width="800" />
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/phpstorm-3.png" width="800" />
               <figcaption class="a-illustration__caption">The Terminal tool with the WSL prompt</figcaption>
             </figure>
             <p>It’s simple, isn’t it? Then why am I wasting your previous time on write about a straightforward process? The answer is:</p>
@@ -318,7 +318,7 @@
 </div>
 <p>After finish the set up, the Terminal prompt may - but not necessarily - change from the project’s folder to WSL mounting point, and will look something like this:</p>
 <figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/wsl/setup-wsl2-with-docker/phpstorm-4.png" width="800" />
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/devenv/setup-wsl2-with-docker/phpstorm-4.png" width="800" />
   <figcaption class="a-illustration__caption">The Terminal tool with wrong default path</figcaption>
 </figure>
 <p>I am not sure why it happens if it happens at all, and not sure why it doesn’t happen for others with the same setup. But it’s a fact, it happened to me.

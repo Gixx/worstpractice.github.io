@@ -191,4 +191,12 @@ pre code {
   .language-yaml pre.highlight::before {
     content: 'YAML file'
   }
+
+  .language-markdown pre.highlight::before {
+    content: 'Markdown file'
+  }
+
+  .language-liquid pre.highlight::before {
+    content: 'Liquid template'
+  }
 }

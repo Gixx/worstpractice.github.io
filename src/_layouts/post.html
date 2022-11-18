@@ -10,7 +10,7 @@ page_type: post_view
                 {%- assign m = page.date | date: "%-m" | minus: 0 -%}
                 {%- assign postMonth = site.data[site.lang].months[m] -%}
                 {%- capture postDate  -%}
-                    {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} {{ page.date | date: '%R' }}
+                    {{ postMonth }}&nbsp;{{ page.date | date: '%e' }}, {{ page.date | date: '%Y' }} @ {{ page.date | date: '%R' }}
                 {%- endcapture -%}
                 <p class="a-meta__date">Posted on {{ postDate }}</p>
                 {%- unless page.expiration == "none" -%}
