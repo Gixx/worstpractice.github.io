@@ -1,0 +1,803 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Tips &amp; Tricks to make Jekyll do what you need&nbsp;-&nbsp;Worst Practice
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="jekyll 3.8.5">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="copyright" content="Copyright © 2022 All rights reserved. Worst Practice.">
+    <meta name="description" content="
+">
+    <meta name="subject" content="">
+    <meta name="keywords" content="">
+    <!-- facebook share -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Worst Practice">
+    <meta property="og:title" content="Tips &amp; Tricks to make Jekyll do what you need&nbsp;-&nbsp;Worst Practice
+">
+    <meta property="og:url" content="https://www.worstpractice.dev/devenv/tips-and-tricks-for-jekyll">
+    <meta name="date" content="2022-11-18T14:10:00+00:00">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2022/devenv/tips-and-tricks-for-jekyll/jekyll.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:description" content="The most simple websites are those have only static files. For a blog like this is perfect. But making everything static by default is difficult. You need a ...">
+    <meta property="fb:admins" content="ivan.gabor.80">
+    <meta property="fb:app_id" content="2178081495757871">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
+    <meta property="article:published_time" content="2022-11-18T14:10:00+00:00">
+    <meta property="article:tag" content="blog"/>
+    <!-- twitter share -->
+    <meta name="twitter:title" content="Tips & Tricks to make Jekyll do what you need">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@gaborivan1980">
+    <meta name="twitter:description" content="The most simple websites are those have only static files. For a blog like this is perfect. But making everything static by default is difficult. You need a ...">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2022/devenv/tips-and-tricks-for-jekyll/jekyll_600x600.jpg">
+    <link rel="canonical" href="https://www.worstpractice.dev">
+    <link rel="alternate" type="application/rss+xml" title="Tips &amp; Tricks to make Jekyll do what you need&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/devenv/tips-and-tricks-for-jekyll">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+    <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#C23F2F">
+    <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#C23F2F">
+    <meta name="application-name" content="Worst Practice Blog">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#C23F2F">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.srcset) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/site.min.js"></script>
+  </head>
+  <body>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
+    </header>
+    <div class="codeOfTheDay">
+      <input class="codeOfTheDay__toggle" type="checkbox">
+      <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
+      <div class="codeOfTheDay__backdrop"></div>
+    </div>
+    <div class="m-menu">
+      <div class="m-menu__burger">
+        <span></span>
+      </div>
+      <input class="m-menu__toggle" type="checkbox" />
+      <div class="m-menu__content">
+        <nav>
+          <h2 class="m-menu__title">Worst Practice</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -home" href="/">Home</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Categories</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -devenv -current" href="/devenv">Development Environment</a></li>
+            <li><a class="m-menu__link -backend" href="/backend">Backend</a></li>
+            <li><a class="m-menu__link -frontend" href="/frontend">Frontend</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Tags</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>4</sup></a></li>
+            <li><a class="m-menu__link -js" rel="tag" href="/tags/js/">JS <sup>4</sup></a></li>
+            <li><a class="m-menu__link -dic" rel="tag" href="/tags/dic/">DIC <sup>4</sup></a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/tags/">More</a>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Archive</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/archive/2022-11/">November, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-10/">October, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2021-04/">April, 2021</a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/archive/">More</a>
+        </nav>
+        <nav>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/imprint.html">Imprint</a></li>
+            <li><a class="m-menu__link " href="/terms.html">Terms of Use</a></li>
+            <li><a class="m-menu__link " href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="m-menu__backdrop"></div>
+    </div>
+    <main class="c-content">
+      <section class="c-content__article">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">Tips &amp; Tricks to make Jekyll do what you need</h2>
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on November&nbsp;18, 2022 @ 14:10
+              </p>
+              <p class="a-meta__category">Posted under the <a href="/devenv/index.html">Development Environment</a> category</p>
+              <p class="a-meta__level">Level: Beginner</p>
+              <p class="a-meta__tags">Posted with the following tags:
+                <a href="/tags/jekyll/index.html">#Jekyll</a>, 
+                <a href="/tags/liquid/index.html">#Liquid</a>
+              </p>
+            </div>
+          </header>
+          <p class="a-excerpt">
+            The most simple websites are those have only static files. For a blog like this is perfect. But making everything static by default is difficult. You need a generator. And when you work with Jekyll, sometimes you meet Mr. Hide as well.
+          </p>
+          <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/devenv/tips-and-tricks-for-jekyll/jekyll.jpg" alt="Tips &amp; Tricks to make Jekyll do what you need">
+            <figcaption class="a-illustration__caption"><a href="https://commons.wikimedia.org/wiki/File:Dr_Jekyll_and_Mr_Hyde_poster.png">Unknown author, published by the National Printing &amp; Engraving Company, Chicago</a>,<br>
+              Public domain, via Wikimedia Commons</figcaption>
+          </figure>
+          <div class="a-body">
+            <h3 id="what-is-jekyll">What is Jekyll?</h3>
+            <p>Short answer: <a href="https://jekyllrb.com/Jekyll" rel="noopener" target="_blank">Jekyll</a> is a static site generator.</p>
+            <p>Long answer: Jekyll is a static site generator that uses layouts and <a href="https://daringfireball.net/projects/markdown/syntax" rel="noopener" target="_blank">Markdown</a>
+              to generate a static website. It has its own templating engine, named <a href="https://jekyllrb.com/docs/step-by-step/02-liquid/" rel="noopener" target="_blank">Liquid</a>. 
+              If you know the Symfony’s <a href="https://twig.symfony.com/" rel="noopener" target="_blank">Twig</a> template engine, 
+              you will find the Liquid very familiar. At least syntax-wise.</p>
+            <h3 id="why-jekyll">Why Jekyll?</h3>
+            <p>When I started to deal with static site generators, I didn’t know much of them. I asked my friends what they recommend, but
+              almost everybody told a different tool as to be the best. …including the <em>“Write your own in PHP, dude!”</em> option.</p>
+            <p>So I tried some of them, and I chose Jekyll because its template engine’s syntax similarity to Twig’s, which I know well.</p>
+            <h3 id="tops-and-flops">Tops and Flops</h3>
+            <p>The bright side of the story is, the Liquid is easy to learn, easy to understand and easy to use. Unless you keep yourself
+              on the path that the documentation shows you.</p>
+            <p>The dark side of the story begins as soon as you want something different, or a bit more.</p>
+            <p>The Liquid has three main components:</p>
+            <ul>
+              <li>objects</li>
+              <li>tags</li>
+              <li>filters</li>
+            </ul>
+            <p>Liquid tags are not the same as on <a href="https://www.twitter.com" rel="noopener" target="_blank">Twitter</a>. These 
+              are more like statements, functions, procedures. For example, the <code class="language-plaintext highlighter-rouge">{%if ...%}...{% endif %}</code> is a 
+              <em>control flow tag</em>.</p>
+            <p>Just to confuse you, it has Twitter-like tags too. And categories. Great.</p>
+            <p>So, from these three components you can create many beautiful things, but sometimes it’s very painful to customize them.</p>
+            <h3 id="challenges">Challenges</h3>
+            <p>During the development of this blog, I faced some issues, and I had to be very creative to solve them. My problem now is
+              I can’t really remember the order of the issues came up, so I can’t tell now which issues in which order lead me to the 
+              current state of the setup. But I try to grab some details.</p>
+            <h4 id="slug-vs-label">Slug vs Label</h4>
+            <p>I had a private, more personal blog that I wrote in Hungarian. There we have special letters above the default <em>latin-1</em>
+              character set. In a very short time I figured out that Jekyll was written by English-speaking programmers. Because - according
+              to my decade-long experience - many English-speaking programmers just simply give a damn on the rest of the world, that 
+              would like to speak, read and write in other than English. Sorry guys, that’s the truth.</p>
+            <p>And in Jekyll, what you give for example for a post’s category name, it will be used for the URL too. And if you have 
+              special characters you are screwed. For example the <code class="language-plaintext highlighter-rouge">category: 'csőlátás'</code> will be transformed into <code class="language-plaintext highlighter-rouge">/cslts</code>. Not good.
+              Also even in English you can shoot yourself on the leg, when you need a short slug for a longer label:</p>
+            <div class="language-liquid highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre>category: 'Development environment'
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<p>For this the slug will be either <code class="language-plaintext highlighter-rouge">/development/environment/...</code> or <code class="language-plaintext highlighter-rouge">/development%20environment/...</code>, however a simple
+  <code class="language-plaintext highlighter-rouge">/devenv/...</code> would be enough for the URL. And the same goes for the tags.</p>
+<p>Of course there are <em>I18n</em> plugins for Jekyll, but what I tried, didn’t work very well.</p>
+<p>What could I do? I tricked the system, with the system’s tools:</p>
+<ul>
+  <li>Every custom data you create in the posts’ <a href="https://jekyllrb.com/docs/step-by-step/03-front-matter/" rel="noopener" target="_blank">front matter</a>
+    will be collected in the <code class="language-plaintext highlighter-rouge">post</code> variable.</li>
+  <li>You can create custom data by capturing a printouts.</li>
+  <li>You can create arrays by splitting up strings. Liquid even has some array-related filters.</li>
+  <li>You can iterate through these arrays.</li>
+</ul>
+<p>So, if you keep adding multiple built-in/custom data consequently for all the posts, and you keep them in sync, you can 
+  create two arrays, and the item index will be the connection between them. Example:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>---
+category: 'devenv'
+categoryLabel: 'Development Environment'
+---
+
+Page content
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>then you can use the following:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>&lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">category</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">categoryLabel</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Okay, you can say, this is easy, we just go through the <code class="language-plaintext highlighter-rouge">site.posts</code> array and print these values. Okay, but how you do it
+  when you have more than one category and/or tags? How you pair them?</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>---
+category: 'devenv'
+categoryLabel: 'Development Environment'
+tags:   [docker, wsl2, powerline-shell, phpstorm, windows]
+tagLabels: ['Docker', 'WSL2', 'Powerline Shell', 'PHPStorm', 'Windows']
+---
+
+Page content
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Of course, you can do it, but you have to write all the damn iteration every place, where you want to use them. Wouldn’t
+  be easier to pre-collect all the categories and tags and their labels and just use them?</p>
+<h3 id="variables">Variables</h3>
+<p>I introduced a new include file, called <code class="language-plaintext highlighter-rouge">variables.html</code>:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>variables.html<span class="w"> </span><span class="p">-%}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h4 id="categories">Categories</h4>
+<p>Inside that file I made all my dirty tricks: collect all the posts’ categories and labels, concatenate them into one 
+  string, and then split them back to arrays:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">categorySlugs</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">category</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">categorySlugs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">categorySlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+<span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">categoryLabels</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">categoryLabel</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">categoryLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">categoryLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h4 id="tags">Tags</h4>
+<p>We do the same for the tags:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">join</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+<span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">join</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Rules to keep:</p>
+<ul>
+  <li>Never sort these arrays, otherwise the slugs and labels will be mixed up</li>
+  <li>Always make sure that one slug doesn’t have multiple labels and vice-versa.</li>
+</ul>
+<h5 id="usage">Usage</h5>
+<p>As I wrote before to connect the slug with the labels, the lists must be synchronized, then we can use the loop index to
+  get the right label for the slug:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>&lt;ul&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">-%}</span>
+  &lt;li&gt;&lt;a href="tags/<span class="p">{{</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">tagLabels</span><span class="p">[</span><span class="nb">forloop.index0</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;&lt;/li&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+&lt;/ul&gt;
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>To get the actual serial number (index) of the loop, we can ask it from the <code class="language-plaintext highlighter-rouge">forloop</code> variable. If we use the <code class="language-plaintext highlighter-rouge">forloop.index</code>, 
+  the counter will start from <code class="language-plaintext highlighter-rouge">1</code>. If we use the <code class="language-plaintext highlighter-rouge">forloop.index0</code>, the counter will start from <code class="language-plaintext highlighter-rouge">0</code>, and since we want to use
+  it on another list, we need this one.</p>
+<h4 id="dates">Dates</h4>
+<p>For the archive, we have to deal with dates. And here we also have the same problem: we want to use simple dates for the 
+  URL, but we want a more talkative version for the labels.</p>
+<p>First we need all the posts’ dates in the right order. Luckily the posts are ordered by date.</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">date</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>For the archive I wanted to list posts on a monthly basis, so the URL slug should be <code class="language-plaintext highlighter-rouge">YYYY-MM</code> format:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">dateSlugs</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%Y-%m'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">dateSlugs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dateSlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>And for the labels we want to print the name of the month and then the year. I could use the <code class="language-plaintext highlighter-rouge">date: %B</code> filter to print
+  the name of the month, but again it’s English only (well, good enough for this blog), and the I18n plugin is not good for 
+  me. So I decided to add translations.</p>
+<p>In Jekyll, we can refer to additional <code class="language-plaintext highlighter-rouge">.yml</code> configuration, that is placed in the <code class="language-plaintext highlighter-rouge">_data</code> folder. So I created two files:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_data/en.yml</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_data/hu.yml</code></li>
+</ul>
+<p>In the file, we can create sections, subsections, values, value collections etc. For example, the <code class="language-plaintext highlighter-rouge">_data/hu.yml</code> looks 
+  the following:</p>
+<div class="language-yaml highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="na">months</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">.</span>
+  <span class="pi">-</span> <span class="s">január</span>
+  <span class="pi">-</span> <span class="s">február</span>
+  <span class="pi">-</span> <span class="s">március</span>
+  <span class="pi">-</span> <span class="s">április</span>
+  <span class="pi">-</span> <span class="s">május</span>
+  <span class="pi">-</span> <span class="s">június</span>
+  <span class="pi">-</span> <span class="s">július</span>
+  <span class="pi">-</span> <span class="s">augusztus</span>
+  <span class="pi">-</span> <span class="s">szeptember</span>
+  <span class="pi">-</span> <span class="s">október</span>
+  <span class="pi">-</span> <span class="s">november</span>
+  <span class="pi">-</span> <span class="s">december</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>You can notice I list the months names in Hungarian, but the first is a nonsense. The reason is, from the date formatter
+  we can get the number of the month, which is in the range of 1 and 12. But this config will be presented as an array, and
+  the arrays starts with the zero index.</p>
+<p>So, now we have the translations, we can refer them with <code class="language-plaintext highlighter-rouge">{{ site.data.hu.months[5] }}</code>, or if we 
+  defined the <code class="language-plaintext highlighter-rouge">lang</code> variable in the config, we can do <code class="language-plaintext highlighter-rouge">{{ site.data[site.lang].months[5] }}</code> too. 
+  After this, creating labels is a simple task:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">dateLabels</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%-m'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">[</span><span class="nv">site</span><span class="p">.</span><span class="nv">lang</span><span class="p">].</span><span class="nv">months</span><span class="p">[</span><span class="nv">m</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>, <span class="p">{{</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%Y'</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>;<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">dateLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dateLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">';'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="list-the-top-3-most-used-tags-and-display-their-usage-number">List the top 3 most used tags and display their usage number</h3>
+<p>Another interesting solution was born here. To know what is the internal content of the <code class="language-plaintext highlighter-rouge">site.tags</code>, we call the help of
+  the <code class="language-plaintext highlighter-rouge">debug</code> filter:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">debug</span><span class="w"> </span><span class="p">}}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>… which will print something like:</p>
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>{"docker"=&gt;[#], "js"=&gt;[#, #, #, #], "clean-code"=&gt;[#, #, #], "react"=&gt;[#, #, #], "webpack"=&gt;[#, #, #], "jekyll"=&gt;[#]}
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>So the <code class="language-plaintext highlighter-rouge">key</code> in this object holds the slug, and the <code class="language-plaintext highlighter-rouge">value</code> is an array with some unknown data. What is important for us, 
+  it’s countable. The more a tag is used, the larger its value-array is. From these information, we need to make a sorted list.</p>
+<p>How to sort? Make the count to be a string, concatenate to the slug, and sort as text:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">counts_with_tags_string</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.tags</span><span class="w"> </span><span class="p">-%}{{</span><span class="w"> </span><span class="nv">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">prepend</span><span class="p">:</span><span class="s2">"000000"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">slice</span><span class="p">:</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="w"> </span><span class="p">}}</span>:<span class="p">{{</span><span class="w"> </span><span class="nv">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Let’s go one-by-one.</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">{{ tag[1] | size | prepend:"000000" | slice:-6,6 }}</code> gets the tag value-array’s size.</li>
+  <li>By prepending a bunch of zeros in front of the number, converts it to string. So if we used a tag for example <strong>123</strong>
+    times, then it will be <strong>000000123</strong>.</li>
+  <li>We need to make every tag counter to be exactly the same length to be sortable, so
+    we keep only the last 6 characters: <code class="language-plaintext highlighter-rouge">slice:-6,6</code>.</li>
+  <li>Then we print a colon (<code class="language-plaintext highlighter-rouge">:</code>).</li>
+  <li>Then we print the tag slug (<code class="language-plaintext highlighter-rouge">tag[0]</code>).</li>
+  <li>And finally, unless it’s the last item in the iteration, we print a comma (<code class="language-plaintext highlighter-rouge">,</code>) as well.</li>
+</ul>
+<p>We need to be careful, the <code class="language-plaintext highlighter-rouge">capture</code> tag capture the whitespaces as well, so always double-check the result.</p>
+<p>From the example above, with this capture we get the following string:</p>
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>000001:docker,000004:js,000003:clean-code,000003:react,000003:webpack,000001:jekyll
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>To convert it back to array, and get the highest number first, we need to split this string by the comma, then sort and 
+  reverse the result list:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">counts_with_tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">counts_with_tags_string</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="s2">","</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sort</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">reverse</span><span class="w"> </span><span class="p">-%}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Then we can use this list to match with our <code class="language-plaintext highlighter-rouge">tagSlugs</code> and <code class="language-plaintext highlighter-rouge">tagLabels</code> lists to print the top 3 most used tags:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>&lt;ul&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">count_with_tag</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">counts_with_tags</span><span class="w"> </span><span class="na">limit</span><span class="o">:</span><span class="mi">3</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">count_with_tag</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="s2">":"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">last</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">slugify</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">count_with_tag</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="s2">":"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">-%}</span>
+        <span class="p">{%-</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="p">-%}</span>
+            <span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagLabels</span><span class="p">[</span><span class="nb">forloop.index0</span><span class="p">]</span><span class="w"> </span><span class="p">-%}</span>
+            <span class="p">{%-</span><span class="w"> </span><span class="nt">break</span><span class="w"> </span><span class="p">-%}</span>
+        <span class="p">{%-</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+    &lt;li&gt;&lt;a href="/tags/<span class="p">{{</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="p">}}</span>/"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">tagLabel</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}</span> &lt;sup&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="p">}}</span>&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+&lt;/ul&gt;    
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>What is going on here:</p>
+<ul>
+  <li>We go through this list and get only the first 3 items (<code class="language-plaintext highlighter-rouge">limit:3</code>).</li>
+  <li>Get the tag’s slug by splitting up the actual element by the colon (<code class="language-plaintext highlighter-rouge">:</code>) and take the last part (<code class="language-plaintext highlighter-rouge">| last</code>).</li>
+  <li>For safety purpose we assign the tag slug to the <code class="language-plaintext highlighter-rouge">tagLabel</code> as well.</li>
+  <li>Get the tag’s count by splitting up the actual element by the colon (<code class="language-plaintext highlighter-rouge">:</code>) and take the first part (<code class="language-plaintext highlighter-rouge">| first</code>). We add 
+    zero (<code class="language-plaintext highlighter-rouge">| plus 0</code>) to convert it back to number. So the <strong>000123</strong> will be <strong>123</strong> again.</li>
+  <li>We go through our <code class="language-plaintext highlighter-rouge">tagSlugs</code> list we created earlier and match against the tag slug we currently have. When we find it
+    we overwrite the <code class="language-plaintext highlighter-rouge">tagLabel</code> and quit this loop.</li>
+  <li>Print the link with the slug, the label and the count.</li>
+</ul>
+<h3 id="pragmatically-stop-the-build-process">Pragmatically stop the build process</h3>
+<p>In some special cases the tag slugs and tag labels are getting out of sync because of human error. To avoid publishing
+  a site with wrong tag links and let Google to index them, I had to find a way to stop the build process with error.
+  The solution is quite simple: we rely on the Jekyll’s behaviour, that it evaluates the “conditions” only when the control
+  gets there, not sooner, and not when not used. So simply add a screwed up Liquid code, like an <code class="language-plaintext highlighter-rouge">include</code> with invalid characters:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagSlugSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabelSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">tagSlugSize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">tagLabelSize</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>./stopBuild.html<span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>…will result and error but only when the <code class="language-plaintext highlighter-rouge">tagSlugs</code> and <code class="language-plaintext highlighter-rouge">tagLabels</code> lists’ sizes are different:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>Liquid Exception: Invalid syntax <span class="k">for </span>include tag. File contains invalid characters or sequences: <span class="s2">".
+/stopBuild.html"</span> Valid syntax: <span class="o">{</span>% include file.ext <span class="nv">param</span><span class="o">=</span><span class="s1">'value'</span> <span class="nv">param2</span><span class="o">=</span><span class="s1">'value'</span> %<span class="o">}</span> <span class="k">in</span> /app/src/_layouts/default.html
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="conclusion">Conclusion</h3>
+<p>If we keep ourselves to the Jekyll documentation, it’s pretty nice and tidy I think. But as soon as we want something a
+  bit more, we have to use our imagination and do some calculations. Jekyll is not supposed to use like this. But it works!
+  Be brave, think, do experiments, browse <a href="https://www.stackoverflow.com" rel="noopener" target="_blank">Stackoverflow</a>
+  for solutions and you will expand the limits…</p>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
+  <p class="a-footer__author">
+    Hi, my name is Gábor Iván. I am an old-school Full stack developer, which means I deal with Backend (PHP), Frontend (HTML, CSS, JS), and a little bit of Webdesign. No DevOPS, sorry.
+    <br>
+    <a href="/author/gabor.ivan/index.html">Read the full story</a>
+  </p>
+</footer>
+</article>
+<aside class="a-comments">
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Tips & Tricks to make Jekyll do what you need`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
+</aside>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2022 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+</body>
+</html>

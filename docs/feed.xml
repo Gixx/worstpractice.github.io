@@ -1,34 +1,643 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-11-18T06:04:40+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Refactoring the Dependency Injection Container</title><link href="http://0.0.0.0:4000/backend/refactoring-the-dependency-injection-container" rel="alternate" type="text/html" title="Refactoring the Dependency Injection Container" /><published>2022-11-11T15:10:00+00:00</published><updated>2022-11-11T20:11:25+00:00</updated><id>http://0.0.0.0:4000/backend/refactoring-the-dependency-injection-container</id><content type="html" xml:base="http://0.0.0.0:4000/backend/refactoring-the-dependency-injection-container"><![CDATA[<h3 id="tldr">TL;DR</h3>
-      <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-        <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
-      <h3 id="valuation-of-the-original">Valuation of the original</h3>
-      <p>Although my <abbr title="Do It Yourself Dependency Injection Container">DIY DIC</abbr> has it tops and lops, and according to the
-        <a href="https://packagist.org/packages/gixx/worstpractice-dependency-injection/stats" rel="noopener" target="_blank">Packagist</a>,
-        someone even dare to install it, there were many mistakes made.</p>
-      <p><strong>First</strong>: leaving the configuration as an array. False statement <a href="https://worstpractice.dev/backend/diy-dependency-injection-container-2#choose-the-right-weapon" rel="noopener" target="_blank">made by me</a>:</p>
-      <blockquote>
-        <p>And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
-          array or Iterable class. Then why should we waste our time on this?</p>
-      </blockquote>
-      <p><strong>Second</strong>: comes from the first actually: the type strictness became unmaintainable. I even had to add some ignores and
-        exceptions to the <code class="language-plaintext highlighter-rouge">PHPStan</code>’s configuration, to pass all tests.</p>
-      <p><strong>Third</strong>: closed the possibility to use other config parsers, so one can make their own (e.g.: XML, YAML, ini, etc.).</p>
-      <h3 id="planning">Planning</h3>
-      <p>I decided, when I refactor the code, I will do it right. So I aimed to rewrite everything in PHP 8.2. Today,
-        as I’m writing this article, the PHP 8.2 is still not officially released, and I could use only the Release Candidate version.</p>
-      <p>I assumed and accepted that some tools won’t work as expected as partial or full lack of PHP 8.2 support. I as right
-        unfortunately. I had to give up using the <code class="language-plaintext highlighter-rouge">PHP CS</code>, the <code class="language-plaintext highlighter-rouge">CS Fixer</code>, and the 
-        <a href="https://scrutinizer-ci.com/" rel="noopener" target="_blank">Scrutinizer</a>’s code quality checks. But the two
-        most important, the <code class="language-plaintext highlighter-rouge">PHPUnit</code> and the <code class="language-plaintext highlighter-rouge">PHPStan</code> static analyser are still on duty, so I’m satisfied.</p>
-      <p>I also decided to eliminate all the <code class="language-plaintext highlighter-rouge">PHPStan</code> exceptions I made, and go for full throttle on maximum level with the checks.</p>
-      <h3 id="the-old-structure">The old structure</h3>
-      <p>The original DIC (form now I will refer it as <code class="language-plaintext highlighter-rouge">v.1.0</code>) was only one simple class with altogether 430 rows of code and 
-        comment. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
-        there, I will need to go Kansas and jump deep into that goddamn rabbit hole.</p>
-      <p>In <code class="language-plaintext highlighter-rouge">v.1.0</code> there were no structure. I used arrays everywhere for everything. These were the main “sub-containers”:</p>
-      <div class="language-php highlighter-rouge">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-11-18T14:12:49+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Tips &amp;amp; Tricks to make Jekyll do what you need</title><link href="http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll" rel="alternate" type="text/html" title="Tips &amp;amp; Tricks to make Jekyll do what you need" /><published>2022-11-18T14:10:00+00:00</published><updated>2022-11-18T14:12:48+00:00</updated><id>http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll</id><content type="html" xml:base="http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll"><![CDATA[<h3 id="what-is-jekyll">What is Jekyll?</h3>
+      <p>Short answer: <a href="https://jekyllrb.com/Jekyll" rel="noopener" target="_blank">Jekyll</a> is a static site generator.</p>
+      <p>Long answer: Jekyll is a static site generator that uses layouts and <a href="https://daringfireball.net/projects/markdown/syntax" rel="noopener" target="_blank">Markdown</a>
+        to generate a static website. It has its own templating engine, named <a href="https://jekyllrb.com/docs/step-by-step/02-liquid/" rel="noopener" target="_blank">Liquid</a>. 
+        If you know the Symfony’s <a href="https://twig.symfony.com/" rel="noopener" target="_blank">Twig</a> template engine, 
+        you will find the Liquid very familiar. At least syntax-wise.</p>
+      <h3 id="why-jekyll">Why Jekyll?</h3>
+      <p>When I started to deal with static site generators, I didn’t know much of them. I asked my friends what they recommend, but
+        almost everybody told a different tool as to be the best. …including the <em>“Write your own in PHP, dude!”</em> option.</p>
+      <p>So I tried some of them, and I chose Jekyll because its template engine’s syntax similarity to Twig’s, which I know well.</p>
+      <h3 id="tops-and-flops">Tops and Flops</h3>
+      <p>The bright side of the story is, the Liquid is easy to learn, easy to understand and easy to use. Unless you keep yourself
+        on the path that the documentation shows you.</p>
+      <p>The dark side of the story begins as soon as you want something different, or a bit more.</p>
+      <p>The Liquid has three main components:</p>
+      <ul>
+        <li>objects</li>
+        <li>tags</li>
+        <li>filters</li>
+      </ul>
+      <p>Liquid tags are not the same as on <a href="https://www.twitter.com" rel="noopener" target="_blank">Twitter</a>. These 
+        are more like statements, functions, procedures. For example, the <code class="language-plaintext highlighter-rouge">{%if ...%}...{% endif %}</code> is a 
+        <em>control flow tag</em>.</p>
+      <p>Just to confuse you, it has Twitter-like tags too. And categories. Great.</p>
+      <p>So, from these three components you can create many beautiful things, but sometimes it’s very painful to customize them.</p>
+      <h3 id="challenges">Challenges</h3>
+      <p>During the development of this blog, I faced some issues, and I had to be very creative to solve them. My problem now is
+        I can’t really remember the order of the issues came up, so I can’t tell now which issues in which order lead me to the 
+        current state of the setup. But I try to grab some details.</p>
+      <h4 id="slug-vs-label">Slug vs Label</h4>
+      <p>I had a private, more personal blog that I wrote in Hungarian. There we have special letters above the default <em>latin-1</em>
+        character set. In a very short time I figured out that Jekyll was written by English-speaking programmers. Because - according
+        to my decade-long experience - many English-speaking programmers just simply give a damn on the rest of the world, that 
+        would like to speak, read and write in other than English. Sorry guys, that’s the truth.</p>
+      <p>And in Jekyll, what you give for example for a post’s category name, it will be used for the URL too. And if you have 
+        special characters you are screwed. For example the <code class="language-plaintext highlighter-rouge">category: 'csőlátás'</code> will be transformed into <code class="language-plaintext highlighter-rouge">/cslts</code>. Not good.
+        Also even in English you can shoot yourself on the leg, when you need a short slug for a longer label:</p>
+      <div class="language-liquid highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+        </td>
+        <td class="rouge-code">
+          <pre>category: 'Development environment'
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>For this the slug will be either <code class="language-plaintext highlighter-rouge">/development/environment/...</code> or <code class="language-plaintext highlighter-rouge">/development%20environment/...</code>, however a simple
+  <code class="language-plaintext highlighter-rouge">/devenv/...</code> would be enough for the URL. And the same goes for the tags.</p>
+<p>Of course there are <em>I18n</em> plugins for Jekyll, but what I tried, didn’t work very well.</p>
+<p>What could I do? I tricked the system, with the system’s tools:</p>
+<ul>
+  <li>Every custom data you create in the posts’ <a href="https://jekyllrb.com/docs/step-by-step/03-front-matter/" rel="noopener" target="_blank">front matter</a>
+    will be collected in the <code class="language-plaintext highlighter-rouge">post</code> variable.</li>
+  <li>You can create custom data by capturing a printouts.</li>
+  <li>You can create arrays by splitting up strings. Liquid even has some array-related filters.</li>
+  <li>You can iterate through these arrays.</li>
+</ul>
+<p>So, if you keep adding multiple built-in/custom data consequently for all the posts, and you keep them in sync, you can 
+  create two arrays, and the item index will be the connection between them. Example:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>---
+category: 'devenv'
+categoryLabel: 'Development Environment'
+---
+
+Page content
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>then you can use the following:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>&lt;a href="<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">category</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">page</span><span class="p">.</span><span class="nv">categoryLabel</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Okay, you can say, this is easy, we just go through the <code class="language-plaintext highlighter-rouge">site.posts</code> array and print these values. Okay, but how you do it
+  when you have more than one category and/or tags? How you pair them?</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>---
+category: 'devenv'
+categoryLabel: 'Development Environment'
+tags:   [docker, wsl2, powerline-shell, phpstorm, windows]
+tagLabels: ['Docker', 'WSL2', 'Powerline Shell', 'PHPStorm', 'Windows']
+---
+
+Page content
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Of course, you can do it, but you have to write all the damn iteration every place, where you want to use them. Wouldn’t
+  be easier to pre-collect all the categories and tags and their labels and just use them?</p>
+<h3 id="variables">Variables</h3>
+<p>I introduced a new include file, called <code class="language-plaintext highlighter-rouge">variables.html</code>:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>variables.html<span class="w"> </span><span class="p">-%}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h4 id="categories">Categories</h4>
+<p>Inside that file I made all my dirty tricks: collect all the posts’ categories and labels, concatenate them into one 
+  string, and then split them back to arrays:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">categorySlugs</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">category</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">categorySlugs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">categorySlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+<span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">categoryLabels</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">categoryLabel</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">categoryLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">categoryLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h4 id="tags">Tags</h4>
+<p>We do the same for the tags:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">join</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+<span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">join</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Rules to keep:</p>
+<ul>
+  <li>Never sort these arrays, otherwise the slugs and labels will be mixed up</li>
+  <li>Always make sure that one slug doesn’t have multiple labels and vice-versa.</li>
+</ul>
+<h5 id="usage">Usage</h5>
+<p>As I wrote before to connect the slug with the labels, the lists must be synchronized, then we can use the loop index to
+  get the right label for the slug:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>&lt;ul&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">-%}</span>
+  &lt;li&gt;&lt;a href="tags/<span class="p">{{</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="p">}}</span>"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">tagLabels</span><span class="p">[</span><span class="nb">forloop.index0</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>&lt;/a&gt;&lt;/li&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+&lt;/ul&gt;
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>To get the actual serial number (index) of the loop, we can ask it from the <code class="language-plaintext highlighter-rouge">forloop</code> variable. If we use the <code class="language-plaintext highlighter-rouge">forloop.index</code>, 
+  the counter will start from <code class="language-plaintext highlighter-rouge">1</code>. If we use the <code class="language-plaintext highlighter-rouge">forloop.index0</code>, the counter will start from <code class="language-plaintext highlighter-rouge">0</code>, and since we want to use
+  it on another list, we need this one.</p>
+<h4 id="dates">Dates</h4>
+<p>For the archive, we have to deal with dates. And here we also have the same problem: we want to use simple dates for the 
+  URL, but we want a more talkative version for the labels.</p>
+<p>First we need all the posts’ dates in the right order. Luckily the posts are ordered by date.</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.posts</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">post</span><span class="p">.</span><span class="nv">date</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>For the archive I wanted to list posts on a monthly basis, so the URL slug should be <code class="language-plaintext highlighter-rouge">YYYY-MM</code> format:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">dateSlugs</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%Y-%m'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">dateSlugs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dateSlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">','</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>And for the labels we want to print the name of the month and then the year. I could use the <code class="language-plaintext highlighter-rouge">date: %B</code> filter to print
+  the name of the month, but again it’s English only (well, good enough for this blog), and the I18n plugin is not good for 
+  me. So I decided to add translations.</p>
+<p>In Jekyll, we can refer to additional <code class="language-plaintext highlighter-rouge">.yml</code> configuration, that is placed in the <code class="language-plaintext highlighter-rouge">_data</code> folder. So I created two files:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">_data/en.yml</code></li>
+  <li><code class="language-plaintext highlighter-rouge">_data/hu.yml</code></li>
+</ul>
+<p>In the file, we can create sections, subsections, values, value collections etc. For example, the <code class="language-plaintext highlighter-rouge">_data/hu.yml</code> looks 
+  the following:</p>
+<div class="language-yaml highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="na">months</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">.</span>
+  <span class="pi">-</span> <span class="s">január</span>
+  <span class="pi">-</span> <span class="s">február</span>
+  <span class="pi">-</span> <span class="s">március</span>
+  <span class="pi">-</span> <span class="s">április</span>
+  <span class="pi">-</span> <span class="s">május</span>
+  <span class="pi">-</span> <span class="s">június</span>
+  <span class="pi">-</span> <span class="s">július</span>
+  <span class="pi">-</span> <span class="s">augusztus</span>
+  <span class="pi">-</span> <span class="s">szeptember</span>
+  <span class="pi">-</span> <span class="s">október</span>
+  <span class="pi">-</span> <span class="s">november</span>
+  <span class="pi">-</span> <span class="s">december</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>You can notice I list the months names in Hungarian, but the first is a nonsense. The reason is, from the date formatter
+  we can get the number of the month, which is in the range of 1 and 12. But this config will be presented as an array, and
+  the arrays starts with the zero index.</p>
+<p>So, now we have the translations, we can refer them with <code class="language-plaintext highlighter-rouge">{{ site.data.hu.months[5] }}</code>, or if we 
+  defined the <code class="language-plaintext highlighter-rouge">lang</code> variable in the config, we can do <code class="language-plaintext highlighter-rouge">{{ site.data[site.lang].months[5] }}</code> too. 
+  After this, creating labels is a simple task:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">dateLabels</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">sortedDates</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%-m'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">minus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">data</span><span class="p">[</span><span class="nv">site</span><span class="p">.</span><span class="nv">lang</span><span class="p">].</span><span class="nv">months</span><span class="p">[</span><span class="nv">m</span><span class="p">]</span><span class="w"> </span><span class="p">}}</span>, <span class="p">{{</span><span class="w"> </span><span class="nv">date</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">date</span><span class="p">:</span><span class="w"> </span><span class="s1">'%Y'</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>;<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">dateLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">dateLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="w"> </span><span class="s1">';'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">uniq</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="list-the-top-3-most-used-tags-and-display-their-usage-number">List the top 3 most used tags and display their usage number</h3>
+<p>Another interesting solution was born here. To know what is the internal content of the <code class="language-plaintext highlighter-rouge">site.tags</code>, we call the help of
+  the <code class="language-plaintext highlighter-rouge">debug</code> filter:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{{</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">tags</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">debug</span><span class="w"> </span><span class="p">}}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>… which will print something like:</p>
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>{"docker"=&gt;[#], "js"=&gt;[#, #, #, #], "clean-code"=&gt;[#, #, #], "react"=&gt;[#, #, #], "webpack"=&gt;[#, #, #], "jekyll"=&gt;[#]}
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>So the <code class="language-plaintext highlighter-rouge">key</code> in this object holds the slug, and the <code class="language-plaintext highlighter-rouge">value</code> is an array with some unknown data. What is important for us, 
+  it’s countable. The more a tag is used, the larger its value-array is. From these information, we need to make a sorted list.</p>
+<p>How to sort? Make the count to be a string, concatenate to the slug, and sort as text:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">counts_with_tags_string</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">site.tags</span><span class="w"> </span><span class="p">-%}{{</span><span class="w"> </span><span class="nv">tag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">prepend</span><span class="p">:</span><span class="s2">"000000"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">slice</span><span class="p">:</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="w"> </span><span class="p">}}</span>:<span class="p">{{</span><span class="w"> </span><span class="nv">tag</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="p">}}{%</span><span class="w"> </span><span class="kr">unless</span><span class="w"> </span><span class="nb">forloop.last</span><span class="w"> </span><span class="p">%}</span>,<span class="p">{%</span><span class="w"> </span><span class="kr">endunless</span><span class="w"> </span><span class="p">%}{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Let’s go one-by-one.</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">{{ tag[1] | size | prepend:"000000" | slice:-6,6 }}</code> gets the tag value-array’s size.</li>
+  <li>By prepending a bunch of zeros in front of the number, converts it to string. So if we used a tag for example <strong>123</strong>
+    times, then it will be <strong>000000123</strong>.</li>
+  <li>We need to make every tag counter to be exactly the same length to be sortable, so
+    we keep only the last 6 characters: <code class="language-plaintext highlighter-rouge">slice:-6,6</code>.</li>
+  <li>Then we print a colon (<code class="language-plaintext highlighter-rouge">:</code>).</li>
+  <li>Then we print the tag slug (<code class="language-plaintext highlighter-rouge">tag[0]</code>).</li>
+  <li>And finally, unless it’s the last item in the iteration, we print a comma (<code class="language-plaintext highlighter-rouge">,</code>) as well.</li>
+</ul>
+<p>We need to be careful, the <code class="language-plaintext highlighter-rouge">capture</code> tag capture the whitespaces as well, so always double-check the result.</p>
+<p>From the example above, with this capture we get the following string:</p>
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>000001:docker,000004:js,000003:clean-code,000003:react,000003:webpack,000001:jekyll
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>To convert it back to array, and get the highest number first, we need to split this string by the comma, then sort and 
+  reverse the result list:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">counts_with_tags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">counts_with_tags_string</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="s2">","</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">sort</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">reverse</span><span class="w"> </span><span class="p">-%}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Then we can use this list to match with our <code class="language-plaintext highlighter-rouge">tagSlugs</code> and <code class="language-plaintext highlighter-rouge">tagLabels</code> lists to print the top 3 most used tags:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>&lt;ul&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">count_with_tag</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">counts_with_tags</span><span class="w"> </span><span class="na">limit</span><span class="o">:</span><span class="mi">3</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">count_with_tag</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="s2">":"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">last</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">slugify</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">count_with_tag</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">split</span><span class="p">:</span><span class="s2">":"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">first</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">plus</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">-%}</span>
+        <span class="p">{%-</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">tagSlug</span><span class="w"> </span><span class="p">-%}</span>
+            <span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagLabels</span><span class="p">[</span><span class="nb">forloop.index0</span><span class="p">]</span><span class="w"> </span><span class="p">-%}</span>
+            <span class="p">{%-</span><span class="w"> </span><span class="nt">break</span><span class="w"> </span><span class="p">-%}</span>
+        <span class="p">{%-</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+    &lt;li&gt;&lt;a href="/tags/<span class="p">{{</span><span class="w"> </span><span class="nv">tag</span><span class="w"> </span><span class="p">}}</span>/"&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">tagLabel</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">strip</span><span class="w"> </span><span class="p">}}</span> &lt;sup&gt;<span class="p">{{</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="p">}}</span>&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+<span class="p">{%-</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="p">-%}</span>
+&lt;/ul&gt;    
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>What is going on here:</p>
+<ul>
+  <li>We go through this list and get only the first 3 items (<code class="language-plaintext highlighter-rouge">limit:3</code>).</li>
+  <li>Get the tag’s slug by splitting up the actual element by the colon (<code class="language-plaintext highlighter-rouge">:</code>) and take the last part (<code class="language-plaintext highlighter-rouge">| last</code>).</li>
+  <li>For safety purpose we assign the tag slug to the <code class="language-plaintext highlighter-rouge">tagLabel</code> as well.</li>
+  <li>Get the tag’s count by splitting up the actual element by the colon (<code class="language-plaintext highlighter-rouge">:</code>) and take the first part (<code class="language-plaintext highlighter-rouge">| first</code>). We add 
+    zero (<code class="language-plaintext highlighter-rouge">| plus 0</code>) to convert it back to number. So the <strong>000123</strong> will be <strong>123</strong> again.</li>
+  <li>We go through our <code class="language-plaintext highlighter-rouge">tagSlugs</code> list we created earlier and match against the tag slug we currently have. When we find it
+    we overwrite the <code class="language-plaintext highlighter-rouge">tagLabel</code> and quit this loop.</li>
+  <li>Print the link with the slug, the label and the count.</li>
+</ul>
+<h3 id="pragmatically-stop-the-build-process">Pragmatically stop the build process</h3>
+<p>In some special cases the tag slugs and tag labels are getting out of sync because of human error. To avoid publishing
+  a site with wrong tag links and let Google to index them, I had to find a way to stop the build process with error.
+  The solution is quite simple: we rely on the Jekyll’s behaviour, that it evaluates the “conditions” only when the control
+  gets there, not sooner, and not when not used. So simply add a screwed up Liquid code, like an <code class="language-plaintext highlighter-rouge">include</code> with invalid characters:</p>
+<div class="language-liquid highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagSlugSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagSlugs</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">tagLabelSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">tagLabels</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">size</span><span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="nv">tagSlugSize</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nv">tagLabelSize</span><span class="w"> </span><span class="p">-%}</span>
+    <span class="p">{%-</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>./stopBuild.html<span class="w"> </span><span class="p">-%}</span>
+<span class="p">{%-</span><span class="w"> </span><span class="kr">endif</span><span class="w"> </span><span class="p">-%}</span>
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>…will result and error but only when the <code class="language-plaintext highlighter-rouge">tagSlugs</code> and <code class="language-plaintext highlighter-rouge">tagLabels</code> lists’ sizes are different:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>Liquid Exception: Invalid syntax <span class="k">for </span>include tag. File contains invalid characters or sequences: <span class="s2">".
+/stopBuild.html"</span> Valid syntax: <span class="o">{</span>% include file.ext <span class="nv">param</span><span class="o">=</span><span class="s1">'value'</span> <span class="nv">param2</span><span class="o">=</span><span class="s1">'value'</span> %<span class="o">}</span> <span class="k">in</span> /app/src/_layouts/default.html
+
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="conclusion">Conclusion</h3>
+<p>If we keep ourselves to the Jekyll documentation, it’s pretty nice and tidy I think. But as soon as we want something a
+  bit more, we have to use our imagination and do some calculations. Jekyll is not supposed to use like this. But it works!
+  Be brave, think, do experiments, browse <a href="https://www.stackoverflow.com" rel="noopener" target="_blank">Stackoverflow</a>
+  for solutions and you will expand the limits…</p>
+]]></content><author><name>Gábor Iván</name></author><category term="devenv" /><category term="jekyll" /><category term="liquid" /><summary type="html"><![CDATA[The most simple websites are those have only static files. For a blog like this is perfect. But making everything static by default is difficult. You need a generator. And when you work with Jekyll, sometimes you meet Mr. Hide as well.]]></summary></entry><entry><title type="html">Refactoring the Dependency Injection Container</title><link href="http://0.0.0.0:4000/backend/refactoring-the-dependency-injection-container" rel="alternate" type="text/html" title="Refactoring the Dependency Injection Container" /><published>2022-11-11T15:10:00+00:00</published><updated>2022-11-11T20:11:25+00:00</updated><id>http://0.0.0.0:4000/backend/refactoring-the-dependency-injection-container</id><content type="html" xml:base="http://0.0.0.0:4000/backend/refactoring-the-dependency-injection-container"><![CDATA[<h3 id="tldr">TL;DR</h3>
+  <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
+    <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
+  <h3 id="valuation-of-the-original">Valuation of the original</h3>
+  <p>Although my <abbr title="Do It Yourself Dependency Injection Container">DIY DIC</abbr> has it tops and lops, and according to the
+    <a href="https://packagist.org/packages/gixx/worstpractice-dependency-injection/stats" rel="noopener" target="_blank">Packagist</a>,
+    someone even dare to install it, there were many mistakes made.</p>
+  <p><strong>First</strong>: leaving the configuration as an array. False statement <a href="https://worstpractice.dev/backend/diy-dependency-injection-container-2#choose-the-right-weapon" rel="noopener" target="_blank">made by me</a>:</p>
+  <blockquote>
+    <p>And when we think about it, in the end, deep inside all the parsers the whole thing will end up in an average associative 
+      array or Iterable class. Then why should we waste our time on this?</p>
+  </blockquote>
+  <p><strong>Second</strong>: comes from the first actually: the type strictness became unmaintainable. I even had to add some ignores and
+    exceptions to the <code class="language-plaintext highlighter-rouge">PHPStan</code>’s configuration, to pass all tests.</p>
+  <p><strong>Third</strong>: closed the possibility to use other config parsers, so one can make their own (e.g.: XML, YAML, ini, etc.).</p>
+  <h3 id="planning">Planning</h3>
+  <p>I decided, when I refactor the code, I will do it right. So I aimed to rewrite everything in PHP 8.2. Today,
+    as I’m writing this article, the PHP 8.2 is still not officially released, and I could use only the Release Candidate version.</p>
+  <p>I assumed and accepted that some tools won’t work as expected as partial or full lack of PHP 8.2 support. I as right
+    unfortunately. I had to give up using the <code class="language-plaintext highlighter-rouge">PHP CS</code>, the <code class="language-plaintext highlighter-rouge">CS Fixer</code>, and the 
+    <a href="https://scrutinizer-ci.com/" rel="noopener" target="_blank">Scrutinizer</a>’s code quality checks. But the two
+    most important, the <code class="language-plaintext highlighter-rouge">PHPUnit</code> and the <code class="language-plaintext highlighter-rouge">PHPStan</code> static analyser are still on duty, so I’m satisfied.</p>
+  <p>I also decided to eliminate all the <code class="language-plaintext highlighter-rouge">PHPStan</code> exceptions I made, and go for full throttle on maximum level with the checks.</p>
+  <h3 id="the-old-structure">The old structure</h3>
+  <p>The original DIC (form now I will refer it as <code class="language-plaintext highlighter-rouge">v.1.0</code>) was only one simple class with altogether 430 rows of code and 
+    comment. I think it was pretty neat and compact. But now, to avoid the multidimensional, mixed type array hell I made 
+    there, I will need to go Kansas and jump deep into that goddamn rabbit hole.</p>
+  <p>In <code class="language-plaintext highlighter-rouge">v.1.0</code> there were no structure. I used arrays everywhere for everything. These were the main “sub-containers”:</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -45,9 +654,9 @@
 15
 16
 </pre>
-        </td>
-        <td class="rouge-code">
-          <pre>    <span class="cd">/**
+    </td>
+    <td class="rouge-code">
+      <pre>    <span class="cd">/**
      * @var array The full raw configuration data
      */</span>
     <span class="k">private</span> <span class="kt">array</span> <span class="nv">$configuration</span><span class="p">;</span>
@@ -64,10 +673,10 @@
      */</span>
     <span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceContainer</span><span class="p">;</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -6023,491 +6632,4 @@
     on their mobile phones or tablets. Those, who refuse to support these devices will loose potential customers. For me, it’s not a
     disaster, I don’t think there are many people visiting this new and unknown website. And since I have taken up the responsive(ish)
     design, my future readers will know about my design failure only from this article.</p>
-  ]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="responsive" /><category term="mobile" /><category term="design" /><summary type="html"><![CDATA[...and how I regret it. At least a little bit.]]></summary></entry><entry><title type="html">Deal with ‘public’ and ‘private’ access modifiers in JS</title><link href="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js" rel="alternate" type="text/html" title="Deal with ‘public’ and ‘private’ access modifiers in JS" /><published>2020-02-21T07:35:00+00:00</published><updated>2022-10-05T19:13:18+00:00</updated><id>http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/deal-with-public-and-private-access-modifiers-in-js"><![CDATA[<h3 id="my-concept">My concept</h3>
-  <p>You’d better know, I am basically a backend developer. Or, as I used to say with a little bit of humor and a piece of well-deserved self-critics:</p>
-  <blockquote>
-    <p>I am a Full-STUCK Señor PHP Developer</p>
-  </blockquote>
-  <p>Most of my time in the office I deal with corporate PHP codes, and try to give my best in it, and I also try to improve my skills. I write object-oriented
-    code 99% during the work by using the most hyped and recommended patterns, such as Dependency Injection, Adapter, Factory, MVC, etc. So I use OO day-by-day,
-    and I learned to think in the object-styled encapsulation during my years in the industry. In fact I already see the world in Objects…!
-    That’s totally crazy, isn’t it?</p>
-  <p>And when I deal with JavaScript for myself, like on this blog, where I can give myself free hand, I try to somehow adopt this ‘knowledge’ too. But we
-    all know that, in the native way it is not that simple. It needs a different kind of thinking, which I find a bit weird and triple-twisted. There are
-    objects of a kind, and since ES6 there are classes too, but not in the <code class="language-plaintext highlighter-rouge">class</code>ical way (Ha-Ha-Ha). Scope, inheritance, access modifiers and in general
-    everything is just different. Well, JavaScript is a different animal for sure… that’s what they used to say.</p>
-  <p>I know, there are many many wonderful frameworks and libraries to develop JavaScript. I could do React, Svelte, Vue and so on. But I don’t. Not right now.
-    I want to do something simple, something on my own. I like to reinvent the wheel, and even if it will be a shitty one, it will be mine. And I don’t want
-    to go deep in the soul of the JavaScript development now, and define terms, understand the whys, find the good way I ought to follow.</p>
-  <p>The first step for a dummy / lame / rookie / amateur like me is to try to create something for my own. Make it work. Then, when I have some experience,
-    I can learn the proper ‘How’. You can’t qualify yourself to the 100m sprint on the Olympic games until you can’t even walk, can you? And how do you learn
-    to walk? Try it, do it, fail and retry.</p>
-  <p>So I decided to use my understanding of the <code class="language-plaintext highlighter-rouge">Object</code>, and with the available tools of the JavaScript’s arsenal, I create something, in which I can feel
-    myself comfortable when I code. Of course to achieve this, I had to give up some of OO things temporarily, and stick to a very basic concept:</p>
-  <ul>
-    <li>encapsulate properties and methods together</li>
-    <li>support <code class="language-plaintext highlighter-rouge">public</code> and <code class="language-plaintext highlighter-rouge">private</code> access in some way</li>
-    <li>no need for inheritance right now</li>
-  </ul>
-  <p>I tried several different ways before I choose the following two cases. Both have pros and cons. To be comparable I’ve made the same <code class="language-plaintext highlighter-rouge">Yet-another</code>
-    UUID generator class.</p>
-  <h4 id="way-1-clean-but-vulnerable">Way 1: clean but vulnerable.</h4>
-  <p>This can be called a more ‘standard’ solution.</p>
-  <div class="language-js highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="cm">/**
- * @typedef {Object} MyClass1
- * @property {function(): string} generateUUID
- * @property {string} nilUUID
- */</span>
-
-<span class="cm">/**
- * @constructor
- */</span>
-<span class="kd">const</span> <span class="nx">MyClass1</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="cm">/** @type {array} */</span>
-    <span class="kd">const</span> <span class="nx">AVAILABLE_CHARACTERS</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</span><span class="dl">'</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-
-    <span class="cm">/** @type {array} */</span>
-    <span class="kd">const</span> <span class="nx">uuidTemplate</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xxxxxxxx-xxxx-!xxx-?xxx-xxxxxxxxxxxx</span><span class="dl">'</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-
-    <span class="cm">/** @type {string} */</span>
-    <span class="kd">const</span> <span class="nx">uuidVersion</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span><span class="p">;</span>
-
-    <span class="cm">/**
-     * @returns {string}
-     */</span>
-    <span class="kd">const</span> <span class="nx">getNilUUID</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="dl">'</span><span class="s1">00000000-0000-0000-0000-000000000000</span><span class="dl">'</span><span class="p">;</span>
-    <span class="p">};</span>
-
-    <span class="cm">/** @type {string} */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="nx">getNilUUID</span><span class="p">();</span>
-
-    <span class="cm">/**
-     * Generate a valid UUID
-     * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
-     *
-     * @return {string}
-     */</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">generateUUID</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">isNilUUID</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">isNilUUID</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="kd">let</span> <span class="nx">uuidVariant</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">random</span><span class="p">;</span>
-        <span class="kd">const</span> <span class="nx">uuid</span> <span class="o">=</span> <span class="p">[];</span>
-
-        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">uuidTemplate</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">random</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">|</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">16</span><span class="p">;</span>
-            <span class="nx">uuidVariant</span> <span class="o">=</span> <span class="p">(</span><span class="nx">random</span> <span class="o">&amp;</span> <span class="mh">0x3</span><span class="p">)</span>  <span class="o">|</span> <span class="mh">0x8</span><span class="p">;</span>
-
-            <span class="nx">uuid</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">uuidTemplate</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-                <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[^\-\!\?]</span><span class="sr">/</span><span class="p">,</span> <span class="nx">AVAILABLE_CHARACTERS</span><span class="p">[</span><span class="nx">random</span><span class="p">])</span>
-                <span class="c1">// ! is the uuid version</span>
-                <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">!</span><span class="dl">'</span><span class="p">,</span> <span class="nx">uuidVersion</span><span class="p">)</span>
-                <span class="c1">// ? is the high bits of clock sequence according to rfc4122</span>
-                <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">?</span><span class="dl">'</span><span class="p">,</span> <span class="nx">AVAILABLE_CHARACTERS</span><span class="p">[</span><span class="nx">uuidVariant</span><span class="p">]);</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">uuid</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-    <span class="p">};</span>
-<span class="p">};</span>
-
-<span class="nb">window</span><span class="p">[</span><span class="dl">'</span><span class="s1">MyClass1</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyClass1</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">myObj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass1</span><span class="p">();</span>
-</pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Our goal is to create an object where there is a publicly available property (<code class="language-plaintext highlighter-rouge">nilUUID</code>) and a publicly available method (<code class="language-plaintext highlighter-rouge">generateUUID()</code>).</p>
-<p>We construct a new instance with the <code class="language-plaintext highlighter-rouge">new</code> keyword. If we leave the keyword and then try to call the <code class="language-plaintext highlighter-rouge">myObj1.generateUUID();</code>, we will get a
-  <code class="language-plaintext highlighter-rouge">Uncaught TypeError: Cannot read property 'generateUUID' of undefined</code> error.</p>
-<p>All the <code class="language-plaintext highlighter-rouge">const</code> and <code class="language-plaintext highlighter-rouge">let</code> methods and properties will be hidden from “outside”.
-  So the <code class="language-plaintext highlighter-rouge">myObj1.getNilUUID();</code> will result a <code class="language-plaintext highlighter-rouge">Uncaught TypeError: myObj1.getNilUUID is not a function</code> error. We can call them to be <code class="language-plaintext highlighter-rouge">private</code>.</p>
-<p>Every property and method having the <code class="language-plaintext highlighter-rouge">this</code> keyword will be reachable from outside. They are definitely <code class="language-plaintext highlighter-rouge">public</code>. But they are heavily vulnerable which
-  I find really disturbing. But that’s the JS way. Try the <code class="language-plaintext highlighter-rouge">document.getElementById = 'sucker';</code> in the console on any website and see what happens. It’s
-  also possible to inject new properties and methods into our instance which is also a bit… yuck…</p>
-<div class="language-js highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="c1">// Get and set public property</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">);</span> <span class="c1">// '00000000-0000-0000-0000-000000000000'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// '00000000-0000-0000-0000-000000000000'</span>
-
-<span class="nx">myObj1</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">);</span> <span class="c1">// 'Hello World!'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// 'Hello World!'</span>
-
-<span class="c1">// BUT!</span>
-<span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">I am so sorry</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">//  Uncaught TypeError: myObj1.generateUUID is not a function</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj1</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">);</span> <span class="c1">// 'I am so sorry'</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h5 id="pros">Pros:</h5>
-<ul>
-  <li>It has a cleaner code.</li>
-  <li>It’s easier to understand.</li>
-  <li>Enforces the <code class="language-plaintext highlighter-rouge">new</code> keyword for instantiation.</li>
-</ul>
-<h5 id="cons">Cons:</h5>
-<ul>
-  <li>It is vulnerable: every public method and property can be re-defined.</li>
-  <li>It has no support for <code class="language-plaintext highlighter-rouge">get</code>, <code class="language-plaintext highlighter-rouge">set</code> and <code class="language-plaintext highlighter-rouge">static</code> keywords.</li>
-  <li>No type check is possible before assigning new value to the public properties.</li>
-  <li>It’s possible to add/attach additional properties and methods to the instance.</li>
-</ul>
-<h5 id="demo">Demo:</h5>
-<p><a target="_blank" rel="noopener" href="https://codepen.io/navig80/pen/qBdRNeb?editors=1111">CodePen</a></p>
-<h4 id="way-2-twisted-thinking-to-protect-the-code">Way 2: twisted thinking to protect the code</h4>
-<p>This one is a nasty motherfucker. I found the cons very annoying in the first example, so I tried to figure out, how can I eliminate them.</p>
-<p>In this case we start the same way as previously, but then instead of making publicly available properties and methods, we simply
-  <strong>return</strong> with an object.</p>
-<div class="language-js highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cm">/**
- * @returns {string|Readonly&lt;{readonly, nilUUID: Object.nilUUID, generateUUID: (function(*=): string)}&gt;}
- * @constructor
- */</span>
-<span class="kd">const</span> <span class="nx">MyClass2</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="cm">/** @type {array} */</span>
-    <span class="kd">const</span> <span class="nx">AVAILABLE_CHARACTERS</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</span><span class="dl">'</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-
-    <span class="cm">/** @type {array} */</span>
-    <span class="kd">const</span> <span class="nx">uuidTemplate</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">xxxxxxxx-xxxx-!xxx-?xxx-xxxxxxxxxxxx</span><span class="dl">'</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-
-    <span class="cm">/** @type {string} */</span>
-    <span class="kd">const</span> <span class="nx">uuidVersion</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">4</span><span class="dl">'</span><span class="p">;</span>
-
-    <span class="cm">/**
-     * @returns {string}
-     */</span>
-    <span class="kd">const</span> <span class="nx">getNilUUID</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="dl">'</span><span class="s1">00000000-0000-0000-0000-000000000000</span><span class="dl">'</span><span class="p">;</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**
-     * Collection of public properties.
-     *
-     * @type {Object}
-     */</span>
-    <span class="kd">const</span> <span class="nx">properties</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="na">nilUUID</span><span class="p">:</span> <span class="nx">getNilUUID</span><span class="p">(),</span>
-    <span class="p">};</span>
-
-    <span class="cm">/**
-     * Collection of public methods including setters and getters for public properties.
-     *
-     * @type { {readonly nilUUID: Object.nilUUID, generateUUID: (function(*=): string)} }
-     */</span>
-    <span class="kd">const</span> <span class="nx">methods</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="kd">set</span> <span class="nx">nilUUID</span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">newValue</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="dl">'</span><span class="s1">nilUUID must store string value, </span><span class="dl">'</span> <span class="o">+</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">newValue</span><span class="p">)</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> given.</span><span class="dl">'</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="nx">properties</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="nx">newValue</span><span class="p">;</span>
-        <span class="p">},</span>
-
-        <span class="kd">get</span> <span class="nx">nilUUID</span><span class="p">()</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nx">properties</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">;</span>
-        <span class="p">},</span>
-
-        <span class="cm">/**
-         * Generate and return a valid UUID
-         * @see https://en.wikipedia.org/wiki/Universally_unique_identifier
-         *
-         * @returns {string}
-         */</span>
-        <span class="na">generateUUID</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">isNilUUID</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">isNilUUID</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="kd">let</span> <span class="nx">uuidVariant</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">random</span><span class="p">;</span>
-            <span class="kd">const</span> <span class="nx">uuid</span> <span class="o">=</span> <span class="p">[];</span>
-
-            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">uuidTemplate</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">random</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">|</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">16</span><span class="p">;</span>
-                <span class="nx">uuidVariant</span> <span class="o">=</span> <span class="p">(</span><span class="nx">random</span> <span class="o">&amp;</span> <span class="mh">0x3</span><span class="p">)</span>  <span class="o">|</span> <span class="mh">0x8</span><span class="p">;</span>
-
-                <span class="nx">uuid</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">uuidTemplate</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
-                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[^\-\!\?]</span><span class="sr">/</span><span class="p">,</span> <span class="nx">AVAILABLE_CHARACTERS</span><span class="p">[</span><span class="nx">random</span><span class="p">])</span>
-                    <span class="c1">// ! is the uuid version</span>
-                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">!</span><span class="dl">'</span><span class="p">,</span> <span class="nx">uuidVersion</span><span class="p">)</span>
-                    <span class="c1">// ? is the high bits of clock sequence according to rfc4122</span>
-                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">?</span><span class="dl">'</span><span class="p">,</span> <span class="nx">AVAILABLE_CHARACTERS</span><span class="p">[</span><span class="nx">uuidVariant</span><span class="p">]);</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="nx">uuid</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-
-    <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">methods</span><span class="p">);</span>
-<span class="p">};</span>
-
-<span class="nb">window</span><span class="p">[</span><span class="dl">'</span><span class="s1">MyClass2</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">MyClass2</span><span class="p">;</span>
-
-<span class="kd">const</span> <span class="nx">myObj2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass2</span><span class="p">();</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Our goal is the same: create an object where there is a publicly available property (<code class="language-plaintext highlighter-rouge">nilUUID</code>) and a publicly available method (<code class="language-plaintext highlighter-rouge">generateUUID()</code>).</p>
-<p>We construct a new instance with the <code class="language-plaintext highlighter-rouge">new</code> keyword. But unfortunately it’s not mandatory. However, I’d like to use it to keep the illusion.</p>
-<p>As previously all the <code class="language-plaintext highlighter-rouge">const</code> and <code class="language-plaintext highlighter-rouge">let</code> methods and properties will be hidden from “outside”. And here’s the twisty thing: we define two objects in the
-  private part. One for the “<em>public properties</em>” and one for the “<em>public methods</em>”. Within each object we can reach methods and properties by the <code class="language-plaintext highlighter-rouge">this</code>
-  keyword, as we do it in the <code class="language-plaintext highlighter-rouge">generateUUID()</code> method. But for cross-referencing between the <code class="language-plaintext highlighter-rouge">properties</code> and <code class="language-plaintext highlighter-rouge">methods</code> we can’t use the <code class="language-plaintext highlighter-rouge">this</code>.</p>
-<p>So why we separate the “<em>public</em>” properties and methods? Because in the end we will freeze the returning <code class="language-plaintext highlighter-rouge">methods</code> object, which means we can’t change
-  this object any more. Luckily this does not stand for the contents of Arrays and Objects. In a frozen object we can’t change scalars, but we can
-  add/change elements in an array/object. That’s why we collect all the “<em>public</em>” properties separately in an object. And since we can use the <code class="language-plaintext highlighter-rouge">get</code>
-  and <code class="language-plaintext highlighter-rouge">set</code> keywords, we can create the illusion of working directly with the public property:</p>
-<div class="language-js highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="c1">// Get and set public property</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">);</span> <span class="c1">// '00000000-0000-0000-0000-000000000000'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// '00000000-0000-0000-0000-000000000000'</span>
-
-<span class="nx">myObj2</span><span class="p">.</span><span class="nx">nilUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">nilUUID</span><span class="p">);</span> <span class="c1">// 'Hello World!'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// 'Hello World!'</span>
-
-<span class="c1">// AND!</span>
-<span class="nx">myObj2</span><span class="p">.</span><span class="nx">generateUUID</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">I am so sorry</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span> <span class="c1">// 'Hello World!'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObj2</span><span class="p">.</span><span class="nx">generateUUID</span><span class="p">);</span> <span class="c1">// 'function()...'</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h5 id="pros-1">Pros</h5>
-<ul>
-  <li>The public code is in safe. No way to overwrite them.</li>
-  <li>It has support for <code class="language-plaintext highlighter-rouge">get</code>, <code class="language-plaintext highlighter-rouge">set</code> and <code class="language-plaintext highlighter-rouge">static</code> keywords.</li>
-  <li>With the <code class="language-plaintext highlighter-rouge">set</code> method we can do type check before assignment.</li>
-  <li>Not possible to add/attach additional properties and methods.</li>
-</ul>
-<h5 id="cons-1">Cons</h5>
-<ul>
-  <li>This is far away from readability.</li>
-  <li>It’s difficult to understand.</li>
-  <li>Every public, read-write property requires a <code class="language-plaintext highlighter-rouge">set</code> and a <code class="language-plaintext highlighter-rouge">get</code> method.</li>
-  <li>The <code class="language-plaintext highlighter-rouge">new</code> keyword is not mandatory.</li>
-</ul>
-<h5 id="demo-1">Demo:</h5>
-<p><a target="_blank" rel="noopener" href="https://codepen.io/navig80/pen/yLNgVye?editors=1111">CodePen</a></p>
-<h3 id="conclusion">Conclusion</h3>
-<p>As you can see, in order to eliminate all the negatives from the first solution, I had to sacrifice all the positives from it. But I think it’s worth it,
-  because in the end we want to use the code and not read it. And we can still use the <code class="language-plaintext highlighter-rouge">new</code> keyword if we want to.</p>
-<p>Readability is not a big price to make our object defended from harmful hands. What do you think? Am I right? Am I wrong? Is this really a
-  worst practice?</p>
-]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="js" /><category term="oop" /><summary type="html"><![CDATA[I asked my Pro Frontend friends and colleagues to tell me their honest opinions about my codes. Well, I got it. This is the absolute worst practice I'm afraid.]]></summary></entry></feed>
+  ]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="responsive" /><category term="mobile" /><category term="design" /><summary type="html"><![CDATA[...and how I regret it. At least a little bit.]]></summary></entry></feed>

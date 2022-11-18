@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tips & Tricks to make Jekyll do what you need"
-date: "2022-11-18 17:00:00 +0100"
+date: "2022-11-18 15:10:00 +0100"
 level: 'Beginner'
 expiration: "none"
 illustration: 'jekyll.jpg'
@@ -9,11 +9,11 @@ illustrationCaption: '<a href="https://commons.wikimedia.org/wiki/File:Dr_Jekyll
 illustration_share: 'jekyll_600x600.jpg'
 category: devenv
 categoryLabel: 'Development Environment'
-tags:   [jekyll]
-tagLabels: ['Jekyll']
+tags:   [jekyll, liquid]
+tagLabels: ['Jekyll', 'Liquid']
 excerpt: "The most simple websites are those have only static files. For a blog like this is perfect. But making everything static by default is difficult. You need a generator. And when you work with Jekyll, sometimes you meet Mr. Hide as well."
 review: true
-published: false
+published: true
 ---
 
 ### What is Jekyll?
@@ -127,10 +127,10 @@ I introduced a new include file, called `variables.html`:
 {% raw %}{%- include variables.html -%}{% endraw %}
 ```
 
-And inside that file I made all my dirty tricks: collect all the posts' categories and labels, concatenate them into one string, and then split them back
-to arrays:
+#### Categories
 
-#### Slugs and labels
+Inside that file I made all my dirty tricks: collect all the posts' categories and labels, concatenate them into one 
+string, and then split them back to arrays:
 
 ```liquid
 {% raw %}{%- capture categorySlugs -%}
@@ -144,6 +144,7 @@ to arrays:
 {%- assign categoryLabels = categoryLabels | split: ',' | uniq -%}
 {% endraw %}
 ```
+#### Tags
 
 We do the same for the tags:
 
@@ -165,16 +166,93 @@ Rules to keep:
 * Never sort these arrays, otherwise the slugs and labels will be mixed up
 * Always make sure that one slug doesn't have multiple labels and vice-versa.
 
-### Highlight the actual page in the menu
+##### Usage
 
-For this blob I group posts into categories. There are also tags, archive and other static pages. I need to know which 
-is the actual page I am on to highlight the right link in the menu.
+As I wrote before to connect the slug with the labels, the lists must be synchronized, then we can use the loop index to
+get the right label for the slug:
 
 ```liquid
-{% raw %}
+{% raw %}<ul>
+{%- for tagSlug in tagSlugs -%}
+  <li><a href="tags/{{ tagSlug }}">{{ tagLabels[forloop.index0] }}</a></li>
+{%- endfor -%}
+</ul>
 {% endraw %}
 ```
 
+To get the actual serial number (index) of the loop, we can ask it from the `forloop` variable. If we use the `forloop.index`, 
+the counter will start from `1`. If we use the `forloop.index0`, the counter will start from `0`, and since we want to use
+it on another list, we need this one.
+
+#### Dates
+
+For the archive, we have to deal with dates. And here we also have the same problem: we want to use simple dates for the 
+URL, but we want a more talkative version for the labels.
+
+First we need all the posts' dates in the right order. Luckily the posts are ordered by date.  
+
+```liquid
+{% raw %}{%- capture sortedDates -%}
+    {% for post in site.posts %}{{ post.date }}{% unless forloop.last %},{% endunless %}{% endfor %}
+{%- endcapture -%}
+{%- assign sortedDates = sortedDates | split: ',' | uniq -%}
+{% endraw %}
+```
+
+For the archive I wanted to list posts on a monthly basis, so the URL slug should be `YYYY-MM` format:
+
+```liquid
+{% raw %}{%- capture dateSlugs -%}
+    {% for date in sortedDates %}{{ date | date: '%Y-%m' | strip }}{% unless forloop.last %},{% endunless %}{% endfor %}
+{%- endcapture -%}
+{%- assign dateSlugs = dateSlugs | split: ',' | uniq -%}
+{% endraw %}
+```
+
+And for the labels we want to print the name of the month and then the year. I could use the `date: %B` filter to print
+the name of the month, but again it's English only (well, good enough for this blog), and the I18n plugin is not good for 
+me. So I decided to add translations.
+
+In Jekyll, we can refer to additional `.yml` configuration, that is placed in the `_data` folder. So I created two files:
+
+* `_data/en.yml` 
+* `_data/hu.yml`
+
+In the file, we can create sections, subsections, values, value collections etc. For example, the `_data/hu.yml` looks 
+the following:
+
+```yaml
+months:
+  - .
+  - január
+  - február
+  - március
+  - április
+  - május
+  - június
+  - július
+  - augusztus
+  - szeptember
+  - október
+  - november
+  - december
+```
+
+You can notice I list the months names in Hungarian, but the first is a nonsense. The reason is, from the date formatter
+we can get the number of the month, which is in the range of 1 and 12. But this config will be presented as an array, and
+the arrays starts with the zero index.
+
+So, now we have the translations, we can refer them with `{% raw %}{{ site.data.hu.months[5] }}{% endraw %}`, or if we 
+defined the `lang` variable in the config, we can do `{% raw %}{{ site.data[site.lang].months[5] }}{% endraw %}` too. 
+After this, creating labels is a simple task:
+
+```liquid
+{% raw %}{%- capture dateLabels -%}
+    {% for date in sortedDates %}{% assign m = date | date: '%-m' | minus: 0 %}{{ site.data[site.lang].months[m] }}, {{ date | date: '%Y' }}{% unless forloop.last %};{% endunless %}{% endfor %}
+{%- endcapture -%}
+{%- assign dateLabels = dateLabels | split: ';' | uniq -%}
+{% endraw %}
+```
 ### List the top 3 most used tags and display their usage number
 
 Another interesting solution was born here. To know what is the internal content of the `site.tags`, we call the help of
@@ -247,6 +325,7 @@ Then we can use this list to match with our `tagSlugs` and `tagLabels` lists to 
 </ul>    
 {% endraw %}
 ```
+
 What is going on here:
 
 * We go through this list and get only the first 3 items (`limit:3`). 
@@ -273,16 +352,18 @@ gets there, not sooner, and not when not used. So simply add a screwed up Liquid
 {%- endif -%}
 {% endraw %}
 ```
+
 ...will result and error but only when the `tagSlugs` and `tagLabels` lists' sizes are different:
+
 ```bash
 {% raw %}Liquid Exception: Invalid syntax for include tag. File contains invalid characters or sequences: ".
 /stopBuild.html" Valid syntax: {% include file.ext param='value' param2='value' %} in /app/src/_layouts/default.html
 {% endraw %}
 ```
 
+### Conclusion
 
-
-```liquid
-{% raw %}
-{% endraw %}
-```
+If we keep ourselves to the Jekyll documentation, it's pretty nice and tidy I think. But as soon as we want something a
+bit more, we have to use our imagination and do some calculations. Jekyll is not supposed to use like this. But it works!
+Be brave, think, do experiments, browse <a href="https://www.stackoverflow.com" rel="noopener" target="_blank">Stackoverflow</a> 
+for solutions and you will expand the limits...
