@@ -9,8 +9,8 @@ illustrationCaption: 'Image by Gábor Iván, edited with <a target="_blank" rel=
 illustration_share: 'dependency-injection_600x600.jpg'
 category: 'backend'
 categoryLabel: 'Backend'
-tags:   [php74,dic,clean-code,yaml]
-tagLabels: ['PHP 7.4', 'DIC', 'Clean code', 'YAML']
+tags:   [php,php74,dic,clean-code,yaml]
+tagLabels: ['PHP','PHP 7.4', 'DIC', 'Clean code', 'YAML']
 excerpt: "The second step on our journey to create a stand-alone Dependency Injection Container. Discuss about the configuration doesn't sound too interesting, but it can hold us some surprises."
 keywords: "PHP 7.4, dependency injection, Clean code, S.O.L.I.D., SOLID Principles, Interface"
 review: true

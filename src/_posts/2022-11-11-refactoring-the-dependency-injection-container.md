@@ -9,8 +9,8 @@ illustrationCaption: 'Image by <a rel="noopener" target="_blank" href="https://p
 illustration_share: 'refactoring_600x600.jpg'
 category: 'backend'
 categoryLabel: 'Backend'
-tags:   [php82,refactor,dic,clean-code]
-tagLabels: ['PHP 8.2', 'Refactoring', 'DIC', 'Clean code']
+tags:   [php,php82,refactor,dic,clean-code]
+tagLabels: ['PHP','PHP 8.2', 'Refactoring', 'DIC', 'Clean code']
 excerpt: "Two years ago (and only a few articles earlier) I published a mini-series about writing my own DIC. Now it's time to get back there and practice the refactoring."
 keywords: "PHP 8.2, dependency injection, Clean code, S.O.L.I.D., SOLID Principles, Interface, PHPUnit, PHPStan"
 review: true

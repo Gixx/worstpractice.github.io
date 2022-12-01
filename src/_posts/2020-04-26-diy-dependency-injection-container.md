@@ -9,8 +9,8 @@ illustrationCaption: 'Image by <a target="_blank" rel="noopener" href="https://p
 illustration_share: 'dependency-injection_600x600.jpg'
 category: 'backend'
 categoryLabel: 'Backend'
-tags:   [php74,dic,clean-code,solid-principles]
-tagLabels: ['PHP 7.4', 'DIC', 'Clean code', 'SOLID Principles']
+tags:   [php,php74,dic,clean-code,solid-principles]
+tagLabels: ['PHP','PHP 7.4', 'DIC', 'Clean code', 'SOLID Principles']
 excerpt: "Like many of my fate companions, I do home office too. And by staying at home, I can save 2-3 hours of travelling every day. So I decided to practice a little bit."
 keywords: "PHP 7.4, dependency injection, Clean code, S.O.L.I.D., SOLID Principles, Interface"
 review: true
