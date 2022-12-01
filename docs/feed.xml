@@ -1,52 +1,204 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-11-18T14:12:49+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Tips &amp;amp; Tricks to make Jekyll do what you need</title><link href="http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll" rel="alternate" type="text/html" title="Tips &amp;amp; Tricks to make Jekyll do what you need" /><published>2022-11-18T14:10:00+00:00</published><updated>2022-11-18T14:12:48+00:00</updated><id>http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll</id><content type="html" xml:base="http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll"><![CDATA[<h3 id="what-is-jekyll">What is Jekyll?</h3>
-      <p>Short answer: <a href="https://jekyllrb.com/Jekyll" rel="noopener" target="_blank">Jekyll</a> is a static site generator.</p>
-      <p>Long answer: Jekyll is a static site generator that uses layouts and <a href="https://daringfireball.net/projects/markdown/syntax" rel="noopener" target="_blank">Markdown</a>
-        to generate a static website. It has its own templating engine, named <a href="https://jekyllrb.com/docs/step-by-step/02-liquid/" rel="noopener" target="_blank">Liquid</a>. 
-        If you know the Symfony’s <a href="https://twig.symfony.com/" rel="noopener" target="_blank">Twig</a> template engine, 
-        you will find the Liquid very familiar. At least syntax-wise.</p>
-      <h3 id="why-jekyll">Why Jekyll?</h3>
-      <p>When I started to deal with static site generators, I didn’t know much of them. I asked my friends what they recommend, but
-        almost everybody told a different tool as to be the best. …including the <em>“Write your own in PHP, dude!”</em> option.</p>
-      <p>So I tried some of them, and I chose Jekyll because its template engine’s syntax similarity to Twig’s, which I know well.</p>
-      <h3 id="tops-and-flops">Tops and Flops</h3>
-      <p>The bright side of the story is, the Liquid is easy to learn, easy to understand and easy to use. Unless you keep yourself
-        on the path that the documentation shows you.</p>
-      <p>The dark side of the story begins as soon as you want something different, or a bit more.</p>
-      <p>The Liquid has three main components:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-01T15:55:27+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 1</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-1" rel="alternate" type="text/html" title="Advent of Code - Day 1" /><published>2022-12-01T16:00:00+00:00</published><updated>2022-12-01T15:55:27+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-1</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-1"><![CDATA[<p><a href="https://adventofcode.com/2022/day/1" rel="noopener" target="_blank">Today’s puzzle</a> in short: It’s a 
+        heart-warming story about elves and their journey. To be able to travel, they need food and calories. Every elf writes a 
+        note about the amount of food (calories) they take in their bags.</p>
+      <h3 id="technical-specification">Technical specification</h3>
+      <p>First of all, we need to read between the lines, and pile off all the fairytale from the pure specification.</p>
+      <p>We will get the input data:</p>
       <ul>
-        <li>objects</li>
-        <li>tags</li>
-        <li>filters</li>
+        <li>every line may contain a number</li>
+        <li>every line ends with a new line character (obviously)</li>
+        <li>the numbers a grouped</li>
+        <li>every group separated with one empty line</li>
+        <li>the last row is also an empty line</li>
       </ul>
-      <p>Liquid tags are not the same as on <a href="https://www.twitter.com" rel="noopener" target="_blank">Twitter</a>. These 
-        are more like statements, functions, procedures. For example, the <code class="language-plaintext highlighter-rouge">{%if ...%}...{% endif %}</code> is a 
-        <em>control flow tag</em>.</p>
-      <p>Just to confuse you, it has Twitter-like tags too. And categories. Great.</p>
-      <p>So, from these three components you can create many beautiful things, but sometimes it’s very painful to customize them.</p>
-      <h3 id="challenges">Challenges</h3>
-      <p>During the development of this blog, I faced some issues, and I had to be very creative to solve them. My problem now is
-        I can’t really remember the order of the issues came up, so I can’t tell now which issues in which order lead me to the 
-        current state of the setup. But I try to grab some details.</p>
-      <h4 id="slug-vs-label">Slug vs Label</h4>
-      <p>I had a private, more personal blog that I wrote in Hungarian. There we have special letters above the default <em>latin-1</em>
-        character set. In a very short time I figured out that Jekyll was written by English-speaking programmers. Because - according
-        to my decade-long experience - many English-speaking programmers just simply give a damn on the rest of the world, that 
-        would like to speak, read and write in other than English. Sorry guys, that’s the truth.</p>
-      <p>And in Jekyll, what you give for example for a post’s category name, it will be used for the URL too. And if you have 
-        special characters you are screwed. For example the <code class="language-plaintext highlighter-rouge">category: 'csőlátás'</code> will be transformed into <code class="language-plaintext highlighter-rouge">/cslts</code>. Not good.
-        Also even in English you can shoot yourself on the leg, when you need a short slug for a longer label:</p>
-      <div class="language-liquid highlighter-rouge">
+      <h3 id="part-one">Part one</h3>
+      <p>The task: summarize the numbers by the groups and return with the highest number. It’s that simple.</p>
+      <h4 id="the-code">The code</h4>
+      <p>The first step is to save the puzzle input into a file: <code class="language-plaintext highlighter-rouge">input.txt</code>. Then let’s think about the most simple solution:</p>
+      <div class="language-php highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
 </pre>
         </td>
         <td class="rouge-code">
-          <pre>category: 'Development environment'
+          <pre><span class="nv">$actualCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nv">$maxCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$maxCalorie</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nv">$actualCalorie</span><span class="p">,</span> <span class="nv">$maxCalorie</span><span class="p">);</span>
+            <span class="nv">$actualCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$actualCalorie</span> <span class="o">+=</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="nv">$line</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$maxCalorie</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
 </pre>
         </td>
       </tr>
     </tbody>
   </table>
+</code></pre>
+</div>
+</div>
+<ul>
+  <li>initialize the <code class="language-plaintext highlighter-rouge">$actualCalorie</code> and the <code class="language-plaintext highlighter-rouge">$maxCalorie</code> as zero</li>
+  <li>read the file line-by-line:
+    <ul>
+      <li>if not empty line:
+        <ul>
+          <li>convert the data into a number</li>
+          <li>add this number to a puffer variable <code class="language-plaintext highlighter-rouge">$actualCalorie</code></li>
+        </ul>
+      </li>
+      <li>if the line is empty:
+        <ul>
+          <li>check if the <code class="language-plaintext highlighter-rouge">$actualCalorie</code> if higher than the <code class="language-plaintext highlighter-rouge">$maxCalorie</code></li>
+          <li>reset <code class="language-plaintext highlighter-rouge">$actualCalorie</code></li>
+          <li>skip to next line</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>print the <code class="language-plaintext highlighter-rouge">$maxCalorie</code></li>
+</ul>
+<h3 id="part-two">Part two</h3>
+<p>The input is the same, but we need to get the sum of the top three groups.</p>
+<h4 id="the-code-1">The code</h4>
+<p>Instead of saving the <code class="language-plaintext highlighter-rouge">$maxCalorie</code> all the time, we need to save all the groups, sort the array in descending order, and 
+  add together the first three element.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$actualCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nv">$calories</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$calories</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$actualCalorie</span><span class="p">;</span>
+            <span class="nv">$actualCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$actualCalorie</span> <span class="o">+=</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="nv">$line</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nb">rsort</span><span class="p">(</span><span class="nv">$calories</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="p">(</span><span class="nv">$calories</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$calories</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$calories</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>I could go into a more secure and much prettier code, but I didn’t want to, because:</p>
+<ul>
+  <li>the result is the important, not the code</li>
+  <li>the input is known, so I could skip some array index availability checks</li>
+</ul>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[It&apos;s December again, the time of the Advent Calendars. Eric Wastl made the Advent of Code which is an Advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language.]]></summary></entry><entry><title type="html">Tips &amp;amp; Tricks to make Jekyll do what you need</title><link href="http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll" rel="alternate" type="text/html" title="Tips &amp;amp; Tricks to make Jekyll do what you need" /><published>2022-11-18T14:10:00+00:00</published><updated>2022-11-18T14:12:48+00:00</updated><id>http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll</id><content type="html" xml:base="http://0.0.0.0:4000/devenv/tips-and-tricks-for-jekyll"><![CDATA[<h3 id="what-is-jekyll">What is Jekyll?</h3>
+  <p>Short answer: <a href="https://jekyllrb.com/Jekyll" rel="noopener" target="_blank">Jekyll</a> is a static site generator.</p>
+  <p>Long answer: Jekyll is a static site generator that uses layouts and <a href="https://daringfireball.net/projects/markdown/syntax" rel="noopener" target="_blank">Markdown</a>
+    to generate a static website. It has its own templating engine, named <a href="https://jekyllrb.com/docs/step-by-step/02-liquid/" rel="noopener" target="_blank">Liquid</a>. 
+    If you know the Symfony’s <a href="https://twig.symfony.com/" rel="noopener" target="_blank">Twig</a> template engine, 
+    you will find the Liquid very familiar. At least syntax-wise.</p>
+  <h3 id="why-jekyll">Why Jekyll?</h3>
+  <p>When I started to deal with static site generators, I didn’t know much of them. I asked my friends what they recommend, but
+    almost everybody told a different tool as to be the best. …including the <em>“Write your own in PHP, dude!”</em> option.</p>
+  <p>So I tried some of them, and I chose Jekyll because its template engine’s syntax similarity to Twig’s, which I know well.</p>
+  <h3 id="tops-and-flops">Tops and Flops</h3>
+  <p>The bright side of the story is, the Liquid is easy to learn, easy to understand and easy to use. Unless you keep yourself
+    on the path that the documentation shows you.</p>
+  <p>The dark side of the story begins as soon as you want something different, or a bit more.</p>
+  <p>The Liquid has three main components:</p>
+  <ul>
+    <li>objects</li>
+    <li>tags</li>
+    <li>filters</li>
+  </ul>
+  <p>Liquid tags are not the same as on <a href="https://www.twitter.com" rel="noopener" target="_blank">Twitter</a>. These 
+    are more like statements, functions, procedures. For example, the <code class="language-plaintext highlighter-rouge">{%if ...%}...{% endif %}</code> is a 
+    <em>control flow tag</em>.</p>
+  <p>Just to confuse you, it has Twitter-like tags too. And categories. Great.</p>
+  <p>So, from these three components you can create many beautiful things, but sometimes it’s very painful to customize them.</p>
+  <h3 id="challenges">Challenges</h3>
+  <p>During the development of this blog, I faced some issues, and I had to be very creative to solve them. My problem now is
+    I can’t really remember the order of the issues came up, so I can’t tell now which issues in which order lead me to the 
+    current state of the setup. But I try to grab some details.</p>
+  <h4 id="slug-vs-label">Slug vs Label</h4>
+  <p>I had a private, more personal blog that I wrote in Hungarian. There we have special letters above the default <em>latin-1</em>
+    character set. In a very short time I figured out that Jekyll was written by English-speaking programmers. Because - according
+    to my decade-long experience - many English-speaking programmers just simply give a damn on the rest of the world, that 
+    would like to speak, read and write in other than English. Sorry guys, that’s the truth.</p>
+  <p>And in Jekyll, what you give for example for a post’s category name, it will be used for the URL too. And if you have 
+    special characters you are screwed. For example the <code class="language-plaintext highlighter-rouge">category: 'csőlátás'</code> will be transformed into <code class="language-plaintext highlighter-rouge">/cslts</code>. Not good.
+    Also even in English you can shoot yourself on the leg, when you need a short slug for a longer label:</p>
+  <div class="language-liquid highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+    </td>
+    <td class="rouge-code">
+      <pre>category: 'Development environment'
+</pre>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -6586,50 +6738,4 @@ Page content
   However, other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
   (just to pick one) also feels it important to have this <code class="language-plaintext highlighter-rouge">set</code> method. So ours won’t be that renitent.</p>
 <p>In the <a rel="next" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">next part</a> we will plan the configuration file.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="solid-principles" /><summary type="html"><![CDATA[Like many of my fate companions, I do home office too. And by staying at home, I can save 2-3 hours of travelling every day. So I decided to practice a little bit.]]></summary></entry><entry><title type="html">Why I dropped the `Mobile-first` approach</title><link href="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach" rel="alternate" type="text/html" title="Why I dropped the `Mobile-first` approach" /><published>2020-03-11T14:05:00+00:00</published><updated>2022-10-05T19:13:18+00:00</updated><id>http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/why-i-dropped-the-mobile-first-approach"><![CDATA[<h3 id="the-wrong-decision">The (wrong) decision</h3>
-  <p>It was late 2019. I was working on this blog in my free time since months, and I still couldn’t see the end. I was struggling with the
-    design - as always - and my creativity went into the <code class="language-plaintext highlighter-rouge">not good enough</code> infinite loop, and started to reject any ideas came up.
-    Meanwhile the backend part - if we can  talk about backend for a static website - went pretty well. Luckily I could heavily build on
-    my experiences when I created my family blog, the <a href="https://thomas.von.fuerstenfeld.blog" target="_blank" rel="noopener">Thomas von Fürstenfeld</a>.</p>
-  <p>It was almost Christmas season, when I finally had a design idea flashed in my mind. Since I felt I’m running out of time, I tried to
-    sketch it up as simple as possible and drop all the unnecessary things. What remain was the color scheme and the header. That’s enough
-    for the start.</p>
-  <p>And this was the exact moment when I had to decide what is more important for me:</p>
-  <ul>
-    <li>Start the blog in the very beginning of 2020, even if the price is I have to drop the <code class="language-plaintext highlighter-rouge">Mobile-first</code> approach, or</li>
-    <li>Do it properly, nice and clean, and maybe I will be able to publish it only in the summer maybe?</li>
-  </ul>
-  <p>Since I already had the domain bought in February 2019, I didn’t want to waste any time more. I really felt that if I don’t publish
-    this blog in the first days of the New Year, I will get into the <code class="language-plaintext highlighter-rouge">not good enough</code> rejecting loop again… So I chose to give a damn
-    on the handheld versions for a while, just do it, publish it. Anyway, developers develop on desktops, don’t they?</p>
-  <h3 id="the-help-of-the-years-in-the-business">The help of the years in the business</h3>
-  <p>So my own tech blog started, and I also wrote my first articles. I shared the links to a small group of developers, to check, read, and
-    give some feedback about their impressions, etc. Among the many many positive feedback, there was one returning topic:</p>
-  <blockquote>
-    <p>Where is the mobile version?</p>
-  </blockquote>
-  <p>I realized, my assumption - that the web developers usually sits in front of a desktop computer and browse the Internet on their 24
-    inch monitors - was totally wrong. I can’t avoid to create a version for the tablets and the mobile devices too.</p>
-  <p>Luckily, without really focus on the semantic aspects, somehow I was able to create a nice, clean and tidy <code class="language-plaintext highlighter-rouge">HTML</code> structure in the
-    first wave, and with the guiding help of the <a target="_blank" rel="noopener" href="https://css-tricks.com/abem-useful-adaptation-bem/">ABEM</a>
-    <code class="language-plaintext highlighter-rouge">CSS</code> class naming convention, the style definitions were also became pretty flexible. This happens when you stare the monitor
-    long enough: you get experiences which with time become skills.</p>
-  <h3 id="surprise-motherer">Surprise, Mother#@!$er!</h3>
-  <p>First I tried to figure out, what I should change to make this website look relatively good on the smaller screens. And here
-    came the surprise: only a few parts required different styles. And some of these changes can be
-    applied directly on the “global” styles. Great, isn’t it? I was happy I don’t have to refactor the whole frontend.</p>
-  <p>So in the end, in one week of free time work, I was able to create a decent mobile and tablet version for this website. Unfortunately
-    I had to give up the “Monitor with terrible code” (hidden) feature, because the dynamically positioning an element, which has the
-    <code class="language-plaintext highlighter-rouge">perspective</code> style transformation applied on it, is very difficult, and it exceeds my current capabilities.</p>
-  <p>So I modified the header, and I spliced off the <code class="language-plaintext highlighter-rouge">title with the woman</code> and the <code class="language-plaintext highlighter-rouge">monitor</code>. This way I could gently hide the monitor
-    as soon as the header starts to shrink.</p>
-  <p>Also the smallest screens got a <code class="language-plaintext highlighter-rouge">title only</code> header to maximize the useful area of the page. In fact this graphical change caused
-    the biggest headache because the actual version of the design was never saved in an editable source (whatta loooser!), and I had to
-    remember all those tiny adjustments to add them again. The rest of the job on the CSS side (overwrite margin, padding, font-size)
-    were just a matter of manual measuring.</p>
-  <h3 id="conclusion">Conclusion</h3>
-  <p>When you have time, it’s worth to invest in planning, and thinking in the <code class="language-plaintext highlighter-rouge">mobile-first approach</code>. Most of the people reads articles
-    on their mobile phones or tablets. Those, who refuse to support these devices will loose potential customers. For me, it’s not a
-    disaster, I don’t think there are many people visiting this new and unknown website. And since I have taken up the responsive(ish)
-    design, my future readers will know about my design failure only from this article.</p>
-  ]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="responsive" /><category term="mobile" /><category term="design" /><summary type="html"><![CDATA[...and how I regret it. At least a little bit.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="solid-principles" /><summary type="html"><![CDATA[Like many of my fate companions, I do home office too. And by staying at home, I can save 2-3 hours of travelling every day. So I decided to practice a little bit.]]></summary></entry></feed>

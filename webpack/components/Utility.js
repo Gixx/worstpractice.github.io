@@ -149,12 +149,12 @@ const Utility = function ({verbose = false})
                 }
 
                 data = Object.keys(data).map(function (key) {
-                    return key + '=' + data[key]
+                    return key + '=' + data[key];
                 }).join('&');
                 break;
 
             case 'multipart/form-data':
-                if (!data instanceof FormData) {
+                if (!(data instanceof FormData)) {
                     data = objectToFormData(data);
                 }
                 break;
