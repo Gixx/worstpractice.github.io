@@ -107,7 +107,7 @@ pagination:
   enabled: true
   per_page: 12
   offset: 0
-  permalink: '/page/:num'
+  permalink: '/:num/'
   title: ':title - Page :num'
   limit: 0
   sort_field: 'date'

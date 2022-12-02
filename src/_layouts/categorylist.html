@@ -37,7 +37,7 @@ page_type: category_list
     <article class="l-article --empty"></article>
     {% endfor %}
 
-    {%- if paginator.total_pages > paginator.per_page -%}
+    {%- if paginator.total_pages > 1 -%}
     <footer class="c-footer">
         {% include pagination.html %}
     </footer>

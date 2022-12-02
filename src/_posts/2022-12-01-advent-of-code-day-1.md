@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Advent of Code - Day 1"
-date: "2022-12-01 17:00:00 +0100"
+date: "2022-12-01 17:00:00 +0200"
 level: 'beginner'
 expiration: 'none'
 illustration: 'advent-1.jpg'
