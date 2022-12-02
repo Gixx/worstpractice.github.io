@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Advent of Code - Day 1"
+title: "Advent of Code - Day 2"
 date: "2022-12-02 12:00:00 +0100"
 level: 'beginner'
 expiration: 'none'
@@ -33,9 +33,9 @@ The input data today is simple:
 * `A` represents player 1's decision: the `Stone`.
 * `B` represents player 1's decision: the `Paper`.
 * `C` represents player 1's decision: the `Scissors`.
-* The `Stone` worth `1` point.
-* The `Paper` worth `2` points.
-* The `Scissors` worth `3` points.
+* The `Stone` is worth `1` point.
+* The `Paper` is worth `2` points.
+* The `Scissors` is worth `3` points.
 * If player 1 wins, that's `0` point.
 * If it's a draw, that's `3` points.
 * If player 2 wins, that's `6` points.
