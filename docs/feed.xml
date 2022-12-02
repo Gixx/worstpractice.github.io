@@ -1,20 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-01T16:00:24+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 1</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-1" rel="alternate" type="text/html" title="Advent of Code - Day 1" /><published>2022-12-01T16:00:00+00:00</published><updated>2022-12-01T15:55:27+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-1</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-1"><![CDATA[<p><a href="https://adventofcode.com/2022/day/1" rel="noopener" target="_blank">Today’s puzzle</a> in short: It’s a 
-        heart-warming story about elves and their journey. To be able to travel, they need food and calories. Every elf writes a 
-        note about the amount of food (calories) they take in their bags.</p>
-      <h3 id="technical-specification">Technical specification</h3>
-      <p>First of all, we need to read between the lines, and pile off all the fairytale from the pure specification.</p>
-      <p>We will get the input data:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-02T10:32:10+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 1</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-2" rel="alternate" type="text/html" title="Advent of Code - Day 1" /><published>2022-12-02T11:00:00+00:00</published><updated>2022-12-02T10:32:09+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-2</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-2"><![CDATA[<p><a href="https://adventofcode.com/2022/day/2" rel="noopener" target="_blank">Today’s puzzle</a> in short: It’s the good
+        old <code class="language-plaintext highlighter-rouge">Stone - Paper - Scissors</code> game.</p>
+      <h3 id="the-input-data">The input data</h3>
+      <p>The input data today is simple:</p>
       <ul>
-        <li>every line may contain a number</li>
-        <li>every line ends with a new line character (obviously)</li>
-        <li>the numbers a grouped</li>
-        <li>every group separated with one empty line</li>
-        <li>the last row is also an empty line</li>
+        <li>Every row contains two characters separated by a space.</li>
+        <li>The first character is either <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code> or <code class="language-plaintext highlighter-rouge">C</code>.</li>
+        <li>The second character is either <code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code> or <code class="language-plaintext highlighter-rouge">Z</code>.</li>
+      </ul>
+      <h4 id="game-rules">Game rules</h4>
+      <ul>
+        <li><code class="language-plaintext highlighter-rouge">A</code> represents player 1’s decision: the <code class="language-plaintext highlighter-rouge">Stone</code>.</li>
+        <li><code class="language-plaintext highlighter-rouge">B</code> represents player 1’s decision: the <code class="language-plaintext highlighter-rouge">Paper</code>.</li>
+        <li><code class="language-plaintext highlighter-rouge">C</code> represents player 1’s decision: the <code class="language-plaintext highlighter-rouge">Scissors</code>.</li>
+        <li>The <code class="language-plaintext highlighter-rouge">Stone</code> worth <code class="language-plaintext highlighter-rouge">1</code> point.</li>
+        <li>The <code class="language-plaintext highlighter-rouge">Paper</code> worth <code class="language-plaintext highlighter-rouge">2</code> points.</li>
+        <li>The <code class="language-plaintext highlighter-rouge">Scissors</code> worth <code class="language-plaintext highlighter-rouge">3</code> points.</li>
+        <li>If player 1 wins, that’s <code class="language-plaintext highlighter-rouge">0</code> point.</li>
+        <li>If it’s a draw, that’s <code class="language-plaintext highlighter-rouge">3</code> points.</li>
+        <li>If player 2 wins, that’s <code class="language-plaintext highlighter-rouge">6</code> points.</li>
       </ul>
       <h3 id="part-one">Part one</h3>
-      <p>The task: summarize the numbers by the groups and return with the highest number. It’s that simple.</p>
+      <p>The second character in this part also represents decisions:</p>
+      <ul>
+        <li><code class="language-plaintext highlighter-rouge">X</code> represents player 2’s decision: the <code class="language-plaintext highlighter-rouge">Stone</code>.</li>
+        <li><code class="language-plaintext highlighter-rouge">Y</code> represents player 2’s decision: the <code class="language-plaintext highlighter-rouge">Paper</code>.</li>
+        <li><code class="language-plaintext highlighter-rouge">Z</code> represents player 2’s decision: the <code class="language-plaintext highlighter-rouge">Scissors</code>.</li>
+      </ul>
+      <p>Task: how much point will player 2 get after playing all rounds?</p>
       <h4 id="the-code">The code</h4>
-      <p>The first step is to save the puzzle input into a file: <code class="language-plaintext highlighter-rouge">input.txt</code>. Then let’s think about the most simple solution:</p>
+      <p>Following the rule I set up yesterday, I think in the most simple solution. So we have two players, six letters with three 
+        points assigned and also some points regarding the result of the duel. This will cause a bit of hell with the variables,
+        so it’s better to define constants. Also need to make a 3x3 matrix for the game rules:</p>
+      <ul>
+        <li>Stone beats scissors</li>
+        <li>Scissors beat paper</li>
+        <li>Paper beats stone</li>
+      </ul>
       <div class="language-php highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -36,10 +57,289 @@
 17
 18
 19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
 </pre>
         </td>
         <td class="rouge-code">
-          <pre><span class="nv">$actualCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <pre><span class="k">const</span> <span class="no">ROCK_1</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">PAPER_1</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">SCISSORS_1</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="no">ROCK_2</span> <span class="o">=</span> <span class="s1">'X'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">PAPER_2</span> <span class="o">=</span> <span class="s1">'Y'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">SCISSORS_2</span> <span class="o">=</span> <span class="s1">'Z'</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="no">P1_WINS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">P2_WINS</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">DRAW</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="nv">$decisionScore</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="mi">3</span>
+<span class="p">];</span>
+
+<span class="nv">$winningMatrix</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="no">ROCK_1</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="no">DRAW</span><span class="p">,</span>
+        <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="no">P2_WINS</span><span class="p">,</span>
+        <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="no">P1_WINS</span>
+    <span class="p">],</span>
+    <span class="no">PAPER_1</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="no">P1_WINS</span><span class="p">,</span>
+        <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="no">DRAW</span><span class="p">,</span>
+        <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="no">P2_WINS</span>
+    <span class="p">],</span>
+    <span class="no">SCISSORS_1</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="no">P2_WINS</span><span class="p">,</span>
+        <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="no">P1_WINS</span><span class="p">,</span>
+        <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="no">DRAW</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>You may have noticed, that the <code class="language-plaintext highlighter-rouge">$decisionScore</code> contains only the player 2’s decisions. It’s because we don’t care about player 1’s 
+  score in the end.</p>
+<p>Now let’s think about the logic. Go line-by-line, split up the string into the two players’ decisions, and simply add
+  together the decision score and the score given by the winning matrix.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$player_2_score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">,</span> <span class="nv">$player_2_decision</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$player_2_score</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">$winningMatrix</span><span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">][</span><span class="nv">$player_2_decision</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$decisionScore</span><span class="p">[</span><span class="nv">$player_2_decision</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$player_2_score</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="part-two">Part two</h3>
+<p>The second character in part two represents the strategy that player 2 should follow:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">X</code> to loose the round</li>
+  <li><code class="language-plaintext highlighter-rouge">Y</code> to make draw</li>
+  <li><code class="language-plaintext highlighter-rouge">Z</code> to win the round</li>
+</ul>
+<p>Task: how much point will player 2 get after playing all rounds?</p>
+<h4 id="the-code-1">The code</h4>
+<p>For this version we have to revert our thinking a bit. The winning matrix will become a decision matrix, and with given
+  strategy we can easily identify the right decision. The constants will now look as follows:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">const</span> <span class="no">ROCK</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">PAPER</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">SCISSORS</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="no">P1_SHOULD_WIN</span> <span class="o">=</span> <span class="s1">'X'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">END_DRAW</span> <span class="o">=</span> <span class="s1">'Y'</span><span class="p">;</span>
+<span class="k">const</span> <span class="no">P2_SHOULD_WIN</span> <span class="o">=</span> <span class="s1">'Z'</span><span class="p">;</span>
+
+<span class="nv">$decisionScore</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="no">ROCK</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="no">PAPER</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="no">SCISSORS</span> <span class="o">=&gt;</span> <span class="mi">3</span>
+<span class="p">];</span>
+
+<span class="nv">$duelResult</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="mi">3</span>
+<span class="p">];</span>
+
+<span class="nv">$decisionMatrix</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="no">ROCK</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">SCISSORS</span><span class="p">,</span>
+        <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">PAPER</span><span class="p">,</span>
+        <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="no">ROCK</span>
+    <span class="p">],</span>
+    <span class="no">PAPER</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">ROCK</span><span class="p">,</span>
+        <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">SCISSORS</span><span class="p">,</span>
+        <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="no">PAPER</span>
+    <span class="p">],</span>
+    <span class="no">SCISSORS</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">PAPER</span><span class="p">,</span>
+        <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">ROCK</span><span class="p">,</span>
+        <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="no">SCISSORS</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>We have one extra array compared to the previous version, and another became much simpler. The logic will be the following:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$player_2_score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">,</span> <span class="nv">$player_2_strategy</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$player_2_decision</span> <span class="o">=</span> <span class="nv">$decisionMatrix</span><span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">][</span><span class="nv">$player_2_strategy</span><span class="p">];</span>
+        <span class="nv">$player_2_score</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">$duelResult</span><span class="p">[</span><span class="nv">$player_2_strategy</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$decisionScore</span><span class="p">[</span><span class="nv">$player_2_decision</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$player_2_score</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[A nice classic game I used to play a lot with my son.]]></summary></entry><entry><title type="html">Advent of Code - Day 1</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-1" rel="alternate" type="text/html" title="Advent of Code - Day 1" /><published>2022-12-01T16:00:00+00:00</published><updated>2022-12-01T15:55:27+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-1</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-1"><![CDATA[<p><a href="https://adventofcode.com/2022/day/1" rel="noopener" target="_blank">Today’s puzzle</a> in short: It’s a 
+    heart-warming story about elves and their journey. To be able to travel, they need food and calories. Every elf writes a 
+    note about the amount of food (calories) they take in their bags.</p>
+  <h3 id="technical-specification">Technical specification</h3>
+  <p>First of all, we need to read between the lines, and pile off all the fairytale from the pure specification.</p>
+  <p>We will get the input data:</p>
+  <ul>
+    <li>every line may contain a number</li>
+    <li>every line ends with a new line character (obviously)</li>
+    <li>the numbers a grouped</li>
+    <li>every group separated with one empty line</li>
+    <li>the last row is also an empty line</li>
+  </ul>
+  <h3 id="part-one">Part one</h3>
+  <p>The task: summarize the numbers by the groups and return with the highest number. It’s that simple.</p>
+  <h4 id="the-code">The code</h4>
+  <p>The first step is to save the puzzle input into a file: <code class="language-plaintext highlighter-rouge">input.txt</code>. Then let’s think about the most simple solution:</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre>
+    </td>
+    <td class="rouge-code">
+      <pre><span class="nv">$actualCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$maxCalorie</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
@@ -59,10 +359,10 @@
 
 <span class="k">echo</span> <span class="nv">$maxCalorie</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -6386,356 +6686,4 @@ Page content
 <p>And that is all. We covered all the options we need from our DIC implementation to support. And it’s only a very small
   subset of what the YAML is capable of, yet enough for us.</p>
 <p>In the next part we will create our DIC implementation.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="yaml" /><summary type="html"><![CDATA[The second step on our journey to create a stand-alone Dependency Injection Container. Discuss about the configuration doesn't sound too interesting, but it can hold us some surprises.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 1</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 1" /><published>2020-04-26T21:29:00+00:00</published><updated>2022-12-01T16:00:23+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container"><![CDATA[<p>It’s very important to clarify: <strong>Do not reinvent the wheel</strong>. There are numerous great, well maintained, continuously
-    developed solutions on the market written by professional developers, who enjoy the support of their large community. 
-    I am talking about the big fish like Symfony, Laravel, Zend etc. So if you need a component for your web application,
-    it’s better to look around first.</p>
-  <p>This article became too long, so I decided to split up to three parts:</p>
-  <ul>
-    <li>Introduction and the Interface</li>
-    <li>The configuration file</li>
-    <li>The Dependency Injection Container implementation</li>
-  </ul>
-  <h3 id="tldr">TL;DR</h3>
-  <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-    <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
-  <h3 id="your-path-is-your-decision">Your path is your decision</h3>
-  <p>Of course nobody can force you to NOT Do It Yourself. It all depend on what your project requires. So let’s suppose, you
-    are not allowed to use third party components for some very mysterious reasons. But you want to write a modern, clean, 
-    object-oriented code and follow the <a target="_blank" rel="noopener" href="https://medium.com/successivetech/s-o-l-i-d-the-first-5-principles-of-object-oriented-design-with-php-b6d2742c90d7">
-      <acronym title="Single-responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency Inversion">SOLID</acronym>
-      Principles</a> as much as possible.</p>
-  <p>You look up the books of smart people about smart things. Best practices, software design patterns or just sit on the latest
-    hype train. Whatever you do - unless you choose to do functional programming - sooner or later you will meet with the 
-    <code class="language-plaintext highlighter-rouge">Dependency Injection</code> technique. And you realize it’s pretty cool, and you need it.</p>
-  <p>But first let’s talk about something that is the core of most of the PHP websites in the world today. Even if you are a
-    <em><q cite="https://starwars.fandom.com/wiki/Padawan" title="Jedi student in the Star Wars Universe">young padawan</q></em> and
-    you have never ever heard about it, and you never had to deal with it, it’s important.</p>
-  <h4 id="autoloader">Autoloader</h4>
-  <p>Not that far in past, only a decade and a half ago, every PHP project was loud about the autoload of objects. 
-    There was a kind of race between masterminds who can create the best, more performing, more fool-proof <code class="language-plaintext highlighter-rouge">__autoload</code> function. 
-    I talk about the era, when there were no <a target="_blank" rel="noopener" href="https://stackoverflow.com">Stack Overflow</a>
-    (2008), not even <a target="_blank" rel="noopener" href="https://symfony.com/">Symfony Framework</a> (2007) or 
-    <a target="_blank" rel="noopener" href="https://framework.zend.com/">Zend Framework</a> (2006). I talk about the era, when 
-    everybody was happy to start their green-field projects in the brand new, (and finally but only more-or-less)
-    Object-Oriented, PHP 5 (2004).</p>
-  <p>Later, we got the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-0/">PSR-0</a> that was suppose to 
-    show the way to a better future by giving us a recommendation to autoload. But time passes and the PSR-0 became 
-    obsolete. Today its direct descendant, the <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-4/">PSR-4</a>
-    is in charge.</p>
-  <p>And if we keep the recommendations of the PSR-4, and we use <a target="_blank" rel="noopener" href="https://getcomposer.org/doc/00-intro.md">composer</a> too, 
-    we only need to give the path to our namespace, and the rest of the magic is done automatically. No more manual autoload. 
-    Here’s an example of the <code class="language-plaintext highlighter-rouge">composer.json</code> configuration:</p>
-  <div class="language-json highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="p">{</span><span class="w">
-  </span><span class="nl">"autoload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"psr-4"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"WorstPractice\\"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./src/WorstPractice"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>…then all you need to do is to include the composer’s autoload file in the entry points of you web application:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">require_once</span> <span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/vendor/autoload.php'</span><span class="p">;</span>
-
-<span class="nv">$myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="err">\</span><span class="nf">WorstPractice\Component\MyClass</span><span class="p">();</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<blockquote>
-  <p>Okay, now the classes can load, but what is this dependency thing?</p>
-</blockquote>
-<p>I already assumed, that you want to write clean code and follow the <strong>S.O.L.I.D.</strong> principles. And what is <strong>D</strong> in this
-  acronym?</p>
-<h4 id="d-is-for-dependency-inversion-principle">D is for Dependency Inversion Principle</h4>
-<p>The Dependency Inversion Principle in a nutshell:</p>
-<ol>
-  <li>High-level modules should not depend on low-level modules. Both should depend on the abstraction.</li>
-  <li>Abstractions should not depend on details. Details should depend on abstractions.</li>
-</ol>
-<p>If you don’t understand, check <a target="_blank" rel="noopener" title="stackify.com: SOLID Design Principles Explained:  Dependency Inversion Principle with Code Examples" href="https://stackify.com/dependency-inversion-principle/">this great tutorial</a>
-  with explanations and examples.</p>
-<h4 id="dependency-injection">Dependency Injection</h4>
-<p>Dependency Injection (DI) is a design pattern used to implement Inversion of Control (IoC). Although this shows us a 
-  causal relationship, actually these terms are generally used interchangeably to describe the same design pattern.</p>
-<p>I hope I could confuse you enough, so let’s just use <strong>DI</strong> from now.</p>
-<h4 id="di-container">DI Container</h4>
-<p>The <strong>DI Container</strong> is a framework/module/component/library for implementing automatic dependency injection. It manages 
-  object creation, and also injects dependencies to the classes.</p>
-<h3 id="lets-get-is-started">Let’s get is started</h3>
-<p>Up till now you may already used software design patterns, such as <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Facade_pattern#PHP">Facade</a>,
-  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Singleton_pattern#PHP_implementation">Singleton</a> or
-  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)#PHP">Factory</a>, etc.</p>
-<p>Well, in the world of dependency injection, we can easily get rid of them, making the code cleaner, and more readable for other
-  human lifeforms. And last but not least it helps a lot to your <acronym title="Integrated Development Environment">IDE</acronym>
-  to discover the call chains. One of the primary benefits of DI is the ability to swap implementations of the injected class. That
-  makes extremely easy to unit test classes.</p>
-<p>If you are familiar with the big framework’s DI Container solutions, you already know how it works: You create a spooky
-  configuration where you define the relationship and dependencies between classes and control additional behaviour
-  such as returning the same instance every time or create new one (Singleton, motherfucker!).</p>
-<h4 id="diy-di-container">DIY DI Container</h4>
-<p>If we don’t want to use third party libraries - and we already clarified this several times -, let’s create out own:</p>
-<ul>
-  <li>One Interface, because of the <a target="_blank" rel="noopener" href="https://stackify.com/interface-segregation-principle/">Interface Segregation Principle</a></li>
-  <li>A reasonably clean and understandable configuration file</li>
-  <li>One single class to rule them all</li>
-</ul>
-<h3 id="the-interface">The Interface</h3>
-<p>I wrote in the beginning of this article that you don’t need to reinvent the wheel. Or not completely. There are agreements
-  on how a DI Container should behave. And there is a quasi standard for it. And a standard is not a library, a standard is a
-  collection of rules and blueprints. You wouldn’t start to build your dream house without a blueprint, would you? I guess no.</p>
-<p>So let’s grab this blueprint, and take a closer look.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="kn">namespace</span> <span class="nn">Psr\Container</span><span class="p">;</span>
-
-<span class="cd">/**
- * Describes the interface of a container that exposes methods to read its entries.
- */</span>
-<span class="kd">interface</span> <span class="nc">ContainerInterface</span>
-<span class="p">{</span>
-    <span class="cd">/**
-     * Finds an entry of the container by its identifier and returns it.
-     *
-     * @param string $id Identifier of the entry to look for.
-     *
-     * @throws NotFoundExceptionInterface  No entry was found for **this** identifier.
-     * @throws ContainerExceptionInterface Error while retrieving the entry.
-     *
-     * @return mixed Entry.
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">get</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
-
-    <span class="cd">/**
-     * Returns true if the container can return an entry for the given identifier.
-     * Returns false otherwise.
-     *
-     * `has($id)` returning true does not mean that `get($id)` will not throw an exception.
-     * It does however mean that `get($id)` will not throw a `NotFoundExceptionInterface`.
-     *
-     * @param string $id Identifier of the entry to look for.
-     *
-     * @return bool
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">has</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Now we have a nice blueprint, but this blueprint unfortunately isn’t perfect. A good start, but there are some problems:</p>
-<ul>
-  <li>It’s backward compatible with earlier PHP editions, which means no type hinting:
-    <ul>
-      <li>no parameter type hints, and we can’t add them for the implementation either.</li>
-      <li>no return types, but luckily we can override this.</li>
-    </ul>
-  </li>
-  <li>It suggests to create new Exceptions that implement these two <code class="language-plaintext highlighter-rouge">NotFoundExceptionInterface</code> and <code class="language-plaintext highlighter-rouge">ContainerExceptionInterface</code>.<br />
-    Honestly I always preferred the use the built-in ones. Those cover most of our needs.</li>
-  <li>There is no declaration of adding instances to the container, but sometimes you can’t set up everything in the configuration.</li>
-</ul>
-<p>We have two chances:</p>
-<ol>
-  <li>Use the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> and extend it, but we will lose on the type hinting.</li>
-  <li>Create our own interface but whenever somebody requires the DI to be <code class="language-plaintext highlighter-rouge">instanceof Psr\Container\ContainerInterface</code>, ours will fail.</li>
-</ol>
-<p>And because of implementation interchangeability - though reluctantly -, I still choose the first option. Let’s extend, and
-  create the possibility to add instantiated objects to the container. Since this interface has a repository, we don’t</p>
-<ul>
-  <li>what’s more, we shouldn’t - copy it but import it. Run the following in the command line in your project’s document root:</li>
-</ul>
-<div class="language-bash highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre>composer require psr/container
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>…or add it manually to your <code class="language-plaintext highlighter-rouge">composer.json</code> file:</p>
-<div class="language-json highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="w">  </span><span class="nl">"require"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"php"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&gt;=7.4"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"psr/container"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0.0"</span><span class="w">
-  </span><span class="p">}</span><span class="err">,</span><span class="w">
-</span></pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Additionally, we set a requirement on the PHP version too. Now it’s time to create our interface: 
-  <code class="language-plaintext highlighter-rouge">src/WorstPractice/Component/DependencyInjection/ContainerInterface.php</code></p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre>
-<span class="cp">&lt;?php</span>
-
-<span class="k">declare</span><span class="p">(</span><span class="n">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection</span><span class="p">;</span>
-
-<span class="kn">use</span> <span class="nc">Psr\Container\ContainerInterface</span> <span class="k">as</span> <span class="nc">PsrContainerInterface</span><span class="p">;</span>
-<span class="kn">use</span> <span class="nc">RuntimeException</span><span class="p">;</span>
-
-<span class="cd">/**
- * Interface ContainerInterface
- * @package WorstPractice\Component\DependencyInjection
- */</span>
-<span class="kd">interface</span> <span class="nc">ContainerInterface</span> <span class="kd">extends</span> <span class="nc">PsrContainerInterface</span>
-<span class="p">{</span>
-    <span class="cd">/**
-     * Register the service object instance.
-     *
-     * @param string $identifier
-     * @param object $serviceInstance
-     * @param bool   $isShared
-     * @throws RuntimeException
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">set</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">,</span> <span class="kt">object</span> <span class="nv">$serviceInstance</span><span class="p">,</span> <span class="kt">bool</span> <span class="nv">$isShared</span> <span class="o">=</span> <span class="kc">true</span><span class="p">):</span> <span class="kt">void</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>As you can see, I really mean to use the strict types. I think that is the most important feature improvement in PHP lately.
-  However, a DI Container is typically NOT a service that can be typed pretty well, unless we call the <code class="language-plaintext highlighter-rouge">object</code> a precise
-  type hint.</p>
-<p>So what does this Interface do? It extends the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> to keep its benefits. Then we declared
-  our extravagant method: <code class="language-plaintext highlighter-rouge">set</code>. It has three parameters, two is mandatory, the third is optional.</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">$identifier</code>: String. It’s the instance’s class name, or just an alias of your choice. It’s important that the value 
-    to be unique, or match to a configuration definition, that has not been initialized yet.</li>
-  <li><code class="language-plaintext highlighter-rouge">$instance</code>: Object. It’s an object that have been initialized already but not destructed yet.</li>
-  <li><code class="language-plaintext highlighter-rouge">$isShared</code>: Boolean. It will tell the DI container how this instance should be handled upon getting it: return a clone (new 
-    instance every time) or the same instance (be like a singleton, but without the hateful <code class="language-plaintext highlighter-rouge">::getInstance();</code>)</li>
-</ul>
-<p>The method in normal case should not return anything. Why it should? Do we wait any kind of response? The only response 
-  should be an exception, that is thrown when we try to add an instance with an alias that is already instantiated.
-  This show how important is to use this method wisely. It’s not a common case when we need this, and that is why it’s not part
-  of the PSR Interface. 
-  However, other implementations, like the <a target="_blank" rel="noopener" href="https://github.com/symfony/dependency-injection/blob/master/ContainerInterface.php">Symfony DI</a>
-  (just to pick one) also feels it important to have this <code class="language-plaintext highlighter-rouge">set</code> method. So ours won’t be that renitent.</p>
-<p>In the <a rel="next" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">next part</a> we will plan the configuration file.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="solid-principles" /><summary type="html"><![CDATA[Like many of my fate companions, I do home office too. And by staying at home, I can save 2-3 hours of travelling every day. So I decided to practice a little bit.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php" /><category term="php74" /><category term="dic" /><category term="clean-code" /><category term="yaml" /><summary type="html"><![CDATA[The second step on our journey to create a stand-alone Dependency Injection Container. Discuss about the configuration doesn't sound too interesting, but it can hold us some surprises.]]></summary></entry></feed>
