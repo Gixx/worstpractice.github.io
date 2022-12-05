@@ -1,36 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-05T10:28:52+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 3</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-3" rel="alternate" type="text/html" title="Advent of Code - Day 3" /><published>2022-12-03T10:00:00+00:00</published><updated>2022-12-05T10:28:51+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-3</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-3"><![CDATA[<p><a href="https://adventofcode.com/2022/day/3" rel="noopener" target="_blank">Today’s puzzle</a> in short: There are a
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-05T12:05:19+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 4</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-4" rel="alternate" type="text/html" title="Advent of Code - Day 4" /><published>2022-12-04T12:00:00+00:00</published><updated>2022-12-05T12:05:18+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-4</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-4"><![CDATA[<p><a href="https://adventofcode.com/2022/day/4" rel="noopener" target="_blank">Today’s puzzle</a> in short: There are a
         bunch of character strings. Each letter has a number, and we need to group these strings by different criteria and sum
         the common characters’ numbers.</p>
       <h3 id="the-input-data">The input data</h3>
-      <p>The guys didn’t go crazy with this input for the first sight.</p>
+      <p>Each line in the input data represents two number sequences in the following way:</p>
       <ul>
-        <li>Every line contains “random” characters from the English alphabet.</li>
+        <li>Two ranges of numbers (decimals separated by <code class="language-plaintext highlighter-rouge">-</code>), then a comma, then another range.</li>
+        <li>The ranges of course contain the start and end number.</li>
       </ul>
       <h4 id="game-rules">Game rules</h4>
+      <p>The puzzle is simple:</p>
       <ul>
-        <li>Each character has a priority number:
-          <ul>
-            <li>the lowercase characters (from <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">z</code>) have priorities 1 through 26.</li>
-            <li>the uppercase characters (from <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">Z</code>) have priorities 27 through 52.</li>
-          </ul>
-        </li>
-        <li>We have to deal with groups of strings, and the character that is common in every string within a group gives the groups
-          priority.</li>
-        <li>We have to count all the groups’ priorities.</li>
+        <li>The elves work in sections.</li>
+        <li>Each section has an ID number.</li>
+        <li>Each elf work in a range of sections.</li>
+        <li>The elves work in pairs.</li>
       </ul>
-      <h3 id="part-one">Part one</h3>
-      <p>In the first task we have to split every line of string into two equal parts, and they will form a group.</p>
-      <p>The first thing we need to realize here is the priority numbers are not the same way added to the characters as they
-        present in the ASCII table. Because the character codes are the following:</p>
-      <ul>
-        <li>Characters from <code class="language-plaintext highlighter-rouge">A</code> trough <code class="language-plaintext highlighter-rouge">Z</code> are between <code class="language-plaintext highlighter-rouge">65</code> and <code class="language-plaintext highlighter-rouge">90</code>.</li>
-        <li>Characters from <code class="language-plaintext highlighter-rouge">a</code> trough <code class="language-plaintext highlighter-rouge">z</code> are between <code class="language-plaintext highlighter-rouge">97</code> and <code class="language-plaintext highlighter-rouge">122</code>.</li>
-      </ul>
-      <p>In PHP, you can easily get this value from the character set’s mapping table with the 
-        <a href="https://www.php.net/manual/en/function.ord.php" rel="noopener" target="_blank">ord()</a> function.</p>
-      <p>The second thing is - like in most programming languages - the string are not really equal to an array of characters, so
-        we need to convert each string to arrays of characters.</p>
-      <p>So the code will be like this:</p>
+      <p>Or task is to find overlapping (concurrency, redundancy) of the section ranges.</p>
+      <h3 id="part-one">Part One</h3>
+      <p>In the first part of the puzzle, we need to identify and count the fully overlapping ranges.</p>
+      <p>With PHP, it’s an easy task. We have built-in function to create a range of numbers as arrays, then just simply compare
+        these arrays.</p>
       <div class="language-php highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -55,10 +44,174 @@
 20
 21
 22
+23
+24
 </pre>
         </td>
         <td class="rouge-code">
-          <pre><span class="nv">$sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <pre><span class="nv">$fullyContained</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$pairRanges</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^(?P&lt;E1from&gt;\d+)\-(?P&lt;E1to&gt;\d+),(?P&lt;E2from&gt;\d+)\-(?P&lt;E2to&gt;\d+)$/'</span><span class="p">,</span> <span class="nv">$line</span><span class="p">,</span> <span class="nv">$pairRanges</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$elf1Range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E1from'</span><span class="p">],</span> <span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E1to'</span><span class="p">]);</span>
+            <span class="nv">$elf2Range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E2from'</span><span class="p">],</span> <span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E2to'</span><span class="p">]);</span>
+
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="nb">count</span><span class="p">(</span><span class="nb">array_diff</span><span class="p">(</span><span class="nv">$elf1Range</span><span class="p">,</span> <span class="nv">$elf2Range</span><span class="p">))</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">||</span>
+                <span class="nb">count</span><span class="p">(</span><span class="nb">array_diff</span><span class="p">(</span><span class="nv">$elf2Range</span><span class="p">,</span> <span class="nv">$elf1Range</span><span class="p">))</span> <span class="o">===</span> <span class="mi">0</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$fullyContained</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="k">echo</span> <span class="nv">$fullyContained</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>Just for fun, I used a regular expression to split the line of string into four numbers. I LOVE regular expressions by the way!</p>
+<p>So when we create the ranges with the <code class="language-plaintext highlighter-rouge">range()</code> function, we need to check how different they are. The <code class="language-plaintext highlighter-rouge">array_diff()</code>
+  function is just perfect for this. It checks the first argument array against the second array and returns any element
+  that is present only in the first array, but not in the other. Therefore, to find out whether a range of numbers is fully
+  contained in the other one, we should get back an empty array.</p>
+<p>We need to do this check for the other range too, because we can’t be sure, that only the first range can be a subset.</p>
+<h3 id="part-two">Part two</h3>
+<p>This part is almost the same. Here we need to count also the partially overlapping ranges. How to do that? The same way, 
+  the only difference is now don’t look for empty result, but a result that has fewer elements than the subject array.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$partiallyOrFullyContained</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$pairRanges</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^(?P&lt;E1from&gt;\d+)\-(?P&lt;E1to&gt;\d+),(?P&lt;E2from&gt;\d+)\-(?P&lt;E2to&gt;\d+)$/'</span><span class="p">,</span> <span class="nv">$line</span><span class="p">,</span> <span class="nv">$pairRanges</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$elf1Range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E1from'</span><span class="p">],</span> <span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E1to'</span><span class="p">]);</span>
+            <span class="nv">$elf2Range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E2from'</span><span class="p">],</span> <span class="nv">$pairRanges</span><span class="p">[</span><span class="s1">'E2to'</span><span class="p">]);</span>
+
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="nb">count</span><span class="p">(</span><span class="nb">array_diff</span><span class="p">(</span><span class="nv">$elf1Range</span><span class="p">,</span> <span class="nv">$elf2Range</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$elf1Range</span><span class="p">)</span> <span class="o">||</span>
+                <span class="nb">count</span><span class="p">(</span><span class="nb">array_diff</span><span class="p">(</span><span class="nv">$elf2Range</span><span class="p">,</span> <span class="nv">$elf1Range</span><span class="p">))</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$elf2Range</span><span class="p">)</span>
+            <span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$partiallyOrFullyContained</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="k">echo</span> <span class="nv">$partiallyOrFullyContained</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[Who like to clean the house when it was already cleaned up. Today we go the lazy way: we need to find out how to reduce redundant work.]]></summary></entry><entry><title type="html">Advent of Code - Day 3</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-3" rel="alternate" type="text/html" title="Advent of Code - Day 3" /><published>2022-12-03T10:00:00+00:00</published><updated>2022-12-05T10:28:51+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-3</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-3"><![CDATA[<p><a href="https://adventofcode.com/2022/day/3" rel="noopener" target="_blank">Today’s puzzle</a> in short: There are a
+    bunch of character strings. Each letter has a number, and we need to group these strings by different criteria and sum
+    the common characters’ numbers.</p>
+  <h3 id="the-input-data">The input data</h3>
+  <p>The guys didn’t go crazy with this input for the first sight.</p>
+  <ul>
+    <li>Every line contains “random” characters from the English alphabet.</li>
+  </ul>
+  <h4 id="game-rules">Game rules</h4>
+  <ul>
+    <li>Each character has a priority number:
+      <ul>
+        <li>the lowercase characters (from <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">z</code>) have priorities 1 through 26.</li>
+        <li>the uppercase characters (from <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">Z</code>) have priorities 27 through 52.</li>
+      </ul>
+    </li>
+    <li>We have to deal with groups of strings, and the character that is common in every string within a group gives the groups
+      priority.</li>
+    <li>We have to count all the groups’ priorities.</li>
+  </ul>
+  <h3 id="part-one">Part one</h3>
+  <p>In the first task we have to split every line of string into two equal parts, and they will form a group.</p>
+  <p>The first thing we need to realize here is the priority numbers are not the same way added to the characters as they
+    present in the ASCII table. Because the character codes are the following:</p>
+  <ul>
+    <li>Characters from <code class="language-plaintext highlighter-rouge">A</code> trough <code class="language-plaintext highlighter-rouge">Z</code> are between <code class="language-plaintext highlighter-rouge">65</code> and <code class="language-plaintext highlighter-rouge">90</code>.</li>
+    <li>Characters from <code class="language-plaintext highlighter-rouge">a</code> trough <code class="language-plaintext highlighter-rouge">z</code> are between <code class="language-plaintext highlighter-rouge">97</code> and <code class="language-plaintext highlighter-rouge">122</code>.</li>
+  </ul>
+  <p>In PHP, you can easily get this value from the character set’s mapping table with the 
+    <a href="https://www.php.net/manual/en/function.ord.php" rel="noopener" target="_blank">ord()</a> function.</p>
+  <p>The second thing is - like in most programming languages - the string are not really equal to an array of characters, so
+    we need to convert each string to arrays of characters.</p>
+  <p>So the code will be like this:</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre>
+    </td>
+    <td class="rouge-code">
+      <pre><span class="nv">$sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
 <span class="k">const</span> <span class="no">PRIORITY_DIFF_LOWERCASE</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">97</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 <span class="k">const</span> <span class="no">PRIORITY_DIFF_UPPERCASE</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">65</span> <span class="o">+</span> <span class="mi">27</span><span class="p">);</span>
@@ -81,10 +234,10 @@
 
 <span class="k">echo</span> <span class="nv">$sum</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -4827,1436 +4980,4 @@ Page content
 </div>
 <p>This will return a string with the file’s key on the S3 bucket, or <code class="language-plaintext highlighter-rouge">NULL</code> if the bucket with the given prefix is empty.
   You can also create a method that downloads the file from the S3 bucket, but let it be a homework.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php" /><category term="php74" /><category term="aws" /><category term="s3-bucket" /><summary type="html"><![CDATA[Recently I had to make my hands dirty with the AWS S3, and I faced a problem of getting the latest/newest file from a bucket with PHP.]]></summary></entry><entry><title type="html">DIY Dependency Injection Container, Part 3</title><link href="http://0.0.0.0:4000/backend/diy-dependency-injection-container-3" rel="alternate" type="text/html" title="DIY Dependency Injection Container, Part 3" /><published>2020-06-19T16:20:00+00:00</published><updated>2022-12-01T16:00:06+00:00</updated><id>http://0.0.0.0:4000/backend/diy-dependency-injection-container-3</id><content type="html" xml:base="http://0.0.0.0:4000/backend/diy-dependency-injection-container-3"><![CDATA[<p>In the <a rel="prev" href="/backend/diy-dependency-injection-container-2" title="DIY Dependency Injection Container, Part 2">previous part</a>, 
-    we defined the structure of the configuration data, and planned the behaviour we want our DI to follow.</p>
-  <h3 id="tldr">TL;DR</h3>
-  <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-    <a href="https://github.com/Gixx/worstpractice-dependency-injection/tree/1.0.6" target="_blank" rel="noopener">GitHub</a>.</p>
-  <h3 id="to-tdd-or-not-to-tdd">to TDD or not to TDD?</h3>
-  <p>This is always a question. Hardcore, fanatical, pop eyed far-side coders will hate me when I say: TDD is not for everyone and is not for every
-    code. TDD requires a different thinking, a different learning path. For example for me, I’m not yet able to understand how can I do anything in
-    TDD way. I hope in the future it will change, because a new knowledge always makes me better. I believe TDD helps when you are on the start grid,
-    and you know what the goal is, but you don’t know yet the way to reach it. Like being in the dark room, and you see the exit sign bright in the distance, 
-    but everything else is dark, so you have to feel the way with your feet to avoid traps, and roadblocks.</p>
-  <p>But now it’s not a dark room. I know the goal, and I clearly see the path. Maybe there will be traps hidden, but I will try to cover not only the happy 
-    path with tests. Not coding in TDD way doesn’t mean I don’t write tests. Test are not only important but ought to be mandatory.</p>
-  <h3 id="the-di-class">The DI class</h3>
-  <p>Note: Because the class will probably be long, I will add here only the fragments I will talk about and won’t include the whole actual source.</p>
-  <h4 id="declaration-preparation">Declaration, preparation</h4>
-  <p>In part one I wrote very enthusiastically on the strict types, so this should be the first thing we declare, then we implement the Interface too.</p>
-  <div class="language-php highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="cp">&lt;?php</span>
-
-<span class="k">declare</span><span class="p">(</span><span class="n">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-
-<span class="kn">namespace</span> <span class="nn">WorstPractice\Component\DependencyInjection</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">Container</span> <span class="kd">implements</span> <span class="nc">ContainerInterface</span>
-<span class="p">{</span>
-    <span class="cd">/**
-     * @var array The full raw configuration data
-     */</span>
-    <span class="k">private</span> <span class="kt">array</span> <span class="nv">$configuration</span><span class="p">;</span>
-
-    <span class="cd">/**
-     * Container constructor.
-     *
-     * @param array $configuration
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$configuration</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">configuration</span> <span class="o">=</span> <span class="nv">$configuration</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="cd">/**
-     * Returns true if the given service is registered.
-     *
-     * @param  string $identifier
-     * @return bool
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">has</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">):</span> <span class="kt">bool</span>
-    <span class="p">{</span>
-    
-    <span class="p">}</span>
-
-    <span class="cd">/**
-     * Gets a service instance.
-     *
-     * @param  string $identifier
-     * @return object
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">get</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">):</span> <span class="kt">object</span>
-    <span class="p">{</span>
-    
-    <span class="p">}</span>
-
-    <span class="cd">/**
-     * Register a service object instance into the container.
-     *
-     * @param  string $identifier
-     * @param  object $serviceInstance
-     * @param  bool   $isShared
-     */</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="n">set</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">,</span> <span class="kt">object</span> <span class="nv">$serviceInstance</span><span class="p">,</span> <span class="kt">bool</span> <span class="nv">$isShared</span> <span class="o">=</span> <span class="kc">true</span><span class="p">):</span> <span class="kt">void</span>
-    <span class="p">{</span>
-    
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>So what we have here? We created the frame of our DI class. Declare the namespace and the class, implement our DI interface
-  which is an extension of the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code>. We added a constructor method that accepts an array with the configuration
-  data. It’s a raw data, so basically it can hold anything, no validation added yet.</p>
-<p>In part one I already wrote about my problem with the strict types when you implement an interface which doesn’t that strict.
-  So the methods defined in the <code class="language-plaintext highlighter-rouge">Psr\Container\ContainerInterface</code> unfortunately are without proper parameter types.</p>
-<h4 id="additional-storage-properties">Additional storage properties</h4>
-<p>The methods are still empty, but before filling them, take a step back and let’s think, what we need:</p>
-<ul>
-  <li>We need an internal storage for the parsed config, let’s call it Service Library.</li>
-</ul>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre>  <span class="cd">/**
-   * @var array The instantiation-ready library with all necessary data.
-   */</span>
-  <span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceLibrary</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<ul>
-  <li>We need an internal storage for the instantiated services, this is the Service Container.</li>
-</ul>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * @var array The instantiated services.
- */</span>
-<span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceContainer</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>The Service Container is a simple key-value array, where the key is the service identifier and the value is the service instance.</p>
-<p>The Service Library is a bit complex. It’s a parsed version of the raw configuration data. Like for the Service Container, the key
-  here is the service identifier, and the value is an array similar to the configuration. First we create some constants to always
-  refer the correct key and don’t have to deal with accidental, hidden typos:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">const</span> <span class="no">SERVICE_CLASS</span> <span class="o">=</span> <span class="s1">'class'</span><span class="p">;</span>
-<span class="k">private</span> <span class="k">const</span> <span class="no">SERVICE_ARGUMENTS</span> <span class="o">=</span> <span class="s1">'arguments'</span><span class="p">;</span>
-<span class="k">private</span> <span class="k">const</span> <span class="no">SERVICE_METHOD_CALL</span> <span class="o">=</span> <span class="s1">'calls'</span><span class="p">;</span>
-<span class="k">private</span> <span class="k">const</span> <span class="no">SERVICE_SHARE</span> <span class="o">=</span> <span class="s1">'shared'</span><span class="p">;</span>
-<span class="k">private</span> <span class="k">const</span> <span class="no">SERVICE_INHERIT</span> <span class="o">=</span> <span class="s1">'inherits'</span><span class="p">;</span>
-<span class="k">private</span> <span class="k">const</span> <span class="no">SERVICE_INITIALIZED</span> <span class="o">=</span> <span class="s1">'initialized'</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Mostly they are the same as in the configuration, except the <code class="language-plaintext highlighter-rouge">SERVICE_INITIALIZED</code> which is there to flag that we already instantiated a service.</p>
-<h3 id="the-has-method">The <code class="language-plaintext highlighter-rouge">has</code> method</h3>
-<p>After this how can we decide whether a service exists or not? Or with other words, how we check whether the DI has a service or not?
-  The answer is pretty simple. The DI has a service if:</p>
-<ul>
-  <li>the service is instantiated and registered into the Service Container.</li>
-  <li>the service is not instantiated yet but registered into the Service Library.</li>
-  <li>the service is not registered into any internal storage but exists in the raw configuration, or it’s a loadable class.</li>
-</ul>
-<p>Be clean and simple, create three additional checker methods to cover these cases:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * Checks if the service has been already registered into the container
- *
- * @param string $identifier
- * @return bool
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">isServiceRegisteredIntoContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">bool</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="k">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceContainer</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]);</span>
-<span class="p">}</span>
-
-<span class="cd">/**
- * Checks if the service has been already registered into the library
- *
- * @param string $identifier
- * @return bool
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">isServiceRegisteredIntoLibrary</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">bool</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="k">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]);</span>
-<span class="p">}</span>
-
-<span class="cd">/**
- * Checks if the service name is a valid class, or it's in the raw configuration.
- *
- * @param string $identifier
- * @return bool
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">isServiceRegistrableIntoLibrary</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">bool</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="nb">class_exists</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span> <span class="o">||</span> <span class="k">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">configuration</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]);</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Now we have these beauties, we can finish the <code class="language-plaintext highlighter-rouge">has</code> method:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * Returns true if the given service is registered.
- *
- * @param  string $identifier
- * @return bool
- */</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">has</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">):</span> <span class="kt">bool</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoContainer</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
-        <span class="o">||</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
-        <span class="o">||</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegistrableIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>If we code like this, we can keep the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">Cyclomatic complexity</a>
-  low, and after we cover them with unit tests, also the <acronym title="Change Risk Anti Pattern">CRAP</acronym> Score.</p>
-<h3 id="the-set-method">The <code class="language-plaintext highlighter-rouge">set</code> method</h3>
-<p>Let’s continue with the <code class="language-plaintext highlighter-rouge">set</code> method since it’s almost as simple as the <code class="language-plaintext highlighter-rouge">has</code>. The <code class="language-plaintext highlighter-rouge">get</code> will be the most complex, so leave it last.
-  The <code class="language-plaintext highlighter-rouge">set</code> method basically injects an instance into the container, so instead of building up an instance from the configuration, we go
-  the opposite way and build up the configuration from the instance. What question need to asked first? This:</p>
-<ul>
-  <li>What should happen if a service with the given identifier already exists?</li>
-</ul>
-<p>Well, I am a guy who is not afraid of raise errors when there is a use case we don’t want to allow. So my answer is: throw an exception.</p>
-<p>And again to reduce complexity, first create another checker method:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * Checks if the service has been already initialized.
- *
- * @param  string $identifier
- * @return bool
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">isServiceInitialized</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">bool</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">][</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INITIALIZED</span><span class="p">]</span> <span class="o">??</span> <span class="kc">false</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>So the <code class="language-plaintext highlighter-rouge">set</code> method will look like:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * Register a service object instance into the container.
- *
- * @param  string $identifier
- * @param  object $serviceInstance
- * @param  bool   $isShared
- * @throws RuntimeException
- */</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">set</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">,</span> <span class="kt">object</span> <span class="nv">$serviceInstance</span><span class="p">,</span> <span class="kt">bool</span> <span class="nv">$isShared</span> <span class="o">=</span> <span class="kc">true</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// Check if the service is initialized already.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceInitialized</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
-            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'Another service with this identifier (%s) is already initialized.'</span><span class="p">,</span> <span class="nv">$identifier</span><span class="p">)</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Register service.</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceContainer</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$serviceInstance</span><span class="p">;</span>
-
-    <span class="c1">// Overwrite any previous settings.</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INITIALIZED</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_ARGUMENTS</span> <span class="o">=&gt;</span> <span class="p">[],</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_METHOD_CALL</span> <span class="o">=&gt;</span> <span class="p">[],</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_SHARE</span> <span class="o">=&gt;</span> <span class="nv">$isShared</span><span class="p">,</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_CLASS</span> <span class="o">=&gt;</span> <span class="nb">get_class</span><span class="p">(</span><span class="nv">$serviceInstance</span><span class="p">),</span>
-    <span class="p">];</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p><strong>Note:</strong> in PHP 8.0 we will be able to use <code class="language-plaintext highlighter-rouge">$serviceInstance::class</code> instead of <code class="language-plaintext highlighter-rouge">get_class($serviceInstance)</code>.</p>
-<p>I was not sure which of my most used exceptions fits here best:</p>
-<ul>
-  <li>RuntimeException</li>
-  <li>InvalidArgumentException</li>
-  <li>OutOfBoundsException</li>
-</ul>
-<p>Of course I could introduce new exceptions too, but frankly I am not big fan of unnecessarily create files. The built-in 
-  exception classes are more than enough to cover any cases. So why we don’t use them? Ok, I agree there’s a beauty in throw
-  an <code class="language-plaintext highlighter-rouge">OhNoAnotherIdiotUsesMyCodeWithoutReadingTheFuckingManualException</code>, but hey… Do we really win anything with it? I guess no.
-  We can add error codes for the exceptions if we want to target them more precisely.</p>
-<h3 id="the-get-method">The <code class="language-plaintext highlighter-rouge">get</code> method</h3>
-<p>This one is a beast, with sometimes weird and twisted logic. The goal is simple: if we have the given service registered, return its
-  instance or throw an exception otherwise. But since it’s the most crucial part of the whole DI, let’s stop again to summarize
-  the problems we need to face and solve.</p>
-<p>This DI follows a “<em>build-on-the-fly</em>” strategy:</p>
-<ul>
-  <li>Do not parse the configuration until a service is not requested.</li>
-  <li>Register the corresponding service configuration into the Service Library, resolve inheritance to have all the information prepared
-    for the instantiation.</li>
-  <li>Check the class arguments and the method call arguments for other service references and initialized them first.</li>
-  <li>Initialize the service and register it into the Service Container.</li>
-</ul>
-<h4 id="what-pitfalls-we-need-to-handle">What pitfalls we need to handle?</h4>
-<h5 id="reference-loops">Reference loops</h5>
-<ul>
-  <li>Inheritance loop: when services reference each other as they are inherited from:</li>
-</ul>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'form.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'inherits'</span> <span class="o">=&gt;</span> <span class="s1">'shared.form.service'</span><span class="p">,</span>
-        <span class="s1">'shared'</span> <span class="o">=&gt;</span> <span class="kc">false</span>
-    <span class="p">],</span>
-    <span class="s1">'shared.form.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'inherits'</span> <span class="o">=&gt;</span> <span class="s1">'form.service'</span><span class="p">,</span>
-        <span class="s1">'shared'</span> <span class="o">=&gt;</span> <span class="kc">true</span>
-    <span class="p">],</span>
-<span class="p">];</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<ul>
-  <li>Argument Reference loop: when services reference each other. Even one service can reference itself on configuration level:</li>
-</ul>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nv">$config</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'form.service'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="s1">'class'</span> <span class="o">=&gt;</span> <span class="nc">Namespace\To\Form\Service</span><span class="o">::</span><span class="n">class</span><span class="p">,</span>
-        <span class="s1">'arguments'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="s1">'form.service'</span>
-        <span class="p">],</span>
-        <span class="s1">'calls'</span> <span class="o">=&gt;</span> <span class="p">[</span>
-            <span class="p">[</span><span class="s1">'addSubForm'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'form.service'</span><span class="p">]]</span>
-        <span class="p">],</span>       
-        <span class="s1">'shared'</span> <span class="o">=&gt;</span> <span class="kc">true</span>
-    <span class="p">],</span>
-<span class="p">];</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<ul>
-  <li>Mixed variations of the two cases above.</li>
-</ul>
-<h5 id="invalid-configuration-data">Invalid configuration data</h5>
-<ul>
-  <li>Missing or invalid class constructor arguments.</li>
-  <li>Missing or invalid called method arguments.</li>
-  <li>Reference to a non existing class.</li>
-  <li>Reference to a non existing method to call.</li>
-  <li>Other semantic errors in the configuration data.</li>
-</ul>
-<p>So in the first place we need to build the line of defense. To deal with the different reference loop cases we will introduce a
-  new internal storage to store all the services which are involved in the current retrieval. Let’s call it simply Loop Detector.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * @var array An array to detect reference loops.
- */</span>
-<span class="k">private</span> <span class="kt">array</span> <span class="nv">$referenceLoopDetector</span> <span class="o">=</span> <span class="p">[];</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>When we handle references we also use the same <code class="language-plaintext highlighter-rouge">get</code> logic for the referenced classes. But since we can’t change the <code class="language-plaintext highlighter-rouge">get</code> method’s 
-  declaration to add proper type hinting, I prefer to create a new method:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * Gets a service instance.
- *
- * @param  string $identifier
- * @return object
- */</span>
-<span class="k">public</span> <span class="k">function</span> <span class="n">get</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">):</span> <span class="kt">object</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getFromContainer</span><span class="p">((</span><span class="n">string</span><span class="p">)</span> <span class="nv">$identifier</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="cd">/**
- * @param string $identifier
- * @return object
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">getFromContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">object</span>
-<span class="p">{</span>
-
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>As you can see, the public entry point remain the <code class="language-plaintext highlighter-rouge">get</code> method which simply proxies the call to an internal function with
-  casting the parameter. In the <code class="language-plaintext highlighter-rouge">getFromContainer</code> to save time and resources the first thing we must do is to check the loop:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * @param string $identifier
- * @throws RuntimeException
- * @return object
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">getFromContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">object</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
-            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'Reference loop detected! Reference chain: %s'</span><span class="p">,</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">' -&gt; '</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">))</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$identifier</span><span class="p">;</span>
-
-    <span class="c1">// Todo retrieve the service instance or throw exception.</span>
-    
-    <span class="nb">array_pop</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">);</span>
-    
-    <span class="c1">// Todo return the service instance.</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>If we have a loop in a reference node, the process must be stopped and throw an exception. Otherwise we add 
-  the identifier to the loop detector, then process config, instantiate the service, whatever. Then, before return the service 
-  instance, we remove the identifier from the loop detector, to allow already used references on other nodes starting from this level.</p>
-<p>To extend my language skills with some visual explanation, I made a shitty illustration to demonstrate the valid and invalid 
-  reference:</p>
-<figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2020/backend/diy-dependency-injection-container-3/references.png" width="700" />
-  <figcaption class="a-illustration__caption">Valid and invalid references</figcaption>
-</figure>
-<p>In this example referencing <code class="language-plaintext highlighter-rouge">Service C</code> twice is valid, as they are on different nodes, but referencing <code class="language-plaintext highlighter-rouge">Service A</code> again will throw an error.
-  If we split this up, we can instantiate <code class="language-plaintext highlighter-rouge">Service C</code> alone, and <code class="language-plaintext highlighter-rouge">Service B</code> (with <code class="language-plaintext highlighter-rouge">Service C</code> in the argument), but we can never instantiate
-  <code class="language-plaintext highlighter-rouge">Service A</code> and <code class="language-plaintext highlighter-rouge">Service D</code>…</p>
-<h4 id="return-the-service-or-die">Return the service or die</h4>
-<p>This <code class="language-plaintext highlighter-rouge">getFromContainer</code> will do nothing else, just prepare the service, and get it back if it exists. It can return in two ways:</p>
-<ul>
-  <li>the same instance for the same identifier every time</li>
-  <li>a new instance for the same identifier every time</li>
-</ul>
-<p>For the second option I prefer to use the <code class="language-plaintext highlighter-rouge">clone</code> technique, because we can benefit from the use of <code class="language-plaintext highlighter-rouge">__clone</code> magic method, which is
-  much better than re-instantiate a class every time. The way of return controlled by the <code class="language-plaintext highlighter-rouge">shared</code> configuration option.</p>
-<p>If the service does not exist, we simply throw an exception. There’s always a big argument about the good behaviour: in case of not
-  find something is a <code class="language-plaintext highlighter-rouge">return null</code> or an Exception. I would say it always depends on the context. In this case I would prefer the exception, 
-  because it’s not a database query controlled by user input to list something, and it can happen that there will be no result for the 
-  search expressions. No.</p>
-<p>In this case we <strong>must</strong> have a result. If the configuration is wrong, or the autoloader is not configured well, or some PHP extension is
-  not loaded, and we want the DI to return the given instance, then it’s a big fucking exception when it can’t.</p>
-<p>So here we go:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * @param string $identifier
- * @throws RuntimeException
- * @return object
- */</span>
-<span class="k">private</span> <span class="k">function</span> <span class="n">getFromContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">object</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$identifier</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nc">OutOfBoundsException</span><span class="p">(</span>
-            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'The given service (%s) is not defined service or class name.'</span><span class="p">,</span> <span class="nv">$identifier</span><span class="p">)</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-    
-    <span class="nb">array_pop</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">);</span>
-
-    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">][</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_SHARE</span><span class="p">]</span>
-        <span class="o">?</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceContainer</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span>
-        <span class="o">:</span> <span class="k">clone</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceContainer</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">];</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>That is all nice, but if you remember I wrote that we build the library on the fly. So in this for the DI won’t return 
-  anything, since it’s still empty. So it’s time to dig deeper in the hole, and prepare the service.</p>
-<h4 id="preparing-the-service">Preparing the service</h4>
-<p>Preparing the service is a two step check:</p>
-<ol>
-  <li>If the service is not yet in the Service Library, then register it.</li>
-  <li>If the service in the Service Library but not in the Container, then add it to the container.</li>
-</ol>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">getFromContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">object</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">referenceLoopDetector</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$identifier</span><span class="p">;</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">prepareService</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span> <span class="c1">// &lt;-- the new thing here</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">))</span> <span class="p">{</span>
-        <span class="c1">// exception</span>
-    <span class="p">}</span>
-    
-    <span class="c1">// ...</span>
-<span class="p">}</span>
-
-<span class="k">private</span> <span class="k">function</span> <span class="n">prepareService</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// Not registered in the library but it's a valid class name, or it's in the raw configuration: register.</span>
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
-        <span class="o">&amp;&amp;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegistrableIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
-    <span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">registerServiceToLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Registered in the library but not in the container, so register it there too.</span>
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoLibrary</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
-        <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">isServiceRegisteredIntoContainer</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">)</span>
-    <span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">registerServiceToContainer</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>As you can see, for the checks we use those methods we already used for the <code class="language-plaintext highlighter-rouge">has</code> method.</p>
-<h5 id="register-the-service-into-the-container">Register the service into the Container.</h5>
-<p>I start this one, because it’s the simpler one. Register a service into the container means:</p>
-<ul>
-  <li>Resolve the class constructor argument references</li>
-  <li>Instantiate the given service with the arguments</li>
-  <li>Resolve the argument references for the methods to be called</li>
-  <li>Call the methods</li>
-  <li>Save the instance into the Container</li>
-  <li>Mark the service as initialized in the Service Library</li>
-</ul>
-<p>Sound complex first, but it ain’t. Let’s go step-by-step.</p>
-<h6 id="1-resolve-argument-references">1. Resolve argument references</h6>
-<p>Here we just pass the configured arguments array to a new function (always focus on to reduce complexity), then we just 
-  iterate through this list, and when the give key in the array is numeric, we try to get the service for it, otherwise
-  just simply store the value. In the end, return the new argument list with the resolved references.</p>
-<p>Do you remember the <a href="/backend/diy-dependency-injection-container-2#indexes">previous part</a> when I explained the
-  way I will separate literal argument values from the service references? Here it is.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// Check arguments.</span>
-    <span class="nv">$argumentList</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">setArgumentListReferences</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">][</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_ARGUMENTS</span><span class="p">]);</span>
-<span class="p">}</span>
-
-<span class="k">private</span> <span class="k">function</span> <span class="n">setArgumentListReferences</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$argumentList</span><span class="p">):</span> <span class="kt">array</span>
-<span class="p">{</span>
-    <span class="nv">$resolvedArgumentList</span> <span class="o">=</span> <span class="p">[];</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$argumentList</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Numeric keys marks reference values</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">is_numeric</span><span class="p">(</span><span class="nv">$key</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nv">$value</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getFromContainer</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="nv">$resolvedArgumentList</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nv">$resolvedArgumentList</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Later, when we will prepare the Service Library, we will make sure that the structure is always consistent, so here and now 
-  we don’t have to check whether the indexes are existing, because they are.</p>
-<h6 id="2-instantiate-the-service">2. Instantiate the service</h6>
-<p>Earlier every framework and library used that annoying <code class="language-plaintext highlighter-rouge">ReflectionClass</code> to workaround the problem of passing arguments to the
-  constructor, but since PHP 5.6 already we can use an array as arguments with the <code class="language-plaintext highlighter-rouge">... $args</code> syntax. Brilliant. We will just do it:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// Check arguments.</span>
-    <span class="c1">// $argumentList = ...</span>
-
-    <span class="c1">// Create new instance.</span>
-    <span class="nv">$className</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">][</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_CLASS</span><span class="p">];</span>
-    <span class="nv">$serviceInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">$className</span><span class="p">(</span><span class="mf">...</span><span class="nv">$argumentList</span><span class="p">);</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Again, when we will prepare the Service Library later, the value under the <code class="language-plaintext highlighter-rouge">self::SERVICE_CLASS</code> index will always be a validated
-  classname, and not an alias.</p>
-<h6 id="3-call-methods-after-service-instantiation">3. Call methods after service instantiation</h6>
-<p>If you remember, in the <a href="/backend/diy-dependency-injection-container-2#post-init-calls">previous part</a> I described
-  how the method call list must be structured. Every element must contain the method name, and its argument list.</p>
-<p>So we have to iterate through on this list, check if the method exists, and handle its arguments the same way we did for the 
-  class constructor, then perform the call.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-    <span class="nv">$serviceInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">$className</span><span class="p">(</span><span class="mf">...</span><span class="nv">$argumentList</span><span class="p">);</span>
-
-    <span class="c1">// Perform post init method calls.</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">][</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_METHOD_CALL</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$methodCallList</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$method</span> <span class="o">=</span> <span class="nv">$methodCallList</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">method_exists</span><span class="p">(</span><span class="nv">$serviceInstance</span><span class="p">,</span> <span class="nv">$method</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
-                <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'The method "%s::%s" does not exist or not public.'</span><span class="p">,</span> <span class="nv">$className</span><span class="p">,</span> <span class="nv">$method</span><span class="p">)</span>
-            <span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="nv">$methodArgumentList</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">setArgumentListReferences</span><span class="p">(</span><span class="nv">$methodCallList</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">??</span> <span class="p">[]);</span>
-        <span class="nv">$serviceInstance</span><span class="o">-&gt;</span><span class="nv">$method</span><span class="p">(</span><span class="mf">...</span><span class="nv">$methodArgumentList</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>If the method does not exist, we again throw an exception. Anyway it will be a fatal error (<code class="language-plaintext highlighter-rouge">Throwable</code>), if the configuration
-  is wrong and we pass too few arguments, or with wrong type, order etc.</p>
-<h6 id="4-register-the-instance-into-the-container">4. Register the instance into the Container</h6>
-<p>… and mark it as initialized in the Library.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToContainer</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-
-    <span class="c1">// Register service.</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceContainer</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$serviceInstance</span><span class="p">;</span>
-
-    <span class="c1">// Mark as initialized.</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">][</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INITIALIZED</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h5 id="register-the-service-into-the-library">Register the service into the Library.</h5>
-<p>As the last brick in our beautiful house is to build the library. This means:</p>
-<ul>
-  <li>Parse the raw config and prepare the values.</li>
-  <li>Resolve configuration inheritance. And detect inheritance loops.</li>
-  <li>Validate the service class belongs to the identifier. Also handle the case when the identifier itself a valid class.</li>
-  <li>Fill missing information with defaults.</li>
-</ul>
-<h6 id="1-parse-the-config">1. Parse the config</h6>
-<p>Because we go deeper and deeper, and try to keep the code as clean as possible, we again start the “Register…” function
-  with a call to another method to collect data. This method is the <code class="language-plaintext highlighter-rouge">getServiceConfiguration</code>:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cd">/**
- * @var array An intermediate store for partially prepared data.
- */</span>
-<span class="k">private</span> <span class="kt">array</span> <span class="nv">$serviceConfiguration</span><span class="p">;</span>
-
-<span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToLibrary</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="nv">$serviceConfiguration</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getServiceConfiguration</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">private</span> <span class="k">function</span> <span class="n">getServiceConfiguration</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">array</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceConfiguration</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceConfiguration</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">];</span>
-    <span class="p">}</span>
-    
-    <span class="c1">// In case of classes without config, we provide an empty array</span>
-    <span class="nv">$configuration</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">configuration</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span> <span class="o">??</span> <span class="p">[];</span>
-
-    <span class="c1">// Resolve inheritance.</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">resolveInheritance</span><span class="p">(</span><span class="nv">$configuration</span><span class="p">,</span> <span class="nv">$identifier</span><span class="p">);</span>
-
-    <span class="c1">// Save the configuration.</span>
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceConfiguration</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$configuration</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="nv">$configuration</span><span class="p">;</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>First we check if we already have a half-ready data in the new, temporary storage: <code class="language-plaintext highlighter-rouge">serviceConfiguration</code>. This is a half-ready state 
-  between the raw configuration and the Service Library. Why we need this? Just for safety. We should never mess up the raw configuration, 
-  and we should never store half-ready information in the Service Library. We can call it temp data if you like.</p>
-<p>So if we already have this temp data for the given service, we return it. If we don’t, then  pick up the raw configuration for the give
-  service and go on. It’s no problem, if we don’t have a configuration for the requested class, until the identifier is an instantiable 
-  class, and the object can be created without arguments. Otherwise we will throw an exception in the <code class="language-plaintext highlighter-rouge">getFromContainer</code>
-  <a href="#preparing-the-service">as I wrote earlier</a>.</p>
-<h6 id="2-resolve-the-inheritance">2. Resolve the inheritance</h6>
-<p>The <code class="language-plaintext highlighter-rouge">getServiceConfiguration</code> will call the <code class="language-plaintext highlighter-rouge">resolveInheritance</code> method, which will modify the temporary config data if needed.
-  Let’s see, how it does:</p>
-<ul>
-  <li>Check if there’s inheritance configuration for the service at all. No means no change.</li>
-  <li>Check if the inheritance doesn’t get into a loop. Yes means exception.</li>
-  <li>Get the configuration of the parent service.</li>
-  <li>Overwrite the parent’s copied configuration with the given ones.</li>
-  <li>Set the class name definition if not given.</li>
-</ul>
-<p>This whole concept will look like this. It’s a bigger code sample, but makes no sense to split into more calls. Only to reduce the 
-  complexity I put the inheritance loop check into a different method.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="kt">array</span> <span class="nv">$inheritanceLoopDetector</span> <span class="o">=</span> <span class="p">[];</span>
-
-<span class="k">private</span> <span class="k">function</span> <span class="n">resolveInheritance</span><span class="p">(</span><span class="kt">array</span> <span class="o">&amp;</span><span class="nv">$configuration</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$configuration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INHERIT</span><span class="p">]))</span> <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">checkForInheritanceLoop</span><span class="p">(</span><span class="nv">$configuration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INHERIT</span><span class="p">],</span> <span class="nv">$identifier</span><span class="p">);</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">inheritanceLoopDetector</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$identifier</span><span class="p">;</span>
-    <span class="nv">$parentConfiguration</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getServiceConfiguration</span><span class="p">(</span><span class="nv">$configuration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INHERIT</span><span class="p">]);</span>
-
-    <span class="c1">// not needed any more</span>
-    <span class="nb">unset</span><span class="p">(</span><span class="nv">$configuration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INHERIT</span><span class="p">]);</span>
-
-    <span class="c1">// Overwrite the parent service's config with the current service's config</span>
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$configuration</span> <span class="k">as</span> <span class="nv">$key</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$parentConfiguration</span><span class="p">[</span><span class="nv">$key</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">// If the class name is not explicitly defined but the identifier is a valid class name,</span>
-    <span class="c1">// the inherited class name should be overwritten.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$configuration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_CLASS</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nb">class_exists</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">))</span> <span class="p">{</span>
-        <span class="nv">$parentConfiguration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_CLASS</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$identifier</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nv">$configuration</span> <span class="o">=</span> <span class="nv">$parentConfiguration</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">private</span> <span class="k">function</span> <span class="n">checkForInheritanceLoop</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$parentIdentifier</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$parentIdentifier</span> <span class="o">===</span> <span class="nv">$identifier</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
-            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'Self referencing is not allowed: %s'</span><span class="p">,</span> <span class="nv">$identifier</span><span class="p">),</span>
-            <span class="mi">1004</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">inheritanceLoopDetector</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
-            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'Inheritance loop detected for service: %s'</span><span class="p">,</span> <span class="nv">$identifier</span><span class="p">),</span>
-            <span class="mi">1005</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>To detect an inheritance loop, we add a new class property <code class="language-plaintext highlighter-rouge">inheritanceLoopDetector</code> and it works the same way as the 
-  <code class="language-plaintext highlighter-rouge">referenceLoopDetector</code>. But here, we dont need to remove the added identifier before the end of the function, because
-  at once we discover only one and exactly one node. No support for multi-inheritance yet.</p>
-<p>So we passed the checks, then we get the parent’s configuration. There’s a recursion, - as the <code class="language-plaintext highlighter-rouge">getServiceConfiguration</code>
-  calls the <code class="language-plaintext highlighter-rouge">resolveInheritance</code> and it calls the <code class="language-plaintext highlighter-rouge">getServiceConfiguration</code> back and so on. And that’s why we need to loop detection,
-  to avoid the infinite loops.</p>
-<p>When we have the parent’s configuration data, we iterate through on the current service’s config and overwrite anything 
-  in the parent config we explicitly set for our service. Except the <code class="language-plaintext highlighter-rouge">self::SERVICE_INHERIT</code> key. The parent configuration
-  for sure doesn’t have this key, since it’s already finished this resolve process.</p>
-<p>And to handle the weird case when the class name is not explicitly defined but the service identifier is a valid class name, then
-  we should overwrite the inherited class name too.</p>
-<p>So the inheritance chain is resolved, the class definition is corrected, we are ready to register the service into the Library. 
-  Almost.</p>
-<h6 id="3-validate-service-class-name">3. Validate service class name</h6>
-<p>Let’s get back to the <code class="language-plaintext highlighter-rouge">registerServiceToLibrary</code> method. After we have the service configuration, we can check if the class
-  we have defined there is a valid, instantiable class or not. If not, as before we throw an exception.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToLibrary</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="nv">$serviceConfiguration</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getServiceConfiguration</span><span class="p">(</span><span class="nv">$identifier</span><span class="p">);</span>
-    <span class="nv">$className</span> <span class="o">=</span> <span class="nv">$serviceConfiguration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_CLASS</span><span class="p">]</span> <span class="o">??</span> <span class="nv">$identifier</span><span class="p">;</span>
-    
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">class_exists</span><span class="p">(</span><span class="nv">$className</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nc">RuntimeException</span><span class="p">(</span>
-            <span class="nb">sprintf</span><span class="p">(</span><span class="s1">'The resolved class "%s" cannot be found.'</span><span class="p">,</span> <span class="nv">$className</span><span class="p">)</span>
-        <span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h6 id="4-register-service-into-the-library">4. Register service into the library</h6>
-<p>Now we have all the information to register the service to the Service Library.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">private</span> <span class="k">function</span> <span class="n">registerServiceToLibrary</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$identifier</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="c1">// ...</span>
-
-    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">serviceLibrary</span><span class="p">[</span><span class="nv">$identifier</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_INITIALIZED</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_CLASS</span> <span class="o">=&gt;</span> <span class="nv">$className</span><span class="p">,</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_ARGUMENTS</span> <span class="o">=&gt;</span> <span class="nv">$serviceConfiguration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_ARGUMENTS</span><span class="p">]</span> <span class="o">??</span> <span class="p">[],</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_METHOD_CALL</span> <span class="o">=&gt;</span> <span class="nv">$serviceConfiguration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_METHOD_CALL</span><span class="p">]</span> <span class="o">??</span> <span class="p">[],</span>
-        <span class="k">self</span><span class="o">::</span><span class="no">SERVICE_SHARE</span> <span class="o">=&gt;</span> <span class="nv">$serviceConfiguration</span><span class="p">[</span><span class="k">self</span><span class="o">::</span><span class="no">SERVICE_SHARE</span><span class="p">]</span> <span class="o">??</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">];</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Of course we set the <code class="language-plaintext highlighter-rouge">self::SERVICE_INITIALIZED</code> flag to <code class="language-plaintext highlighter-rouge">false</code> until the service instance is not really created. The
-  rest of the information are either already there, so it’s a simple assignment, or just fall back to defaults.</p>
-<p>And pretty much that’s is.</p>
-<h3 id="code-quality">Code quality</h3>
-<p>In the beginning of this article I wrote that for this development I don’t need TDD. And yet, during write the article, I 
-  had to modify the working code several times, add new unit test cases. So in fact I was wrong. And in fact when I had once an
-  idea of a “maybe fail” use case, I definitely wrote the unit test first for it to see if it really fails. And when it did, 
-  I improved the code. So in the end <strong>I fuckin’ did TDD!</strong> Hell yeah.</p>
-<p>But unit tests are one thing. I tried to keep my code clean and nice all the time, and I used a bunch of tool to help me 
-  achieve this noble goal:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">phplint</code> to detect syntax errors.</li>
-  <li><code class="language-plaintext highlighter-rouge">PHP Mess Detector</code> to detect the mess (hahahaha).</li>
-  <li><code class="language-plaintext highlighter-rouge">PHP Code Sniffer</code> to validate against <a target="_blank" rel="noopener" href="https://www.php-fig.org/psr/psr-12/">PSR-12</a>.</li>
-  <li><code class="language-plaintext highlighter-rouge">CS-Fixer</code> to automatically fix code style glitches.</li>
-  <li><code class="language-plaintext highlighter-rouge">PHP Unit</code> to verify my theory and find failures in the logic.</li>
-  <li><code class="language-plaintext highlighter-rouge">PHPStan</code> turned up to level 7 check, to make sure my code can’t be any better.</li>
-  <li><code class="language-plaintext highlighter-rouge">PHP7.4 docker image</code> to run all these tests</li>
-</ul>
-<p>Unfortunately the latest <code class="language-plaintext highlighter-rouge">PHPStan</code> started crying if I use array as a parameter or a return type, and I don’t super precisely define
-  it’s structure in the PHPDoc. I understand the concept behind the idea, it’s just simply don’t work in this case. So I ignore these checks:</p>
-<div class="language-plaintext highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre>    ignoreErrors:
-        - '#return type has no value type specified in iterable type array#'
-        - '#with no value type specified in iterable type array#'
-        - '#type specified in iterable type (array|iterable)#'
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h3 id="conclusion">Conclusion</h3>
-<p>It was a fun to create this simple and small DI class. But even if it works well - I am pretty sure about that - I don’t recommend to
-  use it in production, because I will probably won’t maintain it too long. I made it for practice, to improve my skill and to 
-  do something I can write about on this blog.</p>
-<p>You can get the full source code with the unit tests and docker setup and instruction at 
-  <a href="https://github.com/Gixx/worstpractice-dependency-injection" target="_blank" rel="noopener">GitHub</a>.</p>
-<p>I hope, you enjoyed this miniseries, maybe others will follow.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php" /><category term="php74" /><category term="dic" /><category term="clean-code" /><summary type="html"><![CDATA[It's time to finish our simple dependency injection container, and see if it works as expected.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="php" /><category term="php74" /><category term="aws" /><category term="s3-bucket" /><summary type="html"><![CDATA[Recently I had to make my hands dirty with the AWS S3, and I faced a problem of getting the latest/newest file from a bucket with PHP.]]></summary></entry></feed>
