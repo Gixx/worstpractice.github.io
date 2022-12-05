@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Advent of Code - Day 2"
-date: "2022-12-03 08:00:00 +0200"
+date: "2022-12-02 08:00:00 +0200"
 level: 'beginner'
 expiration: 'none'
 illustration: 'advent-2.jpg'
@@ -11,7 +11,7 @@ category: 'backend'
 categoryLabel: 'Backend'
 tags:   [advent, php]
 tagLabels: ['Advent', 'PHP']
-excerpt: 'A nice classic game I used to play a lot with my son.'
+excerpt: 'A classic game I used to play a lot with my son.'
 keywords: "PHP, Advent of Code"
 review: true
 published: true
