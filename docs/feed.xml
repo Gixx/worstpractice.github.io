@@ -1,27 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-05T15:26:46+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 5</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-5" rel="alternate" type="text/html" title="Advent of Code - Day 5" /><published>2022-12-05T16:30:00+00:00</published><updated>2022-12-05T15:26:45+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-5</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-5"><![CDATA[<p><a href="https://adventofcode.com/2022/day/5" rel="noopener" target="_blank">Today’s puzzle</a> in short: for the first 
-        sight I thought it will be a custom sorting algorithm, but in the end it became just a simple item movement between arrays.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-06T09:16:00+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 6</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-6" rel="alternate" type="text/html" title="Advent of Code - Day 6" /><published>2022-12-06T10:15:00+00:00</published><updated>2022-12-06T09:16:00+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-6</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-6"><![CDATA[<p><a href="https://adventofcode.com/2022/day/6" rel="noopener" target="_blank">Today’s puzzle</a> in short: we get a bunch 
+        of random characters and need to find the first <code class="language-plaintext highlighter-rouge">n</code> distinct characters.</p>
       <h3 id="the-input-data">The input data</h3>
-      <p>For the first time, the input data contains additional information. We have to extract this information and create initial
-        “warehouse” state in the PHP code. The input file must remain pilled with crane-movement orders.</p>
+      <p>Today there’s only one line in the input, but it’s a long one. No special rules for this, just a bunch of characters.</p>
+      <p>Our task is to find the position of the first <code class="language-plaintext highlighter-rouge">n</code> distinct characters.</p>
+      <h3 id="part-one-and-two">Part one and two</h3>
+      <p>The two parts today are almost the same, the only difference is the value of the <code class="language-plaintext highlighter-rouge">n</code>:</p>
       <ul>
-        <li>The first 10 lines must be deleted (can be added to the PHP code as comment)</li>
-        <li>Each line has the same form of information: <code class="language-plaintext highlighter-rouge">move # from # to #</code>, where <code class="language-plaintext highlighter-rouge">#</code> is a decimal.*</li>
+        <li>In part one, <code class="language-plaintext highlighter-rouge">n</code> is <em>4</em>.</li>
+        <li>In part two, <code class="language-plaintext highlighter-rouge">n</code> is <em>14</em>.</li>
       </ul>
-      <h4 id="game-rules">Game rules</h4>
-      <p>The solution for the puzzle is to follow each order and move crates between the columns according to the command, where
-        the numbers are defined as follows:</p>
-      <ul>
-        <li>The first number represents the amount of crates.</li>
-        <li>The second number represents the source column.</li>
-        <li>The third number represents the target column.</li>
-      </ul>
-      <p>Our task is to tell which item is on the top of each column.</p>
-      <h3 id="part-one">Part one</h3>
-      <p>Because of a misreading the elves predicted that the crane is the <code class="language-plaintext highlighter-rouge">CrateMover 9000</code> which can move only one item at a time.</p>
-      <p>To solve this puzzle we need to think in arrays again and simple <code class="language-plaintext highlighter-rouge">pop</code> and <code class="language-plaintext highlighter-rouge">push</code> elements.</p>
+      <p>In the solution today I can simply read the whole input at once, since it contains only one line. Then we split this
+        long string into array with the <code class="language-plaintext highlighter-rouge">str_split()</code> function, that I used before. Then just start counting. Make it simple:</p>
       <div class="language-php highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre>
+        </td>
+        <td class="rouge-code">
+          <pre><span class="nv">$line</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">);</span>
+<span class="nv">$code</span> <span class="o">=</span> <span class="nb">str_split</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+<span class="nv">$buffer</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">const</span> <span class="no">MARKER_LENGTH</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$code</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$code</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="nv">$buffer</span><span class="p">))</span> <span class="p">{</span>
+        <span class="p">[,</span> <span class="nv">$buffer</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="nv">$code</span><span class="p">[</span><span class="nv">$i</span><span class="p">],</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span><span class="nv">$buffer</span><span class="p">));</span>
+        <span class="nv">$buffer</span> <span class="o">=</span> <span class="nb">empty</span><span class="p">(</span><span class="nv">$buffer</span><span class="p">)</span> <span class="o">?</span> <span class="p">[]</span> <span class="o">:</span> <span class="nb">str_split</span><span class="p">(</span><span class="nv">$buffer</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$buffer</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$code</span><span class="p">[</span><span class="nv">$i</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$buffer</span><span class="p">)</span> <span class="o">==</span> <span class="no">MARKER_LENGTH</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>The only complexity in this story the buffer handling. I chose a very primitive and low performance, but yet effective 
+  way:</p>
+<ul>
+  <li>check if the next character is in the buffer
+    <ul>
+      <li>if yes, then convert the buffer to string</li>
+      <li>split by the next character and take the second part</li>
+      <li>convert this to array again, or initialize an empty array if the second part is empty</li>
+    </ul>
+  </li>
+  <li>add the new character to the buffer</li>
+  <li>quit the loop when the buffer reached the <code class="language-plaintext highlighter-rouge">MARKER_LENGTH</code></li>
+</ul>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[This time we need to analyze a spooky data stream.]]></summary></entry><entry><title type="html">Advent of Code - Day 5</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-5" rel="alternate" type="text/html" title="Advent of Code - Day 5" /><published>2022-12-05T16:30:00+00:00</published><updated>2022-12-05T15:26:45+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-5</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-5"><![CDATA[<p><a href="https://adventofcode.com/2022/day/5" rel="noopener" target="_blank">Today’s puzzle</a> in short: for the first 
+    sight I thought it will be a custom sorting algorithm, but in the end it became just a simple item movement between arrays.</p>
+  <h3 id="the-input-data">The input data</h3>
+  <p>For the first time, the input data contains additional information. We have to extract this information and create initial
+    “warehouse” state in the PHP code. The input file must remain pilled with crane-movement orders.</p>
+  <ul>
+    <li>The first 10 lines must be deleted (can be added to the PHP code as comment)</li>
+    <li>Each line has the same form of information: <code class="language-plaintext highlighter-rouge">move # from # to #</code>, where <code class="language-plaintext highlighter-rouge">#</code> is a decimal.*</li>
+  </ul>
+  <h4 id="game-rules">Game rules</h4>
+  <p>The solution for the puzzle is to follow each order and move crates between the columns according to the command, where
+    the numbers are defined as follows:</p>
+  <ul>
+    <li>The first number represents the amount of crates.</li>
+    <li>The second number represents the source column.</li>
+    <li>The third number represents the target column.</li>
+  </ul>
+  <p>Our task is to tell which item is on the top of each column.</p>
+  <h3 id="part-one">Part one</h3>
+  <p>Because of a misreading the elves predicted that the crane is the <code class="language-plaintext highlighter-rouge">CrateMover 9000</code> which can move only one item at a time.</p>
+  <p>To solve this puzzle we need to think in arrays again and simple <code class="language-plaintext highlighter-rouge">pop</code> and <code class="language-plaintext highlighter-rouge">push</code> elements.</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -54,9 +131,9 @@
 31
 32
 </pre>
-        </td>
-        <td class="rouge-code">
-          <pre><span class="nv">$storage</span> <span class="o">=</span> <span class="p">[</span>
+    </td>
+    <td class="rouge-code">
+      <pre><span class="nv">$storage</span> <span class="o">=</span> <span class="p">[</span>
     <span class="kc">null</span><span class="p">,</span>
     <span class="nb">str_split</span><span class="p">(</span><span class="s1">'QFMRLWCV'</span><span class="p">),</span>
     <span class="nb">str_split</span><span class="p">(</span><span class="s1">'DQL'</span><span class="p">),</span>
@@ -89,10 +166,10 @@
 
 <span class="k">echo</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -4174,388 +4251,4 @@ Page content
 </div>
 <p>Now we have a very basic, no-use form. Let’s pause here for a while, take a breath and play around. In the next article
   we will build the Form’s subcomponents and make the whole thing work. Cheers!</p>
-]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="react" /><category term="js" /><category term="webpack" /><category term="typescript" /><category term="chakra" /><summary type="html"><![CDATA[After we have the working development environment, now it's time to create the components to fulfill my criteria I set up previously.]]></summary></entry><entry><title type="html">My useless React App, Part 1</title><link href="http://0.0.0.0:4000/frontend/my-useless-react-app-1" rel="alternate" type="text/html" title="My useless React App, Part 1" /><published>2022-10-22T22:00:00+00:00</published><updated>2022-10-28T12:23:11+00:00</updated><id>http://0.0.0.0:4000/frontend/my-useless-react-app-1</id><content type="html" xml:base="http://0.0.0.0:4000/frontend/my-useless-react-app-1"><![CDATA[<h3 id="the-glorious-plans">The glorious plans</h3>
-  <p>I thought I know JavaScript enough that to understand React will be a piece of cake. I thought I will adopt the knowledge in no time and
-    also mastering the TypeScript to be able to write super strict typed clean code. Well, more or less I was right. I was right that I have some
-    knowledge in JavaScript. And basically that’s all.</p>
-  <p>But that was not enough. As soon as I realized that I started to look for articles “<em>for dummies</em>” to understand what part of the 
-    ECMAScript 6, 7, 8, … 2022 or ES.Next I didn’t know about… well, it was a huge list. Some of them was familiar but didn’t really use, 
-    while some of them (like the arrow function) was earned my hate, and I refused to use it any time. What a bad behavior, isn’t it? 
-    And of course there were many small but important thing I didn’t know about. So I had to learn them.</p>
-  <p>So first I had to reset my bad attitude, and accept the knowledge I refused. Now me and the arrow functions are like Jack Lemon and Walter Matthau
-    in the legendary movie, <em>The Odd Couple</em>.</p>
-  <h3 id="the-reachable-goals">The reachable goals</h3>
-  <p>First of all, I had to set up some goals to reach. These were:</p>
-  <ul>
-    <li>Use the main <em>React.JS</em> and alternative solutions like, Angular, Vue or Preact etc.</li>
-    <li>Use <em>Typescript</em>, to be as strict in typing as possible, and do whatever is necessary to avoid the <code class="language-plaintext highlighter-rouge">any</code>.</li>
-    <li>Use <em>SCSS</em>, because it’s a minimum effort to use it in a project like this, and also a logical decision.</li>
-    <li>Use an external library for the UIX, but I also should be able to override the behaviour when necessary.</li>
-    <li>Use <em>Webpack</em> to hold it all together.</li>
-  </ul>
-  <h3 id="tldr">TL;DR</h3>
-  <p>If you don’t want to waste your time reading this tutorial, and you only need a working code sample, please check the source code on
-    <a href="https://github.com/Gixx/worstpractice-react" target="_blank" rel="noopener">GitHub</a>.</p>
-  <h3 id="too-long-to-be-in-one-article">Too long to be in one article</h3>
-  <p>Honestly I started writing this article already in April, but I was too busy to finish. Meanwhile, I could improve the code a lot.
-    For example, the Typescript support and the <a href="https://chakra-ui.com/" target="_blank" rel="noopener">Chakra UI</a> added only
-    in the recent days. That’s why now I decided to split up the topic into multiple smaller articles, so I can get better into the
-    details and not just throw in some chunks.</p>
-  <h3 id="part-1">Part 1.</h3>
-  <h4 id="the-application">The application</h4>
-  <p>Many people would probably create a market ready product to demonstrate their knowledge. But not me. I create an application
-    that is completely useless. It’s purpose to have some common features and use cases work together that are easy to copy and
-    paste to a real product later. It will be a kind of proof of concept. So what I want to have here:</p>
-  <ul>
-    <li>I want a form encapsulated into the React application. For now, it won’t post anywhere.</li>
-    <li>I need a select box that loads its option values from an endpoint (in this case from a json file)</li>
-    <li>I need a text box which content changes depending on the selected dropdown value</li>
-    <li>I need a button that changes its style depending on the selected dropdown value</li>
-    <li>I need a checkbox that can block the button to change its style</li>
-    <li>I need an alert box to comment some events</li>
-  </ul>
-  <p>This all looks stupid for the first sight, and for the second too, but if you think about it, these use cases are very common.</p>
-  <h4 id="the-folder-structure">The folder structure</h4>
-  <p>Okay, now we know what we want, so let’s start working. In the first step we create some folders and files:</p>
-  <figure class="a-illustration">
-    <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/frontend/my-useless-react-app-1/tree.png" width="252" />
-    <figcaption class="a-illustration__caption">Basic folder structure. Icons by <a target="_blank" rel="noopener" href="https://icons8.com">Icons8</a>, generated with <a target="_blank" rel="noopener" href="https://www.jstree.com/">JsTree</a></figcaption>
-  </figure>
-  <p>I think I don’t have to describe the files and folders, those few who may read this blog probably already know the basics. 
-    If not, I can highly recommend the <a href="https://scrimba.com/allcourses?topic=react" target="_blank" rel="noopener">Scrimba</a> website
-    where you can find many great courses. There’s even a free course about React that I also used to learn the basics.</p>
-  <h4 id="the-start">The start</h4>
-  <p>I started this journey already in 2020 during the first wave of the Covid pandemic in Europe. That time the plan was only
-    Webpack + React. Unfortunately I didn’t document my work, and now I can’t remember how it started, and what were the tops and 
-    flops during the learning process. The first version of the application was so lame and simple, I didn’t feel good enough
-    to publish it.</p>
-  <p>I needed Webpack + React. So I looked for a working solution on the internet. Webinars, blogs and
-    <a href="https://www.stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> topics helped a lot. Copied the
-    most promising ones, made them work and the job was done. This was basically my starting point, and I assume everybody, who
-    used Webpack and React earlier will know how it looks like more or less: Webpack, Babel, React, Sass etc.</p>
-  <h4 id="adding-the-typescript">Adding the Typescript</h4>
-  <p>On the summer of 2022 I get back to this blogpost. I decided I pimp the application up a bit, and follow the rules
-    of the nature by rewrite the whole thing in Typescript.</p>
-  <h5 id="packagejson">package.json</h5>
-  <p>So the problem for me was that I had to add also the <code class="language-plaintext highlighter-rouge">Typescript</code> to the configuration, and make it work
-    together with the React and Webpack. With a fast search I could find the packages I have to add to the <code class="language-plaintext highlighter-rouge">package.json</code>:</p>
-  <div class="language-json highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="p">{</span><span class="w">
-  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"@types/fork-ts-checker-webpack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~0.4.5"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"@typescript-eslint/eslint-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~5.40.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"@typescript-eslint/parser"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~5.40.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fork-ts-checker-webpack-plugin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~7.2.13"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"prop-types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~15.8.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts-node"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~10.9.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"typescript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~4.8.4"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h5 id="webpackconfigts">webpack.config.ts</h5>
-<p>For the Webpack, I had to change the extension of the webpack configuration from <code class="language-plaintext highlighter-rouge">.js</code> to <code class="language-plaintext highlighter-rouge">.ts</code> and 
-  add/change some settings inside. Not sure, but maybe changing the file extension is optional.</p>
-<p>The <code class="language-plaintext highlighter-rouge">entry</code> option changed from <code class="language-plaintext highlighter-rouge">.jsx</code> to the Typescript equivalent <code class="language-plaintext highlighter-rouge">.tsx</code>:</p>
-<div class="language-typescript highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nx">entry</span><span class="p">:</span> <span class="nx">pathSrc</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/scripts/app.tsx</span><span class="dl">'</span><span class="p">,</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Then the module rules needed some Typescript support (both <code class="language-plaintext highlighter-rouge">.ts</code> and <code class="language-plaintext highlighter-rouge">.tsx</code> along with <code class="language-plaintext highlighter-rouge">.js</code> and <code class="language-plaintext highlighter-rouge">.jsx</code>) by adding a new 
-  preset to the <code class="language-plaintext highlighter-rouge">babel-loader</code>:</p>
-<div class="language-typescript highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="kr">module</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">rules</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span>
-            <span class="na">test</span><span class="p">:</span> <span class="sr">/</span><span class="se">\.(</span><span class="sr">ts|js</span><span class="se">)</span><span class="sr">x</span><span class="se">?</span><span class="sr">$/</span><span class="p">,</span>
-            <span class="na">exclude</span><span class="p">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
-            <span class="na">use</span><span class="p">:</span> <span class="p">{</span>
-                <span class="na">loader</span><span class="p">:</span> <span class="dl">'</span><span class="s1">babel-loader</span><span class="dl">'</span><span class="p">,</span>
-                <span class="na">options</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="na">presets</span><span class="p">:</span> <span class="p">[</span>
-                        <span class="dl">'</span><span class="s1">@babel/preset-env</span><span class="dl">'</span><span class="p">,</span>
-                        <span class="dl">'</span><span class="s1">@babel/preset-react</span><span class="dl">'</span><span class="p">,</span>
-                        <span class="dl">'</span><span class="s1">@babel/preset-typescript</span><span class="dl">'</span><span class="p">,</span>
-                    <span class="p">],</span>
-                <span class="p">},</span>
-            <span class="p">},</span>
-        <span class="p">},</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Changed the <code class="language-plaintext highlighter-rouge">resolve</code> setting to catch the new extensions:</p>
-<div class="language-typescript highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nx">resolve</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">extensions</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">.tsx</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.ts</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">.js</span><span class="dl">'</span><span class="p">],</span>
-<span class="p">},</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>And in the end adding a new plugin that runs TypeScript type checker:</p>
-<div class="language-typescript highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nx">plugins</span><span class="p">:</span> <span class="p">[</span>
-    <span class="k">new</span> <span class="nx">ForkTsCheckerWebpackPlugin</span><span class="p">({</span>
-        <span class="na">async</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="p">}),</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h5 id="tsconfigjson">tsconfig.json</h5>
-<p>Then I added the <code class="language-plaintext highlighter-rouge">tsconfig.json</code> to the project. For what this file is, and what its purpose, read the 
-  <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">official documentation</a>.
-  My configuration has a few extra options compared to the documentation:</p>
-<div class="language-json highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="p">{</span><span class="w">
-  </span><span class="nl">"compilerOptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"lib"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"dom"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dom.iterable"</span><span class="p">,</span><span class="w"> </span><span class="s2">"esnext"</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"allowJs"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"skipLibCheck"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"esModuleInterop"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es6"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sourceMap"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"declaration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"strict"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"forceConsistentCasingInFileNames"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"allowSyntheticDefaultImports"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"experimentalDecorators"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"emitDecoratorMetadata"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"moduleResolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"node"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"resolveJsonModule"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"isolatedModules"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"noEmit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"jsx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"react"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"typeRoots"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"node_modules/@types"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"include"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/scripts"</span><span class="p">],</span><span class="w">
-  </span><span class="nl">"exclude"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"node_modules"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src/styles"</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Unfortunately I have no idea, which blog I get these settings from, and why they are good or necessary.</p>
-<h4 id="checking">Checking</h4>
-<p>To check if all these changes work well, I made a dummy application that simply outputs a “Hello World”.</p>
-<p>First we need a template. In the configuration we can add the <code class="language-plaintext highlighter-rouge">HTMLWebpackPlugin</code> to define and deal with it:</p>
-<div class="language-typescript highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
-    <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">React + Webpack test</span><span class="dl">'</span><span class="p">,</span>
-    <span class="na">template</span><span class="p">:</span> <span class="nx">pathSrc</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/template.html</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// template file</span>
-    <span class="na">filename</span><span class="p">:</span> <span class="nx">pathBuild</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/index.html</span><span class="dl">'</span><span class="p">,</span> <span class="c1">// output file</span>
-<span class="p">}),</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Great. Now let’s see our super simple template content:</p>
-<div class="language-html highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"x-ua-compatible"</span> <span class="na">content=</span><span class="s">"ie=edge"</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;&lt;</span><span class="err">%=</span> <span class="na">htmlWebpackPlugin.options.title</span> <span class="err">%</span><span class="nt">&gt;&lt;/title&gt;</span>
-  <span class="nt">&lt;/head&gt;</span>
-
-  <span class="nt">&lt;body&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"root"</span><span class="nt">&gt;&lt;/div&gt;</span>
-  <span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Note that we basically did nothing here, just give a sane minimal frame for out application. We don’t even include any
-  JavaScript or CSS files. The only strange part is the title, where we insert a configuration value. The same we defined 
-  for the <code class="language-plaintext highlighter-rouge">HTMLWebpackPlugin</code>. But this template is empty so far, so create the dummy application. To do so, create the 
-  <code class="language-plaintext highlighter-rouge">app.tsx</code> file in the <code class="language-plaintext highlighter-rouge">src/scripts</code> folder with the following content:</p>
-<div class="language-jsx highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
-<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#root</span><span class="dl">'</span><span class="p">)</span>
-
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Hello World<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;,</span>
-    <span class="nx">app</span>
-<span class="p">)</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Yes, for the moment now it’s “only” a React code, but don’t forget: it will go through the Typescript parser. And if there’s
-  no error during the build, then we can assume it’s working.</p>
-<p>If you run the <code class="language-plaintext highlighter-rouge">npm run start</code> command, you should see the Hello World in the browser.</p>
-<p>With this flimsy explanation and lame tutorial I finish the first part. In the next article I will show the different components,
-  and will write about the difficulties I faced, and also the features I learned and adopted.</p>
-]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="react" /><category term="js" /><category term="webpack" /><category term="typescript" /><category term="chakra" /><summary type="html"><![CDATA[A developer needs to develop. Not only as an everyday job, but also in knowledge. And since I am not really interested in the DevOps way, I looked at my other beloved part, the Frontend. So I said “It's better later than never” and started to learn React.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="frontend" /><category term="react" /><category term="js" /><category term="webpack" /><category term="typescript" /><category term="chakra" /><summary type="html"><![CDATA[After we have the working development environment, now it's time to create the components to fulfill my criteria I set up previously.]]></summary></entry></feed>
