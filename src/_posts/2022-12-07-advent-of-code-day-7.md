@@ -215,7 +215,7 @@ function tree(ElfDirectory $directory, int $level = 0): void
         .'['.$directory->name.'] ('.$directory->totalSize.')'.PHP_EOL;
 
     foreach ($directory->children as $subDir) {
-        printDirectoryTree($subDir, $level + 1);
+        tree($subDir, $level + 1);
     }
 
     foreach ($directory->files as $file) {

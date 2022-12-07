@@ -484,7 +484,7 @@
         <span class="mf">.</span><span class="s1">'['</span><span class="mf">.</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">name</span><span class="mf">.</span><span class="s1">'] ('</span><span class="mf">.</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">totalSize</span><span class="mf">.</span><span class="s1">')'</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
 
     <span class="k">foreach</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">children</span> <span class="k">as</span> <span class="nv">$subDir</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nf">printDirectoryTree</span><span class="p">(</span><span class="nv">$subDir</span><span class="p">,</span> <span class="nv">$level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="nf">tree</span><span class="p">(</span><span class="nv">$subDir</span><span class="p">,</span> <span class="nv">$level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="k">foreach</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">files</span> <span class="k">as</span> <span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
