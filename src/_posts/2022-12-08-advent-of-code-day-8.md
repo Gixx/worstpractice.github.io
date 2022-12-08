@@ -11,7 +11,7 @@ category: 'backend'
 categoryLabel: 'Backend'
 tags:   [advent, php]
 tagLabels: ['Advent', 'PHP']
-excerpt: 'It is winter, we have to do some lumber job. But first we need to find the right trees." 
+excerpt: 'It is winter, we have to do some lumber job. But first we need to find the right trees.' 
 keywords: "PHP, Advent of Code"
 review: true
 published: true
