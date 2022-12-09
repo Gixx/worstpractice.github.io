@@ -145,7 +145,7 @@ function getNextTailPosition(string $direction, int $currentHeadX, int $currentH
     }
 
     // Head moved up
-    if ($direction == 'U' || $direction == 'D') {
+    if ($direction == 'U') {
         for ($i = $currentTailY; $i < $currentHeadY - 1; $i++) {
             // During vertical moves the max absolute difference on the X can be only one.
             if ($currentHeadX != $currentTailX) {
