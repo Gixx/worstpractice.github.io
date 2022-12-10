@@ -173,7 +173,28 @@
             <p>I will be honest: it was tough. I went down to a super primitive level, and wrote a low-performing code just to do what
               needs to be done and get the right result. Currently, I am not even sure, whether my code is actually working well or just
               accidentally gives the right result.</p>
-            <p>Should I share the code? Well, it’s definitely the worst practice:</p>
+            <p>Should I share the code? Well, it’s definitely the worst practice.</p>
+            <h3 id="part-two">Part two</h3>
+            <p>I’m not proud of myself. This is the day I have to give up. I could pass part one, but this one requires skills that I 
+              don’t have yet. I failed. I tried, but couldn’t figure out the algorithm. I tried to reuse the functions from the part one,
+              but it was a complete failure as well. I’m too tired, sad and disappointed now to try again. I give up…</p>
+            <p><a href="https://www.reddit.com/r/adventofcode/comments/zgq3nr/2022_day_9_rope_pull/" rel="noopener" target="_blank">This is how it should look like visualized.</a></p>
+            <p>When I was thinking about the solution, I thought if I treat every knot as a rope-head for the next knot, it will work. But I
+              couldn’t even reproduce the example outputs of the <a href="https://adventofcode.com/2022/day/9#part2" rel="noopener" target="_blank">task</a>.</p>
+            <p>Maybe later I will re-try and update this article… But not today.</p>
+            <h3 id="the-next-day">The next day</h3>
+            <p>I was very upset that I couldn’t figure out the solution, so I spent my whole Saturday (10th of December) to find a solution.
+              I analyzed the example in the puzzle description and watched that reddit video of the working solution a million times to
+              understand the logic behind it. And then I just found it.</p>
+            <p>The solution I made for the part one was a total dead end, no wonder why lead me to nowhere. Yes, it accidentally gave the 
+              right result, but it was a disaster.</p>
+            <p>The new, working code covers both part one and two, you need only change the value of the <code class="language-plaintext highlighter-rouge">ROPE_LENGTH</code> constant. I also 
+              added a print function to be able to visualize the result. For the puzzle example, it will look something like this:</p>
+            <figure class="a-illustration">
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/advent-of-code-day-9/example.png" width="707" />
+              <figcaption class="a-illustration__caption">Output sample of the rope pull puzzle.</figcaption>
+            </figure>
+            <h3 id="the-code">The Code</h3>
             <div class="language-php highlighter-rouge">
               <div class="highlight">
                 <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -318,151 +339,163 @@
 140
 141
 142
+143
+144
+145
+146
+147
+148
 </pre>
               </td>
               <td class="rouge-code">
-                <pre><span class="cp">&lt;?php</span>
+                <pre><span class="k">const</span> <span class="no">ROPE_LENGTH</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 
+<span class="nv">$knotPositions</span> <span class="o">=</span> <span class="nb">array_fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="no">ROPE_LENGTH</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>
+<span class="nv">$moves</span> <span class="o">=</span> <span class="p">[];</span>
 <span class="nv">$headX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nv">$headY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="nv">$tailX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="nv">$tailY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="nv">$fields</span> <span class="o">=</span> <span class="p">[</span>
+<span class="nv">$visitedByTail</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'0,0'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
 <span class="p">];</span>
+
+<span class="nv">$minY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nv">$maxY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nv">$row</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
         <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-        <span class="p">[</span><span class="nv">$direction</span><span class="p">,</span> <span class="nv">$step</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+        <span class="p">[</span><span class="nv">$direction</span><span class="p">,</span> <span class="nv">$steps</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
 
-        <span class="p">[</span><span class="nv">$headX</span><span class="p">,</span> <span class="nv">$headY</span><span class="p">]</span> <span class="o">=</span> <span class="nf">getNextHeadPosition</span><span class="p">(</span><span class="nv">$direction</span><span class="p">,</span> <span class="nv">$step</span><span class="p">,</span> <span class="nv">$headX</span><span class="p">,</span> <span class="nv">$headY</span><span class="p">);</span>
-        <span class="p">[</span><span class="nv">$tailX</span><span class="p">,</span> <span class="nv">$tailY</span><span class="p">,</span> <span class="nv">$coordinates</span><span class="p">]</span> <span class="o">=</span> <span class="nf">getNextTailPosition</span><span class="p">(</span><span class="nv">$direction</span><span class="p">,</span> <span class="nv">$headX</span><span class="p">,</span> <span class="nv">$headY</span><span class="p">,</span> <span class="nv">$tailX</span><span class="p">,</span> <span class="nv">$tailY</span><span class="p">);</span>
-
-        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$coordinates</span> <span class="k">as</span> <span class="nv">$coordinate</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$fields</span><span class="p">[</span><span class="nv">$coordinate</span><span class="p">]))</span> <span class="p">{</span>
-                <span class="nv">$fields</span><span class="p">[</span><span class="nv">$coordinate</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$steps</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="nv">$direction</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="s1">'U'</span><span class="o">:</span>
+                    <span class="nv">$headY</span><span class="o">++</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">'R'</span><span class="o">:</span>
+                    <span class="nv">$headX</span><span class="o">++</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">'D'</span><span class="o">:</span>
+                    <span class="nv">$headY</span><span class="o">--</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s1">'L'</span><span class="o">:</span>
+                    <span class="nv">$headX</span><span class="o">--</span><span class="p">;</span>
             <span class="p">}</span>
 
-            <span class="nv">$fields</span><span class="p">[</span><span class="nv">$coordinate</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+            <span class="nv">$knotPositions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$headX</span><span class="p">,</span> <span class="nv">$headY</span><span class="p">];</span>
+            <span class="nv">$minY</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nv">$minY</span><span class="p">,</span> <span class="nv">$headY</span><span class="p">);</span>
+            <span class="nv">$maxY</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nv">$maxY</span><span class="p">,</span> <span class="nv">$headY</span><span class="p">);</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="no">ROPE_LENGTH</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nf">moveKnot</span><span class="p">(</span><span class="nv">$j</span><span class="p">,</span> <span class="nv">$knotPositions</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="nv">$coordinate</span> <span class="o">=</span> <span class="nv">$knotPositions</span><span class="p">[</span><span class="no">ROPE_LENGTH</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="mf">.</span><span class="s1">','</span><span class="mf">.</span><span class="nv">$knotPositions</span><span class="p">[</span><span class="no">ROPE_LENGTH</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$visitedByTail</span><span class="p">[</span><span class="nv">$coordinate</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="nv">$visitedByTail</span><span class="p">[</span><span class="nv">$coordinate</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nv">$visitedByTail</span><span class="p">[</span><span class="nv">$coordinate</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+
+            <span class="nf">deleteLines</span><span class="p">(</span><span class="nv">$minY</span><span class="p">,</span> <span class="nv">$maxY</span><span class="p">);</span>
+            <span class="nf">printStep</span><span class="p">(</span>
+                <span class="n">moveIndex</span><span class="o">:</span> <span class="nv">$row</span><span class="p">,</span>
+                <span class="n">stepIndex</span><span class="o">:</span> <span class="nv">$i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="n">direction</span><span class="o">:</span> <span class="nv">$direction</span><span class="p">,</span>
+                <span class="n">knotPositions</span><span class="o">:</span> <span class="nv">$knotPositions</span><span class="p">,</span>
+                <span class="n">visitedByTail</span><span class="o">:</span> <span class="nv">$visitedByTail</span><span class="p">,</span>
+                <span class="n">minY</span><span class="o">:</span> <span class="nv">$minY</span><span class="p">,</span>
+                <span class="n">maxY</span><span class="o">:</span> <span class="nv">$maxY</span>
+            <span class="p">);</span>
         <span class="p">}</span>
+        <span class="nv">$row</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
 <span class="p">}</span>
-
-<span class="k">function</span> <span class="n">getNextHeadPosition</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$direction</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$step</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$currentHeadX</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$currentHeadY</span><span class="p">):</span> <span class="kt">array</span>
+<span class="k">function</span> <span class="n">moveKnot</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$knotIndex</span><span class="p">,</span> <span class="kt">array</span> <span class="o">&amp;</span><span class="nv">$knotPositions</span><span class="p">):</span> <span class="kt">void</span>
 <span class="p">{</span>
-    <span class="nv">$newHeadX</span> <span class="o">=</span> <span class="nf">match</span> <span class="p">(</span><span class="nv">$direction</span><span class="p">)</span> <span class="p">{</span>
-        <span class="s1">'L'</span> <span class="o">=&gt;</span> <span class="nv">$currentHeadX</span> <span class="o">-</span> <span class="nv">$step</span><span class="p">,</span>
-        <span class="s1">'R'</span> <span class="o">=&gt;</span> <span class="nv">$currentHeadX</span> <span class="o">+</span> <span class="nv">$step</span><span class="p">,</span>
-        <span class="k">default</span> <span class="o">=&gt;</span> <span class="nv">$currentHeadX</span>
-    <span class="p">};</span>
-    <span class="nv">$newHeadY</span> <span class="o">=</span> <span class="nf">match</span> <span class="p">(</span><span class="nv">$direction</span><span class="p">)</span> <span class="p">{</span>
-        <span class="s1">'U'</span> <span class="o">=&gt;</span> <span class="nv">$currentHeadY</span> <span class="o">+</span> <span class="nv">$step</span><span class="p">,</span>
-        <span class="s1">'D'</span> <span class="o">=&gt;</span> <span class="nv">$currentHeadY</span> <span class="o">-</span> <span class="nv">$step</span><span class="p">,</span>
-        <span class="k">default</span> <span class="o">=&gt;</span> <span class="nv">$currentHeadY</span>
-    <span class="p">};</span>
+    <span class="p">[</span><span class="nv">$currentTailX</span><span class="p">,</span> <span class="nv">$currentTailY</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$knotPositions</span><span class="p">[</span><span class="nv">$knotIndex</span><span class="p">];</span>
+    <span class="p">[</span><span class="nv">$previousTailX</span><span class="p">,</span> <span class="nv">$previousTailY</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$knotPositions</span><span class="p">[</span><span class="nv">$knotIndex</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
 
-    <span class="k">return</span> <span class="p">[</span><span class="nv">$newHeadX</span><span class="p">,</span> <span class="nv">$newHeadY</span><span class="p">];</span>
+    <span class="nv">$diffX</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">$previousTailX</span> <span class="o">-</span> <span class="nv">$currentTailX</span><span class="p">);</span>
+    <span class="nv">$diffY</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">$previousTailY</span> <span class="o">-</span> <span class="nv">$currentTailY</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$diffX</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">&amp;&amp;</span> <span class="nv">$diffY</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nv">$currentTailX</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">$diffX</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nv">$diffY</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="o">?</span> <span class="mi">0</span>
+        <span class="o">:</span> <span class="p">(</span><span class="nv">$previousTailX</span> <span class="o">-</span> <span class="nv">$currentTailX</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="nv">$currentTailY</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">$diffX</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nv">$diffY</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="o">?</span> <span class="mi">0</span>
+        <span class="o">:</span> <span class="p">(</span><span class="nv">$previousTailY</span> <span class="o">-</span> <span class="nv">$currentTailY</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="nv">$knotPositions</span><span class="p">[</span><span class="nv">$knotIndex</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$currentTailX</span><span class="p">,</span> <span class="nv">$currentTailY</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="k">function</span> <span class="n">getNextTailPosition</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$direction</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$currentHeadX</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$currentHeadY</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$currentTailX</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$currentTailY</span><span class="p">):</span> <span class="kt">array</span>
+<span class="k">function</span> <span class="n">deleteLines</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$minY</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$maxY</span><span class="p">):</span> <span class="kt">void</span>
 <span class="p">{</span>
-    <span class="cd">/**
-     * Corner touch positions:
-     *
-     *    ..T   ...   ...   T..
-     *    .H.   .H.   .H.   .H.
-     *    ...   ..T   T..   ...
-     */</span>
-    <span class="nv">$cornerTouch</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">$currentHeadX</span> <span class="o">-</span> <span class="nv">$currentTailX</span><span class="p">)</span> <span class="o">===</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">$currentHeadY</span> <span class="o">-</span> <span class="nv">$currentTailY</span><span class="p">)</span> <span class="o">===</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="cd">/**
-     * Side touch positions:
-     *
-     *    .T.   ...   ...   ...
-     *    .H.   .HT   .H.   TH.
-     *    ...   ...   .T.   ...
-     */</span>
-    <span class="nv">$sideTouch</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">$currentHeadX</span> <span class="o">-</span> <span class="nv">$currentTailX</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="nv">$currentHeadY</span> <span class="o">-</span> <span class="nv">$currentTailY</span><span class="p">)</span> <span class="o">===</span> <span class="mi">1</span><span class="p">;</span>
-
-    <span class="c1">// Head covers Tail</span>
-    <span class="nv">$covers</span> <span class="o">=</span> <span class="nv">$currentHeadX</span> <span class="o">===</span> <span class="nv">$currentTailX</span> <span class="o">&amp;&amp;</span> <span class="nv">$currentHeadY</span> <span class="o">===</span> <span class="nv">$currentTailY</span><span class="p">;</span>
-
-    <span class="nv">$coordinates</span> <span class="o">=</span> <span class="p">[];</span>
-
-    <span class="c1">// Tail doesn't need to move</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$cornerTouch</span> <span class="o">||</span> <span class="nv">$sideTouch</span> <span class="o">||</span> <span class="nv">$covers</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">[</span><span class="nv">$currentTailX</span><span class="p">,</span> <span class="nv">$currentTailY</span><span class="p">,</span> <span class="nv">$coordinates</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nv">$maxY</span> <span class="o">+</span><span class="mi">6</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="nv">$y</span> <span class="o">&gt;=</span> <span class="nb">min</span><span class="p">(</span><span class="nv">$minY</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span> <span class="nv">$y</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"</span><span class="se">\r\x1b</span><span class="s2">[K"</span><span class="p">;</span> <span class="c1">// remove this line</span>
+        <span class="k">echo</span> <span class="s2">"</span><span class="se">\033</span><span class="s2">[1A</span><span class="se">\033</span><span class="s2">[K"</span><span class="p">;</span>
     <span class="p">}</span>
-
-    <span class="nv">$x</span> <span class="o">=</span> <span class="nv">$currentTailX</span><span class="p">;</span>
-    <span class="nv">$y</span> <span class="o">=</span> <span class="nv">$currentTailY</span><span class="p">;</span>
-
-    <span class="c1">// Head moved left</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$direction</span> <span class="o">==</span> <span class="s1">'L'</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$currentTailX</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&gt;</span> <span class="nv">$currentHeadX</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// During horizontal moves the max absolute difference on the Y can be only one.</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$currentHeadY</span> <span class="o">!=</span> <span class="nv">$currentTailY</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$currentTailY</span> <span class="o">=</span> <span class="nv">$y</span> <span class="o">=</span> <span class="nv">$currentHeadY</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="o">--</span><span class="nv">$currentTailX</span><span class="p">;</span>
-            <span class="o">--</span><span class="nv">$x</span><span class="p">;</span>
-
-            <span class="nv">$coordinates</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$x</span><span class="mf">.</span><span class="s1">','</span><span class="mf">.</span><span class="nv">$y</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Head moved left</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$direction</span> <span class="o">==</span> <span class="s1">'R'</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$currentTailX</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$currentHeadX</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// During horizontal moves the max absolute difference on the Y can be only one.</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$currentHeadY</span> <span class="o">!=</span> <span class="nv">$currentTailY</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$currentTailY</span> <span class="o">=</span> <span class="nv">$y</span> <span class="o">=</span> <span class="nv">$currentHeadY</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="o">++</span><span class="nv">$currentTailX</span><span class="p">;</span>
-            <span class="o">++</span><span class="nv">$x</span><span class="p">;</span>
-
-            <span class="nv">$coordinates</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$x</span><span class="mf">.</span><span class="s1">','</span><span class="mf">.</span><span class="nv">$y</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Head moved up</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$direction</span> <span class="o">==</span> <span class="s1">'U'</span> <span class="o">||</span> <span class="nv">$direction</span> <span class="o">==</span> <span class="s1">'D'</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$currentTailY</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nv">$currentHeadY</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// During vertical moves the max absolute difference on the X can be only one.</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$currentHeadX</span> <span class="o">!=</span> <span class="nv">$currentTailX</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$currentTailX</span> <span class="o">=</span> <span class="nv">$x</span> <span class="o">=</span> <span class="nv">$currentHeadX</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="o">++</span><span class="nv">$currentTailY</span><span class="p">;</span>
-            <span class="o">++</span><span class="nv">$y</span><span class="p">;</span>
-
-            <span class="nv">$coordinates</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$x</span><span class="mf">.</span><span class="s1">','</span><span class="mf">.</span><span class="nv">$y</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Head moved down</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$direction</span> <span class="o">==</span> <span class="s1">'D'</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="nv">$currentTailY</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&gt;</span> <span class="nv">$currentHeadY</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// During vertical moves the max absolute difference on the X can be only one.</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nv">$currentHeadX</span> <span class="o">!=</span> <span class="nv">$currentTailX</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$currentTailX</span> <span class="o">=</span> <span class="nv">$x</span> <span class="o">=</span> <span class="nv">$currentHeadX</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="o">--</span><span class="nv">$currentTailY</span><span class="p">;</span>
-            <span class="o">--</span><span class="nv">$y</span><span class="p">;</span>
-
-            <span class="nv">$coordinates</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$x</span><span class="mf">.</span><span class="s1">','</span><span class="mf">.</span><span class="nv">$y</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="p">[</span><span class="nv">$currentTailX</span><span class="p">,</span> <span class="nv">$currentTailY</span><span class="p">,</span> <span class="nv">$coordinates</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="k">echo</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$fields</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+<span class="k">function</span> <span class="n">printStep</span><span class="p">(</span>
+    <span class="kt">int</span> <span class="nv">$moveIndex</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="nv">$stepIndex</span><span class="p">,</span>
+    <span class="kt">string</span> <span class="nv">$direction</span><span class="p">,</span>
+    <span class="kt">array</span> <span class="nv">$knotPositions</span><span class="p">,</span>
+    <span class="kt">array</span> <span class="nv">$visitedByTail</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="nv">$minY</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="nv">$maxY</span>
+<span class="p">):</span> <span class="kt">void</span> <span class="p">{</span>
+    <span class="nv">$matrix</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="c1">// Prepare matrix</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nv">$maxY</span> <span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span> <span class="nv">$y</span> <span class="o">&gt;=</span> <span class="nb">min</span><span class="p">(</span><span class="nv">$minY</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">);</span> <span class="nv">$y</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">180</span><span class="p">;</span> <span class="nv">$x</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">;</span> <span class="nv">$x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$matrix</span><span class="p">[</span><span class="nv">$y</span><span class="p">][</span><span class="nv">$x</span><span class="p">]</span> <span class="o">=</span> <span class="s1">' '</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$y</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$matrix</span><span class="p">[</span><span class="nv">$y</span><span class="p">][</span><span class="nv">$x</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'─'</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$matrix</span><span class="p">[</span><span class="nv">$y</span><span class="p">][</span><span class="nv">$x</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'|'</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$visitedByTail</span> <span class="k">as</span> <span class="nv">$coordinate</span> <span class="o">=&gt;</span> <span class="nv">$times</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$coordinate</span><span class="p">);</span>
+        <span class="nv">$matrix</span><span class="p">[</span><span class="nv">$y</span><span class="p">][</span><span class="nv">$x</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'.'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Place markers</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="no">ROPE_LENGTH</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$sign</span> <span class="o">=</span> <span class="nv">$i</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">?</span> <span class="s1">'H'</span> <span class="o">:</span> <span class="nv">$i</span><span class="p">;</span>
+        <span class="nv">$matrix</span><span class="p">[</span><span class="nv">$knotPositions</span><span class="p">[</span><span class="nv">$i</span><span class="p">][</span><span class="mi">1</span><span class="p">]][</span><span class="nv">$knotPositions</span><span class="p">[</span><span class="nv">$i</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="nv">$sign</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">echo</span> <span class="s2">"Move #</span><span class="nv">$moveIndex</span><span class="s2"> | Step #</span><span class="nv">$stepIndex</span><span class="s2"> into </span><span class="nv">$direction</span><span class="s2">"</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$matrix</span> <span class="k">as</span> <span class="nv">$index</span> <span class="o">=&gt;</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nb">str_pad</span><span class="p">(</span><span class="nv">$index</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">' '</span><span class="p">,</span> <span class="no">STR_PAD_LEFT</span><span class="p">)</span><span class="mf">.</span><span class="s1">'. '</span><span class="mf">.</span><span class="nb">implode</span><span class="p">(</span><span class="nv">$row</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">echo</span> <span class="s1">'      '</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">180</span><span class="p">;</span> <span class="nv">$x</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">;</span> <span class="nv">$x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="p">(</span><span class="nv">$x</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="s1">'|'</span> <span class="o">:</span> <span class="s2">"'"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">echo</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
+
+    <span class="nb">usleep</span><span class="p">(</span><span class="mi">100000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$visitedByTail</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
 </pre>
               </td>
             </tr>
@@ -471,14 +504,6 @@
       </code></pre>
   </div>
 </div>
-<h3 id="part-two">Part two</h3>
-<p>I’m not proud of myself. This is the day I have to give up. I could pass part one, but this one requires skills that I 
-  don’t have yet. I failed. I tried, but couldn’t figure out the algorithm. I tried to reuse the functions from the part one,
-  but it was a complete failure as well. I’m too tired, sad and disappointed now to try again. I give up…</p>
-<p><a href="https://www.reddit.com/r/adventofcode/comments/zgq3nr/2022_day_9_rope_pull/" rel="noopener" target="_blank">This is how it should look like visualized.</a></p>
-<p>When I was thinking about the solution, I thought if I treat every knot as a rope-head for the next knot, it will work. But I
-  couldn’t even reproduce the example outputs of the <a href="https://adventofcode.com/2022/day/9#part2" rel="noopener" target="_blank">task</a>.</p>
-<p>Maybe later I will re-try and update this article… But not today.</p>
 </div>
 <footer class="a-footer">
   <h3 class="a-footer__title">About the author</h3>
