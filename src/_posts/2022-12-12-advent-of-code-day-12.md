@@ -349,3 +349,5 @@ foreach ($startPositions as $start) {
 
 echo $minimalPath.PHP_EOL;
 ```
+
+One small thing to notice here: we should not forget to "reset" every `Position` in every loop.
