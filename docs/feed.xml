@@ -1,16 +1,624 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-13T13:39:16+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 11</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-11" rel="alternate" type="text/html" title="Advent of Code - Day 11" /><published>2022-12-11T13:45:00+00:00</published><updated>2022-12-13T13:39:16+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-11</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-11"><![CDATA[<p><a href="https://adventofcode.com/2022/day/11" rel="noopener" target="_blank">Today’s puzzle</a> in short: monkeys have
-        their own rule how to choose who to pass the stolen items. We need to figure this out.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-13T15:40:40+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 12</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-12" rel="alternate" type="text/html" title="Advent of Code - Day 12" /><published>2022-12-12T13:45:00+00:00</published><updated>2022-12-13T15:40:39+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-12</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-12"><![CDATA[<p><a href="https://adventofcode.com/2022/day/12" rel="noopener" target="_blank">Today’s puzzle</a> in short: <span lang="jp" title="Climb mount Niitaka">新高山登れ</span></p>
       <h3 id="the-input-data">The input data</h3>
-      <p>The input data is way too complex to start parsing it. Instead, I chose to build the right data models from them.</p>
+      <p>We get a file with a bunch of alphabetical characters:</p>
+      <ul>
+        <li>The input has 41 lines and 71 columns</li>
+        <li>Every character represents the height of the surface:
+          <ul>
+            <li><code class="language-plaintext highlighter-rouge">a</code> is the lowest</li>
+            <li><code class="language-plaintext highlighter-rouge">z</code> is the highest</li>
+            <li><code class="language-plaintext highlighter-rouge">b</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">a</code></li>
+            <li><code class="language-plaintext highlighter-rouge">c</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">b</code></li>
+            <li>…</li>
+            <li><code class="language-plaintext highlighter-rouge">z</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">y</code></li>
+          </ul>
+        </li>
+        <li><code class="language-plaintext highlighter-rouge">S</code> represents the start point</li>
+        <li><code class="language-plaintext highlighter-rouge">E</code> represents the end point</li>
+      </ul>
       <h4 id="game-rules">Game rules</h4>
-      <p>So every monkey can have any number of items. With different calculation each monkey can determine how worried are we about 
-        the item he/she/it is investigating at the moment. According to this worry level he/she/it passes the item either “left” or “right”.</p>
-      <p>The topmost two monkeys who investigate the most items will give the puzzle result.</p>
+      <p>One step at a time to a neighboring field only when:</p>
+      <ul>
+        <li>the neighbor field is maximum one level higher</li>
+        <li>… or equal to the current one</li>
+        <li>or lower (with any level) then the current one</li>
+      </ul>
+      <p>Our task is get from <code class="language-plaintext highlighter-rouge">S</code> to <code class="language-plaintext highlighter-rouge">E</code> in the shortest possible way.</p>
       <h3 id="the-data-model">The data model</h3>
-      <p>As I wrote before, it’s better to build up the data model from code, rather than parsing the input file:</p>
+      <p>Since part one and two are almost the same (again), I start with the common part. First we need to define a class to represent a
+        field on the height map and also store the neighbor fields:</p>
       <div class="language-php highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre>
+        </td>
+        <td class="rouge-code">
+          <pre><span class="kd">class</span> <span class="nc">Position</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$top</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$bottom</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$left</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">bool</span> <span class="nv">$isVisited</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">?int</span> <span class="nv">$distance</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">public</span> <span class="n">int</span> <span class="nv">$row</span><span class="p">,</span> <span class="kt">public</span> <span class="n">int</span> <span class="nv">$col</span><span class="p">,</span> <span class="kt">public</span> <span class="n">int</span> <span class="nv">$height</span><span class="p">,</span> <span class="kt">public</span> <span class="n">bool</span> <span class="nv">$isEnd</span><span class="p">)</span>
+    <span class="p">{}</span>
+
+    <span class="cd">/**
+     * @return array&lt;int, Position&gt;
+     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">getNeighbors</span><span class="p">():</span> <span class="kt">array</span>
+    <span class="p">{</span>
+        <span class="nv">$neighbors</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$neighbors</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$neighbors</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">right</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">bottom</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$neighbors</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">bottom</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$neighbors</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">left</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$neighbors</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>So we can instantiate this class  with some basic information:</p>
+<ul>
+  <li>the vertical and horizontal position on the map,</li>
+  <li>the height of the field,</li>
+  <li>a flag whether it’s the target field or not.</li>
+</ul>
+<p>For the neighboring fields we created four nullable properties. Obviously the fields on the sides at least one neighbor is <code class="language-plaintext highlighter-rouge">NULL</code>.
+  We also add a function to collect all non-NULL neighbors.</p>
+<p>Now it’s time to create the height map from the input data:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="cd">/** @var array&lt;int, array&lt;int, Position&gt;&gt; $heightMap */</span>
+<span class="nv">$heightMap</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="cd">/** @var array&lt;int,Position&gt; $startPositions */</span>
+<span class="nv">$startPositions</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="c1">// Read file and fill the height map with positions</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$letters</span> <span class="o">=</span> <span class="nb">str_split</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$cols</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$letters</span><span class="p">);</span>
+        <span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$letters</span> <span class="k">as</span> <span class="nv">$col</span> <span class="o">=&gt;</span> <span class="nv">$character</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$height</span> <span class="o">=</span> <span class="nf">match</span><span class="p">(</span><span class="nv">$character</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="s1">'S'</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s1">'E'</span> <span class="o">=&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'z'</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="k">default</span> <span class="o">=&gt;</span> <span class="nb">ord</span><span class="p">(</span><span class="nv">$character</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="p">};</span>
+            <span class="nv">$position</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Position</span><span class="p">(</span>
+                <span class="n">row</span><span class="o">:</span> <span class="nv">$row</span><span class="p">,</span>
+                <span class="n">col</span><span class="o">:</span> <span class="nv">$col</span><span class="p">,</span>
+                <span class="n">height</span><span class="o">:</span> <span class="nv">$height</span><span class="p">,</span>
+                <span class="n">isEnd</span><span class="o">:</span> <span class="nv">$character</span> <span class="o">===</span> <span class="s1">'E'</span>
+            <span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$character</span> <span class="o">===</span> <span class="s1">'S'</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$startPositions</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$position</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span><span class="p">][</span><span class="nv">$col</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$position</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$row</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Although for part one there’s only one start position, I use an array to store it, because in part two there are multiple
+  start positions, so my goal is to achieve both tasks with the less work.</p>
+<p>The trick here is the same I used before: convert the characters into numbers. This way, I will get mutually exclusive correspondence:</p>
+<ul>
+  <li>for <code class="language-plaintext highlighter-rouge">a</code> we will get <code class="language-plaintext highlighter-rouge">1</code>,</li>
+  <li>for <code class="language-plaintext highlighter-rouge">b</code> we will get <code class="language-plaintext highlighter-rouge">2</code>,</li>
+  <li>…</li>
+  <li>for <code class="language-plaintext highlighter-rouge">z</code> we will get <code class="language-plaintext highlighter-rouge">26</code>.</li>
+</ul>
+<p>There are the two special cases:</p>
+<ul>
+  <li>for <code class="language-plaintext highlighter-rouge">S</code> we set the height to <code class="language-plaintext highlighter-rouge">1</code> and add the current position to the <code class="language-plaintext highlighter-rouge">$startPositions</code>,</li>
+  <li>for <code class="language-plaintext highlighter-rouge">E</code> we set the height to <code class="language-plaintext highlighter-rouge">26</code> and use this information on the <code class="language-plaintext highlighter-rouge">Position</code>’s constructor.</li>
+</ul>
+<p>The only reason is to store these <code class="language-plaintext highlighter-rouge">Position</code> instances in a multidimensional array is to keep the relative positions between
+  the fields. Therefore, we have all to <code class="language-plaintext highlighter-rouge">Position</code>s, so we can link the neighbors by reference.</p>
+<p>But we do it smart: we link the neighbor field only when it fulfills the <a href="#game-rules">Game rules</a>:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">foreach</span> <span class="p">(</span><span class="nv">$heightMap</span> <span class="k">as</span> <span class="nv">$row</span> <span class="o">=&gt;</span> <span class="nv">$cols</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$cols</span> <span class="k">as</span> <span class="nv">$col</span> <span class="o">=&gt;</span> <span class="nv">$position</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nv">$col</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$top</span> <span class="o">=</span> <span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nv">$col</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$position</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nv">$top</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$position</span><span class="o">-&gt;</span><span class="n">top</span> <span class="o">=</span> <span class="nv">$top</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$cols</span><span class="p">[</span><span class="nv">$col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$right</span> <span class="o">=</span> <span class="nv">$cols</span><span class="p">[</span><span class="nv">$col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$position</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nv">$right</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$position</span><span class="o">-&gt;</span><span class="n">right</span> <span class="o">=</span> <span class="nv">$right</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="nv">$col</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$bottom</span> <span class="o">=</span> <span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="nv">$col</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$position</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nv">$bottom</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$position</span><span class="o">-&gt;</span><span class="n">bottom</span> <span class="o">=</span> <span class="nv">$bottom</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$cols</span><span class="p">[</span><span class="nv">$col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="nv">$left</span> <span class="o">=</span> <span class="nv">$cols</span><span class="p">[</span><span class="nv">$col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$position</span><span class="o">-&gt;</span><span class="n">height</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="nv">$left</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$position</span><span class="o">-&gt;</span><span class="n">left</span> <span class="o">=</span> <span class="nv">$left</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now, we have the <code class="language-plaintext highlighter-rouge">Position</code>s properly initializes, it’s time to  find the path. For this I create a new class, called <code class="language-plaintext highlighter-rouge">Path</code>:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">class</span> <span class="nc">Path</span>
+<span class="p">{</span>
+    <span class="cd">/** @var array&lt;int array&lt;int, int&gt;&gt; */</span>
+    <span class="k">public</span> <span class="kt">array</span> <span class="nv">$distanceMap</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="cd">/** @var array&lt;int, Position&gt;  */</span>
+    <span class="k">public</span> <span class="kt">array</span> <span class="nv">$queue</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$endPosition</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span><span class="kt">public</span> <span class="nc">Position</span> <span class="nv">$startPosition</span><span class="p">,</span> <span class="kt">public</span> <span class="n">int</span> <span class="nv">$rows</span><span class="p">,</span> <span class="kt">public</span> <span class="n">int</span> <span class="nv">$cols</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$tmp</span> <span class="o">=</span> <span class="nb">array_fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">cols</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">distanceMap</span> <span class="o">=</span> <span class="nb">array_fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">rows</span><span class="p">,</span> <span class="nv">$tmp</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">startPosition</span><span class="o">-&gt;</span><span class="n">distance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">queue</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$startPosition</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">findPath</span><span class="p">():</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="nv">$current</span> <span class="o">=</span> <span class="nb">array_shift</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">queue</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$current</span><span class="o">-&gt;</span><span class="n">isEnd</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">endPosition</span> <span class="o">=</span> <span class="nv">$current</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$current</span><span class="o">-&gt;</span><span class="n">isVisited</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nv">$current</span><span class="o">-&gt;</span><span class="n">isVisited</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">distanceMap</span><span class="p">[</span><span class="nv">$current</span><span class="o">-&gt;</span><span class="n">row</span><span class="p">][</span><span class="nv">$current</span><span class="o">-&gt;</span><span class="n">col</span><span class="p">]</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">distanceMap</span><span class="p">[</span><span class="nv">$current</span><span class="o">-&gt;</span><span class="n">row</span><span class="p">][</span><span class="nv">$current</span><span class="o">-&gt;</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$current</span><span class="o">-&gt;</span><span class="n">distance</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nv">$neighbors</span> <span class="o">=</span> <span class="nv">$current</span><span class="o">-&gt;</span><span class="nf">getNeighbors</span><span class="p">();</span>
+            <span class="k">foreach</span> <span class="p">(</span><span class="nv">$neighbors</span> <span class="k">as</span> <span class="nv">$position</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$position</span><span class="o">-&gt;</span><span class="n">distance</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nv">$position</span><span class="o">-&gt;</span><span class="n">distance</span> <span class="o">=</span> <span class="nv">$current</span><span class="o">-&gt;</span><span class="n">distance</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">queue</span> <span class="o">=</span> <span class="nb">array_merge</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">queue</span><span class="p">,</span> <span class="nv">$neighbors</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">queue</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">printDistanceMap</span><span class="p">():</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$row</span> <span class="o">&lt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">rows</span><span class="p">;</span> <span class="nv">$row</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+           <span class="k">for</span> <span class="p">(</span><span class="nv">$col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$col</span> <span class="o">&lt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">cols</span><span class="p">;</span> <span class="nv">$col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+               <span class="k">echo</span> <span class="nb">str_pad</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">distanceMap</span><span class="p">[</span><span class="nv">$row</span><span class="p">][</span><span class="nv">$col</span><span class="p">],</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">' '</span><span class="p">,</span> <span class="no">STR_PAD_BOTH</span><span class="p">)</span><span class="mf">.</span><span class="s1">' |'</span><span class="p">;</span>
+           <span class="p">}</span>
+           <span class="k">echo</span> <span class="kc">PHP_EOL</span><span class="p">;</span>
+           <span class="k">echo</span> <span class="nb">str_repeat</span><span class="p">(</span><span class="s1">'------+'</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">cols</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>To start, we need to initialize this class with the <code class="language-plaintext highlighter-rouge">$startPosition</code> and number of rows and columns of the height map.
+  Inside this class we will create a new “map”, a multidimensional array to track the distance, we already climbed.</p>
+<p>We will also need a queue know how many <code class="language-plaintext highlighter-rouge">Position</code>s more we need to climb. The path find process ends in two cases:</p>
+<ul>
+  <li>we reach the <em>End</em>,</li>
+  <li>we run out of <code class="language-plaintext highlighter-rouge">Position</code>s in the queue.</li>
+</ul>
+<p>Upon instantiation, we add the <code class="language-plaintext highlighter-rouge">$startPosition</code> directly into the queue. Then we call the <code class="language-plaintext highlighter-rouge">findPath()</code> public method, that
+  will start the search:</p>
+<ul>
+  <li>It takes the first element out from the queue.</li>
+  <li>If the current <code class="language-plaintext highlighter-rouge">Position</code> is the <em>End</em>, we save the <code class="language-plaintext highlighter-rouge">Position</code> in to the <code class="language-plaintext highlighter-rouge">endPosition</code> property and stop the process.</li>
+  <li>If the current <code class="language-plaintext highlighter-rouge">Position</code> is marked as already visited, we skip to the next <code class="language-plaintext highlighter-rouge">Position</code> in the queue. We can do that, because
+    when we visited it earlier, that means we already added all its neighbors to the queue.</li>
+  <li>Mark the current <code class="language-plaintext highlighter-rouge">Position</code> as visited.</li>
+  <li>If the current <code class="language-plaintext highlighter-rouge">Position</code> is not yet recorded in the <code class="language-plaintext highlighter-rouge">distanceMap</code>, we save the <code class="language-plaintext highlighter-rouge">Position</code>’s distance into it.</li>
+  <li>We get the current <code class="language-plaintext highlighter-rouge">Position</code>’s neighbors. And check one-by-one:
+    <ul>
+      <li>If the given neighbor has no distance set, we set the current <code class="language-plaintext highlighter-rouge">Position</code>’s distance, plus one.</li>
+    </ul>
+  </li>
+  <li>Merge the neighbors into the queue. Most likely there will be a ton of redundancy in the queue, but the <code class="language-plaintext highlighter-rouge">isVisited</code> check
+    will fasten up the process.</li>
+</ul>
+<p>I also added a <code class="language-plaintext highlighter-rouge">printDistanceMap</code> method to visualize, which <code class="language-plaintext highlighter-rouge">Position</code>s were checked during the process.</p>
+<h3 id="part-one">Part one</h3>
+<p>Now we have everything to complete the task. Here we have one fix starting point, so our script will look like the following:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$rows</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$heightMap</span><span class="p">);</span>
+<span class="nv">$cols</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$heightMap</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Path</span><span class="p">(</span>
+    <span class="n">startPosition</span><span class="o">:</span> <span class="nv">$startPositions</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">rows</span><span class="o">:</span> <span class="nv">$rows</span><span class="p">,</span>
+    <span class="n">cols</span><span class="o">:</span> <span class="nv">$cols</span>
+<span class="p">);</span>
+<span class="nv">$path</span><span class="o">-&gt;</span><span class="nf">findPath</span><span class="p">();</span>
+
+<span class="k">echo</span> <span class="nv">$path</span><span class="o">-&gt;</span><span class="n">endPosition</span><span class="o">-&gt;</span><span class="n">distance</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="part-two">Part two</h3>
+<p>Here we have to take all the level 1 fields as start point, and find the shortest of them all. For this, we need to modify
+  our part one code only a bit:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="c1">// ...</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$letters</span> <span class="k">as</span> <span class="nv">$col</span> <span class="o">=&gt;</span> <span class="nv">$character</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// ...</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$height</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$startPositions</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$position</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="c1">// ...</span>
+        <span class="p">}</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="nv">$minimalPath</span> <span class="o">=</span> <span class="kc">PHP_INT_MAX</span><span class="p">;</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$startPositions</span> <span class="k">as</span> <span class="nv">$start</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$path</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Path</span><span class="p">(</span>
+        <span class="n">startPosition</span><span class="o">:</span> <span class="nv">$start</span><span class="p">,</span>
+        <span class="n">rows</span><span class="o">:</span> <span class="nv">$rows</span><span class="p">,</span>
+        <span class="n">cols</span><span class="o">:</span> <span class="nv">$cols</span>
+    <span class="p">);</span>
+    <span class="nv">$path</span><span class="o">-&gt;</span><span class="nf">findPath</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$path</span><span class="o">-&gt;</span><span class="n">endPosition</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$minimalPath</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nv">$minimalPath</span><span class="p">,</span> <span class="nv">$path</span><span class="o">-&gt;</span><span class="n">endPosition</span><span class="o">-&gt;</span><span class="n">distance</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$row</span> <span class="o">&lt;</span> <span class="nv">$rows</span><span class="p">;</span> <span class="nv">$row</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nv">$col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$col</span> <span class="o">&lt;</span> <span class="nv">$cols</span><span class="p">;</span> <span class="nv">$col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span><span class="p">][</span><span class="nv">$col</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">isVisited</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="nv">$heightMap</span><span class="p">[</span><span class="nv">$row</span><span class="p">][</span><span class="nv">$col</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">distance</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$minimalPath</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[I would climb the mountain high, so high, to be able to touch the sky.]]></summary></entry><entry><title type="html">Advent of Code - Day 11</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-11" rel="alternate" type="text/html" title="Advent of Code - Day 11" /><published>2022-12-11T13:45:00+00:00</published><updated>2022-12-13T13:39:16+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-11</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-11"><![CDATA[<p><a href="https://adventofcode.com/2022/day/11" rel="noopener" target="_blank">Today’s puzzle</a> in short: monkeys have
+    their own rule how to choose who to pass the stolen items. We need to figure this out.</p>
+  <h3 id="the-input-data">The input data</h3>
+  <p>The input data is way too complex to start parsing it. Instead, I chose to build the right data models from them.</p>
+  <h4 id="game-rules">Game rules</h4>
+  <p>So every monkey can have any number of items. With different calculation each monkey can determine how worried are we about 
+    the item he/she/it is investigating at the moment. According to this worry level he/she/it passes the item either “left” or “right”.</p>
+  <p>The topmost two monkeys who investigate the most items will give the puzzle result.</p>
+  <h3 id="the-data-model">The data model</h3>
+  <p>As I wrote before, it’s better to build up the data model from code, rather than parsing the input file:</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -61,9 +669,9 @@
 49
 50
 </pre>
-        </td>
-        <td class="rouge-code">
-          <pre><span class="kd">class</span> <span class="nc">Monkey</span>
+    </td>
+    <td class="rouge-code">
+      <pre><span class="kd">class</span> <span class="nc">Monkey</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">const</span> <span class="no">WORRY_DIVIDER</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
     <span class="k">public</span> <span class="kt">Monkey</span> <span class="nv">$targetTrue</span><span class="p">;</span>
@@ -114,10 +722,10 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -2125,304 +2733,4 @@
 </code></pre>
 </div>
 </div>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[A nice finger practice to count characters.]]></summary></entry><entry><title type="html">Advent of Code - Day 2</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-2" rel="alternate" type="text/html" title="Advent of Code - Day 2" /><published>2022-12-02T06:00:00+00:00</published><updated>2022-12-05T09:57:23+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-2</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-2"><![CDATA[<p><a href="https://adventofcode.com/2022/day/2" rel="noopener" target="_blank">Today’s puzzle</a> in short: It’s the good
-    old <code class="language-plaintext highlighter-rouge">Stone - Paper - Scissors</code> game.</p>
-  <h3 id="the-input-data">The input data</h3>
-  <p>The input data today is simple:</p>
-  <ul>
-    <li>Every row contains two characters separated by a space.</li>
-    <li>The first character is either <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code> or <code class="language-plaintext highlighter-rouge">C</code>.</li>
-    <li>The second character is either <code class="language-plaintext highlighter-rouge">X</code>, <code class="language-plaintext highlighter-rouge">Y</code> or <code class="language-plaintext highlighter-rouge">Z</code>.</li>
-  </ul>
-  <h4 id="game-rules">Game rules</h4>
-  <ul>
-    <li><code class="language-plaintext highlighter-rouge">A</code> represents player 1’s decision: the <code class="language-plaintext highlighter-rouge">Stone</code>.</li>
-    <li><code class="language-plaintext highlighter-rouge">B</code> represents player 1’s decision: the <code class="language-plaintext highlighter-rouge">Paper</code>.</li>
-    <li><code class="language-plaintext highlighter-rouge">C</code> represents player 1’s decision: the <code class="language-plaintext highlighter-rouge">Scissors</code>.</li>
-    <li>The <code class="language-plaintext highlighter-rouge">Stone</code> is worth <code class="language-plaintext highlighter-rouge">1</code> point.</li>
-    <li>The <code class="language-plaintext highlighter-rouge">Paper</code> is worth <code class="language-plaintext highlighter-rouge">2</code> points.</li>
-    <li>The <code class="language-plaintext highlighter-rouge">Scissors</code> is worth <code class="language-plaintext highlighter-rouge">3</code> points.</li>
-    <li>If player 1 wins, that’s <code class="language-plaintext highlighter-rouge">0</code> point.</li>
-    <li>If it’s a draw, that’s <code class="language-plaintext highlighter-rouge">3</code> points.</li>
-    <li>If player 2 wins, that’s <code class="language-plaintext highlighter-rouge">6</code> points.</li>
-  </ul>
-  <h3 id="part-one">Part one</h3>
-  <p>The second character in this part also represents decisions:</p>
-  <ul>
-    <li><code class="language-plaintext highlighter-rouge">X</code> represents player 2’s decision: the <code class="language-plaintext highlighter-rouge">Stone</code>.</li>
-    <li><code class="language-plaintext highlighter-rouge">Y</code> represents player 2’s decision: the <code class="language-plaintext highlighter-rouge">Paper</code>.</li>
-    <li><code class="language-plaintext highlighter-rouge">Z</code> represents player 2’s decision: the <code class="language-plaintext highlighter-rouge">Scissors</code>.</li>
-  </ul>
-  <p>Task: how much point will player 2 get after playing all rounds?</p>
-  <h4 id="the-code">The code</h4>
-  <p>Following the rule I set up yesterday, I think in the most simple solution. So we have two players, six letters with three 
-    points assigned and also some points regarding the result of the duel. This will cause a bit of hell with the variables,
-    so it’s better to define constants. Also need to make a 3x3 matrix for the game rules:</p>
-  <ul>
-    <li>Stone beats scissors</li>
-    <li>Scissors beat paper</li>
-    <li>Paper beats stone</li>
-  </ul>
-  <div class="language-php highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="k">const</span> <span class="no">ROCK_1</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">PAPER_1</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">SCISSORS_1</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="no">ROCK_2</span> <span class="o">=</span> <span class="s1">'X'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">PAPER_2</span> <span class="o">=</span> <span class="s1">'Y'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">SCISSORS_2</span> <span class="o">=</span> <span class="s1">'Z'</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="no">P1_WINS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">P2_WINS</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">DRAW</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-
-<span class="nv">$decisionScore</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="mi">3</span>
-<span class="p">];</span>
-
-<span class="nv">$winningMatrix</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="no">ROCK_1</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="no">DRAW</span><span class="p">,</span>
-        <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="no">P2_WINS</span><span class="p">,</span>
-        <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="no">P1_WINS</span>
-    <span class="p">],</span>
-    <span class="no">PAPER_1</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="no">P1_WINS</span><span class="p">,</span>
-        <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="no">DRAW</span><span class="p">,</span>
-        <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="no">P2_WINS</span>
-    <span class="p">],</span>
-    <span class="no">SCISSORS_1</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="no">ROCK_2</span> <span class="o">=&gt;</span> <span class="no">P2_WINS</span><span class="p">,</span>
-        <span class="no">PAPER_2</span> <span class="o">=&gt;</span> <span class="no">P1_WINS</span><span class="p">,</span>
-        <span class="no">SCISSORS_2</span> <span class="o">=&gt;</span> <span class="no">DRAW</span>
-    <span class="p">],</span>
-<span class="p">];</span>
-</pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>You may have noticed, that the <code class="language-plaintext highlighter-rouge">$decisionScore</code> contains only the player 2’s decisions. It’s because we don’t care about player 1’s 
-  score in the end.</p>
-<p>Now let’s think about the logic. Go line-by-line, split up the string into the two players’ decisions, and simply add
-  together the decision score and the score given by the winning matrix.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nv">$player_2_score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-        <span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">,</span> <span class="nv">$player_2_decision</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
-        <span class="nv">$player_2_score</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">$winningMatrix</span><span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">][</span><span class="nv">$player_2_decision</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$decisionScore</span><span class="p">[</span><span class="nv">$player_2_decision</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">echo</span> <span class="nv">$player_2_score</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h3 id="part-two">Part two</h3>
-<p>The second character in part two represents the strategy that player 2 should follow:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">X</code> to loose the round</li>
-  <li><code class="language-plaintext highlighter-rouge">Y</code> to make draw</li>
-  <li><code class="language-plaintext highlighter-rouge">Z</code> to win the round</li>
-</ul>
-<p>Task: how much point will player 2 get after playing all rounds?</p>
-<h4 id="the-code-1">The code</h4>
-<p>For this version we have to revert our thinking a bit. The winning matrix will become a decision matrix, and with given
-  strategy we can easily identify the right decision. The constants will now look as follows:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">const</span> <span class="no">ROCK</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">PAPER</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">SCISSORS</span> <span class="o">=</span> <span class="s1">'C'</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="no">P1_SHOULD_WIN</span> <span class="o">=</span> <span class="s1">'X'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">END_DRAW</span> <span class="o">=</span> <span class="s1">'Y'</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">P2_SHOULD_WIN</span> <span class="o">=</span> <span class="s1">'Z'</span><span class="p">;</span>
-
-<span class="nv">$decisionScore</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="no">ROCK</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="no">PAPER</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="no">SCISSORS</span> <span class="o">=&gt;</span> <span class="mi">3</span>
-<span class="p">];</span>
-
-<span class="nv">$duelResult</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span>
-    <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="mi">3</span>
-<span class="p">];</span>
-
-<span class="nv">$decisionMatrix</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="no">ROCK</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">SCISSORS</span><span class="p">,</span>
-        <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">PAPER</span><span class="p">,</span>
-        <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="no">ROCK</span>
-    <span class="p">],</span>
-    <span class="no">PAPER</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">ROCK</span><span class="p">,</span>
-        <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">SCISSORS</span><span class="p">,</span>
-        <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="no">PAPER</span>
-    <span class="p">],</span>
-    <span class="no">SCISSORS</span> <span class="o">=&gt;</span> <span class="p">[</span>
-        <span class="no">P1_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">PAPER</span><span class="p">,</span>
-        <span class="no">P2_SHOULD_WIN</span> <span class="o">=&gt;</span> <span class="no">ROCK</span><span class="p">,</span>
-        <span class="no">END_DRAW</span> <span class="o">=&gt;</span> <span class="no">SCISSORS</span>
-    <span class="p">],</span>
-<span class="p">];</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>We have one extra array compared to the previous version, and another became much simpler. The logic will be the following:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nv">$player_2_score</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-        <span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">,</span> <span class="nv">$player_2_strategy</span><span class="p">]</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
-        <span class="nv">$player_2_decision</span> <span class="o">=</span> <span class="nv">$decisionMatrix</span><span class="p">[</span><span class="nv">$player_1_decision</span><span class="p">][</span><span class="nv">$player_2_strategy</span><span class="p">];</span>
-        <span class="nv">$player_2_score</span> <span class="o">+=</span> <span class="p">(</span><span class="nv">$duelResult</span><span class="p">[</span><span class="nv">$player_2_strategy</span><span class="p">]</span> <span class="o">+</span> <span class="nv">$decisionScore</span><span class="p">[</span><span class="nv">$player_2_decision</span><span class="p">]);</span>
-    <span class="p">}</span>
-    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="k">echo</span> <span class="nv">$player_2_score</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[A classic game I used to play a lot with my son.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[A nice finger practice to count characters.]]></summary></entry></feed>
