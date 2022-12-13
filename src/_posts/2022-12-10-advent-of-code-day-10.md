@@ -17,6 +17,10 @@ review: true
 published: true
 ---
 
+<a href="https://adventofcode.com/2022/day/10" rel="noopener" target="_blank">Today's puzzle</a> in short: we have a screen 
+display and need to figure out what we draw on it.
+
+
 ### The input data
 
 This time in the input file we get some nice programming commands:

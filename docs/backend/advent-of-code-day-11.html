@@ -1,0 +1,536 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Advent of Code - Day 11&nbsp;-&nbsp;Worst Practice
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="jekyll 3.8.5">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="copyright" content="Copyright © 2022 All rights reserved. Worst Practice.">
+    <meta name="description" content="
+">
+    <meta name="subject" content="">
+    <meta name="keywords" content="PHP, Advent of Code">
+    <!-- facebook share -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Worst Practice">
+    <meta property="og:title" content="Advent of Code - Day 11&nbsp;-&nbsp;Worst Practice
+">
+    <meta property="og:url" content="https://www.worstpractice.dev/backend/advent-of-code-day-11">
+    <meta name="date" content="2022-12-11T13:45:00+00:00">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2022/backend/advent-of-code-day-11/advent-11.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:description" content="These monkeys always steal the man&#39;s valuables. We need to get back, just need to figure out where they land next.">
+    <meta property="fb:admins" content="ivan.gabor.80">
+    <meta property="fb:app_id" content="2178081495757871">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
+    <meta property="article:published_time" content="2022-12-11T13:45:00+00:00">
+    <meta property="article:tag" content="blog"/>
+    <!-- twitter share -->
+    <meta name="twitter:title" content="Advent of Code - Day 11">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@gaborivan1980">
+    <meta name="twitter:description" content="These monkeys always steal the man&#39;s valuables. We need to get back, just need to figure out where they land next.">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2022/backend/advent-of-code-day-11/advent-11_600x600.jpg">
+    <link rel="canonical" href="https://www.worstpractice.dev">
+    <link rel="alternate" type="application/rss+xml" title="Advent of Code - Day 11&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/backend/advent-of-code-day-11">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+    <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#C23F2F">
+    <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#C23F2F">
+    <meta name="application-name" content="Worst Practice Blog">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#C23F2F">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.srcset) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/site.min.js"></script>
+  </head>
+  <body>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
+    </header>
+    <div class="codeOfTheDay">
+      <input class="codeOfTheDay__toggle" type="checkbox">
+      <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
+      <div class="codeOfTheDay__backdrop"></div>
+    </div>
+    <div class="m-menu">
+      <div class="m-menu__burger">
+        <span></span>
+      </div>
+      <input class="m-menu__toggle" type="checkbox" />
+      <div class="m-menu__content">
+        <nav>
+          <h2 class="m-menu__title">Worst Practice</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -home" href="/">Home</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Categories</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -backend -current" href="/backend">Backend</a></li>
+            <li><a class="m-menu__link -devenv" href="/devenv">Development Environment</a></li>
+            <li><a class="m-menu__link -frontend" href="/frontend">Frontend</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Tags</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -php" rel="tag" href="/tags/php/">PHP <sup>16</sup></a></li>
+            <li><a class="m-menu__link -advent" rel="tag" href="/tags/advent/">Advent <sup>11</sup></a></li>
+            <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>4</sup></a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/tags/">More</a>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Archive</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/archive/2022-12/">December, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-11/">November, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-10/">October, 2022</a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/archive/">More</a>
+        </nav>
+        <nav>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/imprint.html">Imprint</a></li>
+            <li><a class="m-menu__link " href="/terms.html">Terms of Use</a></li>
+            <li><a class="m-menu__link " href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="m-menu__backdrop"></div>
+    </div>
+    <main class="c-content">
+      <section class="c-content__article">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">Advent of Code - Day 11</h2>
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on December&nbsp;11, 2022 @ 13:45
+              </p>
+              <p class="a-meta__category">Posted under the <a href="/backend/index.html">Backend</a> category</p>
+              <p class="a-meta__level">Level: intermediate</p>
+              <p class="a-meta__tags">Posted with the following tags:
+                <a href="/tags/advent/index.html">#Advent</a>, 
+                <a href="/tags/php/index.html">#PHP</a>
+              </p>
+            </div>
+          </header>
+          <p class="a-excerpt">
+            These monkeys always steal the man's valuables. We need to get back, just need to figure out where they land next.
+          </p>
+          <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/advent-of-code-day-11/advent-11.jpg" alt="Advent of Code - Day 11">
+            <figcaption class="a-illustration__caption">Calendar icon by <a target="_blank" rel="noopener" href="https://pixabay.com/users/pinwhalestock-13691058/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4623521">Kevin Sanderson</a> from <a target="_blank" rel="noopener" href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4623521">Pixabay</a></figcaption>
+          </figure>
+          <div class="a-body">
+            <p><a href="https://adventofcode.com/2022/day/11" rel="noopener" target="_blank">Today’s puzzle</a> in short: monkeys have
+              their own rule how to choose who to pass the stolen items. We need to figure this out.</p>
+            <h3 id="the-input-data">The input data</h3>
+            <p>The input data is way too complex to start parsing it. Instead, I chose to build the right data models from them.</p>
+            <h4 id="game-rules">Game rules</h4>
+            <p>So every monkey can have any number of items. With different calculation each monkey can determine how worried are we about 
+              the item he/she/it is investigating at the moment. According to this worry level he/she/it passes the item either “left” or “right”.</p>
+            <p>The topmost two monkeys who investigate the most items will give the puzzle result.</p>
+            <h3 id="the-data-model">The data model</h3>
+            <p>As I wrote before, it’s better to build up the data model from code, rather than parsing the input file:</p>
+            <div class="language-php highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre><span class="kd">class</span> <span class="nc">Monkey</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">const</span> <span class="no">WORRY_DIVIDER</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">Monkey</span> <span class="nv">$targetTrue</span><span class="p">;</span>
+    <span class="k">public</span> <span class="kt">Monkey</span> <span class="nv">$targetFalse</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">int</span> <span class="nv">$inspectionCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="kt">array</span> <span class="nv">$items</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">(</span>
+        <span class="kt">public</span> <span class="n">int</span> <span class="nv">$index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="k">array</span> <span class="nv">$nextRoundItems</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="kt">public</span> <span class="n">string</span> <span class="nv">$operand</span> <span class="o">=</span> <span class="s1">'$old'</span><span class="p">,</span>
+        <span class="kt">public</span> <span class="n">int</span> <span class="nv">$testWorryIndex</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="p">)</span>
+    <span class="p">{</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">runTest</span><span class="p">():</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">setupNextRound</span><span class="p">();</span>
+
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">items</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">testWorry</span><span class="p">(</span><span class="nv">$item</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">getNewWorry</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$old</span><span class="p">):</span> <span class="kt">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="k">eval</span><span class="p">(</span><span class="s1">'return '</span><span class="mf">.</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">operand</span><span class="p">)</span><span class="mf">.</span><span class="s1">';'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">testWorry</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$worry</span><span class="p">):</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="nv">$newWorry</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getNewWorry</span><span class="p">(</span><span class="nv">$worry</span><span class="p">);</span>
+        <span class="nv">$testWorry</span> <span class="o">=</span> <span class="nb">floor</span><span class="p">(</span><span class="nv">$newWorry</span> <span class="o">/</span> <span class="k">self</span><span class="o">::</span><span class="no">WORRY_DIVIDER</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">inspectionCounter</span><span class="o">++</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$testWorry</span> <span class="o">%</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">testWorryIndex</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">targetTrue</span><span class="o">-&gt;</span><span class="n">nextRoundItems</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$testWorry</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">targetFalse</span><span class="o">-&gt;</span><span class="n">nextRoundItems</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$testWorry</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">private</span> <span class="k">function</span> <span class="n">setupNextRound</span><span class="p">():</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">items</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">nextRoundItems</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">nextRoundItems</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<p>I made a dirty trick here: I used the hatred <code class="language-plaintext highlighter-rouge">eval()</code> function. The only reason to do this to simplify the final code.
+  This way I can create a common class for each monkey, and I need only to pass their “calculation logic” as a string.</p>
+<p>As you can see, I don’t pass the investigated items directly to the next monkey’s hand, instead, I just put into their “pockets”,
+  so won’t mess up the investigation cycle. Then in the beginning of the next cycle each Monkey get the items out from their 
+  “pocket” and the whole thing starts all over.</p>
+<p>Let’s initialize the <code class="language-plaintext highlighter-rouge">Monkey</code>s with the input data.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$monkeys</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="mi">66</span><span class="p">,</span> <span class="mi">79</span><span class="p">],</span> <span class="s1">'$old * 11'</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">84</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">98</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span> <span class="s1">'$old * 17'</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">85</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">67</span><span class="p">],</span> <span class="s1">'$old + 8'</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">70</span><span class="p">],</span> <span class="s1">'$old + 3'</span><span class="p">,</span> <span class="mi">19</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">57</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">78</span><span class="p">],</span> <span class="s1">'$old + 4'</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">72</span><span class="p">],</span> <span class="s1">'$old + 7'</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="p">[</span><span class="mi">77</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">91</span><span class="p">],</span> <span class="s1">'$old * $old'</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nc">Monkey</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="p">[</span><span class="mi">76</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">99</span><span class="p">],</span> <span class="s1">'$old + 6'</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+<span class="p">];</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now we have the <code class="language-plaintext highlighter-rouge">Monkey</code> instances, but we still need to add their buddies as references:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nv">$monkeys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetTrue</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="nv">$monkeys</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">targetFalse</span> <span class="o">=</span> <span class="nv">$monkeys</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>The good thing is that this data model is 99% the same for <code class="language-plaintext highlighter-rouge">Part one</code> and <code class="language-plaintext highlighter-rouge">Part two</code>.</p>
+<h3 id="part-one">Part one</h3>
+<p>So we need to run this investigation 20 times, collect the results and choose the two highest.</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="k">const</span> <span class="no">ITERATION</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="no">ITERATION</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$m</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$m</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="p">;</span> <span class="nv">$m</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$monkeys</span><span class="p">[</span><span class="nv">$m</span><span class="p">]</span><span class="o">-&gt;</span><span class="nf">runTest</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$inspections</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$monkeys</span> <span class="k">as</span> <span class="nv">$monkey</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$inspections</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$monkey</span><span class="o">-&gt;</span><span class="n">inspectionCounter</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">rsort</span><span class="p">(</span><span class="nv">$inspections</span><span class="p">);</span>
+
+<span class="p">[</span><span class="nv">$first</span><span class="p">,</span> <span class="nv">$second</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$inspections</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="s2">"Monkey business level is: "</span><span class="mf">.</span><span class="p">(</span><span class="nv">$first</span> <span class="o">*</span> <span class="nv">$second</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h3 id="part-two">Part two</h3>
+<p>This part is almost the same as the previous one, except:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">WORRY_DIVIDER</code> is “<em>something, that we need to figure out</em>”</li>
+  <li>The <code class="language-plaintext highlighter-rouge">ITERATION</code> is <strong>10000</strong></li>
+</ul>
+<p>This high number of iteration makes the worry levels so high, that makes calculation difficult, and in some programming 
+  languages even impossible because of the legendary <strong>overflow</strong>.</p>
+<p>First I missed the “<em>find another way to keep your worry levels manageable</em>” suggestion, and just simply removed the division
+  by three according to the puzzle description. Then I didn’t understand why they don’t accept my result. The solution
+  was the <em>Least common multiple</em>.</p>
+<p>And if you check every number we use to check the new worry level is actually a prime number. So the common value for the
+  <code class="language-plaintext highlighter-rouge">WORRY_DIVIDER</code> is just simply multiply them.</p>
+<p>All the changes on the part one code:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="kd">class</span> <span class="nc">Monkey</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">const</span> <span class="no">WORRY_DIVIDER</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span> <span class="o">*</span> <span class="mi">13</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">19</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">11</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">*</span> <span class="mi">3</span><span class="p">);</span>
+    
+    <span class="c1">// ...</span>
+    
+    <span class="k">private</span> <span class="k">function</span> <span class="n">testWorry</span><span class="p">(</span><span class="kt">int</span> <span class="nv">$worry</span><span class="p">):</span> <span class="kt">void</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="nv">$testWorry</span> <span class="o">=</span> <span class="nv">$newWorry</span> <span class="o">%</span> <span class="k">self</span><span class="o">::</span><span class="no">WORRY_DIVIDER</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="k">const</span> <span class="no">ITERATION</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
+  <p class="a-footer__author">
+    Hi, my name is Gábor Iván. I am an old-school Full stack developer, which means I deal with Backend (PHP), Frontend (HTML, CSS, JS), and a little bit of Webdesign. No DevOPS, sorry.
+    <br>
+    <a href="/author/gabor.ivan/index.html">Read the full story</a>
+  </p>
+</footer>
+</article>
+<aside class="a-comments">
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Advent of Code - Day 11`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
+</aside>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2022 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+</body>
+</html>
