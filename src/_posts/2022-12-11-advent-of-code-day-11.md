@@ -46,7 +46,6 @@ class Monkey
 
     public array $items = [];
     public function __construct(
-        public int $index = 0,
         public array $nextRoundItems = [],
         public string $operand = '$old',
         public int $testWorryIndex = 1
@@ -100,14 +99,14 @@ Let's initialize the `Monkey`s with the input data.
 
 ```php
 $monkeys = [
-    new Monkey(0, [66, 79], '$old * 11', 7),
-    new Monkey(1, [84, 94, 94, 81, 98, 75], '$old * 17', 13),
-    new Monkey(2, [85, 79, 59, 64, 79, 95, 67], '$old + 8', 5),
-    new Monkey(3, [70], '$old + 3', 19),
-    new Monkey(4, [57, 69, 78, 78], '$old + 4', 2),
-    new Monkey(5, [65, 92, 60, 74, 72], '$old + 7', 11),
-    new Monkey(6, [77, 91, 91], '$old * $old', 17),
-    new Monkey(7, [76, 58, 57, 55, 67, 77, 54, 99], '$old + 6', 3),
+    new Monkey([66, 79], '$old * 11', 7),
+    new Monkey([84, 94, 94, 81, 98, 75], '$old * 17', 13),
+    new Monkey([85, 79, 59, 64, 79, 95, 67], '$old + 8', 5),
+    new Monkey([70], '$old + 3', 19),
+    new Monkey([57, 69, 78, 78], '$old + 4', 2),
+    new Monkey([65, 92, 60, 74, 72], '$old + 7', 11),
+    new Monkey([77, 91, 91], '$old * $old', 17),
+    new Monkey([76, 58, 57, 55, 67, 77, 54, 99], '$old + 6', 3),
 ];
 ```
 
