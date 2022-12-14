@@ -31,7 +31,7 @@ In the input file today we get a spooky, datastructure-like strings:
 
 #### Game rules
 
-We need to compare values between lines to determine if the line above is smaller than the line above.
+We need to compare values between lines to determine if the line above is smaller than the line below.
 
 ### Part one
 
