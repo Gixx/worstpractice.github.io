@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-14T10:40:05+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 13</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-13" rel="alternate" type="text/html" title="Advent of Code - Day 13" /><published>2022-12-13T11:40:00+00:00</published><updated>2022-12-14T10:40:05+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-13</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-13"><![CDATA[<p><a href="https://adventofcode.com/2022/day/13" rel="noopener" target="_blank">Today’s puzzle</a> in short: compare &amp; sort.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-14T11:33:15+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 13</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-13" rel="alternate" type="text/html" title="Advent of Code - Day 13" /><published>2022-12-13T11:40:00+00:00</published><updated>2022-12-14T11:33:15+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-13</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-13"><![CDATA[<p><a href="https://adventofcode.com/2022/day/13" rel="noopener" target="_blank">Today’s puzzle</a> in short: compare &amp; sort.</p>
       <h3 id="the-input-data">The input data</h3>
       <p>In the input file today we get a spooky, datastructure-like strings:</p>
       <ul>
@@ -9,7 +9,7 @@
         <li>Every third line is an empty line.</li>
       </ul>
       <h4 id="game-rules">Game rules</h4>
-      <p>We need to compare values between lines to determine if the line above is smaller than the line above.</p>
+      <p>We need to compare values between lines to determine if the line above is smaller than the line below.</p>
       <h3 id="part-one">Part one</h3>
       <p>In part one, we have different game rules, so I present them here:</p>
       <ul>
