@@ -1,32 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-13T15:42:39+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 12</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-12" rel="alternate" type="text/html" title="Advent of Code - Day 12" /><published>2022-12-12T13:45:00+00:00</published><updated>2022-12-13T15:42:38+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-12</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-12"><![CDATA[<p><a href="https://adventofcode.com/2022/day/12" rel="noopener" target="_blank">Today’s puzzle</a> in short: <span lang="jp" title="Climb mount Niitaka">新高山登れ</span></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2022-12-14T10:40:05+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Advent of Code - Day 13</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-13" rel="alternate" type="text/html" title="Advent of Code - Day 13" /><published>2022-12-13T11:40:00+00:00</published><updated>2022-12-14T10:40:05+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-13</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-13"><![CDATA[<p><a href="https://adventofcode.com/2022/day/13" rel="noopener" target="_blank">Today’s puzzle</a> in short: compare &amp; sort.</p>
       <h3 id="the-input-data">The input data</h3>
-      <p>We get a file with a bunch of alphabetical characters:</p>
+      <p>In the input file today we get a spooky, datastructure-like strings:</p>
       <ul>
-        <li>The input has 41 lines and 71 columns</li>
-        <li>Every character represents the height of the surface:
-          <ul>
-            <li><code class="language-plaintext highlighter-rouge">a</code> is the lowest</li>
-            <li><code class="language-plaintext highlighter-rouge">z</code> is the highest</li>
-            <li><code class="language-plaintext highlighter-rouge">b</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">a</code></li>
-            <li><code class="language-plaintext highlighter-rouge">c</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">b</code></li>
-            <li>…</li>
-            <li><code class="language-plaintext highlighter-rouge">z</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">y</code></li>
-          </ul>
-        </li>
-        <li><code class="language-plaintext highlighter-rouge">S</code> represents the start point</li>
-        <li><code class="language-plaintext highlighter-rouge">E</code> represents the end point</li>
+        <li>Each line starts with <code class="language-plaintext highlighter-rouge">[</code> and ends with <code class="language-plaintext highlighter-rouge">]</code>.</li>
+        <li>Between the sides there can be number separated by comma and encapsulated within square brackets.</li>
+        <li>The square brackets are in pairs so the number of <code class="language-plaintext highlighter-rouge">[</code> equals to the number of <code class="language-plaintext highlighter-rouge">]</code>.</li>
+        <li>It’s possible to have empty square bracket pairs (<code class="language-plaintext highlighter-rouge">[]</code>).</li>
+        <li>Every third line is an empty line.</li>
       </ul>
       <h4 id="game-rules">Game rules</h4>
-      <p>One step at a time to a neighboring field only when:</p>
+      <p>We need to compare values between lines to determine if the line above is smaller than the line above.</p>
+      <h3 id="part-one">Part one</h3>
+      <p>In part one, we have different game rules, so I present them here:</p>
       <ul>
-        <li>the neighbor field is maximum one level higher</li>
-        <li>… or equal to the current one</li>
-        <li>or lower (with any level) then the current one</li>
+        <li>We take every two rows as a group.</li>
+        <li>Groups are counted from 1.</li>
+        <li>Groups are separated by the empty line.</li>
+        <li>We need to check every group if the first member is “smaller” than the second one. If the first member is smaller, we 
+          increment a counter with the group’s index.</li>
       </ul>
-      <p>Our task is get from <code class="language-plaintext highlighter-rouge">S</code> to <code class="language-plaintext highlighter-rouge">E</code> in the shortest possible way.</p>
-      <h3 id="the-data-model">The data model</h3>
-      <p>Since part one and two are almost the same (again), I start with the common part. First we need to define a class to represent a
-        field on the height map and also store the neighbor fields:</p>
+      <p>Saying one of them is “smaller” depends on our algorithm. So let’s see it:</p>
       <div class="language-php highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -67,10 +60,341 @@
 36
 37
 38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
 </pre>
         </td>
         <td class="rouge-code">
-          <pre><span class="kd">class</span> <span class="nc">Position</span>
+          <pre><span class="nv">$pairs</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nv">$pairIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$rightOrderPairIndexSum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$pairs</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$line</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$pairs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$left</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">str_replace</span><span class="p">(</span><span class="s1">'[]'</span><span class="p">,</span> <span class="s1">'[null]'</span><span class="p">,</span><span class="nv">$pairs</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+            <span class="nv">$right</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">str_replace</span><span class="p">(</span><span class="s1">'[]'</span><span class="p">,</span> <span class="s1">'[null]'</span><span class="p">,</span><span class="nv">$pairs</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+            <span class="nv">$result</span> <span class="o">=</span> <span class="nf">comparePairs</span><span class="p">(</span> <span class="nv">$left</span><span class="p">,</span> <span class="nv">$right</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nv">$rightOrderPairIndexSum</span> <span class="o">+=</span> <span class="nv">$pairIndex</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nv">$pairs</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="nv">$pairIndex</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">comparePairs</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$left</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$right</span><span class="p">):</span> <span class="kt">int</span>
+<span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$left</span> <span class="k">as</span> <span class="nv">$index</span> <span class="o">=&gt;</span> <span class="nv">$leftValue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$leftValue</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">isset</span><span class="p">(</span><span class="nv">$right</span><span class="p">[</span><span class="nv">$index</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$rightValue</span> <span class="o">=</span> <span class="nv">$right</span><span class="p">[</span><span class="nv">$index</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$leftValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$rightValue</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$rightValue</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$rightValue</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$leftValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$rightValue</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$leftValue</span> <span class="o">=</span> <span class="p">[</span><span class="nv">$leftValue</span><span class="p">];</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">is_array</span><span class="p">(</span><span class="nv">$leftValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">is_array</span><span class="p">(</span><span class="nv">$rightValue</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nv">$result</span> <span class="o">=</span> <span class="nf">comparePairs</span><span class="p">(</span><span class="nv">$leftValue</span><span class="p">,</span> <span class="nv">$rightValue</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nv">$result</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">continue</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$leftValue</span> <span class="o">==</span> <span class="nv">$rightValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$leftValue</span> <span class="o">&lt;</span> <span class="nv">$rightValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$leftValue</span> <span class="o">&gt;</span> <span class="nv">$rightValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$left</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$right</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$rightOrderPairIndexSum</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>The trick part was in this puzzle, that the line almost looks like a JSON string. The only issue is the empty square brackets.
+  But since these are strings, we can fix it by replacing every <code class="language-plaintext highlighter-rouge">[]</code> with <code class="language-plaintext highlighter-rouge">[null]</code>, and there you go: We have a JSON!</p>
+<p>From this point is just a simple recursive function and a loop. The function always gets two arrays to compare. Then it
+  starts a loop on the first parameter (making it the <code class="language-plaintext highlighter-rouge">left</code>) to compare the values:</p>
+<ul>
+  <li>If left-side value is <code class="language-plaintext highlighter-rouge">null</code>, that means originally there was an <code class="language-plaintext highlighter-rouge">[]</code>. Left is smaller, return <code class="language-plaintext highlighter-rouge">-1</code>.</li>
+  <li>If the right-side pair does not exist, then the left is bigger, return <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li>If any of the left or right values is an array, while the other is a literal, we convert the literal into an array.</li>
+  <li>If both values are arrays, we recursively call the compare function with these values and if it returns with <code class="language-plaintext highlighter-rouge">0</code>, we 
+    continue the compare, otherwise we return what it returns (either <code class="language-plaintext highlighter-rouge">1</code> or <code class="language-plaintext highlighter-rouge">-1</code>).</li>
+  <li>If both values are literals, and they are equal to each other, we continue the compare.</li>
+  <li>If left is smaller, return <code class="language-plaintext highlighter-rouge">-1</code>.</li>
+  <li>If right is smaller, return <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li>If we reach the end of the loop, and we see the size of the parameter is smaller, than the second’s, it means, left is
+    smaller, return <code class="language-plaintext highlighter-rouge">-1</code>.</li>
+  <li>If we didn’t return so far, the values should be equal, return <code class="language-plaintext highlighter-rouge">0</code>.</li>
+</ul>
+<h3 id="part-two">Part two</h3>
+<p>Now we have a quite different game rule, however the code will hardly change.</p>
+<ul>
+  <li>We have to add two extra lines to the input: these will be the distress signal codes.</li>
+  <li>We have to ignore the empty lines.</li>
+  <li>We need to sort every line with the two new lines included.</li>
+  <li>We have to check where are the distress signal codes now and multiply their indexes.</li>
+  <li>The line indexing starts from 1.</li>
+</ul>
+<p>Luckily I instinctively wrote the <code class="language-plaintext highlighter-rouge">comparePairs()</code> function returns <code class="language-plaintext highlighter-rouge">-1</code>, <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>. With 20+ years of experience, this
+  just came naturally. And what a luck! Now we have to sort all the lines, the PHP’s <code class="language-plaintext highlighter-rouge">usort()</code> function requires exactly a
+  custom function that returns <code class="language-plaintext highlighter-rouge">-1</code>, <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>. So this time we have to change only the surrounding codes:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="cp">&lt;?php</span>
+
+<span class="nv">$lines</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'[[2]]'</span><span class="p">,</span>
+    <span class="s1">'[[6]]'</span>
+<span class="p">];</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span> <span class="mf">.</span> <span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$line</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nv">$lines</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$line</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">compare</span><span class="p">(</span><span class="kt">string</span> <span class="nv">$a</span><span class="p">,</span> <span class="kt">string</span> <span class="nv">$b</span><span class="p">):</span> <span class="kt">int</span>
+<span class="p">{</span>
+    <span class="nv">$left</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">str_replace</span><span class="p">(</span><span class="s1">'[]'</span><span class="p">,</span> <span class="s1">'[null]'</span><span class="p">,</span><span class="nv">$a</span><span class="p">));</span>
+    <span class="nv">$right</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nb">str_replace</span><span class="p">(</span><span class="s1">'[]'</span><span class="p">,</span> <span class="s1">'[null]'</span><span class="p">,</span><span class="nv">$b</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nf">comparePairs</span><span class="p">(</span><span class="nv">$left</span><span class="p">,</span> <span class="nv">$right</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="n">comparePairs</span><span class="p">(</span><span class="kt">array</span> <span class="nv">$left</span><span class="p">,</span> <span class="kt">array</span> <span class="nv">$right</span><span class="p">):</span> <span class="kt">int</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="nb">usort</span><span class="p">(</span><span class="nv">$lines</span><span class="p">,</span> <span class="s1">'compare'</span><span class="p">);</span>
+
+<span class="nv">$key1</span> <span class="o">=</span> <span class="nb">array_search</span><span class="p">(</span><span class="s1">'[[2]]'</span><span class="p">,</span> <span class="nv">$lines</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nv">$key2</span> <span class="o">=</span> <span class="nb">array_search</span><span class="p">(</span><span class="s1">'[[6]]'</span><span class="p">,</span> <span class="nv">$lines</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="p">(</span><span class="nv">$key1</span> <span class="o">*</span>  <span class="nv">$key2</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>As you can see, I didn’t change the input file, instead I initialized the “line collection” array with the two new lines.
+  Then, when we read the input, we skip all the empty lines, and add the rest to this collection.</p>
+<p>I created a wrapper function called <code class="language-plaintext highlighter-rouge">compare</code>, to prepare the left- and right-side values before call our original <code class="language-plaintext highlighter-rouge">comparePairs()</code>.
+  Of course, I could - and maybe I should - write it as an anonymous function as the second parameter of the <code class="language-plaintext highlighter-rouge">usort()</code>, but
+  I like naming things.</p>
+<p>The <code class="language-plaintext highlighter-rouge">usort()</code> will do the heavy job of sorting, then the <code class="language-plaintext highlighter-rouge">array_search</code> will get the indexes, that we need to solve the 
+  puzzle.</p>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[One of the first algorithm in programming you have to learn is sorting.]]></summary></entry><entry><title type="html">Advent of Code - Day 12</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-12" rel="alternate" type="text/html" title="Advent of Code - Day 12" /><published>2022-12-12T13:45:00+00:00</published><updated>2022-12-13T15:42:38+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-12</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-12"><![CDATA[<p><a href="https://adventofcode.com/2022/day/12" rel="noopener" target="_blank">Today’s puzzle</a> in short: <span lang="jp" title="Climb mount Niitaka">新高山登れ</span></p>
+  <h3 id="the-input-data">The input data</h3>
+  <p>We get a file with a bunch of alphabetical characters:</p>
+  <ul>
+    <li>The input has 41 lines and 71 columns</li>
+    <li>Every character represents the height of the surface:
+      <ul>
+        <li><code class="language-plaintext highlighter-rouge">a</code> is the lowest</li>
+        <li><code class="language-plaintext highlighter-rouge">z</code> is the highest</li>
+        <li><code class="language-plaintext highlighter-rouge">b</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">a</code></li>
+        <li><code class="language-plaintext highlighter-rouge">c</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">b</code></li>
+        <li>…</li>
+        <li><code class="language-plaintext highlighter-rouge">z</code> is 1 level higher than <code class="language-plaintext highlighter-rouge">y</code></li>
+      </ul>
+    </li>
+    <li><code class="language-plaintext highlighter-rouge">S</code> represents the start point</li>
+    <li><code class="language-plaintext highlighter-rouge">E</code> represents the end point</li>
+  </ul>
+  <h4 id="game-rules">Game rules</h4>
+  <p>One step at a time to a neighboring field only when:</p>
+  <ul>
+    <li>the neighbor field is maximum one level higher</li>
+    <li>… or equal to the current one</li>
+    <li>or lower (with any level) then the current one</li>
+  </ul>
+  <p>Our task is get from <code class="language-plaintext highlighter-rouge">S</code> to <code class="language-plaintext highlighter-rouge">E</code> in the shortest possible way.</p>
+  <h3 id="the-data-model">The data model</h3>
+  <p>Since part one and two are almost the same (again), I start with the common part. First we need to define a class to represent a
+    field on the height map and also store the neighbor fields:</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre>
+    </td>
+    <td class="rouge-code">
+      <pre><span class="kd">class</span> <span class="nc">Position</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$top</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="k">public</span> <span class="kt">?Position</span> <span class="nv">$right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -109,10 +433,10 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -2561,177 +2885,4 @@
 </code></pre>
 </div>
 </div>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[Who like to clean the house when it was already cleaned up. Today we go the lazy way: we need to find out how to reduce redundant work.]]></summary></entry><entry><title type="html">Advent of Code - Day 3</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-3" rel="alternate" type="text/html" title="Advent of Code - Day 3" /><published>2022-12-03T10:00:00+00:00</published><updated>2022-12-05T10:28:51+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-3</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-3"><![CDATA[<p><a href="https://adventofcode.com/2022/day/3" rel="noopener" target="_blank">Today’s puzzle</a> in short: There are a
-    bunch of character strings. Each letter has a number, and we need to group these strings by different criteria and sum
-    the common characters’ numbers.</p>
-  <h3 id="the-input-data">The input data</h3>
-  <p>The guys didn’t go crazy with this input for the first sight.</p>
-  <ul>
-    <li>Every line contains “random” characters from the English alphabet.</li>
-  </ul>
-  <h4 id="game-rules">Game rules</h4>
-  <ul>
-    <li>Each character has a priority number:
-      <ul>
-        <li>the lowercase characters (from <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">z</code>) have priorities 1 through 26.</li>
-        <li>the uppercase characters (from <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">Z</code>) have priorities 27 through 52.</li>
-      </ul>
-    </li>
-    <li>We have to deal with groups of strings, and the character that is common in every string within a group gives the groups
-      priority.</li>
-    <li>We have to count all the groups’ priorities.</li>
-  </ul>
-  <h3 id="part-one">Part one</h3>
-  <p>In the first task we have to split every line of string into two equal parts, and they will form a group.</p>
-  <p>The first thing we need to realize here is the priority numbers are not the same way added to the characters as they
-    present in the ASCII table. Because the character codes are the following:</p>
-  <ul>
-    <li>Characters from <code class="language-plaintext highlighter-rouge">A</code> trough <code class="language-plaintext highlighter-rouge">Z</code> are between <code class="language-plaintext highlighter-rouge">65</code> and <code class="language-plaintext highlighter-rouge">90</code>.</li>
-    <li>Characters from <code class="language-plaintext highlighter-rouge">a</code> trough <code class="language-plaintext highlighter-rouge">z</code> are between <code class="language-plaintext highlighter-rouge">97</code> and <code class="language-plaintext highlighter-rouge">122</code>.</li>
-  </ul>
-  <p>In PHP, you can easily get this value from the character set’s mapping table with the 
-    <a href="https://www.php.net/manual/en/function.ord.php" rel="noopener" target="_blank">ord()</a> function.</p>
-  <p>The second thing is - like in most programming languages - the string are not really equal to an array of characters, so
-    we need to convert each string to arrays of characters.</p>
-  <p>So the code will be like this:</p>
-  <div class="language-php highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="nv">$sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="k">const</span> <span class="no">PRIORITY_DIFF_LOWERCASE</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">97</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="no">PRIORITY_DIFF_UPPERCASE</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">65</span> <span class="o">+</span> <span class="mi">27</span><span class="p">);</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-        <span class="nv">$characters</span> <span class="o">=</span> <span class="nb">str_split</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-        <span class="p">[</span><span class="nv">$compartment1</span><span class="p">,</span> <span class="nv">$compartment2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">array_chunk</span><span class="p">(</span><span class="nv">$characters</span><span class="p">,</span> <span class="nb">floor</span><span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$characters</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">));</span>
-        <span class="nv">$commonItem</span> <span class="o">=</span> <span class="nb">current</span><span class="p">(</span><span class="nb">array_unique</span><span class="p">(</span><span class="nb">array_intersect</span><span class="p">(</span><span class="nv">$compartment1</span><span class="p">,</span> <span class="nv">$compartment2</span><span class="p">)));</span>
-        <span class="nv">$priorityDiff</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="nv">$commonItem</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)</span>
-            <span class="o">?</span> <span class="no">PRIORITY_DIFF_LOWERCASE</span>
-            <span class="o">:</span> <span class="no">PRIORITY_DIFF_UPPERCASE</span><span class="p">;</span>
-
-        <span class="nv">$sum</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="nv">$commonItem</span><span class="p">)</span> <span class="o">+</span> <span class="nv">$priorityDiff</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
-<span class="p">}</span>
-
-
-<span class="k">echo</span> <span class="nv">$sum</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-</pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>As you can see the big “trick” here is we use the character code as a starting pont and with a simple addition (subtraction),
-  we get the right priority number without having to store them in an array. And as I mentioned earlier, the best way to 
-  solve this puzzle to convert the strings into arrays of characters (doing it with the <code class="language-plaintext highlighter-rouge">str_split()</code>), and then with the
-  <code class="language-plaintext highlighter-rouge">array_intersect()</code> we can easily get all the common elements of the arrays.</p>
-<p>Since we know that the input data has been delivered with care, we don’t need to be super strict with checks:</p>
-<ul>
-  <li>We assume that each line has an even number of characters, so we can split with no issue.</li>
-  <li>We assume that grouping will result one and only one common character, so we get the right result when we pick the 
-    first item from the returning array of the <code class="language-plaintext highlighter-rouge">array_intersect()</code> function.</li>
-  <li>We assume there are no tricks with “out of range” (like random UTF-8) characters.</li>
-</ul>
-<h3 id="part-two">Part two</h3>
-<p>In this task the only thing changed is the way we make the groups. Instead of splitting each row, now we collect 3 rows
-  into a group. Then the rest of the logic is more-or-less the same:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="nv">$sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="nv">$backpacks</span> <span class="o">=</span> <span class="p">[];</span>
-
-<span class="k">const</span> <span class="no">PRIORITY_DIFF_LOWERCASE</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">97</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-<span class="k">const</span> <span class="no">PRIORITY_DIFF_UPPERCASE</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">65</span> <span class="o">+</span> <span class="mi">27</span><span class="p">);</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-        <span class="nv">$backpacks</span><span class="p">[]</span> <span class="o">=</span> <span class="nb">str_split</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$backpacks</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="nv">$commonItem</span> <span class="o">=</span> <span class="nb">current</span><span class="p">(</span><span class="nb">array_unique</span><span class="p">(</span><span class="nb">array_intersect</span><span class="p">(</span><span class="nv">$backpacks</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nv">$backpacks</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nv">$backpacks</span><span class="p">[</span><span class="mi">2</span><span class="p">])));</span>
-        <span class="nv">$priorityDiff</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="nv">$commonItem</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)</span>
-            <span class="o">?</span> <span class="no">PRIORITY_DIFF_LOWERCASE</span>
-            <span class="o">:</span> <span class="no">PRIORITY_DIFF_UPPERCASE</span><span class="p">;</span>
-
-        <span class="nv">$sum</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="nv">$commonItem</span><span class="p">)</span> <span class="o">+</span> <span class="nv">$priorityDiff</span><span class="p">);</span>
-        <span class="nv">$backpacks</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="p">}</span>
-    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
-<span class="p">}</span>
-
-
-<span class="k">echo</span> <span class="nv">$sum</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[A nice finger practice to count characters.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[Who like to clean the house when it was already cleaned up. Today we go the lazy way: we need to find out how to reduce redundant work.]]></summary></entry></feed>
