@@ -30,8 +30,8 @@ This time the input data is pretty complex: simulates drawing horizontal and ver
 
 * Each line contains chained coordinates:
   * X and Y coordinates are separated by comma,
-  * positions are separated by ` -> `.
-* Between coordinates the ` -> ` represents a vector (movement), so the coordinates on its sides are start and end points 
+  * positions are separated by `->`.
+* Between coordinates the `->` represents a vector (movement), so the coordinates on its sides are start and end points 
   of a continuous line (range).
 * The coordinates are counted left to right, top to bottom.
 
