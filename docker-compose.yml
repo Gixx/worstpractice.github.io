@@ -1,5 +1,5 @@
 services:
-  alpine:
+  worst-practice:
     container_name: 'worst-practice'
     build:
       context: .
