@@ -1,0 +1,700 @@
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Develop PHP on WSL2 in 2023&nbsp;-&nbsp;Worst Practice
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="generator" content="jekyll 3.8.5">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="web">
+    <meta name="copyright" content="Copyright © 2022 All rights reserved. Worst Practice.">
+    <meta name="description" content="
+">
+    <meta name="subject" content="">
+    <meta name="keywords" content="">
+    <!-- facebook share -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Worst Practice">
+    <meta property="og:title" content="Develop PHP on WSL2 in 2023&nbsp;-&nbsp;Worst Practice
+">
+    <meta property="og:url" content="https://www.worstpractice.dev/devenv/develop-php-on-wsl2-in-2023">
+    <meta name="date" content="2023-01-31T17:00:00+00:00">
+    <meta property="og:image" content="https://www.worstpractice.dev/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/fishing.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:description" content="Three years after my previous article on the subject, it&#39;s time to look at how different the process is now.">
+    <meta property="fb:admins" content="ivan.gabor.80">
+    <meta property="fb:app_id" content="2178081495757871">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="https://www.facebook.com/ivan.gabor.80">
+    <meta property="article:published_time" content="2023-01-31T17:00:00+00:00">
+    <meta property="article:tag" content="blog"/>
+    <!-- twitter share -->
+    <meta name="twitter:title" content="Develop PHP on WSL2 in 2023">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@gaborivan1980">
+    <meta name="twitter:description" content="Three years after my previous article on the subject, it&#39;s time to look at how different the process is now.">
+    <meta name="twitter:image" content="https://www.worstpractice.dev/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/fishing_600x600.jpg">
+    <link rel="canonical" href="https://www.worstpractice.dev">
+    <link rel="alternate" type="application/rss+xml" title="Develop PHP on WSL2 in 2023&nbsp;-&nbsp;Worst Practice
+" href="/feed.xml">
+    <link rel="alternate" hreflang="en" href="https://www.worstpractice.dev/devenv/develop-php-on-wsl2-in-2023">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icons/android-chrome-192x192.png">
+    <link rel="manifest" href="/assets/img/icons/site.webmanifest">
+    <link rel="mask-icon" href="/assets/img/icons/safari-pinned-tab.svg" color="#C23F2F">
+    <link rel="shortcut icon" href="/assets/img/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#C23F2F">
+    <meta name="msapplication-TileImage" content="/assets/img/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/assets/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#C23F2F">
+    <meta name="application-name" content="Worst Practice Blog">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#C23F2F">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300,300i,400,400i,700,700i">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <script type="application/javascript" src="/assets/js/feature.min.js"></script>
+    <script type="application/javascript">
+      if (!feature.srcset) {
+          window.location.href = '/sorry.html';
+      }
+    </script>
+    <script type="application/javascript" src="/assets/js/site.min.js"></script>
+  </head>
+  <body>
+    <header class="h-header">
+      <h1 class="h-header__title"><a href="/">Worst Practice</a></h1>
+    </header>
+    <div class="codeOfTheDay">
+      <input class="codeOfTheDay__toggle" type="checkbox">
+      <div class="codeOfTheDay__content"></div>
+      <div class="codeOfTheDay__monitor"></div>
+      <div class="codeOfTheDay__backdrop"></div>
+    </div>
+    <div class="m-menu">
+      <div class="m-menu__burger">
+        <span></span>
+      </div>
+      <input class="m-menu__toggle" type="checkbox" />
+      <div class="m-menu__content">
+        <nav>
+          <h2 class="m-menu__title">Worst Practice</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -home" href="/">Home</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Categories</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -devenv -current" href="/devenv">Development Environment</a></li>
+            <li><a class="m-menu__link -general" href="/general">General</a></li>
+            <li><a class="m-menu__link -backend" href="/backend">Backend</a></li>
+            <li><a class="m-menu__link -frontend" href="/frontend">Frontend</a></li>
+            <li><a class="m-menu__link -general
+" href="/general
+">General</a></li>
+          </ul>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Tags</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link -php" rel="tag" href="/tags/php/">PHP <sup>20</sup></a></li>
+            <li><a class="m-menu__link -advent" rel="tag" href="/tags/advent/">Advent <sup>15</sup></a></li>
+            <li><a class="m-menu__link -php74" rel="tag" href="/tags/php74/">PHP 7.4 <sup>4</sup></a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/tags/">More</a>
+        </nav>
+        <nav>
+          <h2 class="m-menu__title">Archive</h2>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/archive/2023-01/">January, 2023</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-12/">December, 2022</a></li>
+            <li><a class="m-menu__link " href="/archive/2022-11/">November, 2022</a></li>
+          </ul>
+          <a class="m-menu__link -more" href="/archive/">More</a>
+        </nav>
+        <nav>
+          <ul class="m-menu__navigation">
+            <li><a class="m-menu__link " href="/imprint.html">Imprint</a></li>
+            <li><a class="m-menu__link " href="/terms.html">Terms of Use</a></li>
+            <li><a class="m-menu__link " href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="m-menu__backdrop"></div>
+    </div>
+    <main class="c-content">
+      <section class="c-content__article">
+        <article class="a-article">
+          <header class="a-header">
+            <h2 class="a-header__title">Develop PHP on WSL2 in 2023</h2>
+            <div class="a-header__meta">
+              <p class="a-meta__date">Posted on January&nbsp;31, 2023 @ 17:00
+              </p>
+              <p class="a-meta__category">Posted under the <a href="/devenv/index.html">Development Environment</a> category</p>
+              <p class="a-meta__level">Level: Beginner</p>
+              <p class="a-meta__tags">Posted with the following tags:
+                <a href="/tags/docker/index.html">#Docker</a>, 
+                <a href="/tags/wsl2/index.html">#WSL2</a>, 
+                <a href="/tags/powerline-shell/index.html">#Powerline Shell</a>, 
+                <a href="/tags/phpstorm/index.html">#PHPStorm</a>, 
+                <a href="/tags/windows/index.html">#Windows</a>
+              </p>
+            </div>
+          </header>
+          <p class="a-excerpt">
+            Three years after my previous article on the subject, it's time to look at how different the process is now.
+          </p>
+          <figure class="a-illustration">
+            <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/fishing.jpg" alt="Develop PHP on WSL2 in 2023">
+            <figcaption class="a-illustration__caption"></figcaption>
+          </figure>
+          <div class="a-body">
+            <h3 id="three-years">Three years</h3>
+            <p>In the last three years many things changed:</p>
+            <ul>
+              <li>The WSL2 went production.</li>
+              <li>The Windows OS got a new version (11), and it has an amazing WSL2 support.</li>
+              <li>The Docker also shipped a better WSL integration.</li>
+              <li>The PHPStorm IDE with the latest update made it easy and fun to work with WSL and Docker.</li>
+              <li>Microsoft released the Windows Terminal, and it’s a must-have jack of all trades terminal emulator.</li>
+            </ul>
+            <h3 id="a-clean-start">A clean start</h3>
+            <p>I prefer to do a clean installation to avoid all the trash we piled up during our previous experiments. But that’s the
+              most optimistic way.</p>
+            <h4 id="windows">Windows</h4>
+            <p>Although it’s possible to use WSL2 on Windows 10, I would say if you can, please upgrade to Windows 11. It’s worth, 
+              because of the much better integration and feature-support. So preferably you have a clean installation of Windows 11 
+              (Build 22000 or higher). Use the <code class="language-plaintext highlighter-rouge">winver</code> command in <code class="language-plaintext highlighter-rouge">cmd.exe</code> to check yours.</p>
+            <h3 id="applications">Applications</h3>
+            <p>Against all the requirements of different official and non-official websites, you don’t need to install <code class="language-plaintext highlighter-rouge">git</code>, <code class="language-plaintext highlighter-rouge">php</code>, 
+              <code class="language-plaintext highlighter-rouge">ruby</code> and most of the other development stuffs onto Windows. You will use them from inside WSL.</p>
+            <h4 id="wsl2">WSL2</h4>
+            <p>You can also install it from <code class="language-plaintext highlighter-rouge">Windows PowerShell</code>, but I would recommend to install it from the 
+              <a href="https://aka.ms/wslstorepage">Microsoft Store</a>, because there - for some unknown reasons - they ship new features faster
+              than into the command line repository. One such painfully missed new and awesome feature is the <code class="language-plaintext highlighter-rouge">systemd</code> support.</p>
+            <p>When you install it, and choose the Linux distribution to use, I recommend to use Ubuntu. The only reason is it has an
+              insane level of support, and as I experienced, most of the know-hows and issue solving topics on <a href="https://www.stackoverflow.com">Stackoverflow</a>
+              in the <code class="language-plaintext highlighter-rouge">Linux</code> subject are belong to Ubuntu.</p>
+            <p>Whenever the process asks you for a username and password to give, don’t go crazy, it’s a sandbox playground, you won’t
+              host it as a webserver (hopefully). So just take it easy and give something easy to type. I gave my name <code class="language-plaintext highlighter-rouge">gabor</code>, but 
+              you can do anything, for example <code class="language-plaintext highlighter-rouge">dev</code> as I did it three years ago. Give username and password the same. Not super secure,
+              but only you will use it.</p>
+            <h4 id="docker-desktop">Docker Desktop</h4>
+            <p>Lately, there are <a href="https://nickjanetakis.com/blog/install-docker-in-wsl-2-without-docker-desktop">initiatives</a> to keep 
+              Docker within WSL. Personally I am great supporter of this idea, but right now it seems to be very hacky. I would wait
+              until it’s officially supported, so for now, please install the infamously big and resource-hungry
+              <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a>.</p>
+            <h4 id="windows-terminal">Windows Terminal</h4>
+            <p>First there was the <code class="language-plaintext highlighter-rouge">CMD.EXE</code>. Later we got the <code class="language-plaintext highlighter-rouge">Windows PowerShell</code>. But to be honest, anybody, who took a bit seriously 
+              the web development, never used these, and installed alternative command line emulators instead. But now, we have the
+              <a href="https://aka.ms/terminal">Windows Terminal</a> that can integrate any other terminals. By default, the <code class="language-plaintext highlighter-rouge">CMD</code> and <code class="language-plaintext highlighter-rouge">PowerShell</code>
+              are there, but after installing the <code class="language-plaintext highlighter-rouge">WSL</code> you will automatically get the “Ubuntu” option from the dropdown list. And this
+              is exactly what we need.</p>
+            <h4 id="phpstorm">PHPStorm</h4>
+            <p>There is a big group in the developer community who take their vote on the <a href="https://code.visualstudio.com/Download">VSCode</a>.
+              Personally I didn’t find it to fit my expectations after using PHPStorm for a decade. “<em>But VSCode is free</em>” - that’s what
+              they used to say. Yes, it’s true. On the other hand you can get PHPStorm for free too (4 3 2, HAHAHA!), if you apply for the
+              <a href="https://www.jetbrains.com/community/opensource/#support">Open Source License</a>. But if you don’t qualify for this license,
+              that <a href="https://www.jetbrains.com/phpstorm/buy/#personal?billing=monthly">10$/month</a> won’t make anybody homeless. I bet you
+              pay more on video streaming, don’t you?</p>
+            <h3 id="fine-tune">Fine tune</h3>
+            <p>After you have all the necessary applications, let’s make them work together.</p>
+            <h4 id="docker-desktop-1">Docker Desktop</h4>
+            <p>First, take the Docker Desktop and make it available for the WSL2. To do that, open the application, and on the top
+              right (next to the “Sign in”/Profile) click on the cogwheel to get to the <code class="language-plaintext highlighter-rouge">Settings</code>. There, click on the <code class="language-plaintext highlighter-rouge">Resources</code> and
+              the <code class="language-plaintext highlighter-rouge">WSL Integration</code> options. Enable the WSL integration and choose the Linux distro you have (Ubuntu).</p>
+            <figure class="a-illustration">
+              <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/docker-1.png" width="700" />
+              <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
+            </figure>
+            <h4 id="windows-terminal-1">Windows Terminal</h4>
+            <p>When you first open the Windows Terminal, you will get the <code class="language-plaintext highlighter-rouge">CMD</code> as default terminal. Next to the actual tab, there’s a 
+              dropdown menu, where you can open other terminals. Choose <code class="language-plaintext highlighter-rouge">Ubuntu</code> to get to the WSL. if it’s the first time opening the
+              WSL terminal, it may take some time as it has to boot up. But it’s fast.</p>
+            <p>Personally I’d like to store my Projects in a separate place, so I recommend to do the following:</p>
+            <div class="language-bash highlighter-rouge">
+              <div class="highlight">
+                <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+              </td>
+              <td class="rouge-code">
+                <pre><span class="nb">cd
+mkdir </span>Projects
+</pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </code></pre>
+  </div>
+</div>
+<p>Now, from the terminal’s dropdown menu, select the <code class="language-plaintext highlighter-rouge">Settings</code>, and in the <code class="language-plaintext highlighter-rouge">Startup</code> menu, change the default profile to <code class="language-plaintext highlighter-rouge">Ubuntu</code>.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/terminal-1.png" width="700" />
+  <figcaption class="a-illustration__caption">Change default profile</figcaption>
+</figure>
+<p>You can customize your Ubuntu profile as much as you want, this application is very flexible, so give a virtual hug
+  to whatever Microsoft team developed this. One big plus is you can set your default starting directory. I set it to my
+  <code class="language-plaintext highlighter-rouge">Projects</code> folder, so whenever I open the Windows Terminal, I will get into the WSL and into my work folder. What other
+  reason would I have to open it, no?</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/terminal-2.png" width="700" />
+  <figcaption class="a-illustration__caption">Change startup directory</figcaption>
+</figure>
+<p>You can change the theme as well, my personal favourite is the <code class="language-plaintext highlighter-rouge">Solarized Dark</code> with the <a href="https://www.nerdfonts.com/font-downloads">Meslo Nerd Font</a>.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/terminal-3.png" width="700" />
+  <figcaption class="a-illustration__caption">Change theme and font</figcaption>
+</figure>
+<h4 id="wsl">WSL</h4>
+<p>Well, this is a bigger leap. The base state of the WSL (Ubuntu) is just a fresh clean installation, nothing is customized 
+  there. So the first thing to do is update:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
+<span class="nb">sudo </span>apt-get <span class="nt">-y</span> dist-upgrade
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-some-packages-you-may-need">Install some packages you may need</h5>
+<p>There are some commonly used packages which are not necessarily shipped with the WSL’s Ubuntu by default. So just to
+  make sure everything will work as expected, do a safety check and run this command:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>apt-get <span class="nt">-y</span> <span class="nb">install </span>git unzip zsh curl build-essential <span class="se">\</span>
+ca-certificates sqlite3 software-properties-common <span class="se">\</span>
+lsb-release apt-transport-https python3 python3-pip
+
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>dbg
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-oh-my-zsh">Install Oh my zsh</h5>
+<p>Yes, <code class="language-plaintext highlighter-rouge">sh</code> is good, <code class="language-plaintext highlighter-rouge">bash</code> is better, but if you want an all-inclusive experience, I recommend to install the <code class="language-plaintext highlighter-rouge">Oh my zsh</code>
+  shell. It has some benefits that will come in handy.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>sh <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="si">)</span><span class="s2">"</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-the-powerlevel10k-theme">Install the Powerlevel10k theme</h5>
+<p>Open the WSL and run the following commands:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>git clone <span class="nt">--depth</span><span class="o">=</span>1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+<span class="nb">echo</span> <span class="s1">'source ~/powerlevel10k/powerlevel10k.zsh-theme'</span> <span class="o">&gt;&gt;</span>~/.zshrc
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now open the <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file in any editor you prefer and make sure the following line is set:</p>
+<div class="language-ini highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="py">ZSH_THEME</span><span class="p">=</span><span class="s">"powerlevel10k/powerlevel10k"</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>If it’s there, it’s time to do some customization. Run the following command:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>p10k configure
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This will guide you through some setup questions.</p>
+<p>After finishing the setup, if you find the prompt too long, for example you see your username, or you are deep in the 
+  directory tree and the prompt gets overflow, you can still fix it.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/wsl-2.png" width="700" />
+  <figcaption class="a-illustration__caption">Prompt before</figcaption>
+</figure>
+<p>Open again the <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file with an editor and add the following:</p>
+<div class="language-ini highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="err">prompt_context()</span> <span class="err">{}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This will wipe out the unnecessary user information from the prompt. Now open the <code class="language-plaintext highlighter-rouge">~/.p10k.zsh file</code> and look for the 
+  following settings and change their values:</p>
+<div class="language-ini highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="py">POWERLEVEL9K_SHORTEN_STRATEGY</span><span class="p">=</span><span class="s">default</span>
+<span class="py">POWERLEVEL9K_SHORTEN_DELIMITER</span><span class="p">=</span><span class="s">'\u2026'</span>
+<span class="py">POWERLEVEL9K_SHORTEN_DIR_LENGTH</span><span class="p">=</span><span class="s">2</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Save the files, then close and reopen the terminal to apply the changes:</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/wsl-3.png" width="700" />
+  <figcaption class="a-illustration__caption">Prompt after</figcaption>
+</figure>
+<h5 id="install-the-latest-nodejs">Install the latest NodeJS</h5>
+<p>If you ask yourself, “Why do I have to install anything into WSL, when I will use Docker?”, you are more or less right.
+  The answer is simple: Because there are some cases when it’s better to have it locally. Especially when you work with an
+  IDE like the PHPStorm which has a bunch of inspection tools running in the background.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+nvm <span class="nb">install </span>node
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>If the <code class="language-plaintext highlighter-rouge">nvm install node</code> command fails, you need to close and reopen the terminal window and try again.</p>
+<p><strong>NOTE:</strong> after the NodeJS installation the poweline10k prompt may start to show the node/nvm/npm version. If it disturbs you,
+  you can remove it by editing the <code class="language-plaintext highlighter-rouge">~/.p10k.zsh</code> file and look for the <code class="language-plaintext highlighter-rouge">POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS</code> setting. Just
+  comment out or delete everything you don’t need there.</p>
+<p>Verify the installation with:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>nvm <span class="nt">--version</span>
+node <span class="nt">--version</span>
+npm <span class="nt">--version</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-php-with-some-packages">Install PHP with some packages</h5>
+<p>PHP alone may come in handy any time, so it has a better reason to install it into the WSL than the NodeJS had. To
+  do so, just run the following:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>add-apt-repository ppa:ondrej/php <span class="c"># Press enter when prompted.</span>
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> php8.2
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> php8.2-<span class="o">{</span>bcmath,bz2,cgi,cli,common,curl,fpm,fpm-dbgsym,gd,intl,ldap,mbstring,mysql,opcache,pdo,pgsql,soap,sqlite3,xdebug,xml,zip<span class="o">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Verify the installation with:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>php <span class="nt">-v</span>
+php <span class="nt">-m</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="switch-between-installed-php-versions">Switch between installed PHP versions</h5>
+<p>You may end up with multiple PHP installations on your WSL. If you don’t see the version that you need, you can
+  check and switch between the installed versions with the following command.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> php
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-composer-with-some-packages">Install Composer with some packages</h5>
+<p>It’s also a good idea to install the <code class="language-plaintext highlighter-rouge">Composer</code> globally on WSL along with some code quality packages, so PHPStorm can
+  easily use them.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>curl <span class="nt">-sS</span> https://getcomposer.org/installer <span class="nt">-o</span> /tmp/composer-setup.php
+<span class="nv">HASH</span><span class="o">=</span><span class="sb">`</span>curl <span class="nt">-sS</span> https://composer.github.io/installer.sig<span class="sb">`</span>
+php <span class="nt">-r</span> <span class="s2">"if (hash_file('SHA384', '/tmp/composer-setup.php') === '</span><span class="nv">$HASH</span><span class="s2">') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</span>
+<span class="nb">sudo </span>php /tmp/composer-setup.php <span class="nt">--install-dir</span><span class="o">=</span>/usr/local/bin <span class="nt">--filename</span><span class="o">=</span>composer
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Verify the installation with:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>composer <span class="nt">-V</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now it’s time to add the quality tools:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"squizlabs/php_codesniffer"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"friendsofphp/php-cs-fixer"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"phpmd/phpmd"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"phpstan/phpstan"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"vimeo/psalm"</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h4 id="phpstorm-1">PHPStorm</h4>
+<p>After we installed all the necessary tools onto WSL, we can easily configure our beloved IDE.</p>
+<h5 id="set-up-the-default-php-interpreter">Set up the default PHP Interpreter</h5>
+<p>Because of my work, I have only PHP 8.1 installed on my computer, so some screenshots may confuse you. But the same 
+  works for PHP 8.2 too. Now this is what you need to do:</p>
+<ol>
+  <li>Open up the PHPStorm settings.</li>
+  <li>Choose the PHP option, and then on the other end of the <code class="language-plaintext highlighter-rouge">CLI Interpreter</code> part press the <code class="language-plaintext highlighter-rouge">...</code> button.</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">+</code> button and choose the <code class="language-plaintext highlighter-rouge">From Docker, Vagrant, VM, WSL, Remote...</code> option.</li>
+  <li>Select the WSL option, and from the dropdown, select <code class="language-plaintext highlighter-rouge">Ubuntu</code>, then press <code class="language-plaintext highlighter-rouge">OK</code>.</li>
+  <li>Set a name, that you can identify.</li>
+  <li>Uncheck the <code class="language-plaintext highlighter-rouge">Visible only for this project</code> option, since this will be the default interpreter.</li>
+  <li>In the <code class="language-plaintext highlighter-rouge">General</code> field you should see the PHP and Xdebug versions that you installed on the WSL</li>
+</ol>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/phpstorm-1.png" width="700" />
+  <figcaption class="a-illustration__caption">The PHP Interpreter</figcaption>
+</figure>
+<h5 id="set-up-the-composer">Set up the composer</h5>
+<p>The next step is to set the composer. Of course, we will set the WSL’s global composer package manager that we installed
+  earlier. The setup is easy: just pop up the <code class="language-plaintext highlighter-rouge">Settings &gt; PHP &gt; Composer</code> and on the <code class="language-plaintext highlighter-rouge">Execution</code> fieldset choose the 
+  <code class="language-plaintext highlighter-rouge">Remote Interpreter</code> option, then from the <code class="language-plaintext highlighter-rouge">CLI Interpreter</code> dropdown choose the previously created WSL interpreter.
+  When for some reason it wouldn’t list it (happened once to me), you can still click on the <code class="language-plaintext highlighter-rouge">...</code> button to configure it.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/phpstorm-2.png" width="700" />
+  <figcaption class="a-illustration__caption">The PHP Interpreter</figcaption>
+</figure>
+<h5 id="set-up-the-code-quality-tools">Set up the code quality tools</h5>
+<p>There are many settings in PHPStorm that can be set to be visible only for the actual project. Well, the quality tools 
+  are global settings, so if you set it specifically for one project, then it may (and most likely) not work for the other.
+  Especially when you use remote/docker interpreter for them.</p>
+<p>It can be also tricky to set remote interpreter (e.g. Docker) for them, because the IDE will periodically <em>ping</em> these 
+  tools to perform the quality check and if you are happen to be in the middle of an XDebug session in the same Docker 
+  machine, you can end up in a deadlock situation.</p>
+<p>As once, I reported it to my colleagues:</p>
+<blockquote>
+  In PHPStorm end any active debug session and turn off the XDebug listener before opening the Settings window. 
+  Edge case: if you land on an option that was set to use/listen/track the remote interpreter (the docker container) 
+  it may start checking the setup on the remote interpreter which is blocked by the active debug session, so the 
+  settings window is blocked from any further action. You won't be able to close the settings window to turn off the 
+  listener.
+</blockquote>
+<p>So if you go to <code class="language-plaintext highlighter-rouge">Settings &gt; PHP &gt; Quality tools</code> you will see the following tools listed:</p>
+<ul>
+  <li>PHP_CodeSniffer</li>
+  <li>PHP Mess Detector</li>
+  <li>PHP CS Fixer</li>
+  <li>Psalm</li>
+  <li>PHPStan</li>
+</ul>
+<p>These are not listed because we installed the corresponding composer packages. In fact, we installed these composer packages,
+  because these settings are listed by default in PHPStorm.</p>
+<p>Now we are in the right place, we have to do a bit of repetitive action, but we have to do it only once, and not for 
+  every project:</p>
+<ol>
+  <li>Fold out the given tool’s options.</li>
+  <li>Turn it <code class="language-plaintext highlighter-rouge">[On]</code>.</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">...</code> next to the <code class="language-plaintext highlighter-rouge">Configuration</code>.</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">+</code> button and choose our WSL interpreter from the popup dropdown.</li>
+  <li>Close the popup and press the <code class="language-plaintext highlighter-rouge">Verify</code> button to… well… obviously verify</li>
+</ol>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/phpstorm-3.png" width="700" />
+  <figcaption class="a-illustration__caption">The PHP Interpreter</figcaption>
+</figure>
+<p>When you finished with all the tools, the checks will continuously bother you whenever you wrote not a spotless and modern
+  code. Good luck with it!</p>
+<p>But with this setup you can start working with PHP and WSL easier than ever before.</p>
+</div>
+<footer class="a-footer">
+  <h3 class="a-footer__title">About the author</h3>
+  <a class="a-footer__avatar" href="/author/gabor.ivan/index.html"><img src="/author/gabor.ivan/avatar.jpg" alt="Gábor Iván"></a>
+  <p class="a-footer__author">
+    Hi, my name is Gábor Iván. I am an old-school Full stack developer, which means I deal with Backend (PHP), Frontend (HTML, CSS, JS), and a little bit of Webdesign. No DevOPS, sorry.
+    <br>
+    <a href="/author/gabor.ivan/index.html">Read the full story</a>
+  </p>
+</footer>
+</article>
+<aside class="a-comments">
+  <header class="a-comments__title">
+    <h4>It's time to judge me!</h4>
+  </header>
+  <div id="general">
+    There's no embedded tool to judge me in public. But don't worry, you can
+    <a class="mailto" href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#119;&#111;&#114;&#115;&#116;&#46;&#112;&#114;&#97;&#99;&#116;&#105;&#99;&#101;&#46;&#98;&#108;&#111;&#103;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;?subject=Judgement on `Develop PHP on WSL2 in 2023`" target="_blank" rel="noopener" rel="noopener noreferrer">write me</a>
+    your opinions/ideas/suggestions in email. Please don't forget to reference the page in the message.
+  </div>
+</aside>
+</section>
+</main>
+<footer class="f-footer">
+  <p class="f-footer__copyright">
+    <small>Copyright © 2023 All rights reserved. Worst Practice</small>
+  </p>
+</footer>
+</body>
+</html>

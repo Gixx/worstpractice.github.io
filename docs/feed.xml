@@ -1,27 +1,530 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-01-31T20:33:16+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">I give up the Advent of Code</title><link href="http://0.0.0.0:4000/general/holiday" rel="alternate" type="text/html" title="I give up the Advent of Code" /><published>2022-12-19T08:00:00+00:00</published><updated>2023-01-31T11:35:11+00:00</updated><id>http://0.0.0.0:4000/general/holiday</id><content type="html" xml:base="http://0.0.0.0:4000/general/holiday"><![CDATA[<h3 id="sad-but-true">Sad but true</h3>
-      <p>In the last days (December 16 - 17) I was struggling to solve the tasks of the AoC. They seem to be more difficult than 
-        I can solve them with an average web developer knowledge.</p>
-      <p>Yes, they are only algorithms. Yes, I could figure out the 16th, and the 17th algorithm, and I also wrote it and solved 
-        the first part fluently. My solution proved that it works with the second task as well, but only on the example data.</p>
-      <p>Unfortunately my solutions were so hungry for resources, that they couldn’t deal with the part two of the puzzle with 
-        the real input.</p>
-      <p>Now I feel depressed and disappointed again. But this was the first time, I tried this challenge and I could solve more
-        than the half of it. So in the end of the day, I still can be a bit proud of myself. Maybe, there would be some puzzles 
-        in the rest of the days that I could still solve, but this game should be done for fun and relaxation, and not to be
-        nervous and depressed. I already sacrificed two full Saturdays in a row for this challenge, and that’s too much price.</p>
-      <p>So I think it’s really time to stop here and now. It’s Christmastime, and I must not prefer this coding game over my
-        family.</p>
-      <p>I will spend the rest of the year with relaxation - hopefully.</p>
-      <h3 id="the-hints">The hints</h3>
-      <p>Probably you could find much better solutions than my PHP codes. But hey, it’s the Worst Practice!</p>
-      <h4 id="16th-of-december">16th of December</h4>
-      <p>This task truly fucked my brain through the North Korean border. I have never had to deal with graphs, maybe once on the 
-        university twenty-something years ago. So first I had to search the internet which way should I start. This is how I 
-        found the <a rel="noopener" target="_blank" href="https://www.programmingalgorithms.com/algorithm/floyd%E2%80%93warshall-algorithm/php/">Floyd Warshall algorithm</a>.</p>
-      <p>So I had to build up the graph, then make a distance graph for it, then walk the whole thing:</p>
-      <div class="language-php highlighter-rouge">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-02-24T15:37:47+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Worst Practice</title><subtitle></subtitle><author><name>Gábor Iván</name></author><entry><title type="html">Develop PHP on WSL2 in 2023</title><link href="http://0.0.0.0:4000/devenv/develop-php-on-wsl2-in-2023" rel="alternate" type="text/html" title="Develop PHP on WSL2 in 2023" /><published>2023-01-31T17:00:00+00:00</published><updated>2023-02-24T15:37:47+00:00</updated><id>http://0.0.0.0:4000/devenv/develop-php-on-wsl2-in-2023</id><content type="html" xml:base="http://0.0.0.0:4000/devenv/develop-php-on-wsl2-in-2023"><![CDATA[<h3 id="three-years">Three years</h3>
+      <p>In the last three years many things changed:</p>
+      <ul>
+        <li>The WSL2 went production.</li>
+        <li>The Windows OS got a new version (11), and it has an amazing WSL2 support.</li>
+        <li>The Docker also shipped a better WSL integration.</li>
+        <li>The PHPStorm IDE with the latest update made it easy and fun to work with WSL and Docker.</li>
+        <li>Microsoft released the Windows Terminal, and it’s a must-have jack of all trades terminal emulator.</li>
+      </ul>
+      <h3 id="a-clean-start">A clean start</h3>
+      <p>I prefer to do a clean installation to avoid all the trash we piled up during our previous experiments. But that’s the
+        most optimistic way.</p>
+      <h4 id="windows">Windows</h4>
+      <p>Although it’s possible to use WSL2 on Windows 10, I would say if you can, please upgrade to Windows 11. It’s worth, 
+        because of the much better integration and feature-support. So preferably you have a clean installation of Windows 11 
+        (Build 22000 or higher). Use the <code class="language-plaintext highlighter-rouge">winver</code> command in <code class="language-plaintext highlighter-rouge">cmd.exe</code> to check yours.</p>
+      <h3 id="applications">Applications</h3>
+      <p>Against all the requirements of different official and non-official websites, you don’t need to install <code class="language-plaintext highlighter-rouge">git</code>, <code class="language-plaintext highlighter-rouge">php</code>, 
+        <code class="language-plaintext highlighter-rouge">ruby</code> and most of the other development stuffs onto Windows. You will use them from inside WSL.</p>
+      <h4 id="wsl2">WSL2</h4>
+      <p>You can also install it from <code class="language-plaintext highlighter-rouge">Windows PowerShell</code>, but I would recommend to install it from the 
+        <a href="https://aka.ms/wslstorepage">Microsoft Store</a>, because there - for some unknown reasons - they ship new features faster
+        than into the command line repository. One such painfully missed new and awesome feature is the <code class="language-plaintext highlighter-rouge">systemd</code> support.</p>
+      <p>When you install it, and choose the Linux distribution to use, I recommend to use Ubuntu. The only reason is it has an
+        insane level of support, and as I experienced, most of the know-hows and issue solving topics on <a href="https://www.stackoverflow.com">Stackoverflow</a>
+        in the <code class="language-plaintext highlighter-rouge">Linux</code> subject are belong to Ubuntu.</p>
+      <p>Whenever the process asks you for a username and password to give, don’t go crazy, it’s a sandbox playground, you won’t
+        host it as a webserver (hopefully). So just take it easy and give something easy to type. I gave my name <code class="language-plaintext highlighter-rouge">gabor</code>, but 
+        you can do anything, for example <code class="language-plaintext highlighter-rouge">dev</code> as I did it three years ago. Give username and password the same. Not super secure,
+        but only you will use it.</p>
+      <h4 id="docker-desktop">Docker Desktop</h4>
+      <p>Lately, there are <a href="https://nickjanetakis.com/blog/install-docker-in-wsl-2-without-docker-desktop">initiatives</a> to keep 
+        Docker within WSL. Personally I am great supporter of this idea, but right now it seems to be very hacky. I would wait
+        until it’s officially supported, so for now, please install the infamously big and resource-hungry
+        <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a>.</p>
+      <h4 id="windows-terminal">Windows Terminal</h4>
+      <p>First there was the <code class="language-plaintext highlighter-rouge">CMD.EXE</code>. Later we got the <code class="language-plaintext highlighter-rouge">Windows PowerShell</code>. But to be honest, anybody, who took a bit seriously 
+        the web development, never used these, and installed alternative command line emulators instead. But now, we have the
+        <a href="https://aka.ms/terminal">Windows Terminal</a> that can integrate any other terminals. By default, the <code class="language-plaintext highlighter-rouge">CMD</code> and <code class="language-plaintext highlighter-rouge">PowerShell</code>
+        are there, but after installing the <code class="language-plaintext highlighter-rouge">WSL</code> you will automatically get the “Ubuntu” option from the dropdown list. And this
+        is exactly what we need.</p>
+      <h4 id="phpstorm">PHPStorm</h4>
+      <p>There is a big group in the developer community who take their vote on the <a href="https://code.visualstudio.com/Download">VSCode</a>.
+        Personally I didn’t find it to fit my expectations after using PHPStorm for a decade. “<em>But VSCode is free</em>” - that’s what
+        they used to say. Yes, it’s true. On the other hand you can get PHPStorm for free too (4 3 2, HAHAHA!), if you apply for the
+        <a href="https://www.jetbrains.com/community/opensource/#support">Open Source License</a>. But if you don’t qualify for this license,
+        that <a href="https://www.jetbrains.com/phpstorm/buy/#personal?billing=monthly">10$/month</a> won’t make anybody homeless. I bet you
+        pay more on video streaming, don’t you?</p>
+      <h3 id="fine-tune">Fine tune</h3>
+      <p>After you have all the necessary applications, let’s make them work together.</p>
+      <h4 id="docker-desktop-1">Docker Desktop</h4>
+      <p>First, take the Docker Desktop and make it available for the WSL2. To do that, open the application, and on the top
+        right (next to the “Sign in”/Profile) click on the cogwheel to get to the <code class="language-plaintext highlighter-rouge">Settings</code>. There, click on the <code class="language-plaintext highlighter-rouge">Resources</code> and
+        the <code class="language-plaintext highlighter-rouge">WSL Integration</code> options. Enable the WSL integration and choose the Linux distro you have (Ubuntu).</p>
+      <figure class="a-illustration">
+        <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/docker-1.png" width="700" />
+        <figcaption class="a-illustration__caption">Choose your WSL distribution</figcaption>
+      </figure>
+      <h4 id="windows-terminal-1">Windows Terminal</h4>
+      <p>When you first open the Windows Terminal, you will get the <code class="language-plaintext highlighter-rouge">CMD</code> as default terminal. Next to the actual tab, there’s a 
+        dropdown menu, where you can open other terminals. Choose <code class="language-plaintext highlighter-rouge">Ubuntu</code> to get to the WSL. if it’s the first time opening the
+        WSL terminal, it may take some time as it has to boot up. But it’s fast.</p>
+      <p>Personally I’d like to store my Projects in a separate place, so I recommend to do the following:</p>
+      <div class="language-bash highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+        </td>
+        <td class="rouge-code">
+          <pre><span class="nb">cd
+mkdir </span>Projects
+</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</code></pre>
+</div>
+</div>
+<p>Now, from the terminal’s dropdown menu, select the <code class="language-plaintext highlighter-rouge">Settings</code>, and in the <code class="language-plaintext highlighter-rouge">Startup</code> menu, change the default profile to <code class="language-plaintext highlighter-rouge">Ubuntu</code>.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/terminal-1.png" width="700" />
+  <figcaption class="a-illustration__caption">Change default profile</figcaption>
+</figure>
+<p>You can customize your Ubuntu profile as much as you want, this application is very flexible, so give a virtual hug
+  to whatever Microsoft team developed this. One big plus is you can set your default starting directory. I set it to my
+  <code class="language-plaintext highlighter-rouge">Projects</code> folder, so whenever I open the Windows Terminal, I will get into the WSL and into my work folder. What other
+  reason would I have to open it, no?</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/terminal-2.png" width="700" />
+  <figcaption class="a-illustration__caption">Change startup directory</figcaption>
+</figure>
+<p>You can change the theme as well, my personal favourite is the <code class="language-plaintext highlighter-rouge">Solarized Dark</code> with the <a href="https://www.nerdfonts.com/font-downloads">Meslo Nerd Font</a>.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/terminal-3.png" width="700" />
+  <figcaption class="a-illustration__caption">Change theme and font</figcaption>
+</figure>
+<h4 id="wsl">WSL</h4>
+<p>Well, this is a bigger leap. The base state of the WSL (Ubuntu) is just a fresh clean installation, nothing is customized 
+  there. So the first thing to do is update:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
+<span class="nb">sudo </span>apt-get <span class="nt">-y</span> dist-upgrade
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-some-packages-you-may-need">Install some packages you may need</h5>
+<p>There are some commonly used packages which are not necessarily shipped with the WSL’s Ubuntu by default. So just to
+  make sure everything will work as expected, do a safety check and run this command:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>apt-get <span class="nt">-y</span> <span class="nb">install </span>git unzip zsh curl build-essential <span class="se">\</span>
+ca-certificates sqlite3 software-properties-common <span class="se">\</span>
+lsb-release apt-transport-https python3 python3-pip
+
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>dbg
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-oh-my-zsh">Install Oh my zsh</h5>
+<p>Yes, <code class="language-plaintext highlighter-rouge">sh</code> is good, <code class="language-plaintext highlighter-rouge">bash</code> is better, but if you want an all-inclusive experience, I recommend to install the <code class="language-plaintext highlighter-rouge">Oh my zsh</code>
+  shell. It has some benefits that will come in handy.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>sh <span class="nt">-c</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="si">)</span><span class="s2">"</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-the-powerlevel10k-theme">Install the Powerlevel10k theme</h5>
+<p>Open the WSL and run the following commands:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>git clone <span class="nt">--depth</span><span class="o">=</span>1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+<span class="nb">echo</span> <span class="s1">'source ~/powerlevel10k/powerlevel10k.zsh-theme'</span> <span class="o">&gt;&gt;</span>~/.zshrc
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now open the <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file in any editor you prefer and make sure the following line is set:</p>
+<div class="language-ini highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="py">ZSH_THEME</span><span class="p">=</span><span class="s">"powerlevel10k/powerlevel10k"</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>If it’s there, it’s time to do some customization. Run the following command:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>p10k configure
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This will guide you through some setup questions.</p>
+<p>After finishing the setup, if you find the prompt too long, for example you see your username, or you are deep in the 
+  directory tree and the prompt gets overflow, you can still fix it.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/wsl-2.png" width="700" />
+  <figcaption class="a-illustration__caption">Prompt before</figcaption>
+</figure>
+<p>Open again the <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file with an editor and add the following:</p>
+<div class="language-ini highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="err">prompt_context()</span> <span class="err">{}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>This will wipe out the unnecessary user information from the prompt. Now open the <code class="language-plaintext highlighter-rouge">~/.p10k.zsh file</code> and look for the 
+  following settings and change their values:</p>
+<div class="language-ini highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="py">POWERLEVEL9K_SHORTEN_STRATEGY</span><span class="p">=</span><span class="s">default</span>
+<span class="py">POWERLEVEL9K_SHORTEN_DELIMITER</span><span class="p">=</span><span class="s">'\u2026'</span>
+<span class="py">POWERLEVEL9K_SHORTEN_DIR_LENGTH</span><span class="p">=</span><span class="s">2</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Save the files, then close and reopen the terminal to apply the changes:</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/wsl-3.png" width="700" />
+  <figcaption class="a-illustration__caption">Prompt after</figcaption>
+</figure>
+<h5 id="install-the-latest-nodejs">Install the latest NodeJS</h5>
+<p>If you ask yourself, “Why do I have to install anything into WSL, when I will use Docker?”, you are more or less right.
+  The answer is simple: Because there are some cases when it’s better to have it locally. Especially when you work with an
+  IDE like the PHPStorm which has a bunch of inspection tools running in the background.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash 
+nvm <span class="nb">install </span>node
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>If the <code class="language-plaintext highlighter-rouge">nvm install node</code> command fails, you need to close and reopen the terminal window and try again.</p>
+<p><strong>NOTE:</strong> after the NodeJS installation the poweline10k prompt may start to show the node/nvm/npm version. If it disturbs you,
+  you can remove it by editing the <code class="language-plaintext highlighter-rouge">~/.p10k.zsh</code> file and look for the <code class="language-plaintext highlighter-rouge">POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS</code> setting. Just
+  comment out or delete everything you don’t need there.</p>
+<p>Verify the installation with:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>nvm <span class="nt">--version</span>
+node <span class="nt">--version</span>
+npm <span class="nt">--version</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-php-with-some-packages">Install PHP with some packages</h5>
+<p>PHP alone may come in handy any time, so it has a better reason to install it into the WSL than the NodeJS had. To
+  do so, just run the following:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>add-apt-repository ppa:ondrej/php <span class="c"># Press enter when prompted.</span>
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> php8.2
+<span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> php8.2-<span class="o">{</span>bcmath,bz2,cgi,cli,common,curl,fpm,fpm-dbgsym,gd,intl,ldap,mbstring,mysql,opcache,pdo,pgsql,soap,sqlite3,xdebug,xml,zip<span class="o">}</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Verify the installation with:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>php <span class="nt">-v</span>
+php <span class="nt">-m</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="switch-between-installed-php-versions">Switch between installed PHP versions</h5>
+<p>You may end up with multiple PHP installations on your WSL. If you don’t see the version that you need, you can
+  check and switch between the installed versions with the following command.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> php
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h5 id="install-composer-with-some-packages">Install Composer with some packages</h5>
+<p>It’s also a good idea to install the <code class="language-plaintext highlighter-rouge">Composer</code> globally on WSL along with some code quality packages, so PHPStorm can
+  easily use them.</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>curl <span class="nt">-sS</span> https://getcomposer.org/installer <span class="nt">-o</span> /tmp/composer-setup.php
+<span class="nv">HASH</span><span class="o">=</span><span class="sb">`</span>curl <span class="nt">-sS</span> https://composer.github.io/installer.sig<span class="sb">`</span>
+php <span class="nt">-r</span> <span class="s2">"if (hash_file('SHA384', '/tmp/composer-setup.php') === '</span><span class="nv">$HASH</span><span class="s2">') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"</span>
+<span class="nb">sudo </span>php /tmp/composer-setup.php <span class="nt">--install-dir</span><span class="o">=</span>/usr/local/bin <span class="nt">--filename</span><span class="o">=</span>composer
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Verify the installation with:</p>
+<div class="language-bash highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre>composer <span class="nt">-V</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<p>Now it’s time to add the quality tools:</p>
+<div class="language-php highlighter-rouge">
+  <div class="highlight">
+    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre>
+  </td>
+  <td class="rouge-code">
+    <pre><span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"squizlabs/php_codesniffer"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"friendsofphp/php-cs-fixer"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"phpmd/phpmd"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"phpstan/phpstan"</span>
+<span class="n">composer</span> <span class="k">global</span> <span class="k">require</span> <span class="s2">"vimeo/psalm"</span>
+</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</code></pre>
+</div>
+</div>
+<h4 id="phpstorm-1">PHPStorm</h4>
+<p>After we installed all the necessary tools onto WSL, we can easily configure our beloved IDE.</p>
+<h5 id="set-up-the-default-php-interpreter">Set up the default PHP Interpreter</h5>
+<p>Because of my work, I have only PHP 8.1 installed on my computer, so some screenshots may confuse you. But the same 
+  works for PHP 8.2 too. Now this is what you need to do:</p>
+<ol>
+  <li>Open up the PHPStorm settings.</li>
+  <li>Choose the PHP option, and then on the other end of the <code class="language-plaintext highlighter-rouge">CLI Interpreter</code> part press the <code class="language-plaintext highlighter-rouge">...</code> button.</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">+</code> button and choose the <code class="language-plaintext highlighter-rouge">From Docker, Vagrant, VM, WSL, Remote...</code> option.</li>
+  <li>Select the WSL option, and from the dropdown, select <code class="language-plaintext highlighter-rouge">Ubuntu</code>, then press <code class="language-plaintext highlighter-rouge">OK</code>.</li>
+  <li>Set a name, that you can identify.</li>
+  <li>Uncheck the <code class="language-plaintext highlighter-rouge">Visible only for this project</code> option, since this will be the default interpreter.</li>
+  <li>In the <code class="language-plaintext highlighter-rouge">General</code> field you should see the PHP and Xdebug versions that you installed on the WSL</li>
+</ol>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/phpstorm-1.png" width="700" />
+  <figcaption class="a-illustration__caption">The PHP Interpreter</figcaption>
+</figure>
+<h5 id="set-up-the-composer">Set up the composer</h5>
+<p>The next step is to set the composer. Of course, we will set the WSL’s global composer package manager that we installed
+  earlier. The setup is easy: just pop up the <code class="language-plaintext highlighter-rouge">Settings &gt; PHP &gt; Composer</code> and on the <code class="language-plaintext highlighter-rouge">Execution</code> fieldset choose the 
+  <code class="language-plaintext highlighter-rouge">Remote Interpreter</code> option, then from the <code class="language-plaintext highlighter-rouge">CLI Interpreter</code> dropdown choose the previously created WSL interpreter.
+  When for some reason it wouldn’t list it (happened once to me), you can still click on the <code class="language-plaintext highlighter-rouge">...</code> button to configure it.</p>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/phpstorm-2.png" width="700" />
+  <figcaption class="a-illustration__caption">The PHP Interpreter</figcaption>
+</figure>
+<h5 id="set-up-the-code-quality-tools">Set up the code quality tools</h5>
+<p>There are many settings in PHPStorm that can be set to be visible only for the actual project. Well, the quality tools 
+  are global settings, so if you set it specifically for one project, then it may (and most likely) not work for the other.
+  Especially when you use remote/docker interpreter for them.</p>
+<p>It can be also tricky to set remote interpreter (e.g. Docker) for them, because the IDE will periodically <em>ping</em> these 
+  tools to perform the quality check and if you are happen to be in the middle of an XDebug session in the same Docker 
+  machine, you can end up in a deadlock situation.</p>
+<p>As once, I reported it to my colleagues:</p>
+<blockquote>
+  In PHPStorm end any active debug session and turn off the XDebug listener before opening the Settings window. 
+  Edge case: if you land on an option that was set to use/listen/track the remote interpreter (the docker container) 
+  it may start checking the setup on the remote interpreter which is blocked by the active debug session, so the 
+  settings window is blocked from any further action. You won't be able to close the settings window to turn off the 
+  listener.
+</blockquote>
+<p>So if you go to <code class="language-plaintext highlighter-rouge">Settings &gt; PHP &gt; Quality tools</code> you will see the following tools listed:</p>
+<ul>
+  <li>PHP_CodeSniffer</li>
+  <li>PHP Mess Detector</li>
+  <li>PHP CS Fixer</li>
+  <li>Psalm</li>
+  <li>PHPStan</li>
+</ul>
+<p>These are not listed because we installed the corresponding composer packages. In fact, we installed these composer packages,
+  because these settings are listed by default in PHPStorm.</p>
+<p>Now we are in the right place, we have to do a bit of repetitive action, but we have to do it only once, and not for 
+  every project:</p>
+<ol>
+  <li>Fold out the given tool’s options.</li>
+  <li>Turn it <code class="language-plaintext highlighter-rouge">[On]</code>.</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">...</code> next to the <code class="language-plaintext highlighter-rouge">Configuration</code>.</li>
+  <li>Press the <code class="language-plaintext highlighter-rouge">+</code> button and choose our WSL interpreter from the popup dropdown.</li>
+  <li>Close the popup and press the <code class="language-plaintext highlighter-rouge">Verify</code> button to… well… obviously verify</li>
+</ol>
+<figure class="a-illustration">
+  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2023/devenv/develop-php-on-wsl2-in-2023/phpstorm-3.png" width="700" />
+  <figcaption class="a-illustration__caption">The PHP Interpreter</figcaption>
+</figure>
+<p>When you finished with all the tools, the checks will continuously bother you whenever you wrote not a spotless and modern
+  code. Good luck with it!</p>
+<p>But with this setup you can start working with PHP and WSL easier than ever before.</p>
+]]></content><author><name>Gábor Iván</name></author><category term="devenv" /><category term="docker" /><category term="wsl2" /><category term="powerline-shell" /><category term="phpstorm" /><category term="windows" /><summary type="html"><![CDATA[Three years after my previous article on the subject, it's time to look at how different the process is now.]]></summary></entry><entry><title type="html">I give up the Advent of Code</title><link href="http://0.0.0.0:4000/general/holiday" rel="alternate" type="text/html" title="I give up the Advent of Code" /><published>2022-12-19T08:00:00+00:00</published><updated>2023-01-31T11:35:11+00:00</updated><id>http://0.0.0.0:4000/general/holiday</id><content type="html" xml:base="http://0.0.0.0:4000/general/holiday"><![CDATA[<h3 id="sad-but-true">Sad but true</h3>
+  <p>In the last days (December 16 - 17) I was struggling to solve the tasks of the AoC. They seem to be more difficult than 
+    I can solve them with an average web developer knowledge.</p>
+  <p>Yes, they are only algorithms. Yes, I could figure out the 16th, and the 17th algorithm, and I also wrote it and solved 
+    the first part fluently. My solution proved that it works with the second task as well, but only on the example data.</p>
+  <p>Unfortunately my solutions were so hungry for resources, that they couldn’t deal with the part two of the puzzle with 
+    the real input.</p>
+  <p>Now I feel depressed and disappointed again. But this was the first time, I tried this challenge and I could solve more
+    than the half of it. So in the end of the day, I still can be a bit proud of myself. Maybe, there would be some puzzles 
+    in the rest of the days that I could still solve, but this game should be done for fun and relaxation, and not to be
+    nervous and depressed. I already sacrificed two full Saturdays in a row for this challenge, and that’s too much price.</p>
+  <p>So I think it’s really time to stop here and now. It’s Christmastime, and I must not prefer this coding game over my
+    family.</p>
+  <p>I will spend the rest of the year with relaxation - hopefully.</p>
+  <h3 id="the-hints">The hints</h3>
+  <p>Probably you could find much better solutions than my PHP codes. But hey, it’s the Worst Practice!</p>
+  <h4 id="16th-of-december">16th of December</h4>
+  <p>This task truly fucked my brain through the North Korean border. I have never had to deal with graphs, maybe once on the 
+    university twenty-something years ago. So first I had to search the internet which way should I start. This is how I 
+    found the <a rel="noopener" target="_blank" href="https://www.programmingalgorithms.com/algorithm/floyd%E2%80%93warshall-algorithm/php/">Floyd Warshall algorithm</a>.</p>
+  <p>So I had to build up the graph, then make a distance graph for it, then walk the whole thing:</p>
+  <div class="language-php highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -95,9 +598,9 @@
 72
 73
 </pre>
-        </td>
-        <td class="rouge-code">
-          <pre><span class="kd">class</span> <span class="nc">Valve</span> 
+    </td>
+    <td class="rouge-code">
+      <pre><span class="kd">class</span> <span class="nc">Valve</span> 
 <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">}</span>
@@ -171,10 +674,10 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </td>
+  </tr>
+</tbody>
+</table>
 </code></pre>
 </div>
 </div>
@@ -3315,348 +3818,4 @@
 </code></pre>
 </div>
 </div>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[It is winter, we have to do some lumber job. But first we need to find the right trees.]]></summary></entry><entry><title type="html">Advent of Code - Day 7</title><link href="http://0.0.0.0:4000/backend/advent-of-code-day-7" rel="alternate" type="text/html" title="Advent of Code - Day 7" /><published>2022-12-07T13:30:00+00:00</published><updated>2023-01-31T11:35:11+00:00</updated><id>http://0.0.0.0:4000/backend/advent-of-code-day-7</id><content type="html" xml:base="http://0.0.0.0:4000/backend/advent-of-code-day-7"><![CDATA[<p><a href="https://adventofcode.com/2022/day/7" rel="noopener" target="_blank">Today’s puzzle</a> in short: we have a
-    filesystem that we need to build up from command history (input), then figure out sizes for different criteria.</p>
-  <h3 id="the-input-data">The input data</h3>
-  <p>Okay, this one fired up the boosters for sure. The input file has filesystem commands and some responses for the commands:</p>
-  <h4 id="the-commands">The commands</h4>
-  <p>The commands are normal *nix system commands. The <code class="language-plaintext highlighter-rouge">$</code> represents the command prompt.</p>
-  <ul>
-    <li><code class="language-plaintext highlighter-rouge">$ cd /</code> - enter the root directory.</li>
-    <li><code class="language-plaintext highlighter-rouge">$ cd ..</code> - one level up in the folder structure.</li>
-    <li><code class="language-plaintext highlighter-rouge">$ cd xy</code> - enter the <code class="language-plaintext highlighter-rouge">xy</code> directory.</li>
-    <li><code class="language-plaintext highlighter-rouge">$ ls</code> - list directory content.</li>
-  </ul>
-  <h4 id="responses">Responses</h4>
-  <p>Only the <code class="language-plaintext highlighter-rouge">ls</code> command produces any output in this input data:</p>
-  <ul>
-    <li><code class="language-plaintext highlighter-rouge">dir abc</code> - there’s a subdirectory with the name of <code class="language-plaintext highlighter-rouge">abc</code>.</li>
-    <li><code class="language-plaintext highlighter-rouge">1234 file.txt</code> - there’s a file with the name of <code class="language-plaintext highlighter-rouge">file.txt</code> and the size of <code class="language-plaintext highlighter-rouge">1234</code> bytes. The filename extension is 
-      optional.</li>
-  </ul>
-  <h4 id="game-rules">Game rules</h4>
-  <p>No special rules here. We need to reproduce the file system structure and then calculate different data out of it.</p>
-  <h3 id="the-structure">The structure</h3>
-  <p>For the first time we need to go into a more advanced mode and create some structure from the input data. Let’s start 
-    with this one.</p>
-  <p>We read the input data line-by-line and decide what its content is. For both part one and two, we need to deal with 
-    directory sizes (that means the sizes all the files and subdirectories of the given directory), we can simplify our 
-    structure and collect only the folders and the sizes of their content.</p>
-  <div class="language-php highlighter-rouge">
-    <div class="highlight">
-      <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-</pre>
-    </td>
-    <td class="rouge-code">
-      <pre><span class="nv">$currentDirectory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="nv">$rootDirectory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-
-<span class="kd">class</span> <span class="nc">ElfDirectory</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="kt">string</span> <span class="nv">$name</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
-    <span class="k">public</span> <span class="kt">?ElfDirectory</span> <span class="nv">$parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="cd">/** @var array&lt;int, ElfDirectory&gt;  */</span>
-    <span class="k">public</span> <span class="kt">array</span> <span class="nv">$children</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="cd">/** @var array&lt;int, string&gt; */</span>
-    <span class="k">public</span> <span class="kt">array</span> <span class="nv">$files</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="k">public</span> <span class="kt">int</span> <span class="nv">$totalSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nv">$fn</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="k">__DIR__</span><span class="mf">.</span><span class="s1">'/input.txt'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">((</span><span class="nv">$line</span> <span class="o">=</span> <span class="nb">fgets</span><span class="p">(</span><span class="nv">$fn</span><span class="p">,</span> <span class="mi">1024</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$line</span> <span class="o">=</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">==</span> <span class="s1">'$ ls'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">==</span> <span class="s1">'$ cd ..'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$currentDirectory</span> <span class="o">=</span> <span class="nv">$currentDirectory</span><span class="o">-&gt;</span><span class="k">parent</span><span class="p">;</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">==</span> <span class="s1">'$ cd /'</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nv">$newDirectory</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ElfDirectory</span><span class="p">();</span>
-            <span class="nv">$newDirectory</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'/'</span><span class="p">;</span>
-            <span class="nv">$currentDirectory</span> <span class="o">=</span> <span class="nv">$rootDirectory</span> <span class="o">=</span> <span class="nv">$newDirectory</span><span class="p">;</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="nv">$matches</span> <span class="o">=</span> <span class="p">[];</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^\$ cd (?P&lt;dirName&gt;[a-z]+)$/'</span><span class="p">,</span> <span class="nv">$line</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nv">$newDirectory</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ElfDirectory</span><span class="p">();</span>
-            <span class="nv">$newDirectory</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">=</span> <span class="nv">$matches</span><span class="p">[</span><span class="s1">'dirName'</span><span class="p">];</span>
-            <span class="nv">$currentDirectory</span><span class="o">-&gt;</span><span class="n">children</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$newDirectory</span><span class="p">;</span>
-            <span class="nv">$newDirectory</span><span class="o">-&gt;</span><span class="k">parent</span> <span class="o">=</span> <span class="nv">$currentDirectory</span><span class="p">;</span>
-            <span class="nv">$currentDirectory</span> <span class="o">=</span> <span class="nv">$newDirectory</span><span class="p">;</span>
-            <span class="k">continue</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="nv">$matches</span> <span class="o">=</span> <span class="p">[];</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">preg_match</span><span class="p">(</span><span class="s1">'/^(?P&lt;fileSize&gt;\d+)\s(?P&lt;fileName&gt;[a-z\.]+)$/'</span><span class="p">,</span> <span class="nv">$line</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nv">$currentDirectory</span><span class="o">-&gt;</span><span class="n">totalSize</span> <span class="o">+=</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="nv">$matches</span><span class="p">[</span><span class="s1">'fileSize'</span><span class="p">];</span>
-            <span class="nv">$currentDirectory</span><span class="o">-&gt;</span><span class="n">files</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$matches</span><span class="p">[</span><span class="s1">'fileName'</span><span class="p">]</span><span class="mf">.</span><span class="s1">' ('</span><span class="mf">.</span><span class="nv">$matches</span><span class="p">[</span><span class="s1">'fileSize'</span><span class="p">]</span><span class="mf">.</span><span class="s1">')'</span><span class="p">;</span>
-            <span class="nv">$parent</span> <span class="o">=</span> <span class="nv">$currentDirectory</span><span class="o">-&gt;</span><span class="k">parent</span><span class="p">;</span>
-
-            <span class="k">while</span> <span class="p">(</span><span class="nv">$parent</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nv">$parent</span><span class="o">-&gt;</span><span class="n">totalSize</span> <span class="o">+=</span> <span class="p">(</span><span class="n">int</span><span class="p">)</span> <span class="nv">$matches</span><span class="p">[</span><span class="s1">'fileSize'</span><span class="p">];</span>
-                <span class="nv">$parent</span> <span class="o">=</span> <span class="nv">$parent</span><span class="o">-&gt;</span><span class="k">parent</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nb">fclose</span><span class="p">(</span><span class="nv">$fn</span><span class="p">);</span>
-<span class="p">}</span>
-</pre>
-    </td>
-  </tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>As you see we use a nice and simple PHP class for this task. When we go line-by-line through the file, we check with 
-  exact comparison and with regular expression the actual line:</p>
-<ul>
-  <li>When it’s an <code class="language-plaintext highlighter-rouge">ls</code> command, it’s just a placeholder, we can ignore it.</li>
-  <li>When it’s a <code class="language-plaintext highlighter-rouge">cd ..</code> command, it means the <code class="language-plaintext highlighter-rouge">$currentDirectory</code> pointer should point to its parent element.</li>
-  <li>When it’s a <code class="language-plaintext highlighter-rouge">cd /</code> command, we need to initialize the root level directory. We save it into both the <code class="language-plaintext highlighter-rouge">$currentDirectory</code>
-    and the <code class="language-plaintext highlighter-rouge">$rootDirectory</code></li>
-  <li>When we enter into a subdirectory, we create a new <code class="language-plaintext highlighter-rouge">ElfDirectory</code> instance, add it to the <code class="language-plaintext highlighter-rouge">$currentDirectory</code>’s children 
-    list, and set the <code class="language-plaintext highlighter-rouge">$currentDirectory</code> as the parent of this directory instance. Then we set this new instance as the 
-    <code class="language-plaintext highlighter-rouge">$currentDirectory</code>.</li>
-  <li>When it’s directory listing row, and it’s a file, we increment the <code class="language-plaintext highlighter-rouge">$currentDirectory</code> size counter with the actual file
-    size. To make our future life easier, we also iterate through the parent element(s) and increment their size counters 
-    as well.</li>
-  <li>When it’s directory listing row, and it’s a directory, we ignore it, the <code class="language-plaintext highlighter-rouge">cd</code> command will do the registration.</li>
-</ul>
-<p>As you see we also store the file name with the file size in a string within the <code class="language-plaintext highlighter-rouge">ElfDirectory</code>. However, it’s not necessary
-  I still added it, because we will have a bonus function in the end, which can visually display the folder structure in the 
-  terminal.</p>
-<h3 id="part-one">Part one</h3>
-<p>In part one, we need to analyze the file system and count all the folder sizes that are below <strong>100000</strong> bytes. As in the
-  puzzle description is written, with this method we most likely will have redundant counts:</p>
-<ul>
-  <li>If folder “B” size within folder “A” is 3000,</li>
-  <li>…and folder “A” size is 5000,</li>
-  <li>…then both folder “A” and folder “B” is below 100000, so we count 8000, although folder “A”’s size counter already contains
-    the size of folder “B”.</li>
-</ul>
-<p>What can we say? <code class="language-plaintext highlighter-rouge">¯\_(ツ)_/¯</code>.</p>
-<p>To find the answer for the question, we need to create a recursive function that can climb the tree and check every element 
-  of it:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">const</span> <span class="no">DIRECTORY_CHECK_MAX_SIZE</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">;</span>
-
-<span class="k">function</span> <span class="n">calculateTotalSumOf10kFolders</span><span class="p">(</span><span class="kt">ElfDirectory</span> <span class="nv">$directory</span><span class="p">):</span> <span class="kt">int</span>
-<span class="p">{</span>
-    <span class="nv">$sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">totalSize</span>  <span class="o">&lt;=</span> <span class="no">DIRECTORY_CHECK_MAX_SIZE</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$sum</span> <span class="o">+=</span> <span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">totalSize</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">children</span> <span class="k">as</span> <span class="nv">$subDirectory</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$sum</span> <span class="o">+=</span> <span class="nf">calculateTotalSumOf10kFolders</span><span class="p">(</span><span class="nv">$subDirectory</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nv">$sum</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="k">echo</span> <span class="nf">calculateTotalSumOf10kFolders</span><span class="p">(</span><span class="nv">$rootDirectory</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<h3 id="part-two">Part two</h3>
-<p>Here we need to find the smallest directory that is larger than a specific size. What is this specific size? So we know that
-  the total disk space is 70000000 bytes, and the update requires 30000000 bytes of free space. We also know, how much our
-  filesystem totally consumes (which is the <code class="language-plaintext highlighter-rouge">totalSize</code> of the root directory). From these, we can calculate how much space
-  we need more to fulfill the free space requirement of the update. We need to find one folder that frees up enough space
-  upon deletion.</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">const</span> <span class="no">TOTAL_DISK_SPACE</span> <span class="o">=</span> <span class="mi">70000000</span><span class="p">;</span>
-<span class="k">const</span> <span class="no">MINIMUM_UPDATE_SPACE_REQUIRED</span> <span class="o">=</span> <span class="mi">30000000</span><span class="p">;</span>
-
-<span class="k">function</span> <span class="n">findSmallestDirectoryFreesUpEnoughSpace</span><span class="p">(</span><span class="kt">ElfDirectory</span> <span class="nv">$directory</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$actualMinimum</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$limit</span><span class="p">):</span> <span class="kt">int</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">totalSize</span> <span class="o">&gt;</span> <span class="nv">$limit</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$actualMinimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nv">$actualMinimum</span><span class="p">,</span> <span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">totalSize</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">children</span> <span class="k">as</span> <span class="nv">$subDirectory</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$actualMinimum</span> <span class="o">=</span> <span class="nf">findSmallestDirectoryFreesUpEnoughSpace</span><span class="p">(</span><span class="nv">$subDirectory</span><span class="p">,</span> <span class="nv">$actualMinimum</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nv">$actualMinimum</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nv">$actualFreeSpace</span> <span class="o">=</span> <span class="no">TOTAL_DISK_SPACE</span> <span class="o">-</span> <span class="nv">$rootDirectory</span><span class="o">-&gt;</span><span class="n">totalSize</span><span class="p">;</span>
-<span class="nv">$spaceNeeded</span> <span class="o">=</span> <span class="no">MINIMUM_UPDATE_SPACE_REQUIRED</span> <span class="o">-</span> <span class="nv">$actualFreeSpace</span><span class="p">;</span>
-<span class="k">echo</span> <span class="nf">findSmallestDirectoryFreesUpEnoughSpace</span><span class="p">(</span><span class="nv">$rootDirectory</span><span class="p">,</span> <span class="nv">$rootDirectory</span><span class="o">-&gt;</span><span class="n">totalSize</span><span class="p">,</span> <span class="nv">$spaceNeeded</span><span class="p">)</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>Of course, we don’t make extra checks whether there’s enough free space or not.</p>
-<h3 id="bonus">Bonus</h3>
-<p>I promised a bonus. It’s ugly as hell, and it can be optimized a lot, but for now it’s a good start. So the “not-so-proper”
-  <code class="language-plaintext highlighter-rouge">tree</code> command:</p>
-<div class="language-php highlighter-rouge">
-  <div class="highlight">
-    <pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre>
-  </td>
-  <td class="rouge-code">
-    <pre><span class="k">function</span> <span class="n">tree</span><span class="p">(</span><span class="kt">ElfDirectory</span> <span class="nv">$directory</span><span class="p">,</span> <span class="kt">int</span> <span class="nv">$level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span> <span class="kt">void</span>
-<span class="p">{</span>
-    <span class="k">echo</span> <span class="nb">str_repeat</span><span class="p">(</span><span class="s1">' | '</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$level</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
-        <span class="mf">.</span><span class="p">(</span><span class="nv">$level</span> <span class="o">?</span> <span class="s1">' ├'</span> <span class="o">:</span><span class="s1">''</span><span class="p">)</span>
-        <span class="mf">.</span><span class="s1">'['</span><span class="mf">.</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">name</span><span class="mf">.</span><span class="s1">'] ('</span><span class="mf">.</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">totalSize</span><span class="mf">.</span><span class="s1">')'</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">children</span> <span class="k">as</span> <span class="nv">$subDir</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nf">tree</span><span class="p">(</span><span class="nv">$subDir</span><span class="p">,</span> <span class="nv">$level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$directory</span><span class="o">-&gt;</span><span class="n">files</span> <span class="k">as</span> <span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="nb">str_repeat</span><span class="p">(</span><span class="s1">' | '</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nv">$level</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-            <span class="mf">.</span><span class="p">(</span><span class="nv">$level</span> <span class="o">?</span> <span class="s1">' | '</span> <span class="o">:</span><span class="s1">''</span><span class="p">)</span><span class="mf">.</span><span class="s1">' └'</span><span class="mf">.</span><span class="nv">$file</span><span class="mf">.</span><span class="kc">PHP_EOL</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre>
-  </td>
-</tr>
-</tbody>
-</table>
-</code></pre>
-</div>
-</div>
-<p>It will look something like this:</p>
-<figure class="a-illustration">
-  <img class="a-illustration__image" src="/assets/img/post-illustration-placeholder.png" data-src="/assets/img/blog/2022/backend/advent-of-code-day-7/visual.png" width="480" />
-  <figcaption class="a-illustration__caption">Output sample of the tree function.</figcaption>
-</figure>
-]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[Dig deep in a folder structure, to find the one.]]></summary></entry></feed>
+]]></content><author><name>Gábor Iván</name></author><category term="backend" /><category term="advent" /><category term="php" /><summary type="html"><![CDATA[It is winter, we have to do some lumber job. But first we need to find the right trees.]]></summary></entry></feed>

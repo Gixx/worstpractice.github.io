@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+      <loc>http://0.0.0.0:4000/devenv/develop-php-on-wsl2-in-2023</loc>
+      <lastmod>2023-01-31T17:00:00+00:00</lastmod>
+    </url>
+    <url>
       <loc>http://0.0.0.0:4000/general/holiday</loc>
       <lastmod>2022-12-19T08:00:00+00:00</lastmod>
     </url>
@@ -122,67 +126,67 @@
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0001</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0002</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0003</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0004</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/code-of-the-day/0005</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/404</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/imprint</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/author/gabor.ivan/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/gdpr/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/archive/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/privacy</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/robots.txt</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/site.css</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/sorry</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/terms</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/archive/2020-06/</loc>
@@ -225,171 +229,175 @@
       <lastmod>2022-10-01T00:00:00+00:00</lastmod>
     </url>
     <url>
+      <loc>http://0.0.0.0:4000/archive/2023-01/</loc>
+      <lastmod>2023-01-01T00:00:00+00:00</lastmod>
+    </url>
+    <url>
       <loc>http://0.0.0.0:4000/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/2/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/3/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/personal/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/docker/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/wsl2/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/powerline-shell/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/phpstorm/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/windows/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/css/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/html/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/smart/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/js/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/oop/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/responsive/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/mobile/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/design/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/php/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/php/2/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/php74/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/dic/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/clean-code/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/solid-principles/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/yaml/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/aws/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/s3-bucket/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/react/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/webpack/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/typescript/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/chakra/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/php82/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/refactor/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/jekyll/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/liquid/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/advent/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/tags/advent/2/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/general/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/devenv/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/frontend/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/backend/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/backend/2/</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
     <url>
       <loc>http://0.0.0.0:4000/assets/css/site.css.map</loc>
-      <lastmod>2023-01-31T20:33:16+00:00</lastmod>
+      <lastmod>2023-02-24T15:37:47+00:00</lastmod>
     </url>
   </urlset>
