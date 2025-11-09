@@ -2,10 +2,13 @@
 @import "../sizes";
 @import "../fonts";
 
-.g-featureToggle,
-.a-featureToggle {
+.FeatureToggle {
   padding: 1.5rem 1.5rem 1.5rem 0;
   position: relative;
+
+  * {
+    cursor: pointer;
+  }
 
   input[type="checkbox"] {
     display: none;
@@ -32,7 +35,7 @@
       border-radius: 1.6rem;
       height: 3.2rem;
       width: 6.4rem;
-      background: $worstpractice-red;
+      background: $red;
       transition: background 0.4s ease-in;
       margin-left: 0.3rem;
     }
@@ -58,7 +61,7 @@
   }
 
   input:checked + label span:last-child {
-    background: $worstpractice-green;
+    background: $green;
   }
 
   input:checked + label span:last-child:before {
@@ -66,11 +69,3 @@
   }
 }
 
-.a-featureToggle:first-child {
-  border-top: none;
-}
-
-.g-featureToggle *,
-.a-featureToggle * {
-  cursor: pointer;
-}

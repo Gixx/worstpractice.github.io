@@ -1,14 +1,14 @@
 /**
  * Data Storage component.
  *
- * @param {object} utility
- * @param {boolean} verbose
  * @returns {*}
  */
-const DataStorage = function ({utility, verbose = false})
+const LocalStorage = function ()
 {
-    /** @type {string} */
-    const consoleColorId = '#13D225';
+    /** @instance Utility */
+    let utility = globalThis.Components.get('utility')
+    /** @instance Logger */
+    let logger = new Logger('Data Storage', 'SpringGreen');
     /** @type {object} */
     const storage = {};
 
@@ -28,7 +28,7 @@ const DataStorage = function ({utility, verbose = false})
         initStorageKeys(localStorage);
         initStorageKeys(sessionStorage);
 
-        utility.triggerEvent({element: document, eventName: 'Component.DataStorage.Ready'});
+        utility.triggerEvent(document, 'Component.DataStorage.Ready', null, 1);
     };
 
     /**
@@ -49,18 +49,13 @@ const DataStorage = function ({utility, verbose = false})
     /**
      * Set data.
      *
-     * @param {string} key   The name of the key
-     * @param {string} value The value
+     * @param {string} key      The name of the key
+     * @param {string} value    The value
+     * @param {boolean} session Mark it as session data (for the logging only)
      */
-    const setData = function (key, value)
+    const setData = function (key, value, session = false)
     {
-        verbose && console.info(
-            '%c[Data Storage]%c ⚡%c Setting data into dataStorage: %o',
-            'background:'+consoleColorId+';font-weight:bold;',
-            'color:orange;font-weight:bold',
-            'color:#599bd6',
-            key
-        );
+        //logger.actionTriggered('Setting data into dataStorage', key + (session ? ' (session)' : '') + ': "'+value+'"');
         typeof storage[key] !== 'undefined' && storage[key].setItem(key, value);
     };
 
@@ -87,13 +82,7 @@ const DataStorage = function ({utility, verbose = false})
         typeof storage[key] !== 'undefined' && storage[key].removeItem(key);
     };
 
-    verbose && console.info(
-        '%c[Data Storage]%c ✔%c The Data Storage Component loaded.',
-        'background:'+consoleColorId+';font-weight:bold;',
-        'color:green; font-weight:bold;',
-        'color:black; font-weight:bold;'
-    );
-
+    logger.componentLoaded();
     initialize();
 
     return {
@@ -104,13 +93,13 @@ const DataStorage = function ({utility, verbose = false})
          * @param {string} value The value
          * @param {boolean} session The data should be deleted when the browser session ends.
          */
-        set: function ({key, value, session = false}) {
+        set: function (key, value, session = false) {
             // To avoid to leave mess in local storage when setting an existing key to session storage, first we delete.
             deleteDataByKey(key);
 
             storage[key] = session ? sessionStorage : localStorage;
 
-            setData(key, value);
+            setData(key, value, session);
         },
 
         /**
@@ -119,7 +108,7 @@ const DataStorage = function ({utility, verbose = false})
          * @param {string} key The name of the key
          * @returns {string}
          */
-        get: function ({key}) {
+        get: function (key) {
             return getDataByKey(key);
         },
 
@@ -130,11 +119,11 @@ const DataStorage = function ({utility, verbose = false})
          * @param {string} key The name of the key
          * @param {boolean} session The data should be deleted when the browser session ends.
          */
-        renew: function({key, session = false}) {
+        renew: function(key, session = false) {
             const value = getDataByKey(key);
 
             if (value !== '') {
-                this.set({key: key, value: value, session: session});
+                this.set(key, value, session);
             }
         },
 
@@ -143,10 +132,10 @@ const DataStorage = function ({utility, verbose = false})
          *
          * @param {string} key The name of the key
          */
-        delete: function({key}) {
+        delete: function(key) {
             deleteDataByKey(key);
         },
     }
 };
 
-window['DataStorage'] = DataStorage;
+window['LocalStorage'] = LocalStorage;

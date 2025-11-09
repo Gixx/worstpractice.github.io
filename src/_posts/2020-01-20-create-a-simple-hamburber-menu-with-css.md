@@ -45,7 +45,7 @@ I tried some "wrapper-less" solutions during the development process, but none o
 Anyways I like boxing and encapsulating.
 
 ```html
-<div class="m-menu"></div>
+<aside class="m-menu"></aside>
 ```
 
 #### 2. Hamburger
@@ -66,11 +66,11 @@ I used the third option, because I promised a "CSS-only Hamburger Menu", and not
 So let's create those meaningless markups:
 
 ```html
-<div class="m-menu">
+<aside class="m-menu">
     <div class="m-menu__burger">
         <span></span>
     </div>
-</div>
+</aside>
 ```
 
 #### 3. Toggle state
@@ -81,10 +81,10 @@ need, and we don't have to deal with any JavaScript to change its state. And mos
 on CSS level.
 
 ```html
-<div class="m-menu">
+<aside class="m-menu">
     ...
     <input class="m-menu__toggle" type="checkbox">
-</div>
+</aside>
 ```
 
 #### 4. Menu body
@@ -92,7 +92,7 @@ on CSS level.
 And of course we need the menu body itself and some content to make it useful:
 
 ```html
-<div class="m-menu">
+<aside class="m-menu">
     ...
     <div class="m-menu__content">
         <nav>
@@ -104,7 +104,7 @@ And of course we need the menu body itself and some content to make it useful:
             </ul>
         </nav>
     </div>
-</div>
+</aside>
 ```
 
 #### 5. Backdrop
@@ -113,10 +113,10 @@ Unfortunately the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::ba
 is not supported in every modern browser... ☞ Safari! Hello?? ...so we have do a little bit of workaround.
 
 ```html
-<div class="m-menu">
+<aside class="m-menu">
     ...
     <div class="m-menu__backdrop"></div>
-</div>
+</aside>
 ```
 
 Now, that we have the menu skeleton, it's time to add the style that makes all the magic.

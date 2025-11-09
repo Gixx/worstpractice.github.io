@@ -23,6 +23,14 @@ $light-red: rgba(255, 100, 100, 1);
 $red: rgba(255, 0, 0, 1);
 $dark-red: rgba(198, 0, 0, 1);
 
+$light-green: rgba(100, 255, 100, 1);
+$green: rgba(0, 200, 0, 1);
+$dark-green: rgba(0, 100, 0, 1);
+
+$light-blue: rgb(100, 200, 255);
+$blue: rgb(0, 72, 255);
+$dark-blue: rgba(0, 0, 150, 1);
+
 $light-orange: rgba(236, 170, 29, 1);
 $orange: rgba(254, 128, 25, 1);
 $dark-orange: rgba(207, 93, 0, 1);
@@ -35,3 +43,10 @@ $worstpractice-tanned-light: rgba(255, 238, 222, 1);
 $code-background: $lighter-grey !default;
 $code-gutter-border: rgba(0, 200, 0, 1);
 $code-gutter-background: $code-background !default;
+
+$chart-beginner: rgba(255, 69, 0, 1);
+$chart-junior: rgba(255, 255, 0, 1);
+$chart-experienced: rgba(173, 255, 47, 1);
+$chart-senior: rgba(34, 139, 34, 1);
+$chart-expert: rgba(0, 100, 0, 1);
+$chart-fadeout: $transparent;

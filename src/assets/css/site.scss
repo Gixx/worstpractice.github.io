@@ -1,16 +1,24 @@
 ---
 ---
 
+@import "colors";
+@import "sizes";
+@import "fonts";
 /* normal and large screens (tablet landscape or desktop) */
 @import "fixed/code-of-the-day";
 @import "fixed/content";
 @import "fixed/defaults";
-@import "fixed/feature-toggle";
+//@import "fixed/feature-toggle";
 @import "fixed/footer";
-@import "fixed/gdpr";
+//@import "fixed/gdpr";
 @import "fixed/header";
 @import "fixed/navigation";
 @import "fixed/syntax";
+
+@import "components/DialogWindow";
+@import "components/BarChart";
+@import "components/Collapsible";
+@import "components/FeatureToggle";
 
 /* small screens (mobile or table portrait) */
 @media only screen and (max-width: 1023px) {

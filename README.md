@@ -52,6 +52,7 @@ $> docker exec -it -u dev worst-practice bash
 Inside the container for the first time it's worth to make sure everything is up-to-date, so run:
 
 ```
+bash-5.1# sudo apk add clang make ruby-dev libffi-dev
 bash-5.1# npm install
 bash-5.1# sudo bundle install
 ```
